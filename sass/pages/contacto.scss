@@ -1,0 +1,23 @@
+.main-content {
+
+    &__title {
+      text-align: center;
+      margin: 0 auto;
+      padding: 0;
+
+    }
+
+    &__divider-left {
+      width: 600px;
+      float: left;
+    }
+
+    &__divider-right {
+      width: 600px;
+      float: right;
+    }
+    &__wrapper img {
+      width: 100%;
+    }
+}
+

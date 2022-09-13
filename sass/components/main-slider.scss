@@ -1,0 +1,13 @@
+.main-content {
+
+        & .main-slider {
+            padding-top: 4em;
+            width: 100%;
+            background-color: #b6db92;
+            vertical-align: middle;
+            & img {
+                width: 100%;
+            }
+        }
+    
+}

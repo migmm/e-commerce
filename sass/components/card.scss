@@ -1,0 +1,224 @@
+.card {
+    max-width: 270px;
+    flex-grow: 1;
+    border: 1px solid #cecdcd;
+    border-radius: 8px;
+    /* transition: background-color .3s, border-width 2s */
+    transition: all .2s;
+    padding: 1em 1em 3.5em 1em;
+    /* background-color: #ffff00; */
+    background-color: #ffffff;
+    position: relative;
+
+    &:hover {
+        /* background-color: #ffff00; */
+        /* width: 240px; */
+        /* transform: rotate(3deg) scale(1.1); */
+        /* transform: scale(1.05); */
+        box-shadow:
+        0 1px 5px rgba(0, 0, 0, .3),
+        0 0 3px rgba(0, 0, 0, .3)
+    ;
+        transform-origin: bottom;
+    }
+
+    &__flag-container{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 60px;
+        line-height:60px;
+    }
+
+    &__flag-new-product,
+    &__flag-last-unit {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    &__flag-new-product {
+        visibility: visible;
+    }
+
+    &__flag-last-unit {
+        visibility: visible;
+    }
+    
+    &__link {
+        position: absolute;
+        bottom: 1em;
+        left: 50%;
+        width: 10em;
+        text-align: center;
+        transform:translateX(-50%);
+        background-color: #be0000;
+        text-decoration: none;
+        color: #ffffff;
+        padding: .7em;
+        border-radius: .6em;
+    }
+
+    &__link:hover {
+        background-color: #bd2121;
+        font-weight: 500;
+    }
+
+    &__link:active {
+        background-color: #9c5555;
+        font-weight: 500;
+    }
+    
+    &__item-qty-selector {
+        display: none;
+        position: absolute;
+        bottom: 1em;
+        left: 50%;
+        width: 10em;
+        text-align: center;
+        transform:translateX(-50%);
+        background-color: #be0000;
+        text-decoration: none;
+        color: #ffffff;
+        padding: 3px;
+        border-radius: .6em;
+
+        &__increase-qty,
+        &__decrease-qty  {
+            display: inline-block;
+            width: 20%;
+            background-color: #be0000;
+            cursor: pointer;
+            height: 100%;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        &__qty {
+            display: inline-block;
+        background-color: #ffffff;
+        color: #000000;
+        width: 50%;
+        padding: 8px 0;
+        }
+
+        &__increase-qty:hover,
+        &__decrease-qty:hover {
+            background-color: #d84b4b;
+        }
+
+        &__increase-qty:active,
+        &__decrease-qty:active {
+            background-color: #9c0000;
+            color: #ffffff
+        }
+    }
+
+    &__item-qty-selector--show {
+        display: block;
+        background-color: #6f00ff;
+    }
+
+    /*  
+    &:nth-child(5n+1) {
+        background-color: #d4afb9;
+    }
+
+    &:nth-child(5n+2) {
+        background-color: #d1cfe2;
+    }
+
+    &:nth-child(5n+3) {
+        background-color: #9cadce;
+    }
+
+    &:nth-child(5n+4) {
+        background-color: #7ec4cf;
+    }
+
+    &:nth-child(5n+5) {
+        background-color: #52b2cf;
+    }
+ */
+
+    &__image-container{
+        height: 200px;
+        line-height:200px;
+        text-align:center;
+        padding-left: 1em;
+        padding-right: 1em;
+        margin-bottom: 1em;
+        cursor: pointer;
+    }
+
+    &__image {
+        
+        max-width: 100%;
+        max-height: 100%;
+        vertical-align: middle;
+        object-fit: contain;
+    }
+
+    &__price-currency {
+        font-weight: 600;
+        font-size: 2em;
+        display: block;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    &__latest-price-currency {
+        text-decoration: line-through;
+        color: #999999;
+        
+    }
+
+    &__discount {
+        background-color: #F9BB10;
+        padding: .5em;
+        margin-left: .3em;
+        border-radius: 1em;
+        font-size: .8em;
+        font-weight: 600;
+        margin-bottom: .1em;
+    }
+
+    &__product-brand {
+        /* position: absolute; */
+        display: block;
+        margin-top: 1em;
+    }
+
+    &__heading {
+        margin: 0;
+    }
+}
+
+.fa-heart-o{
+    position: absolute;
+    top: .5em;
+    right: .5em;
+    cursor: pointer;
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+}
+
+.fa-heart-o:hover {
+    color: #ff0000;
+
+}
+
+.fa-heart-o:active {
+    color: #6f00ff;
+    
+}
+
+.section-cards {
+    max-width:   1600px;
+    &__header{
+        text-align: center;
+        padding-top: 2em;
+    }
+}
