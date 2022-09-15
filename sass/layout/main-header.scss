@@ -11,6 +11,7 @@
         max-width: 1600px; // WARNING! Check later 
         margin: 0 auto;
         align-items: center;
+    
 
         &__logo-container {
            /*  background-color: #944; */
@@ -94,6 +95,7 @@
                 width: 2em;
                 
             }
+
 
             @media (min-width: 768px) {
                 order: 3;

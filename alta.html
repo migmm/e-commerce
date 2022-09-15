@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Alta</title>
+</head>
+
+<body>
+    <input type="checkbox" class="main-nav-toggle" id="main-nav-toggle">
+
+    <header class="main-header">
+        <div class="main-header__wrapper">
+            <div class="main-header__wrapper__logo-container">
+                <a href="index.html">
+                    <img class="main-header__wrapper__logo-container__logo" src="img/logocolor.png"
+                        alt="Logo de la juguetería"></a>
+            </div>
+
+            <div class="main-header__wrapper__search-form-container">
+                <form action="">
+
+                    <input type="text" placeholder="¿Que estas buscando?">
+                    <button> <i class="fa fa-search fa-lg" aria-hidden="true"></i></button>
+                </form>
+            </div>
+
+            <!-- <div class="main-header__wrapper__add-button-container">
+                <i class="fa fa-plus fa-lg" aria-hidden="true"></i>
+            </div> -->
+
+            <div class="main-header__wrapper__login-button-container">
+                <i class="fa fa-user fa-lg" aria-hidden="true"></i>
+            </div>
+
+            <div class="main-header__wrapper__cart-button-container">
+                <i class="fa fa-shopping-basket fa-lg" aria-hidden="true"></i>
+            </div>
+
+            <div class="main-header__wrapper__hamburger-button-container">
+                <label for="main-nav-toggle" class="hamburger-button" title="Expandir barra de navegación">
+                    <span class="hamburger-button__top-bread"></span>
+                    <span class="hamburger-button__meat"></span>
+                    <span class="hamburger-button__bottom-bread"></span>
+                </label>
+            </div>
+
+            <div class="main-header__wrapper__main-nav-container">
+                <nav class="main-nav">
+                    <ul class="main-nav__list">
+                        <li class="main-nav__item">
+                            <a href="index.html" class="main-nav__link">Inicio</a>
+                        </li>
+                        <li class="main-nav__item">
+                            <a href="alta.html" class="main-nav__link">Alta</a>
+                        </li>
+                        <li class="main-nav__item">
+                            <a href="contacto.html" class="main-nav__link">Contacto</a>
+                        </li>
+                        <li class="main-nav__item">
+                            <a href="nosotros.html" class="main-nav__link">Nosotros</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="main-content__title">
+            <h1>Agregar un producto</h1>
+        </div>
+        <div class="main-content__wrapper">
+
+            <section class="input-group">
+                <form action="#" autocomplete="off">
+                    <div class="main-content__divider-left">
+                        <div class="input-group__form-group">
+                            <input type="hidden" value="930398282" name="ID">
+                            <label class="input-group__label" for="product-name">Nombre</label>
+                            <input class="input-group__input" name="product-name" id="product-name" type="text" required autofocus>
+                            <span class="input-group__error">ERROR!</span>
+                        </div>
+                        <div class="input-group__form-group">
+                            <label class="input-group__label" for="product-price">Precio</label>
+                            <input class="input-group__input" name="product-price" id="product-price" type="text" required>
+                            <span class="input-group__error">ERROR!</span>
+                        </div>
+                        <div class="input-group__form-group">
+                            <label class="input-group__label" for="product-vendor">Fabricante</label>
+                            <input class="input-group__input" name="product-vendor" id="product-vendor" type="text">
+                            <span class="input-group__error">ERROR!</span>
+                        </div>
+                        <div class="input-group__form-group">
+                            <label class="input-group__label" for="product-stock">Stock</label>
+                            <input class="input-group__input" name="product-stock" id="product-stock" type="text" required>
+                            <span class="input-group__error">ERROR!</span>
+                        </div>
+                        <div class="input-group__form-group">
+                            <label class="input-group__label" for="product-category">Categoría</label>
+                            <input class="input-group__input" name="product-category" id="product-category" type="text">
+                            <span class="input-group__error">ERROR!</span>
+                        </div>
+                        <div class="input-group__form-group">
+                            <label class="input-group__label" for="product-short-description" required>Descripción corta</label>
+                            <input class="input-group__input" name="product-short-description"
+                                id="product-short-description" type="text">
+                            <span class="input-group__error">ERROR!</span>
+                        </div>
+                        <div class="input-group__form-group">
+                            <label class="input-group__label" for="product-long-description" required>Descripción larga</label>
+                            <textarea class="input-group__textarea" name="product-long-description"
+                                id="product-long-description" cols="30" rows="10"></textarea>
+                            <span class="input-group__error">ERROR!</span>
+                        </div>
+
+                    </div>
+                    <div class="main-content__divider-right">
+                        <div class="input-group__form-group">
+                            <label class="input-group__label" for="product-free-shipping">Envío sin cargo</label>
+                            <input class="input-group__input" name="product-free-shipping" id="product-free-shipping"
+                                type="text">
+                            <span class="input-group__error">ERROR!</span>
+                        </div>
+                        <div class="input-group__form-group">
+                            <label class="input-group__label" for="product-age-from" required>Edad desde</label>
+                            <input class="input-group__input" name="product-age-from" id="product-age-from" type="text">
+                            <label class="input-group__label" for="product-age-to" required>Edad hasta</label>
+                            <input class="input-group__input" name="product-age-to" id="product-age-to" type="text">
+                            <span class="input-group__error">ERROR!</span>
+                        </div>
+                        <div class="input-group__form-group">
+                            <label class="input-group__label" for="myFile" required>Fotos</label>
+                                <input type="file" id="myFile" name="filename">
+                            <span class="input-group__error">ERROR!</span>
+                        </div>
+                    </div>
+                    <div class="input-group__buttons">
+                        <button>Agregar</button>
+                        <button>Limpiar formulario</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="main-footer__wrapper">
+            <div class="footer-row-container">
+                <a href="index.html">
+                    <img src="img/logowhite.png" alt="Logo juguetería Cósmica">
+                </a>
+                <p>Somos una empresa familiar fundada en Argentina, <br> dedicada a la comercialización de figuras <br>
+                    y juguetes coleccionables.</p>
+            </div>
+            <div class="footer-row-container">
+                <h2>Secciones</h2>
+                <ul class="footer-row-container__list">
+                    <li class="footer-row-container__item">
+                        <a href="index.html" class="footer-row-container__link">Inicio</a>
+                    </li>
+                    <li class="footer-row-container__item">
+                        <a href="alta.html" class="footer-row-container__link">Alta</a>
+                    </li>
+                    <li class="footer-row-container__item">
+                        <a href="contacto.html" class="footer-row-container__link">Contacto</a>
+                    </li>
+                    <li class="footer-row-container__item">
+                        <a href="nosotros.html" class="footer-row-container__link">Nosotros</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-row-container">
+                <section class="store-info">
+                    <h2>Estamos en:</h2>
+                    <p>
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        Av. Alem 2456 - Buenos Aires, Argentina
+                    </p>
+                    <p>
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                        011 43549032 / 43549033
+                    </p>
+                    <p>
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        info@jugueteriacosmica.com.ar
+                    </p>
+                    <p>
+                        <i class="fa fa-at" aria-hidden="true"></i>
+                        www.jugueteriacosmica.com.ar
+                    </p>
+                    <p>
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        Lunes a viernes de 8 a 20hs
+                    </p>
+                </section>
+            </div>
+        </div>
+    </footer>
+    <script src="https://use.fontawesome.com/b826175004.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

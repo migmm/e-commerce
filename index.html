@@ -6,22 +6,507 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
-    <title>Juguetería Cósmica - Juguetes coleccionables</title>
+    <!--   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> -->
+
+
+    <title>Inicio</title>
 </head>
 
 <body>
-    <div class="items-ui">
-    </div>
+
+    <input type="checkbox" class="main-nav-toggle" id="main-nav-toggle">
 
     <header class="main-header">
+        <div class="main-header__wrapper">
+            <div class="main-header__wrapper__logo-container">
+                <img class="main-header__wrapper__logo-container__logo" src="img/logocolor.png"
+                    alt="Logo de la juguetería">
+            </div>
+
+            <div class="main-header__wrapper__search-form-container">
+                <form action="">
+
+                    <input type="text" placeholder="¿Que estas buscando?">
+                    <button> <i class="fa fa-search fa-lg" aria-hidden="true"></i></button>
+                </form>
+            </div>
+
+            <!-- <div class="main-header__wrapper__add-button-container">
+                <i class="fa fa-plus fa-lg" aria-hidden="true"></i>
+            </div> -->
+
+            <div class="main-header__wrapper__login-button-container">
+                <i class="fa fa-user fa-lg" aria-hidden="true"></i>
+            </div>
+
+            <div class="main-header__wrapper__cart-button-container">
+                <i class="fa fa-shopping-basket fa-lg" aria-hidden="true"></i>
+            </div>
+
+            <div class="main-header__wrapper__hamburger-button-container">
+                <label for="main-nav-toggle" class="hamburger-button" title="Expandir barra de navegación">
+                    <span class="hamburger-button__top-bread"></span>
+                    <span class="hamburger-button__meat"></span>
+                    <span class="hamburger-button__bottom-bread"></span>
+                </label>
+            </div>
+
+            <div class="main-header__wrapper__main-nav-container">
+                <nav class="main-nav">
+                    <ul class="main-nav__list">
+                        <li class="main-nav__item">
+                            <a href="index.html" class="main-nav__link">Inicio</a>
+                        </li>
+                        <li class="main-nav__item">
+                            <a href="alta.html" class="main-nav__link">Alta</a>
+                        </li>
+                        <li class="main-nav__item">
+                            <a href="contacto.html" class="main-nav__link">Contacto</a>
+                        </li>
+                        <li class="main-nav__item">
+                            <a href="nosotros.html" class="main-nav__link">Nosotros</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
     </header>
 
     <main class="main-content">
+        
+
+        <div class="main-slider">
+            <img class="mySlides" src="img/hero-xmen.jpg" alt="Slide">
+            <img class="mySlides" src="img/hero-marvel.jpg" alt="Slide">
+            <img class="mySlides" src="img/hero-mandalorian.jpg" alt="Slide">
+        </div>
+
+        <div class="main-content__wrapper">
+
+            <section class="section-cards">
+                <header class="section-cards__header">
+                    <h1>NUEVOS INGRESOS</h1>
+                    <p>Ingresaron nuevos productos a nuestra tienda.</p>
+                </header>
+
+                <div class="cards-container">
+
+                    <div class="card">
+                        <a href="#" class="card__link">Agregar al carrito</a>
+                        <article class="card__article">
+                            <div class="card__flag-container">
+                                <img src="img/new-product.png" alt="Nuevo ingreso" class="card__flag-new-product">
+                            </div>
+                            
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <div class="card__image-container">
+                                <img src="img/61e7q+l8V4L._cpt_.jpg" alt="Producto" class="card__image">
+                            </div>
+                            <div class="card__content">
+                                <span class="card__price-currency">$<span class="card__price-value">5800</span></span>
+                                <span class="card__discount"><span class="card__discount__percent">10</span>% DTO</span>
+                                <span class="card__latest-price-currency">$<span
+                                        class="card__latest-price">4200</span></span>
+                                <span class=card__product-brand>MARVEL</span>
+                                <h2 class="card__heading">CAPITAN AMERICA</h2>
+                                <p class="card__description">Figura del Capitan america 12 cm.</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="card">
+                        <a href="#" class="card__link">Agregar al carrito</a>
+                        <article class="card__article">
+                            <div class="card__flag-container">
+                                <img src="img/new-product.png" alt="Nuevo ingreso" class="card__flag-new-product">
+                            </div>
+                        
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <div class="card__image-container">
+                                <img src="img/51VnXrnisTL._spiderman_.jpg" alt="Producto" class="card__image">
+                            </div>
+                            <div class="card__content">
+                                <span class="card__price-currency">$<span class="card__price-value">5800</span></span>
+                                <span class="card__discount"><span class="card__discount__percent">10</span>% DTO</span>
+                                <span class=card__product-brand>MARVEL</span>
+                                <h2 class="card__heading">SPIDERMAN</h2>
+                                <p class="card__description">Figura de Spiderman 12 cm.</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="card">
+                        <a href="#" class="card__link">Agregar al carrito</a>
+                        <article class="card__article">
+                            <div class="card__flag-container">
+                                <img src="img/new-product.png" alt="Nuevo ingreso" class="card__flag-new-product">
+                            </div>
+
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <div class="card__image-container">
+                                <img src="img/71J-Aj+z75S._loki_.jpg" alt="Producto" class="card__image">
+                            </div>
+                            <div class="card__content">
+                                <span class="card__price-currency">$<span class="card__price-value">5800</span></span>
+                                <span class="card__discount"><span class="card__discount__percent">10</span>% DTO</span>
+                                <span class=card__product-brand>MARVEL</span>
+                                <h2 class="card__heading">LOKI</h2>
+                                <p class="card__description">Figura de Loki de 12cm.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="card">
+                        <a href="#" class="card__link">Agregar al carrito</a>
+                        <article class="card__article">
+                            <div class="card__flag-container">
+                                <img src="img/new-product.png" alt="Nuevo ingreso" class="card__flag-new-product">
+                            </div>
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <div class="card__image-container">
+                                <img src="img/71uQJ6YnXGL._hulk_.jpg" alt="Producto" class="card__image">
+                            </div>
+                            <div class="card__content">
+                                <span class="card__price-currency">$<span class="card__price-value">5800</span></span>
+                                <span class="card__discount"><span class="card__discount__percent">10</span>% DTO</span>
+                                <span class=card__product-brand>MARVEL</span>
+                                <h2 class="card__heading">HULK</h2>
+                                <p class="card__description">Figura de Hulk de 12 cm.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="card">
+                        <a href="#" class="card__link">Agregar al carrito</a>
+                        <article class="card__article">
+                            <div class="card__flag-container">
+                                <img src="img/new-product.png" alt="Nuevo ingreso" class="card__flag-new-product">
+                            </div>
+                        
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <div class="card__image-container">
+                                <img src="img/81ec9J+H0XL._thorv_.jpg" alt="Producto" class="card__image">
+                            </div>
+                            <div class="card__content">
+                                <span class="card__price-currency">$<span class="card__price-value">5800</span></span>
+                                <span class="card__discount"><span class="card__discount__percent">10</span>% DTO</span>
+                                <span class=card__product-brand>MARVEL</span>
+                                <h2 class="card__heading">THOR</h2>
+                                <p class="card__description">Figura de Thor de 12cm.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <footer class="section-cards__foter"></footer>
+            </section>
+
+
+            <section class="promo-wall">
+                    <header class="promo-wall__header">
+                        <h2>LOS MAS POPULARES</h2>
+                    </header>
+                    <div class="promo-wall__categories">
+                        <div class="promo-wall__img"><img src="img/p-avengers.jpg"
+                                alt="Poster promo figuras de Avengers">
+                        </div>
+                        <div class="promo-wall__img"><img src="img/p-transformers.jpg"
+                                alt="Poster promo figuras de Transformers"></div>
+                        <div class="promo-wall__img"><img src="img/p-lego.jpg" alt="Poster promo bricks Lego"></div>
+                        <div class="promo-wall__img"><img src="img/p-jurassicpark.jpg"
+                                alt="Poster promo figuras de Jurassic World"></div>
+                        <div class="promo-wall__img"><img src="img/p-barbie.jpg" alt="Poster promo figuras de Barbie">
+                        </div>
+                        <div class="promo-wall__img"><img src="img/p-terminator.jpg"
+                                alt="Poster promo figuras de Terminator"></div>
+                        <div class="promo-wall__img"><img src="img/p-hotwheels.jpg"
+                                alt="poster promo vehiculos de Hot Wheels"></div>
+                    </div>
+            </section>
+
+            <section class="section-cards">
+                <header class="section-cards__header">
+                    <h1>LOS MAS VENDIDOS</h1>
+                </header>
+
+                <div class="cards-container">
+
+                    <div class="card">
+                        <a href="#" class="card__link">Agregar al carrito</a>
+                        <article class="card__article">
+                            
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <div class="card__image-container">
+                                <img src="img/61e7q+l8V4L._cpt_.jpg" alt="Producto" class="card__image">
+                            </div>
+                            <div class="card__content">
+                                <span class="card__price-currency">$<span class="card__price-value">5800</span></span>
+                                <span class="card__discount"><span class="card__discount__percent">10</span>% DTO</span>
+                                <span class="card__latest-price-currency">$<span
+                                        class="card__latest-price">5200</span></span>
+                                <span class=card__product-brand>MARVEL</span>
+                                <h2 class="card__heading">CAPITAN AMERICA</h2>
+                                <p class="card__description">Figura del Capitan america de 12cm.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="card">
+                        <a href="#" class="card__link">Agregar al carrito</a>
+                        <article class="card__article">
+                      
+                           
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <div class="card__image-container">
+                                <img src="img/51VnXrnisTL._spiderman_.jpg" alt="Producto" class="card__image">
+                            </div>
+                            <div class="card__content">
+                                <span class="card__price-currency">$<span class="card__price-value">5800</span></span>
+                                <span class="card__discount"><span class="card__discount__percent">10</span>% DTO</span>
+                                <span class=card__product-brand>MARVEL</span>
+                                <h2 class="card__heading">SPIDERMAN</h2>
+                                <p class="card__description">Figura de Spiderman de 12cm.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="card">
+                        <a href="#" class="card__link">Agregar al carrito</a>
+                        <article class="card__article">
+
+                            <div class="card__flag-container">
+                                <img src="img/last-unit.png" alt="Últimas unidades" class="card__flag-last-unit">
+                            </div>
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <div class="card__image-container">
+                                <img src="img/71J-Aj+z75S._loki_.jpg" alt="Producto" class="card__image">
+                            </div>
+                            <div class="card__content">
+                                <span class="card__price-currency">$<span class="card__price-value">5800</span></span>
+                                <span class="card__discount"><span class="card__discount__percent">10</span>% DTO</span>
+                                <span class=card__product-brand>MARVEL</span>
+                                <h2 class="card__heading">LOKI</h2>
+                                <p class="card__description">Figura de Loki de 12cm.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="card">
+                        <a href="#" class="card__link">Agregar al carrito</a>
+                        <article class="card__article">
+
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <div class="card__image-container">
+                                <img src="img/71uQJ6YnXGL._hulk_.jpg" alt="Producto" class="card__image">
+                            </div>
+                            <div class="card__content">
+                                <span class="card__price-currency">$<span class="card__price-value">5800</span></span>
+                                <span class="card__discount"><span class="card__discount__percent">10</span>% DTO</span>
+                                <span class=card__product-brand>MARVEL</span>
+                                <h2 class="card__heading">HULK</h2>
+                                <p class="card__description">Figura de Hulk de 12cm.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="card">
+                        <a href="#" class="card__link">Agregar al carrito</a>
+                        <article class="card__article">
+
+                            <div class="card__flag-container">
+                                <img src="img/last-unit.png" alt="Últimas unidades" class="card__flag-last-unit">
+                            </div>
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <div class="card__image-container">
+                                <img src="img/61bMjFAlTAL._dr_.jpg" alt="Producto" class="card__image">
+                            </div>
+                            <div class="card__content">
+                                <span class="card__price-currency">$<span class="card__price-value">5800</span></span>
+                                <span class="card__discount"><span class="card__discount__percent">10</span>% DTO</span>
+                                <span class=card__product-brand>MARVEL</span>
+                                <h2 class="card__heading">DR STRANGE</h2>
+                                <p class="card__description">Figura de DR Strange de 12cm.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+
+                </div>
+
+                <footer class="section-cards__foter"></footer>
+            </section>
+
+            <section class="section-cards">
+                <header class="section-cards__header">
+                    <h1>ULTIMOS VISITADOS</h1>
+                </header>
+
+                <div class="cards-container">
+
+                    <div class="card">
+                        <a href="#" class="card__link">Agregar al carrito</a>
+                        <article class="card__article">
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <div class="card__image-container">
+                                <img src="img/71J-Aj+z75S._loki_.jpg" alt="Producto" class="card__image">
+                            </div>
+                            <div class="card__content">
+                                <span class="card__price-currency">$<span class="card__price-value">5800</span></span>
+                                <span class="card__discount"><span class="card__discount__percent">10</span>% DTO</span>
+                                <span class=card__product-brand>MARVEL</span>
+                                <h2 class="card__heading">LOKI</h2>
+                                <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="card">
+                        <a href="#" class="card__link">Agregar al carrito</a>
+                        <article class="card__article">
+                            
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <div class="card__image-container">
+                                <img src="img/61e7q+l8V4L._cpt_.jpg" alt="Producto" class="card__image">
+                            </div>
+                            <div class="card__content">
+                                <span class="card__price-currency">$<span class="card__price-value">5800</span></span>
+                                <span class="card__discount"><span class="card__discount__percent">10</span>% DTO</span>
+                                <span class="card__latest-price-currency">$<span
+                                        class="card__latest-price">4200</span></span>
+                                <span class=card__product-brand>MARVEL</span>
+                                <h2 class="card__heading">CAPITAN AMERICA</h2>
+                                <p class="card__description">Figura del Capitan america de 12cm.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="card">
+                        <a href="#" class="card__link">Agregar al carrito</a>
+                        <article class="card__article">
+
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <div class="card__image-container">
+                                <img src="img/71yqh+-LzWL._chevy_.jpg" alt="Producto" class="card__image">
+                            </div>
+                            <div class="card__content">
+                                <span class="card__price-currency">$<span class="card__price-value">5800</span></span>
+                                <span class="card__discount"><span class="card__discount__percent">10</span>% DTO</span>
+                                <span class=card__product-brand>HASBRO</span>
+                                <h2 class="card__heading">CHEVY HOT WHEELS</h2>
+                                <p class="card__description">Chevy HotWheels 1/20.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="card">
+                        <a href="#" class="card__link">Agregar al carrito</a>
+                        <article class="card__article">
+
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <div class="card__image-container">
+                                <img src="img/7180i9Z4MJL._datsun_.jpg" alt="Producto" class="card__image">
+                            </div>
+                            <div class="card__content">
+                                <span class="card__price-currency">$<span class="card__price-value">5800</span></span>
+                                <span class="card__discount"><span class="card__discount__percent">10</span>% DTO</span>
+                                <span class=card__product-brand>HASBRO</span>
+                                <h2 class="card__heading">DATSUN HOT WHEELS</h2>
+                                <p class="card__description">Datsun Hot Wheels 1/20.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="card">
+                        <a href="#" class="card__link">Agregar al carrito</a>
+                        <article class="card__article">
+
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <div class="card__image-container">
+                                <img src="img/71PKix2trZL._minions_.jpg" alt="Producto" class="card__image">
+                            </div>
+                            <div class="card__content">
+                                <span class="card__price-currency">$<span class="card__price-value">5800</span></span>
+                                <span class="card__discount"><span class="card__discount__percent">10</span>% DTO</span>
+                                <span class=card__product-brand>HASBRO</span>
+                                <h2 class="card__heading">MINIONS HOT WHEELS</h2>
+                                <p class="card__description">Minions HotWheels 1/20.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+
+
+                </div>
+
+                <footer class="section-cards__foter"></footer>
+            </section>
+
+        </div>
     </main>
 
     <footer class="main-footer">
+        <div class="main-footer__wrapper">
+            <div class="footer-row-container">
+                <img src="img/logowhite.png" alt="Logo juguetería Cósmica">
+                <p>Somos una empresa familiar fundada en Argentina, <br> dedicada a la comercialización de figuras <br>
+                    y juguetes coleccionables.</p>
+            </div>
+            <div class="footer-row-container">
+                <h2>Secciones</h2>
+                <ul class="footer-row-container__list">
+                    <li class="footer-row-container__item">
+                        <a href="index.html" class="footer-row-container__link">Inicio</a>
+                    </li>
+                    <li class="footer-row-container__item">
+                        <a href="alta.html" class="footer-row-container__link">Alta</a>
+                    </li>
+                    <li class="footer-row-container__item">
+                        <a href="contacto.html" class="footer-row-container__link">Contacto</a>
+                    </li>
+                    <li class="footer-row-container__item">
+                        <a href="nosotros.html" class="footer-row-container__link">Nosotros</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-row-container">
+                <section class="store-info">
+                    <h2>Estamos en:</h2>
+                    <p>
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        Av. Alem 2456 - Buenos Aires, Argentina
+                    </p>
+                    <p>
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                        011 43549032 / 43549033
+                    </p>
+                    <p>
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        info@jugueteriacosmica.com.ar
+                    </p>
+                    <p>
+                        <i class="fa fa-at" aria-hidden="true"></i>
+                        www.jugueteriacosmica.com.ar
+                    </p>
+                    <p>
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        Lunes a viernes de 8 a 20hs
+                    </p>
+                </section>
+            </div>
+        </div>
     </footer>
-    
     <script src="https://use.fontawesome.com/b826175004.js"></script>
     <script src="js/main.js"></script>
 </body>
