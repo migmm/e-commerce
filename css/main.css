@@ -472,6 +472,9 @@ body {
   display: block;
   text-decoration: none;
 }
+.main-header__wrapper__login-button-container .login-button-menu__login-button:visited, .main-header__wrapper__login-button-container .login-button-menu__register-button:visited {
+  color: #0061AF;
+}
 .main-header__wrapper__login-button-container .login-menu {
   display: block;
 }

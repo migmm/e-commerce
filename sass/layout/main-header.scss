@@ -96,6 +96,12 @@
                     display: block;
                     text-decoration: none;
                 }
+
+                &__login-button:visited,
+                &__register-button:visited {
+                    color: #0061AF;
+                }
+
             }
 
             & .login-menu {
