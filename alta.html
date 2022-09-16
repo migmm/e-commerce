@@ -77,7 +77,7 @@
         <div class="main-content__wrapper">
 
             <section class="input-group">
-                <form action="#" autocomplete="off">
+                <form action="#" autocomplete="off" id="form">
                     <div class="main-content__divider-left">
                         <div class="input-group__form-group">
                             <input type="hidden" value="930398282" name="ID">
@@ -121,16 +121,21 @@
                     </div>
                     <div class="main-content__divider-right">
                         <div class="input-group__form-group">
-                            <label class="input-group__label" for="product-free-shipping">Envío sin cargo</label>
-                            <input class="input-group__input" name="product-free-shipping" id="product-free-shipping"
-                                type="text">
+                            <input type="checkbox" id="product-free-shipping" name="product-free-shipping" class="input-group__check">
+                            <label class="input-group__label" for="product-free-shipping" id="label-checkbox">Envío sin cargo</label>
                             <span class="input-group__error">ERROR!</span>
                         </div>
                         <div class="input-group__form-group">
-                            <label class="input-group__label" for="product-age-from" required>Edad desde</label>
+                            <label class="input-group__label" for="product-age-from" required>Edad desde / hasta</label>
                             <input class="input-group__input" name="product-age-from" id="product-age-from" type="text">
-                            <label class="input-group__label" for="product-age-to" required>Edad hasta</label>
                             <input class="input-group__input" name="product-age-to" id="product-age-to" type="text">
+
+                        </div>
+                        <div class="input-group__form-group"> 
+                            <input type="radio" id="age-month" name="age-selector" class="input-group__radio">
+                            <label for="age-month">Meses</label>
+                            <input type="radio" id="age-year" name="age-selector" class="input-group__radio">
+                            <label for="age-month">Años</label>
                             <span class="input-group__error">ERROR!</span>
                         </div>
                         <div class="input-group__form-group">
@@ -140,12 +145,13 @@
                         </div>
                     </div>
                     <div class="input-group__buttons">
-                        <button>Agregar</button>
-                        <button>Limpiar formulario</button>
+                        <button type="submit">Agregar</button>
+                        <button type="reset">Limpiar formulario</button>
                     </div>
                 </form>
             </section>
         </div>
+        <script src="js/form.js"></script>
     </main>
 
     <footer class="main-footer">

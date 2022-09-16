@@ -814,10 +814,28 @@ body {
   padding: 0.3em;
   width: 90%;
 }
+.input-group__radio {
+  display: inline-block;
+  margin-left: 1em;
+  margin-top: 0.3em;
+}
+.input-group__checkbox {
+  display: inline-block;
+  margin-left: 1em;
+  margin-top: 0.3em;
+}
 .input-group__error {
-  margin: 0.1em 1em 0.5em 1em;
   display: block;
+  visibility: hidden;
+  margin: 0.1em 1em 0.5em 1em;
   color: #ff0000;
+  font-size: 0.8em;
+}
+.input-group__input--error {
+  border: solid 1px #ff0000;
+}
+.input-group__error--show {
+  visibility: visible;
 }
 .input-group__textarea {
   width: 90%;
@@ -836,6 +854,15 @@ body {
   padding: 0.7em;
   border-radius: 0.6em;
   border: 0px;
+}
+
+#product-age-from,
+#product-age-to {
+  width: 20%;
+}
+
+#label-checkbox {
+  display: inline-block;
 }
 
 .main-content .main-slider {

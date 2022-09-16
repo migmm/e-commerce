@@ -17,10 +17,37 @@
         width: 90%;
     }
 
+    input:focus {
+
+    }
+
+    &__radio {
+        display: inline-block;
+        margin-left: 1em;
+        margin-top: .3em;
+    }
+
+    &__checkbox{
+        display: inline-block;
+        margin-left: 1em;
+        margin-top: .3em;
+    }
+
     &__error {
-        margin: .1em 1em .5em 1em;
         display: block;
+        visibility: hidden;
+        margin: .1em 1em .5em 1em;
         color: #ff0000;
+        font-size: .8em;
+    }
+
+    // Errors on form input 
+    &__input--error {
+        border: solid 1px #ff0000;
+    }
+
+    &__error--show {
+        visibility: visible;
     }
 
     &__textarea {
@@ -45,3 +72,11 @@
     }
 }
 
+#product-age-from,
+#product-age-to {
+    width:20%;
+}
+
+#label-checkbox {
+    display: inline-block;
+}
