@@ -14,7 +14,35 @@
 
 <body>
 
-    <input type="checkbox" class="main-nav-toggle" id="main-nav-toggle">
+ <!--    <input type="checkbox" class="main-nav-toggle" id="main-nav-toggle"> -->
+
+    <div class="items-ui">
+        <input type="checkbox" class="main-nav-toggle" id="main-nav-toggle">
+
+        <a href="https://wa.me/541133332222" id="button-whatsapp" target="_blank">
+            <span>Escribinos</span>
+        </a>
+
+        <a onclick="topFunction()" id="myBtn">
+            <span>Ir arriba</span>
+        </a>
+
+        <div class="background-dark background-dark--hidden">
+        </div>
+
+        <div class="cart-modal">
+            <h1>Tu carrito está vacío!</h1>
+            <h2>Comprate algo!</h2>
+            <h2>¯\_(ツ)_/¯</h2>
+            <button class="cart-modal__btn-close">
+                X
+            </button>
+        </div>
+
+    </div>
+
+
+
 
     <header class="main-header">
         <div class="main-header__wrapper">
@@ -37,6 +65,10 @@
 
             <div class="main-header__wrapper__login-button-container">
                 <i class="fa fa-user fa-lg" aria-hidden="true"></i>
+                <div class="login-button-menu">
+                    <a href="#" class="login-button-menu__login-button">Iniciar sesión</a>
+                    <a href="#" class="login-button-menu__register-button">Crear cuenta</a>
+                </div>
             </div>
 
             <div class="main-header__wrapper__cart-button-container">

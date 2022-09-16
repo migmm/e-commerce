@@ -448,9 +448,32 @@ body {
   font-size: 120%;
   color: #fff;
   cursor: pointer;
+  position: relative;
 }
 .main-header__wrapper__login-button-container__button {
   width: 2em;
+}
+.main-header__wrapper__login-button-container .login-button-menu {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  width: 200px;
+  text-align: center;
+  top: 2.7em;
+  right: 0em;
+  padding: 1em;
+  border-radius: 3px;
+  text-decoration: none;
+  box-shadow: 0px 31px 19px -27px rgba(0, 0, 0, 0.75);
+  font-size: 16px;
+  line-height: 1.5em;
+}
+.main-header__wrapper__login-button-container .login-button-menu__login-button, .main-header__wrapper__login-button-container .login-button-menu__register-button {
+  display: block;
+  text-decoration: none;
+}
+.main-header__wrapper__login-button-container .login-menu {
+  display: block;
 }
 @media (min-width: 768px) {
   .main-header__wrapper__login-button-container {
@@ -496,6 +519,10 @@ body {
     order: 1;
     display: block;
   }
+}
+
+.login-menu {
+  display: block;
 }
 
 .main-nav {
@@ -875,6 +902,149 @@ body {
   width: 100%;
 }
 
+#button-whatsapp {
+  background-color: hsl(142deg, 70%, 49%);
+  display: inline-block;
+  box-shadow: 3px 3px 4px hsla(0deg, 0%, 0%, 0.1);
+  border-radius: 50%;
+  background-image: url("../img/icon-whatsapp.png");
+  height: 64px;
+  width: 64px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  text-decoration: none;
+  color: #fff;
+  z-index: 99;
+}
+
+#button-whatsapp span {
+  display: none;
+  background-color: hsl(142deg, 70%, 40%);
+  padding: 5px;
+  position: relative;
+  bottom: -20px;
+  left: -90px;
+  border-radius: 4px;
+}
+
+#button-whatsapp:hover {
+  background-color: hsl(142deg, 70%, 40%);
+}
+
+#button-whatsapp:hover span {
+  display: inline-block;
+}
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #0061AF;
+  cursor: pointer;
+  padding-left: 14px;
+  padding-top: 5px;
+  border-radius: 50%;
+  height: 64px;
+  width: 64px;
+  animation: fadeIn 1s;
+}
+
+#myBtn:hover {
+  background-color: #20D5E9;
+}
+
+#myBtn:after {
+  content: "\f077";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2em;
+  line-height: 50px;
+  color: #fff;
+}
+
+#myBtn span {
+  display: none;
+  background-color: #0061AF;
+  font-size: 1em;
+  color: #fff;
+  padding: 5px;
+  position: fixed;
+  bottom: 115px;
+  right: 90px;
+  border-radius: 4px;
+}
+
+#myBtn:hover span {
+  display: inline-block;
+}
+
+.background-dark {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: hsla(0deg, 0%, 0%, 0.8);
+  z-index: 200;
+  animation: fadeIn 0.5s;
+}
+.background-dark--hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.cart-modal {
+  width: 500px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: -500px;
+  background-color: #ffffff;
+  padding: 1em;
+  z-index: 201;
+}
+.cart-modal__btn-close {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  width: 25px;
+  height: 25px;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  cursor: pointer;
+}
+.cart-modal h1 {
+  font-size: 28px;
+}
+.cart-modal h2 {
+  font-size: 24px;
+}
+
+.cart-modal--opendrawer {
+  animation: opendrawer 500ms ease-in;
+  animation-fill-mode: forwards;
+  right: -500px;
+}
+
+@keyframes opendrawer {
+  to {
+    right: 0px;
+  }
+}
 .cards-container {
   padding: 1em;
   display: flex;

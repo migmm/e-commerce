@@ -21,7 +21,7 @@
                 height: 2em;
                 
             }
-
+            
             @media (min-width: 1024px) {
                 flex-basis: 10em;
                 cursor: pointer;
@@ -70,10 +70,38 @@
             font-size: 120%;
             color: #fff;
             cursor: pointer;
+            position: relative;
 
             &__button {
                 width: 2em;
             }
+
+            & .login-button-menu {
+                display: none;
+                position: absolute;
+                background-color: #ffffff;
+                width: 200px;
+                text-align: center;
+                top: 2.7em;
+                right: -0em;
+                padding: 1em;
+                border-radius: 3px;
+                text-decoration: none;
+                box-shadow: 0px 31px 19px -27px rgba(0, 0, 0, 0.75);
+                font-size: 16px;
+                line-height: 1.5em;
+
+                &__login-button,
+                &__register-button {
+                    display: block;
+                    text-decoration: none;
+                }
+            }
+
+            & .login-menu {
+                display: block;
+            }
+
 
             @media (min-width: 768px) {
                 order: 3;
@@ -125,4 +153,8 @@
             }
         }
     }
+}
+
+.login-menu {
+    display: block;
 }
