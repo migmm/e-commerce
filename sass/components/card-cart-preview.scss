@@ -58,7 +58,7 @@
             }
             &__price {
                 display: inline-block;
-                margin: 1em;
+                margin: 0 1em;
                 &__price-currency {
                     font-weight: 600;
                     font-size: 1,2em;
@@ -69,8 +69,8 @@
             }
             & .fa-trash-o {
                 display: block;
-               
-                
+                padding-right: .5em;
+                margin-bottom: 5px;
             } 
         }
 
