@@ -634,7 +634,7 @@ body {
 
 .main-footer {
   width: 100%;
-  background-color: #000000;
+  background-color: #0e0e0e;
   clear: left;
 }
 .main-footer__wrapper {
@@ -645,40 +645,77 @@ body {
 }
 @media (min-width: 768px) {
   .main-footer__wrapper {
-    flex-direction: row;
+    flex-direction: column;
   }
+}
+.main-footer .footer-info {
+  color: #dadada;
+  text-align: center;
+  padding: 1px 0;
+  font-size: 0.8em;
+  background-color: #000000;
+}
+.main-footer .footer-info span {
+  color: #858585;
+}
+.main-footer .footer-info span:hover {
+  color: #dadada;
 }
 
 .footer-row-container {
-  margin-left: 3em;
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 768px) {
+  .footer-row-container {
+    flex-direction: row;
+  }
+}
+.footer-row-container .footer-column-container {
   width: 100%;
   height: 100%;
   color: #ffffff;
   align-items: center;
+  text-align: center;
 }
 @media (min-width: 768px) {
-  .footer-row-container {
+  .footer-row-container .footer-column-container {
     width: 33%;
     padding-top: 1em;
     padding-bottom: 2em;
+    text-align: left;
   }
 }
-.footer-row-container img {
-  padding-top: 1em;
+.footer-row-container .footer-column-container img {
+  padding-top: 2em;
   width: 200px;
   cursor: pointer;
 }
-.footer-row-container__item a {
+@media (min-width: 768px) {
+  .footer-row-container .footer-column-container img {
+    padding-top: 1em;
+  }
+}
+.footer-row-container .footer-column-container ul {
+  list-style-type: none;
+  line-height: 2em;
+}
+@media (min-width: 768px) {
+  .footer-row-container .footer-column-container ul {
+    line-height: 1.1em;
+  }
+}
+.footer-row-container .footer-column-container__item a {
   text-decoration: none;
 }
-.footer-row-container__item a:visited {
+.footer-row-container .footer-column-container__item a:visited {
   color: #ffffff;
 }
-.footer-row-container__item a:hover {
+.footer-row-container .footer-column-container__item a:hover {
   color: #b3b3b3;
 }
-.footer-row-container i {
-  margin-right: 1em;
+.footer-row-container .footer-column-container__list, .footer-row-container .footer-column-container .store-info {
+  padding: 0;
 }
 
 .card {
