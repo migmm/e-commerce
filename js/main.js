@@ -178,6 +178,8 @@ const products = [
     }
 ]
 
+
+
 ///////////////////////////////
 //                           //
 //      GO TO TOP BUTTON     //
@@ -245,7 +247,7 @@ document.addEventListener('click', e => {
     }
 
     // Click on X button to close cart preview
-    if (e.target.classList.value === 'cart-modal__btn-close') {
+    if (e.target.classList.value === 'fa fa-times-circle-o fa-2x') {
         toggleCart();
         isCartPreviewOpen = 0;
         return;
@@ -258,12 +260,12 @@ document.addEventListener('click', e => {
         let aa = e.target
        // aa.classList.toggle('card__item-qty-selector--show');
         console.log(e.target)
-                let nS = document.querySelector(aa).nextSibling
+         /*        let nS = document.querySelector(aa).nextSibling
                 let nS1 = nS.nextElementSibling
                 console.log(nS)
                 console.log(nS1)
                // let sadsaas = e.target.classList.value.nextSibling
-                nS1.classList.toggle('card__item-qty-selector--show');  
+                nS1.classList.toggle('card__item-qty-selector--show');   */
         return;
     }
 
@@ -284,3 +286,4 @@ document.addEventListener('keydown', e => {
         qtySelector.classList.toggle('card__item-qty-selector--show');
     }
 });
+
