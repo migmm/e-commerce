@@ -247,6 +247,14 @@ document.addEventListener('click', e => {
         return;
     }
 
+      // Click on badge to show cart preview
+    if (e.target.classList.value === 'main-header__wrapper__cart-button-container__qty-cart') {
+        toggleCart();
+        isCartPreviewOpen = 1;
+        return;
+    }
+
+
     // Click on X button to close cart preview
     if (e.target.classList.value === 'fa fa-times-circle-o fa-2x') {
         toggleCart();
@@ -286,28 +294,42 @@ document.addEventListener('click', e => {
     // Click on trash icon to delete item on cart preview
     if (e.target.classList.value === 'fa fa-trash-o') {
         e.preventDefault();
-        let id = parseInt(e.target.getAttribute("data-id"));
+        let id = parseInt(e.target.getAttribute('data-id'));
         console.log('ID', id)
         removeItemToCart(id)
         updateCart()
         return;
     }
 
-    // Click on plus
+    // Click on plus to increase quantity
     if (e.target.classList.value === 'fa fa-plus') {
-        console.log(qtySelectorManual.value)
-        qtySelectorManual.value = parseInt(qtySelectorManual.value) + 1
-       console.log(qtySelectorManual.value)
-        return;
-    }
 
-    // Click on minus
-    if (e.target.classList.value === 'fa fa-minus') {
-        qtySelectorManual.value = parseInt(qtySelectorManual.value) - 1
-        if (qtySelectorManual.value === 0) {
-            
+        btnPlus = e.target.previousElementSibling.value;
+        btnPlus = parseInt(btnPlus) + 1;
+        e.target.previousElementSibling.value = btnPlus;
+
+        idLoaded = e.target.parentNode.parentNode.nextElementSibling.nextElementSibling.getAttribute('data-id');
+
+        for (var i = 0; i < cart.length; ++i) {
+            idInCart = parseInt(cart[i]['id']);
+            idInElement = parseInt(idLoaded);
+            if (idInCart === idInElement) {
+                cart[i]['qty'] = btnPlus;
+                break;
+            }
         }
-        return;
+        updateCart();
+        return; 
+    } 
+    // Click on minus to decrease quantity
+    if (e.target.classList.value === 'fa fa-minus') {
+        btnMinus = e.target.nextElementSibling.value;
+        if (btnMinus <= 1) {
+            return;
+        }
+        btnMinus = parseInt(btnMinus) - 1;
+        e.target.nextElementSibling.value = btnMinus;
+        return;  
     }
 });
 
@@ -323,7 +345,6 @@ document.addEventListener('keydown', e => {
 });
 
 
-
 /////////////////////////
 //                     //
 //    Shopping cart    //
@@ -333,8 +354,10 @@ document.addEventListener('keydown', e => {
 let cart = [];
 
 cart.push({ 'id': 1, 'price': 5800, 'discount': 10, 'shortDescription': "Figura del Capitan america de 12 cm.", 'brand': "MARVEL", 'img': "img/61e7q+l8V4L._cpt_.jpg", 'qty': 1 });
-cart.push({ 'id': 2, 'price': 5700, 'discount': 5, 'shortDescription': "Figura de Spiderman de 12 cm.", 'brand': "MARVEL", 'img': "img/51VnXrnisTL._spiderman_.jpg", 'qty': 1 });
+cart.push({ 'id': 2, 'price': 5800, 'discount': 10, 'shortDescription': "Figura de Spiderman de 12 cm.", 'brand': "MARVEL", 'img': "img/51VnXrnisTL._spiderman_.jpg", 'qty': 2 });
+cart.push({ 'id': 3, 'price': 5800, 'discount': 10, 'shortDescription': "Figura de Loki de 12 cm.", 'brand': "MARVEL", 'img': "img/71J-Aj+z75S._loki_.jpg", 'qty': 1 });
 let qtyBadge = document.querySelector('.main-header__wrapper__cart-button-container__qty-cart');
+addItemToCart(3, 5800, 10, 'Figura de Loki de 12 cm', 'MARVEL', 'img/71J-Aj+z75S._loki_.jpg', 1) 
 
 //TODO: price
 //TODO: qty view in preview
@@ -343,19 +366,25 @@ let qtyBadge = document.querySelector('.main-header__wrapper__cart-button-contai
 
 function addItemToCart(id, price, discount, shortDescription, brand, img, qty) {
 
+    id = parseInt(id)
+    price = parseInt(price)
+    discount = parseInt(discount)
+    qty = parseInt(qty)
+    console.log("fpasa por uni")
     // Check if exist
     for (var i = 0; i < cart.length; ++i) {
-        if (cart[i]['id'] === id) {
+        console.log("item",cart[i].id )
+        if (parseInt(cart[i]['id']) === id) {
+            console.log("fpasa por dos")
             console.log("found")
             cart[i].qty = cart[i].qty + 1
-            console.log(cart)
-            break;
+            console.log("existe", cart)
+            return
         }
-        cart.push({ 'id': id, 'price': price, 'discount': discount, 'shortDescription': shortDescription, 'brand': brand, 'img': img, 'qty': qty });
-        console.log(cart)
-        break;
     }
-
+    cart.push({ 'id': id, 'price': price, 'discount': discount, 'shortDescription': shortDescription, 'brand': brand, 'img': img, 'qty': qty });
+        console.log("no existe", cart)
+        console.log("fpasa por tres")
 }
 
 function removeItemToCart(id) {
@@ -375,8 +404,9 @@ function removeItemToCart(id) {
 
 function updateCart() {
 
-    
     let cartPreviewContent = document.querySelector('.cart-modal__products');
+    let cartTotal = document.querySelector('.cart-total');
+    cartTotal.innerHTML = 0;
     qtyBadge.innerHTML = 0;
     cartPreviewContent.innerHTML = '';
 
@@ -410,7 +440,13 @@ function updateCart() {
             <i class="fa fa-trash-o" aria-hidden="true" data-id=${cart[i].id}></i>
         </div>
     `
+
+        cartTotal.innerHTML = parseInt(cartTotal.innerHTML) + parseInt(cart[i].price) * parseInt(cart[i].qty);
     }
+
+
+    
+
 }
 
 function loadCart() {
