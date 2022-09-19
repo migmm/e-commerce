@@ -1,7 +1,6 @@
 .main-header {
-    /* border: 4px solid red; */
     width:100%;
-    background-color: #0061AF;
+    background-color: #00B2EB;
     position: fixed;
     z-index: 100;
     &__wrapper {
@@ -13,7 +12,6 @@
         align-items: center;
 
         &__logo-container {
-           /*  background-color: #944; */
             flex-basis: 5em;
             margin-left: 1.5em;
             margin-right: .5em;
@@ -28,7 +26,6 @@
         }
 
         &__search-form-container {
-        /*     background-color: #494; */
             padding: 1em;
             flex-grow: 2;
             width: 100%;
@@ -49,22 +46,28 @@
                 width: 90%;
                 padding:.3em;
                 border-radius: 10px;
+                border: none;
+                padding-left: 1em;
             }
+
+            & input::placeholder {
+                color: #004173;
+            }
+            
             & button {
                 color: #fff;
                 border: none;
-                background-color: #0061AF;
+                background-color: #00B2EB;
                 font-size: 120%;
                 cursor: pointer;
             }
 
             & :hover {
-                color: #20D5E9;
+                color: #004173;
             }
         }
 
         &__login-button-container {
-         /*    background-color: #444; */
             padding: 0;
             padding-right: 1em;
             font-size: 120%;
@@ -99,7 +102,7 @@
 
                 &__login-button:visited,
                 &__register-button:visited {
-                    color: #0061AF;
+                    color: #004173;
                 }
             }
 
@@ -110,13 +113,12 @@
             @media (min-width: 768px) {
                 order: 3;
                 & :hover {
-                    color: #20D5E9;
+                    color: #004173;
                 }
             }
         }
 
         &__cart-button-container {
-        /*     background-color: #444; */
             padding: 0;
             padding-right: 1em;
             color: #fff;
@@ -136,7 +138,7 @@
                 right: 8px;
             }
     
-            
+            //FIXME: fix this
             &__qty-cart:hover{
     
                 color: #ffffff; 
@@ -152,13 +154,12 @@
                 margin-right: .5em;
 
                 & :hover {
-                    color: #20D5E9;
+                    color: #004173;
                 }
             }
         }
 
         &__hamburger-button-container {
-          /*   background-color: #47b; */
             padding: 1em;
 
             @media (min-width: 768px) {

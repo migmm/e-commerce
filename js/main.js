@@ -206,7 +206,7 @@ function topFunction() {
     document.documentElement.scrollTop = 0;
 };
 
-
+//TODO: fav icon
 
 ///////////////////////////
 //                       //

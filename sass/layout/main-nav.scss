@@ -1,10 +1,8 @@
 .main-nav {
-   /*  background-color: #054b91; */
 
     &__list {
         margin: 0;
         padding: 0;
-       /*  background-color: #ffc0cb; */
         list-style: none;
         display: flex;
         flex-direction: column;
@@ -16,15 +14,12 @@
     }
 
     &__item {
-        /* width:100%; */
-        /* background-color: #00ffff; */
         text-align: center;
     }
 
     &__link {
         display: block;
         width: 100%;
-       /*  background-color: #ffa500; */
         padding: 1em .7em;
         color: #ffffff;
         font-size: 1.2em;
@@ -33,11 +28,9 @@
 
     &__link:hover,
     &__link:focus {
-       /*  background-color: #ff4500; */
 
         @media (min-width: 768px) {
-            color: #20D5E9;
+            color: #004173;
         }
     }
-
 }
