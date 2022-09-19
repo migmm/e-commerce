@@ -215,12 +215,13 @@ function topFunction() {
 ///////////////////////////
 
 //FIXME: background wheel behavior when cart preview appears
- 
+
 
 const backgroundDark = document.querySelector('.background-dark');
 const cartPreview = document.querySelector('.cart-modal');
 const userLogin = document.querySelector('.login-button-menu')
 const qtySelector = document.querySelector('.card__item-qty-selector')
+
 let isCartPreviewOpen = false;
 
 
@@ -256,16 +257,23 @@ document.addEventListener('click', e => {
     // Click on button card_linK
     if (e.target.classList.value === 'card__link') {
         e.preventDefault();
+        let id = e.target.getAttribute("data-id");
+        let price = e.target.nextElementSibling.childNodes[7].childNodes[1].childNodes[1].innerHTML;
+        let discount = e.target.nextElementSibling.childNodes[7].childNodes[3].childNodes[0].innerHTML;
+        let shortDescription = e.target.nextElementSibling.childNodes[7].childNodes[9].innerHTML;
+        let brand = e.target.nextElementSibling.childNodes[7].childNodes[5].innerHTML;
+        let img = e.target.nextElementSibling.childNodes[5].childNodes[1].src;
+        
+        addItemToCart(id, price, discount, shortDescription, brand, img, 1)
 
-        let aa = e.target
-       // aa.classList.toggle('card__item-qty-selector--show');
-        console.log(e.target)
-         /*        let nS = document.querySelector(aa).nextSibling
-                let nS1 = nS.nextElementSibling
-                console.log(nS)
-                console.log(nS1)
-               // let sadsaas = e.target.classList.value.nextSibling
-                nS1.classList.toggle('card__item-qty-selector--show');   */
+        updateCart()
+        console.log('ID', id)
+        console.log('Price', price)
+        console.log('Discount', discount)
+        console.log('Short Description', shortDescription)
+        console.log('Brand', brand)
+        console.log('Img', img)
+
         return;
     }
 
@@ -274,7 +282,34 @@ document.addEventListener('click', e => {
         userLogin.classList.toggle("login-menu")
         return;
     }
-}); 
+
+    // Click on trash icon to delete item on cart preview
+    if (e.target.classList.value === 'fa fa-trash-o') {
+        e.preventDefault();
+        let id = parseInt(e.target.getAttribute("data-id"));
+        console.log('ID', id)
+        removeItemToCart(id)
+        updateCart()
+        return;
+    }
+
+    // Click on plus
+    if (e.target.classList.value === 'fa fa-plus') {
+        console.log(qtySelectorManual.value)
+        qtySelectorManual.value = parseInt(qtySelectorManual.value) + 1
+       console.log(qtySelectorManual.value)
+        return;
+    }
+
+    // Click on minus
+    if (e.target.classList.value === 'fa fa-minus') {
+        qtySelectorManual.value = parseInt(qtySelectorManual.value) - 1
+        if (qtySelectorManual.value === 0) {
+            
+        }
+        return;
+    }
+});
 
 // ESC key to close cart preview
 document.addEventListener('keydown', e => {
@@ -287,3 +322,104 @@ document.addEventListener('keydown', e => {
     }
 });
 
+
+
+/////////////////////////
+//                     //
+//    Shopping cart    //
+//                     //
+/////////////////////////
+
+let cart = [];
+
+cart.push({ 'id': 1, 'price': 5800, 'discount': 10, 'shortDescription': "Figura del Capitan america de 12 cm.", 'brand': "MARVEL", 'img': "img/61e7q+l8V4L._cpt_.jpg", 'qty': 1 });
+cart.push({ 'id': 2, 'price': 5700, 'discount': 5, 'shortDescription': "Figura de Spiderman de 12 cm.", 'brand': "MARVEL", 'img': "img/51VnXrnisTL._spiderman_.jpg", 'qty': 1 });
+let qtyBadge = document.querySelector('.main-header__wrapper__cart-button-container__qty-cart');
+
+//TODO: price
+//TODO: qty view in preview
+//TODO: qty selector in preview
+
+
+function addItemToCart(id, price, discount, shortDescription, brand, img, qty) {
+
+    // Check if exist
+    for (var i = 0; i < cart.length; ++i) {
+        if (cart[i]['id'] === id) {
+            console.log("found")
+            cart[i].qty = cart[i].qty + 1
+            console.log(cart)
+            break;
+        }
+        cart.push({ 'id': id, 'price': price, 'discount': discount, 'shortDescription': shortDescription, 'brand': brand, 'img': img, 'qty': qty });
+        console.log(cart)
+        break;
+    }
+
+}
+
+function removeItemToCart(id) {
+
+    // Check if exist
+    for (var i = 0; i < cart.length; ++i) {
+        if (cart[i]['id'] === id) {
+            console.log("found")
+            cart.splice(i, 1);
+            console.log(cart)
+            qtyBadge.innerHTML = parseInt(qtyBadge.innerHTML) - 1;
+            break;
+        }
+    }
+
+}
+
+function updateCart() {
+
+    
+    let cartPreviewContent = document.querySelector('.cart-modal__products');
+    qtyBadge.innerHTML = 0;
+    cartPreviewContent.innerHTML = '';
+
+    for (var i = 0; i < cart.length; ++i) {
+
+        qtyBadge.innerHTML = parseInt(qtyBadge.innerHTML) + parseInt(cart[i].qty);
+        cartPreviewContent.innerHTML += 
+        `
+        <div class="card-cart-preview">
+
+        <div class="card-cart-preview__image-container">
+            <img src=${cart[i].img} alt="Producto" class="card-cart-preview__image">
+        </div>
+
+        <div class="card-cart-preview__content">
+            <p class="card-cart-preview__description">${cart[i].shortDescription}</p>
+            <div class="qty-selector-container">
+            <i class="fa fa-minus" aria-hidden="true"></i>
+                <input type="text" class="qty-selector-container__qty" value=${cart[i].qty}>
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </div>
+
+        </div>
+
+        <div class="card-cart-preview__price">
+            <span class="card-cart-preview__price__price-currency">$<span
+                class="card-cart-preview__price__price-value">${parseInt(cart[i].price) * parseInt(cart[i].qty)}</span>
+            </span>
+
+        </div>
+            <i class="fa fa-trash-o" aria-hidden="true" data-id=${cart[i].id}></i>
+        </div>
+    `
+    }
+}
+
+function loadCart() {
+
+}
+
+function saveCart() {
+
+}
+
+updateCart()
+let qtySelectorManual = document.querySelector('.qty-selector-container__qty')
