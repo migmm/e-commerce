@@ -35,6 +35,7 @@ function topFunction() {
 };
 
 //FIXME: qty when add new product
+//TODO: implement active link
 
 ///////////////////////////
 //                       //
@@ -44,14 +45,12 @@ function topFunction() {
 
 //FIXME: background wheel behavior when cart preview appears
 
-
 const backgroundDark = document.querySelector('.background-dark');
 const cartPreview = document.querySelector('.cart-modal');
 const userLogin = document.querySelector('.login-button-menu')
 const qtySelector = document.querySelector('.card__item-qty-selector')
 
 let isCartPreviewOpen = false;
-
 
 function toggleCart() {
     backgroundDark.classList.toggle('background-dark--hidden');
