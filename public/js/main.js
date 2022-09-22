@@ -1,13 +1,3 @@
-////////////////////
-//                //
-//    Products    //
-//                //
-////////////////////
-
-
-
-
-
 ///////////////////////////////
 //                           //
 //      GO TO TOP BUTTON     //
@@ -49,7 +39,7 @@ const backgroundDark = document.querySelector('.background-dark');
 const cartPreview = document.querySelector('.cart-modal');
 const userLogin = document.querySelector('.login-button-menu')
 const qtySelector = document.querySelector('.card__item-qty-selector')
-
+let cart = [];
 let isCartPreviewOpen = false;
 
 function toggleCart() {
@@ -108,7 +98,6 @@ document.addEventListener('click', e => {
         console.log('Short Description', shortDescription)
         console.log('Brand', brand)
         console.log('Img', img)
-
         return;
     }
 
@@ -178,20 +167,24 @@ document.addEventListener('keydown', e => {
 //                     //
 /////////////////////////
 
-let cart = [];
 
-cart.push({ 'id': 1, 'price': 5800, 'discount': 10, 'shortDescription': "Figura del Capitan america de 12 cm.", 'brand': "MARVEL", 'img': "img/61e7q+l8V4L._cpt_.jpg", 'qty': 1 });
-cart.push({ 'id': 2, 'price': 5800, 'discount': 10, 'shortDescription': "Figura de Spiderman de 12 cm.", 'brand': "MARVEL", 'img': "img/51VnXrnisTL._spiderman_.jpg", 'qty': 2 });
-cart.push({ 'id': 3, 'price': 5800, 'discount': 10, 'shortDescription': "Figura de Loki de 12 cm.", 'brand': "MARVEL", 'img': "img/71J-Aj+z75S._loki_.jpg", 'qty': 1 });
+
+//cart.push({ 'id': 1, 'price': 5800, 'discount': 10, 'shortDescription': "Figura del Capitan america de 12 cm.", 'brand': "MARVEL", 'img': "img/products/61e7q+l8V4L._cpt_.jpg", 'qty': 1 });
+//cart.push({ 'id': 2, 'price': 5800, 'discount': 10, 'shortDescription': "Figura de Spiderman de 12 cm.", 'brand': "MARVEL", 'img': "img/products/51VnXrnisTL._spiderman_.jpg", 'qty': 2 });
+//cart.push({ 'id': 3, 'price': 5800, 'discount': 10, 'shortDescription': "Figura de Loki de 12 cm.", 'brand': "MARVEL", 'img': "img/products/71J-Aj+z75S._loki_.jpg", 'qty': 1 });
 let qtyBadge = document.querySelector('.main-header__wrapper__cart-button-container__qty-cart');
-addItemToCart(3, 5800, 10, 'Figura de Loki de 12 cm', 'MARVEL', 'img/71J-Aj+z75S._loki_.jpg', 1) 
+//addItemToCart(3, 5800, 10, 'Figura de Loki de 12 cm', 'MARVEL', 'img/71J-Aj+z75S._loki_.jpg', 1) 
 
 
     //Fixes
     //FIXME: fix contact form layout
     //FIXME: fix error in ERROR in forms
-    //TODO: localstorage
-
+    //FIXME: badge hover color
+    
+    //TODO: notification on add item and form errors
+    //TODO: badge animation
+    //TODO: async
+    //TODO: open cart when add product
 
 function addItemToCart(id, price, discount, shortDescription, brand, img, qty) {
 
@@ -214,6 +207,8 @@ function addItemToCart(id, price, discount, shortDescription, brand, img, qty) {
     cart.push({ 'id': id, 'price': price, 'discount': discount, 'shortDescription': shortDescription, 'brand': brand, 'img': img, 'qty': qty });
         console.log("no existe", cart)
         console.log("fpasa por tres")
+    saveCart()
+    updateCart()
 }
 
 function removeItemToCart(id) {
@@ -228,7 +223,8 @@ function removeItemToCart(id) {
             break;
         }
     }
-
+saveCart()
+updateCart()
 }
 
 function updateCart() {
@@ -238,9 +234,11 @@ function updateCart() {
     cartTotal.innerHTML = 0;
     qtyBadge.innerHTML = 0;
     cartPreviewContent.innerHTML = '';
+    let checkReveal = 0;
 
     for (var i = 0; i < cart.length; ++i) {
 
+        checkReveal = checkReveal + parseInt(cart[i].qty);
         qtyBadge.innerHTML = parseInt(qtyBadge.innerHTML) + parseInt(cart[i].qty);
         cartPreviewContent.innerHTML += 
         `
@@ -271,20 +269,38 @@ function updateCart() {
     `
 
         cartTotal.innerHTML = parseInt(cartTotal.innerHTML) + parseInt(cart[i].price) * parseInt(cart[i].qty);
+        
     }
 
+    if(parseInt(checkReveal) === 0){
+        qtyBadge.classList.add("hidden")
+        
+    } else {
+        qtyBadge.classList.remove("hidden")
+    }
+    
+    saveCart()
+}
 
 
+//let qtySelectorManual = document.querySelector('.qty-selector-container__qty')
 
+//////////////////////////////////////////
+//                                      //
+//    ------ Session storage -------    //
+//                                      //
+//////////////////////////////////////////
+ 
+if (localStorage.getItem("shoppingCart") != null) {
+    loadCart();
 }
 
 function loadCart() {
-
+    cart = JSON.parse(localStorage.getItem('shoppingCart'));
 }
+
 
 function saveCart() {
-
+    localStorage.setItem('shoppingCart', JSON.stringify(cart));
 }
-
 updateCart()
-let qtySelectorManual = document.querySelector('.qty-selector-container__qty')

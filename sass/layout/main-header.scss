@@ -37,6 +37,14 @@
                 flex-shrink: 1;
             }
 
+
+            @media (min-width: 768px) {
+                order: 2;
+                flex-basis: 15em;
+                flex-grow: 2;
+                flex-shrink: 1;
+            }
+
             & form{
                 display: flex;
                 flex-wrap: nowrap;
@@ -48,6 +56,11 @@
                 border-radius: 10px;
                 border: none;
                 padding-left: 1em;
+
+                @media (max-width: 425px) {
+                    display: none;
+                }
+                
             }
 
             & input::placeholder {
@@ -157,6 +170,11 @@
                     color: #004173;
                 }
             }
+
+            @media (max-width: 425px) {
+                margin-right: 0;
+                padding-right: 0;;
+            }
         }
 
         &__hamburger-button-container {
@@ -170,7 +188,7 @@
         &__main-nav-container {
             display:none;
 
-            @media (min-width: 768px) {
+            @media (min-width: 900px) {
                 order: 1;
                 display: block;
 
@@ -182,4 +200,8 @@
             }
         }
     }
+}
+
+.hidden {
+    display: none;
 }

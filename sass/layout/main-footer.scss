@@ -40,8 +40,9 @@
 
     @media (min-width: 768px) {
         flex-direction: row;
+        padding-left: .6em;
+        padding-right: 2em;
     }
-
 
     .footer-column-container {
 
@@ -50,6 +51,7 @@
         color: #ffffff;
         align-items: center;
         text-align: center;
+        padding-left: 1em;
 
         @media (min-width: 768px) {
             width: 33%;
@@ -69,12 +71,14 @@
         }
 
         & ul {
-            list-style-type: none;
+           list-style-type: none;
             line-height: 2em;
-
+            list-style-position: inside;
+            margin: 0;
+            padding: 0;
             @media (min-width: 768px) {
-
                 line-height: 1.1em;
+                padding-left: 2em;
             }
         }
 
@@ -82,6 +86,7 @@
 
             & a {
                 text-decoration: none;
+                color: #ffffff;
             }
 
             & a:visited {
@@ -92,17 +97,17 @@
                 color: #b3b3b3;
             }
 
+            & a:active {
+                color: #4e4e4e;
+            }
         }
 
         &__item &__item &__list,
         & .store-info {
             padding: 0;
-
-
         }
 
         & .store-info {
-
 
             & a {
                 color: #ffffff;
@@ -113,10 +118,12 @@
                 color: #ffffff;
             }
 
-            a:hover {
+            & a:hover {
                 color: #b3b3b3;
+            }
+            & a:active {
+                color: #4e4e4e;
             }
         }
     }
-
 }
