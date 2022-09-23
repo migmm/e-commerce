@@ -1,28 +1,28 @@
- {{#each latestViewed}}
-                <div class="card">
-                    <a href="#" class="card__link" data-id="{{this.id}}">Agregar al carrito</a>
+{{#each latestViewed}}
+    <div class="card">
+        <a href="#" class="card__link" data-id="{{this.id}}">Agregar al carrito</a>
 
-                    <article class="card__article">
+        <article class="card__article">
 
-                        <div class="card__flag-container" hidden>
-                            <img src="img/new-product.png" alt="Nuevo ingreso" class="card__flag-new-product" />
-                        </div>
+            <div class="card__flag-container" hidden>
+                <img src="img/new-product.png" alt="Nuevo ingreso" class="card__flag-new-product" />
+            </div>
 
-                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
 
-                        <div class="card__image-container">
-                            <img src="{{this.images.img1}}" alt="Producto" class="card__image" />
-                        </div>
+            <div class="card__image-container">
+                <img src="{{this.images.img1}}" alt="Producto" class="card__image" />
+            </div>
 
-                        <div class="card__content">
-                            <span class="card__price-currency">$<span class="card__price-value">{{this.price}}</span></span>
-                            <span class="card__discount"><span class="card__discount__percent">{{discountPercent}}</span>% DTO</span>
-                            <span class="card__latest-price-currency">$<span class="card__latest-price">4200</span></span>
-                            <span class="card__product-brand">{{this.vendor}}</span>
-                            <h2 class="card__heading">{{this.productName}}</h2>
-                            <p class="card__description">{{this.shortDescription}}</p>
-                        </div>
+            <div class="card__content">
+                <span class="card__price-currency">$<span class="card__price-value">{{this.price}}</span></span>
+                <span class="card__discount"><span class="card__discount__percent">{{discountPercent}}</span>% DTO</span>
+                <span class="card__latest-price-currency">$<span class="card__latest-price">4200</span></span>
+                <span class="card__product-brand">{{this.vendor}}</span>
+                <h2 class="card__heading">{{this.productName}}</h2>
+                <p class="card__description">{{this.shortDescription}}</p>
+            </div>
 
-                    </article>
-                </div>
-               {{/each}}
+        </article>
+    </div>
+{{/each}}

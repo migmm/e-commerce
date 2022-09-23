@@ -1,9 +1,38 @@
-.main-content__divider-left {
-    width: 50%;
-    float: left;
+.input-group {
+
+  & #form-add-products {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .main-content {
+      &__divider-left {
+        width: 100%;
+
+        @media (min-width: 845px) {
+
+          width: 70%;
+          float: left;
+        }
+
+      }
+    }
+
+    .main-content {
+      &__divider-right {
+        width: 100%;
+
+        @media (min-width: 845px) {
+
+          width: 70%;
+          float: right;
+        }
+
+      }
+    }
   }
 
-  .main-content__divider-right {
-    width: 50%;
-    float: right;
+  &__form-group {
+    text-align: center;
   }
+}

@@ -1,13 +1,41 @@
-.main-content__wrapper .parrafo {
-    display: block;
-    text-align: justify;
-
+.nosotros p,
+.nosotros img {
+    display: inline-block;
+    padding: 2em;
 }
 
-.main-content__wrapper .img-store {
-    width: 50%;
-    display: block;
-    float: left;
-    margin-bottom: 3em;
-    margin-right: 2em;
+.nosotros .img-store {
+    width: 100%;
+    @media (min-width: 1000px) {
+        width: 50%;
+    }
+}
+
+.nosotros div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media (min-width: 1000px) {
+        flex-direction: row;
+    }
+}
+
+.nosotros div:nth-child(1) {
+
+    background-color: #DFEEEE;
+}
+
+.nosotros div:nth-child(2) {
+    background-color: #F0F7F7;
+}
+
+.nosotros div:nth-child(3) {
+    background-color: #DFEEEE;
+}
+
+.nosotros p {
+    font-size: 1.5em;
+    @media (min-width: 1000px) {
+        font-size: 1.2em;
+    }
 }

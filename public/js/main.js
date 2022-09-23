@@ -41,7 +41,7 @@ const userLogin = document.querySelector('.login-button-menu')
 const qtySelector = document.querySelector('.card__item-qty-selector')
 let cart = [];
 let isCartPreviewOpen = false;
-
+let idLoaded;
 function toggleCart() {
     backgroundDark.classList.toggle('background-dark--hidden');
     cartPreview.classList.toggle('cart-modal--opendrawer');
@@ -50,7 +50,6 @@ function toggleCart() {
 // Click anywhere in webpage to open or close cart preview
 document.addEventListener('click', e => {
 
-    console.log(e.target.classList.value)
     if (e.target.classList.value === 'background-dark') {
         toggleCart();
         isCartPreviewOpen = 0;
@@ -92,12 +91,6 @@ document.addEventListener('click', e => {
         addItemToCart(id, price, discount, shortDescription, brand, img, 1)
 
         updateCart()
-        console.log('ID', id)
-        console.log('Price', price)
-        console.log('Discount', discount)
-        console.log('Short Description', shortDescription)
-        console.log('Brand', brand)
-        console.log('Img', img)
         return;
     }
 
@@ -111,7 +104,6 @@ document.addEventListener('click', e => {
     if (e.target.classList.value === 'fa fa-trash-o') {
         e.preventDefault();
         let id = parseInt(e.target.getAttribute('data-id'));
-        console.log('ID', id)
         removeItemToCart(id)
         updateCart()
         return;
@@ -145,6 +137,16 @@ document.addEventListener('click', e => {
         }
         btnMinus = parseInt(btnMinus) - 1;
         e.target.nextElementSibling.value = btnMinus;
+        idLoaded = e.target.parentNode.parentNode.nextElementSibling.nextElementSibling.getAttribute('data-id');
+        for (var i = 0; i < cart.length; ++i) {
+            idInCart = parseInt(cart[i]['id']);
+            idInElement = parseInt(idLoaded);
+            if (idInCart === idInElement) {
+                cart[i]['qty'] = btnMinus;
+                break;
+            }
+        }
+        updateCart();
         return;  
     }
 });
@@ -167,14 +169,7 @@ document.addEventListener('keydown', e => {
 //                     //
 /////////////////////////
 
-
-
-//cart.push({ 'id': 1, 'price': 5800, 'discount': 10, 'shortDescription': "Figura del Capitan america de 12 cm.", 'brand': "MARVEL", 'img': "img/products/61e7q+l8V4L._cpt_.jpg", 'qty': 1 });
-//cart.push({ 'id': 2, 'price': 5800, 'discount': 10, 'shortDescription': "Figura de Spiderman de 12 cm.", 'brand': "MARVEL", 'img': "img/products/51VnXrnisTL._spiderman_.jpg", 'qty': 2 });
-//cart.push({ 'id': 3, 'price': 5800, 'discount': 10, 'shortDescription': "Figura de Loki de 12 cm.", 'brand': "MARVEL", 'img': "img/products/71J-Aj+z75S._loki_.jpg", 'qty': 1 });
 let qtyBadge = document.querySelector('.main-header__wrapper__cart-button-container__qty-cart');
-//addItemToCart(3, 5800, 10, 'Figura de Loki de 12 cm', 'MARVEL', 'img/71J-Aj+z75S._loki_.jpg', 1) 
-
 
     //Fixes
     //FIXME: fix contact form layout
@@ -192,21 +187,18 @@ function addItemToCart(id, price, discount, shortDescription, brand, img, qty) {
     price = parseInt(price)
     discount = parseInt(discount)
     qty = parseInt(qty)
-    console.log("fpasa por uni")
+
     // Check if exist
     for (var i = 0; i < cart.length; ++i) {
-        console.log("item",cart[i].id )
+
         if (parseInt(cart[i]['id']) === id) {
-            console.log("fpasa por dos")
-            console.log("found")
+
             cart[i].qty = cart[i].qty + 1
-            console.log("existe", cart)
             return
         }
     }
     cart.push({ 'id': id, 'price': price, 'discount': discount, 'shortDescription': shortDescription, 'brand': brand, 'img': img, 'qty': qty });
-        console.log("no existe", cart)
-        console.log("fpasa por tres")
+
     saveCart()
     updateCart()
 }
@@ -216,9 +208,7 @@ function removeItemToCart(id) {
     // Check if exist
     for (var i = 0; i < cart.length; ++i) {
         if (cart[i]['id'] === id) {
-            console.log("found")
             cart.splice(i, 1);
-            console.log(cart)
             qtyBadge.innerHTML = parseInt(qtyBadge.innerHTML) - 1;
             break;
         }
@@ -243,11 +233,9 @@ function updateCart() {
         cartPreviewContent.innerHTML += 
         `
         <div class="card-cart-preview">
-
         <div class="card-cart-preview__image-container">
             <img src=${cart[i].img} alt="Producto" class="card-cart-preview__image">
         </div>
-
         <div class="card-cart-preview__content">
             <p class="card-cart-preview__description">${cart[i].shortDescription}</p>
             <div class="qty-selector-container">
@@ -255,14 +243,11 @@ function updateCart() {
                 <input type="text" class="qty-selector-container__qty" value=${cart[i].qty}>
                 <i class="fa fa-plus" aria-hidden="true"></i>
             </div>
-
         </div>
-
         <div class="card-cart-preview__price">
             <span class="card-cart-preview__price__price-currency">$<span
                 class="card-cart-preview__price__price-value">${parseInt(cart[i].price) * parseInt(cart[i].qty)}</span>
             </span>
-
         </div>
             <i class="fa fa-trash-o" aria-hidden="true" data-id=${cart[i].id}></i>
         </div>
@@ -283,7 +268,6 @@ function updateCart() {
 }
 
 
-//let qtySelectorManual = document.querySelector('.qty-selector-container__qty')
 
 //////////////////////////////////////////
 //                                      //

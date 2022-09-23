@@ -255,7 +255,6 @@ let lastProductId = 50;
 //                         //
 /////////////////////////////
 
-
 app.get('/', (req, res) => {
     res.render('home', { latestProducts, mostSelled, latestViewed });
 });
@@ -273,13 +272,10 @@ app.get('/contacto', (req, res) => {
 });
 
 app.get('/products', (req, res) => {
-    // res.render('products', {products: products});
     res.render('home', { products });
 });
 
-
 //TODO: Implement error page
-/* app.get('*', routeNotFound); */
 app.get('*', (req, res) => {
     res.render('home');
 });

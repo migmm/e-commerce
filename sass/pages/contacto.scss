@@ -1,4 +1,4 @@
-.main-content {
+/* .main-content {
 
     &__divider-left {
       width: 600px;
@@ -20,3 +20,41 @@
   padding-left: 3em;
 
 }
+ */
+ .main-content {
+
+  &__divider-left {
+    width: 100%;
+
+    @media (min-width: 845px) {
+
+      width: 70%;
+      float: left;
+    }
+  }
+
+    &__divider-right {
+      width: 100%;
+
+      @media (min-width: 845px) {
+
+        width: 70%;
+        float: right;
+      }
+
+    }
+  }
+
+.input-group {
+
+  & #contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    }
+  }
+
+  &__form-group {
+    text-align: center;
+  }
