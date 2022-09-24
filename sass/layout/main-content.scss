@@ -37,11 +37,15 @@
 
             &__img {
                 overflow: hidden;
-                & img:hover {
-                    transform: scale(1.3);
-                    transform-origin: 50% 50%;
+
+                @media (hover: hover) {
+                    & img:hover {
+                        transform: scale(1.3);
+                        transform-origin: 50% 50%;
+                    }
                 }
             }
+
             &__img:nth-child(1) {
                 grid-column-start: span 2;
             }

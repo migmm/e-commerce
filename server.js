@@ -277,7 +277,7 @@ app.get('/products', (req, res) => {
 
 //TODO: Implement error page
 app.get('*', (req, res) => {
-    res.render('home');
+    res.render('error');
 });
 
 

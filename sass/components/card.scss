@@ -10,24 +10,21 @@
     background-color: #ffffff;
     position: relative;
 
-    &:hover {
-        /* background-color: #ffff00; */
-        /* width: 240px; */
-        /* transform: rotate(3deg) scale(1.1); */
-        /* transform: scale(1.05); */
-        box-shadow:
-        0 1px 5px rgba(0, 0, 0, .3),
-        0 0 3px rgba(0, 0, 0, .3)
-    ;
-        transform-origin: bottom;
+    @media (hover: hover) {
+        &:hover {
+            box-shadow:
+                0 1px 5px rgba(0, 0, 0, .3),
+                0 0 3px rgba(0, 0, 0, .3);
+            transform-origin: bottom;
+        }
     }
 
-    &__flag-container{
+    &__flag-container {
         position: absolute;
         top: 0;
         left: 0;
         height: 60px;
-        line-height:60px;
+        line-height: 60px;
     }
 
     &__flag-new-product,
@@ -43,14 +40,14 @@
     &__flag-last-unit {
         visibility: visible;
     }
-    
+
     &__link {
         position: absolute;
         bottom: 1em;
         left: 50%;
         width: 10em;
         text-align: center;
-        transform:translateX(-50%);
+        transform: translateX(-50%);
         background-color: #be0000;
         text-decoration: none;
         color: #ffffff;
@@ -67,7 +64,7 @@
         background-color: #9c5555;
         font-weight: 500;
     }
-    
+
 
     /*  
     &:nth-child(5n+1) {
@@ -91,10 +88,10 @@
     }
  */
 
-    &__image-container{
+    &__image-container {
         height: 200px;
-        line-height:200px;
-        text-align:center;
+        line-height: 200px;
+        text-align: center;
         padding-left: 1em;
         padding-right: 1em;
         margin-bottom: 1em;
@@ -102,7 +99,7 @@
     }
 
     &__image {
-        
+
         max-width: 100%;
         max-height: 100%;
         vertical-align: middle;
@@ -120,7 +117,7 @@
     &__latest-price-currency {
         text-decoration: line-through;
         color: #999999;
-        
+
     }
 
     &__discount {
@@ -145,31 +142,34 @@
 
 }
 
-.fa-heart-o{
+.fa-heart-o {
     position: absolute;
     top: .5em;
     right: .5em;
     cursor: pointer;
-    font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 48
+}
+
+.fa-heart {
+    position: absolute;
+    top: .5em;
+    right: .5em;
+    cursor: pointer;
+    color: #ff0000;
 }
 
 .fa-heart-o:hover {
     color: #ff0000;
-
 }
 
 .fa-heart-o:active {
     color: #6f00ff;
-    
+
 }
 
 .section-cards {
-    max-width:   1600px;
-    &__header{
+    max-width: 1600px;
+
+    &__header {
         text-align: center;
         padding-top: 2em;
     }

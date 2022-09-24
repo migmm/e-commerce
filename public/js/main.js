@@ -48,6 +48,8 @@ function toggleCart() {
 }
 
 // Click anywhere in webpage to open or close cart preview
+// Beware of siblings gang !!!
+// ¯\_(ツ)_/¯
 document.addEventListener('click', e => {
 
     if (e.target.classList.value === 'background-dark') {
@@ -78,6 +80,7 @@ document.addEventListener('click', e => {
         return;
     }
 
+    // You are about to enter to the sibling zone...
     // Click on button card_linK
     if (e.target.classList.value === 'card__link') {
         e.preventDefault();
@@ -112,8 +115,10 @@ document.addEventListener('click', e => {
     // Click on plus to increase quantity
     if (e.target.classList.value === 'fa fa-plus') {
 
-        btnPlus = e.target.previousElementSibling.value;
-        btnPlus = parseInt(btnPlus) + 1;
+        let btnPlus = e.target.previousElementSibling.value;
+        // btnPlus = parseInt(btnPlus) + 1;
+        btnPlus = parseInt(btnPlus) 
+        btnPlus++
         e.target.previousElementSibling.value = btnPlus;
 
         idLoaded = e.target.parentNode.parentNode.nextElementSibling.nextElementSibling.getAttribute('data-id');
@@ -131,11 +136,13 @@ document.addEventListener('click', e => {
     } 
     // Click on minus to decrease quantity
     if (e.target.classList.value === 'fa fa-minus') {
-        btnMinus = e.target.nextElementSibling.value;
+        let btnMinus = e.target.nextElementSibling.value;
         if (btnMinus <= 1) {
             return;
         }
-        btnMinus = parseInt(btnMinus) - 1;
+        btnMinus = parseInt(btnMinus)
+        --btnMinus
+        //btnMinus = parseInt(btnMinus) - 1;
         e.target.nextElementSibling.value = btnMinus;
         idLoaded = e.target.parentNode.parentNode.nextElementSibling.nextElementSibling.getAttribute('data-id');
         for (var i = 0; i < cart.length; ++i) {
@@ -149,6 +156,27 @@ document.addEventListener('click', e => {
         updateCart();
         return;  
     }
+    if (e.target.classList.value === 'fa fa-heart-o')  {
+
+        let aaa = document.getElementsByClassName(e.target.classList)[0]
+        // console.log(e.target.id)
+        console.log(e.target.classList)
+        //aaa.classList.add('fa-heart')
+        aaa.classList.remove('fa-heart-o')
+        // document.getElementById(e.target).classList.remove('fa-heart-o');
+        console.log(aaa) 
+        //  idLoaded = e.target.parentNode.previousElementSibling.getAttribute('data-id')
+        //   idFav = e.target.parentNode.previousElementSibling.getAttribute('data-id')
+        /* console.log("testo", idLoaded)
+        heart = document.querySelector(e.target.classList)
+        heart = "fa " */
+       // e.target.classList.value('fa fa-heart');
+    } /* else {
+        let aaa = document.getElementsByClassName(e.target.classList[1])[0]
+        aaa.classList.remove('fa-heart')
+        aaa.classList.add('fa-heart-o')
+    } */
+   // console.log(e.target)
 });
 
 // ESC key to close cart preview
@@ -268,6 +296,20 @@ function updateCart() {
 }
 
 
+/////////////////////////////////////////////////
+//                                             //
+//    ------ Mobile device detection ------    //
+//                                             //
+/////////////////////////////////////////////////
+
+if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+    console.log("mobile");
+    // TODO: remove all hover reactions
+    }else{
+    console.log("not mobile");
+    }
+
+
 
 //////////////////////////////////////////
 //                                      //
@@ -282,7 +324,6 @@ if (localStorage.getItem("shoppingCart") != null) {
 function loadCart() {
     cart = JSON.parse(localStorage.getItem('shoppingCart'));
 }
-
 
 function saveCart() {
     localStorage.setItem('shoppingCart', JSON.stringify(cart));

@@ -15,7 +15,8 @@
             flex-basis: 5em;
             margin-left: 1.5em;
             margin-right: .5em;
-            margin-top: 6px;
+            margin-top: 2px;
+            padding: 8px 0;
             &__logo {
                 height: 2em;
             }
@@ -179,7 +180,7 @@
         }
 
         &__hamburger-button-container {
-            padding: 1em;
+            padding: 14px;
 
             @media (min-width: 768px) {
                 display: none;
