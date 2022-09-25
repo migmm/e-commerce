@@ -345,12 +345,13 @@ body {
   cursor: pointer;
   width: 2em;
   height: 2em;
-  /*  background-color: #222; */
   position: relative;
   border-radius: 0.2em;
 }
-.hamburger-button:hover {
-  /*   background-color: #2a2a2a; */
+@media (hover: hover) {
+  .hamburger-button:hover {
+    background-color: #004173;
+  }
 }
 .hamburger-button__top-bread {
   display: block;
@@ -805,10 +806,8 @@ body {
   flex-grow: 1;
   border: 1px solid #cecdcd;
   border-radius: 8px;
-  /* transition: background-color .3s, border-width 2s */
   transition: all 0.2s;
   padding: 1em 1em 3.5em 1em;
-  /* background-color: #ffff00; */
   background-color: #ffffff;
   position: relative;
 }
@@ -1311,10 +1310,21 @@ body {
 .cart-modal__products .card-cart-preview__price {
   display: inline-block;
   margin: 0 1em;
+  margin-top: 40px;
+}
+.cart-modal__products .card-cart-preview__price span {
+  text-align: right;
 }
 .cart-modal__products .card-cart-preview__price__price-currency {
+  font-weight: 400;
+  font-size: 1em;
+  display: block;
+  text-align: left;
+  margin: 0 auto;
+}
+.cart-modal__products .card-cart-preview__price__sub-price-currency {
   font-weight: 600;
-  font-size: 1, 2em;
+  font-size: 1em;
   display: block;
   text-align: left;
   margin: 0 auto;

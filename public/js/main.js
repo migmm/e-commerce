@@ -1,8 +1,8 @@
-///////////////////////////////
-//                           //
-//      GO TO TOP BUTTON     //
-//                           //
-///////////////////////////////
+/////////////////////////////////////////////
+//                                         //
+//      ------ GO TO TOP BUTTON ------     //
+//                                         //
+/////////////////////////////////////////////
 
 // Get the button
 var myButton = document.getElementById("myBtn");
@@ -28,11 +28,11 @@ function topFunction() {
 //FIXME: qty when add new product
 //TODO: implement active link
 
-///////////////////////////
-//                       //
-//      Cart preview     //
-//                       //
-///////////////////////////
+/////////////////////////////////////////
+//                                     //
+//      ------ Cart preview ------     //
+//                                     //
+/////////////////////////////////////////
 
 //FIXME: background wheel behavior when cart preview appears
 
@@ -179,11 +179,11 @@ document.addEventListener('keydown', e => {
 
 
 
-/////////////////////////
-//                     //
-//    Shopping cart    //
-//                     //
-/////////////////////////
+///////////////////////////////////////
+//                                   //
+//    ------ Shopping cart ------    //
+//                                   //
+///////////////////////////////////////
 
 let qtyBadge = document.querySelector('.main-header__wrapper__cart-button-container__qty-cart');
 
@@ -261,16 +261,17 @@ function updateCart() {
             </div>
         </div>
         <div class="card-cart-preview__price">
-            <span class="card-cart-preview__price__price-currency">$<span
+            <span class="card-cart-preview__price__price-currency">Precio: $<span
+                class="card-cart-preview__price__price-value">${parseInt(cart[i].price)}</span>
+            </span>
+            <span class="card-cart-preview__price__sub-price-currency">Subtotal: $<span
                 class="card-cart-preview__price__price-value">${parseInt(cart[i].price) * parseInt(cart[i].qty)}</span>
             </span>
         </div>
             <i class="fa fa-trash-o" aria-hidden="true" data-id=${cart[i].id}></i>
         </div>
     `
-
         cartTotal.innerHTML = parseInt(cartTotal.innerHTML) + parseInt(cart[i].price) * parseInt(cart[i].qty);
-        
     }
 
     if(parseInt(checkReveal) === 0){

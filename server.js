@@ -1,5 +1,5 @@
 const express = require('express');
-const { engine } = require('express-handlebars');
+const { engine, create } = require('express-handlebars');
 const path = require('path');
 const app = express();
 
@@ -248,6 +248,14 @@ const latestViewed = products.slice(1, 6);
 let lastProductId = 50;
 
 
+const hbs = create({
+    // Helper to calculate discount percent
+    helpers: {
+        percentCalculator (arg1, arg2) {
+            return 100 - (arg1 * (arg2/100)); 
+        }
+    }
+});
 
 /////////////////////////////
 //                         //
@@ -256,14 +264,24 @@ let lastProductId = 50;
 /////////////////////////////
 
 app.get('/', (req, res) => {
-   // res.render('home', { latestProducts, mostSelled, latestViewed });
+
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.get('/home', (req, res) => {
-    res.render('home', { latestProducts, mostSelled, latestViewed });
-  //  res.sendFile(path.join(__dirname, 'public', 'index.html'));
- });
+    res.render('home', { 
+        latestProducts, 
+        mostSelled, 
+        latestViewed,
+
+        helpers: {
+            percentCalculator (arg1, arg2) {
+                return arg1 - (arg1 * (arg2/100)); 
+            }
+        }
+    });
+
+});
 
 app.get('/alta', (req, res) => {
     res.render('alta');
