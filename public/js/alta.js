@@ -6,7 +6,7 @@
 
 // Regex validations. all constants starts with rx
 // rxContactName, rxEmail and rxMessage refers to Contact form
-
+function checkForm () {
 let miniumLength = "";
 let maxiumLength = "";
 const regexStrings = {
@@ -107,4 +107,4 @@ formSendBtn.addEventListener('click', function(e) {
 });
 
 
-
+}

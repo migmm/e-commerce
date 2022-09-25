@@ -1,6 +1,6 @@
 const express = require('express');
 const { engine } = require('express-handlebars');
-
+const path = require('path');
 const app = express();
 
 app.use(express.static('public', { extensions: ['html', 'htm'] }));
@@ -256,11 +256,18 @@ let lastProductId = 50;
 /////////////////////////////
 
 app.get('/', (req, res) => {
-    res.render('home', { latestProducts, mostSelled, latestViewed });
+   // res.render('home', { latestProducts, mostSelled, latestViewed });
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+app.get('/home', (req, res) => {
+    res.render('home', { latestProducts, mostSelled, latestViewed });
+  //  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+ });
+
 app.get('/alta', (req, res) => {
-    res.render('alta');
+    //res.render('alta');
+    res.sendFile(path.join(__dirname, 'public', 'alta.html'));
 });
 
 app.get('/nosotros', (req, res) => {

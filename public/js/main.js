@@ -24,6 +24,26 @@ function topFunction() {
     document.documentElement.scrollTop = 0;
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //FIXME: qty when add new product
 //TODO: implement active link
 
@@ -296,6 +316,93 @@ function updateCart() {
 }
 
 
+
+//////////////////////////////////////////////
+//                                          //
+//    ------ JS management in SPA ------    //
+//                                          //
+//////////////////////////////////////////////
+
+const runScript = (content, id) => {
+    // no cargar el <script> más de una vez
+    if (document.getElementById(id)) {
+        return;
+    }
+    const script = document.createElement('script');
+    script.id = id;
+    script.innerHTML = content;
+    document.body.appendChild(script);
+};
+
+const getResource = async (url, callback) => {
+    if (!url || typeof callback !== 'function') {
+        return;
+    }
+    const response = await fetch(url);
+    if (!response.ok) {
+        return;
+    }
+    const responseContent = await response.text();
+    callback(responseContent);
+};
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////
+//                                           //
+//       ------ Template loading ------      //
+//                                           //
+///////////////////////////////////////////////
+let templateURLFinal;
+const main = document.querySelector('main');
+const cachePages = {};
+
+const getFullTemplateURL = function (link) {
+    if (!link) {
+        return '/home';
+    }
+    return `${link.getAttribute('href')}`
+}
+
+const getAsyncRequestFromLink = async (link, element) => {
+    const templateURL = getFullTemplateURL(link);
+
+
+  //  const templateURLTrimmeada = templateURL.slice(1, -1);
+    templateURLFinal = 'js' + templateURL + '.js'
+
+
+
+
+    if (cachePages[templateURL] === undefined) {
+        const template = await fetch(templateURL);
+        cachePages[templateURL] = template.ok ? await template.text() : null;
+    }
+    if (cachePages[templateURL]) {
+        element.innerHTML = cachePages[templateURL];
+        getResource(templateURLFinal, response => runScript(response, templateURLFinal) ); 
+    }
+};
+
+document.querySelector('.main-nav').addEventListener('click', e => {
+    if (e.target.classList.contains('main-nav__link')) {
+        e.preventDefault();
+        e.target.blur();
+        getAsyncRequestFromLink(e.target, main);
+    }
+});
+
+getAsyncRequestFromLink('' , main);
+/* const idForScript = e.target.dataset.idScript || 'script-1';
+    getResource('js/script.js', response => runScript(response, idForScript) ); */
+
+
 /////////////////////////////////////////////////
 //                                             //
 //    ------ Mobile device detection ------    //
@@ -329,3 +436,19 @@ function saveCart() {
     localStorage.setItem('shoppingCart', JSON.stringify(cart));
 }
 updateCart()
+
+
+
+
+
+/* document.querySelector('button').addEventListener('click', e => {
+    const idForScript = e.target.dataset.idScript || 'script-1';
+    getResource('js/archivo.js', response => runScript(response, idForScript) );
+});
+ */
+/* const myTimeout = setTimeout(myGreeting, 5000);
+
+function myGreeting() {
+    getResource('js/slider.js', response => runScript(response, 'ffdf') );
+}
+ */
