@@ -8,6 +8,13 @@
             & img {
                 width: 100%;
             }
+            & img:nth-child(1) {
+                display: none;
+            }
+            & img:nth-child(3) {
+                display: none;
+            }
+
         }
     
 }

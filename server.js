@@ -13,7 +13,7 @@ app.set('view engine', '.hbs');
 app.set('views', '.\\views');
 
 // Products simulating a database
-// Date and time uses ISO 8601
+// Date and time use ISO 8601
 const products = [
     {
         id: 1011,
@@ -266,8 +266,7 @@ app.get('/home', (req, res) => {
  });
 
 app.get('/alta', (req, res) => {
-    //res.render('alta');
-    res.sendFile(path.join(__dirname, 'public', 'alta.html'));
+    res.render('alta');
 });
 
 app.get('/nosotros', (req, res) => {

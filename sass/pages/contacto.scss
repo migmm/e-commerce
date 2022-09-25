@@ -1,7 +1,53 @@
 .main-content {
   &__wrapper {
-    & form-contact {
-      
+    &__contact {
+      display: flex;
+      flex-direction: column;
+
+      @media (min-width: 768px) {
+        flex-direction: row;
+        justify-content: space-around;
+      }
     }
   }
+
+  &__divider-left {
+    &__contact {
+      width: 100%;
+
+      @media (min-width: 768px) {
+        width: 40%;
+      }
+
+      & h2 {
+        text-align: center;
+      }
+    }
+
+    
+  }
+
+  &__divider-right {
+    &__contact {
+      width: 100%;
+
+      & .store-info {
+        & p {
+          text-align: center;
+          @media (min-width: 768px) {
+          text-align: left;
+          }
+        }
+      }
+      @media (min-width: 768px) {
+        width: 40%;
+      }
+
+      & h2 {
+        text-align: center;
+      }
+    }
+  }
+
+
 }

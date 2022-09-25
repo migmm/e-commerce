@@ -55,38 +55,17 @@
         border-radius: .6em;
     }
 
-    &__link:hover {
-        background-color: #bd2121;
+    @media (hover: hover) {
+            &__link:hover {
+        background-color: #810000;
         font-weight: 500;
+        }           
     }
 
     &__link:active {
-        background-color: #9c5555;
+        background-color: #dd0000;
         font-weight: 500;
     }
-
-
-    /*  
-    &:nth-child(5n+1) {
-        background-color: #d4afb9;
-    }
-
-    &:nth-child(5n+2) {
-        background-color: #d1cfe2;
-    }
-
-    &:nth-child(5n+3) {
-        background-color: #9cadce;
-    }
-
-    &:nth-child(5n+4) {
-        background-color: #7ec4cf;
-    }
-
-    &:nth-child(5n+5) {
-        background-color: #52b2cf;
-    }
- */
 
     &__image-container {
         height: 200px;
@@ -131,7 +110,6 @@
     }
 
     &__product-brand {
-        /* position: absolute; */
         display: block;
         margin-top: 1em;
     }
@@ -157,13 +135,15 @@
     color: #ff0000;
 }
 
-.fa-heart-o:hover {
-    color: #ff0000;
+@media (hover: hover) {
+
+    .fa-heart-o:hover {
+        color: #ff0000;
+    }
 }
 
 .fa-heart-o:active {
     color: #6f00ff;
-
 }
 
 .section-cards {

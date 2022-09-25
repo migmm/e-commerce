@@ -17,6 +17,7 @@
             margin-right: .5em;
             margin-top: 2px;
             padding: 8px 0;
+            flex-grow: 3;
             &__logo {
                 height: 2em;
             }
@@ -30,21 +31,30 @@
         &__search-form-container {
             padding: 1em;
             flex-grow: 2;
+
+            //
             width: 100%;
-
+            order: 5;
+            position: absolute;
+            top: 45px;
+            background-color: #00B2EB;
+            //
+ 
             @media (min-width: 768px) {
                 order: 2;
                 flex-basis: 15em;
                 flex-grow: 2;
                 flex-shrink: 1;
-            }
-
-
-            @media (min-width: 768px) {
+            } 
+ 
+            @media (min-width: 600px) {
                 order: 2;
                 flex-basis: 15em;
                 flex-grow: 2;
                 flex-shrink: 1;
+
+                position: relative;
+                top:0;
             }
 
             & form{
@@ -53,11 +63,16 @@
             }
 
             & input {
-                width: 90%;
+                width: 100%;
                 padding:.3em;
                 border-radius: 10px;
                 border: none;
-                padding-left: 1em;
+                padding-left: 0;
+
+                @media (min-width: 600px) {
+                    width: 90%;
+                    padding-left: 1em;
+                }
 
                 @media (max-width: 425px) {
                     display: none;
@@ -67,6 +82,7 @@
 
             & input::placeholder {
                 color: #004173;
+                text-align: center;
             }
             
             & button {
@@ -89,7 +105,7 @@
             color: #fff;
             cursor: pointer;
             position: relative;
-
+            order: 3;
             &__button {
                 width: 2em;
             }
@@ -140,6 +156,7 @@
             cursor: pointer;
             margin-right: 0;
             position: relative;
+            order: 3;
 
             &__qty-cart {
                 background-color: #be0000;
@@ -155,9 +172,7 @@
     
             //FIXME: fix this
             &__qty-cart:hover{
-    
                 color: #ffffff; 
-    
             }
 
             &__button {
@@ -175,14 +190,14 @@
 
             @media (max-width: 425px) {
                 margin-right: 0;
-                padding-right: 0;;
+                padding-right: 0;
             }
         }
 
         &__hamburger-button-container {
             padding: 14px;
-
-            @media (min-width: 768px) {
+            order:3;
+            @media (min-width: 900px) {
                 display: none;
             }
         }

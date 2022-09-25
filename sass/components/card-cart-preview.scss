@@ -1,19 +1,16 @@
 .cart-modal {
 
-   
     &__products {
 
         & .card-cart-preview {
             max-width: 100%;
-            display:flex;
+            display: flex;
             flex-direction: row;
             align-items: center;
             border: 1px solid #cecdcd;
             border-radius: 8px;
             transition: all .2s;
-         margin: 1em 0;
-          
-            /* background-color: #ffff00; */
+            margin: 1em 0;
             background-color: #ffffff;
             position: relative;
 
@@ -25,56 +22,60 @@
                 text-align: center;
                 margin: 1em;
                 cursor: pointer;
-                
+
             }
+
             &__image {
                 max-width: 100%;
                 max-height: 100%;
                 vertical-align: middle;
                 object-fit: contain;
             }
+
             &__content {
                 display: inline-block;
                 flex-grow: 1;
-                
+
                 &__product-brand {
-                    /* position: absolute; */
                     display: block;
                     margin-top: 1em;
                 }
-    
+
                 &__heading {
                     margin: 0;
                 }
-    
+
                 .section-cards {
                     max-width: 1600px;
-    
+
                     &__header {
                         text-align: center;
                         padding-top: 2em;
                     }
                 }
+
                 & .qty-selector-container {
-                   // background-color: #ebebeb;
                     border-radius: 5px;
-                    padding: 0  5px;
+                    padding: 0 5px;
                     width: 100px;
                     text-align: center;
-            
-                & .fa-minus, 
-                .fa-plus {
-                    padding: 3px;
-                    cursor: pointer;
-                    margin: 0 auto;
-                    background-color: #cecdcd;
-                    border-radius: 4px;
-                }
 
-                & .fa-minus:hover, 
-                    .fa-plus:hover {
-                    background-color:  #ebebeb;
-                }
+                    & .fa-minus,
+                    .fa-plus {
+                        padding: 3px;
+                        cursor: pointer;
+                        margin: 0 auto;
+                        background-color: #cecdcd;
+                        border-radius: 4px;
+                    }
+                    
+                    @media (hover: hover) {
+
+                        & .fa-minus:hover,
+                        .fa-plus:hover {
+                            background-color: #ebebeb;
+                        }
+                    }
 
                     & input {
                         background-color: #ffffff;
@@ -86,22 +87,25 @@
                     }
                 }
             }
+
             &__price {
                 display: inline-block;
                 margin: 0 1em;
+
                 &__price-currency {
                     font-weight: 600;
-                    font-size: 1,2em;
+                    font-size: 1, 2em;
                     display: block;
                     text-align: left;
                     margin: 0 auto;
                 }
             }
+
             & .fa-trash-o {
                 display: block;
                 padding-right: .5em;
                 margin-bottom: 5px;
-            } 
+            }
         }
 
     }

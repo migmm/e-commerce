@@ -23,7 +23,7 @@
     left: -90px;
     border-radius: 4px;
 }
-
+@media (hover: hover) {
 #button-whatsapp:hover {
     background-color: hsl(142, 70%, 40%);
 }
@@ -31,3 +31,4 @@
 #button-whatsapp:hover span {
     display: inline-block;
 }
+  }

@@ -25,25 +25,6 @@ function topFunction() {
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //FIXME: qty when add new product
 //TODO: implement active link
 
@@ -91,7 +72,6 @@ document.addEventListener('click', e => {
         isCartPreviewOpen = 1;
         return;
     }
-
 
     // Click on X button to close cart preview
     if (e.target.classList.value === 'fa fa-times-circle-o fa-2x') {
@@ -154,6 +134,7 @@ document.addEventListener('click', e => {
         updateCart();
         return; 
     } 
+    
     // Click on minus to decrease quantity
     if (e.target.classList.value === 'fa fa-minus') {
         let btnMinus = e.target.nextElementSibling.value;
@@ -176,27 +157,13 @@ document.addEventListener('click', e => {
         updateCart();
         return;  
     }
-    if (e.target.classList.value === 'fa fa-heart-o')  {
-
-        let aaa = document.getElementsByClassName(e.target.classList)[0]
-        // console.log(e.target.id)
-        console.log(e.target.classList)
-        //aaa.classList.add('fa-heart')
-        aaa.classList.remove('fa-heart-o')
-        // document.getElementById(e.target).classList.remove('fa-heart-o');
-        console.log(aaa) 
-        //  idLoaded = e.target.parentNode.previousElementSibling.getAttribute('data-id')
-        //   idFav = e.target.parentNode.previousElementSibling.getAttribute('data-id')
-        /* console.log("testo", idLoaded)
-        heart = document.querySelector(e.target.classList)
-        heart = "fa " */
-       // e.target.classList.value('fa fa-heart');
-    } /* else {
-        let aaa = document.getElementsByClassName(e.target.classList[1])[0]
-        aaa.classList.remove('fa-heart')
-        aaa.classList.add('fa-heart-o')
-    } */
-   // console.log(e.target)
+    
+    //Clic on Keep Buyng
+    if (e.target.classList.value === 'cart-modal__footer__link-keep')  {
+        toggleCart();
+        isCartPreviewOpen = 0;
+        return;
+    } 
 });
 
 // ESC key to close cart preview
@@ -209,6 +176,7 @@ document.addEventListener('keydown', e => {
         qtySelector.classList.toggle('card__item-qty-selector--show');
     }
 });
+
 
 
 /////////////////////////
@@ -249,7 +217,7 @@ function addItemToCart(id, price, discount, shortDescription, brand, img, qty) {
 
     saveCart()
     updateCart()
-}
+};
 
 function removeItemToCart(id) {
 
@@ -263,7 +231,7 @@ function removeItemToCart(id) {
     }
 saveCart()
 updateCart()
-}
+};
 
 function updateCart() {
 
@@ -313,7 +281,7 @@ function updateCart() {
     }
     
     saveCart()
-}
+};
 
 
 
@@ -326,9 +294,14 @@ function updateCart() {
 const runScript = (content, id) => {
     // no cargar el <script> más de una vez
     if (document.getElementById(id)) {
-        return;
+        //Remove SRC in order to reload and not to be duplicated
+        //Script does not work again when the view is changed
+        var src = document.getElementById(id);
+        src.remove();
+      //  return;
     }
     const script = document.createElement('script');
+    script.src = id;
     script.id = id;
     script.innerHTML = content;
     document.body.appendChild(script);
@@ -348,12 +321,6 @@ const getResource = async (url, callback) => {
 
 
 
-
-
-
-
-
-
 ///////////////////////////////////////////////
 //                                           //
 //       ------ Template loading ------      //
@@ -368,17 +335,12 @@ const getFullTemplateURL = function (link) {
         return '/home';
     }
     return `${link.getAttribute('href')}`
-}
+};
 
 const getAsyncRequestFromLink = async (link, element) => {
     const templateURL = getFullTemplateURL(link);
 
-
-  //  const templateURLTrimmeada = templateURL.slice(1, -1);
     templateURLFinal = 'js' + templateURL + '.js'
-
-
-
 
     if (cachePages[templateURL] === undefined) {
         const template = await fetch(templateURL);
@@ -386,7 +348,12 @@ const getAsyncRequestFromLink = async (link, element) => {
     }
     if (cachePages[templateURL]) {
         element.innerHTML = cachePages[templateURL];
-        getResource(templateURLFinal, response => runScript(response, templateURLFinal) ); 
+
+        async function test() {
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            getResource(templateURLFinal, response => runScript(response, templateURLFinal) );
+        }
+        test();
     }
 };
 
@@ -399,22 +366,6 @@ document.querySelector('.main-nav').addEventListener('click', e => {
 });
 
 getAsyncRequestFromLink('' , main);
-/* const idForScript = e.target.dataset.idScript || 'script-1';
-    getResource('js/script.js', response => runScript(response, idForScript) ); */
-
-
-/////////////////////////////////////////////////
-//                                             //
-//    ------ Mobile device detection ------    //
-//                                             //
-/////////////////////////////////////////////////
-
-if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-    console.log("mobile");
-    // TODO: remove all hover reactions
-    }else{
-    console.log("not mobile");
-    }
 
 
 
@@ -423,32 +374,24 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
 //    ------ Session storage -------    //
 //                                      //
 //////////////////////////////////////////
- 
+
 if (localStorage.getItem("shoppingCart") != null) {
     loadCart();
-}
+};
 
 function loadCart() {
     cart = JSON.parse(localStorage.getItem('shoppingCart'));
-}
+};
 
 function saveCart() {
     localStorage.setItem('shoppingCart', JSON.stringify(cart));
-}
+};
 updateCart()
 
-
-
-
-
-/* document.querySelector('button').addEventListener('click', e => {
-    const idForScript = e.target.dataset.idScript || 'script-1';
-    getResource('js/archivo.js', response => runScript(response, idForScript) );
+document.querySelector('.main-nav').addEventListener('click', e => {
+    if (e.target.classList.contains('main-nav__link')) {
+        e.preventDefault();
+        e.target.blur();
+        getAsyncRequestFromLink(e.target, main);
+    }
 });
- */
-/* const myTimeout = setTimeout(myGreeting, 5000);
-
-function myGreeting() {
-    getResource('js/slider.js', response => runScript(response, 'ffdf') );
-}
- */
