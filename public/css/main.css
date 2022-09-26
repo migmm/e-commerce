@@ -717,8 +717,10 @@ body {
   color: #858585;
   text-decoration: none;
 }
-.main-footer .footer-info p a:hover {
-  color: #dadada;
+@media (hover: hover) {
+  .main-footer .footer-info p a:hover {
+    color: #dadada;
+  }
 }
 
 .footer-row-container {
@@ -1102,7 +1104,7 @@ body {
 
 .background-dark {
   position: fixed;
-  top: 0;
+  top: 60px;
   right: 0;
   width: 100%;
   height: 100%;
@@ -1128,7 +1130,7 @@ body {
   max-width: 500px;
   height: 100%;
   position: fixed;
-  top: 0;
+  top: 60px;
   right: -500px;
   background-color: #ffffff;
   border-top-left-radius: 8px;
@@ -1378,6 +1380,18 @@ body {
 @media (min-width: 768px) {
   .main-content__divider-right__contact .store-info p {
     text-align: left;
+  }
+}
+.main-content__divider-right__contact .store-info a {
+  text-decoration: none;
+  color: #000000;
+}
+.main-content__divider-right__contact .store-info a:visited {
+  color: #000000;
+}
+@media (hover: hover) {
+  .main-content__divider-right__contact .store-info a:hover {
+    color: #858585;
   }
 }
 @media (min-width: 768px) {
