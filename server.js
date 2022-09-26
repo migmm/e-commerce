@@ -10,8 +10,8 @@ app.use(express.json());
 
 app.engine('.hbs', engine({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
-app.set('views', '.\\views');
-
+//app.set('views', '.\\views');
+app.set('views', path.join(__dirname, "./views"));
 // Products simulating a database
 // Date and time use ISO 8601
 const products = [
