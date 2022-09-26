@@ -92,7 +92,6 @@ document.addEventListener('click', e => {
         let img = e.target.nextElementSibling.childNodes[5].childNodes[1].src;
         
         addItemToCart(id, price, discount, shortDescription, brand, img, 1)
-
         updateCart()
         return;
     }

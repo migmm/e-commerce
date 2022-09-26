@@ -10,35 +10,35 @@
                     <input type="hidden" value="930398282" name="ID">
                     <label class="input-group__label" for="product-name">Nombre</label>
                     <input class="input-group__input" name="product-name" id="product-name" type="text" required autofocus>
-                    <span class="input-group__error">ERROR!</span>
+                    <span class="input-group__error">ERROR! EL nombre debe tener entre 5 y 30 caracteres.</span>
                 </div>
                 <div class="input-group__form-group">
                     <label class="input-group__label" for="product-price">Precio</label>
                     <input class="input-group__input" name="product-price" id="product-price" type="text" required>
-                    <span class="input-group__error">ERROR!</span>
+                    <span class="input-group__error">ERROR!Ingrese números.</span>
                 </div>
                 <div class="input-group__form-group">
                     <label class="input-group__label" for="product-vendor">Fabricante</label>
                     <input class="input-group__input" name="product-vendor" id="product-vendor" type="text">
-                    <span class="input-group__error">ERROR!</span>
+                    <span class="input-group__error">ERROR! El fabricante debe tener entre 5 y 40 caracteres.</span>
                 </div>
                 <div class="input-group__form-group">
                     <label class="input-group__label" for="product-stock">Stock</label>
                     <input class="input-group__input" name="product-stock" id="product-stock" type="text" required>
-                    <span class="input-group__error">ERROR!</span>
+                    <span class="input-group__error">ERROR! Ingrese números.</span>
                 </div>
                 <div class="input-group__form-group">
                     <label class="input-group__label" for="product-category">Categoría</label>
                     <input class="input-group__input" name="product-category" id="product-category" type="text">
-                    <span class="input-group__error">ERROR!</span>
+                    <span class="input-group__error">ERROR! La categoría debe tener entre 5 y 50 caracteres.</span>
                 </div>
                 <div class="input-group__form-group">
                     <label class="input-group__label" for="product-short-description" required>Descripción corta</label>
                     <input class="input-group__input" name="product-short-description" id="product-short-description" type="text">
-                    <span class="input-group__error">ERROR!</span>
+                    <span class="input-group__error">ERROR! La descripción debe tener entre 5 y 80 caracteres.</span>
                 </div>
                 <div class="input-group__form-group">
-                    <label class="input-group__label" for="product-long-description" required>Descripción larga</label>
+                    <label class="input-group__label" for="product-long-description" required>Descripción larga.</label>
                     <textarea
                         class="input-group__textarea"
                         name="product-long-description"
@@ -46,7 +46,7 @@
                         cols="30"
                         rows="10"
                     ></textarea>
-                    <span class="input-group__error">ERROR!</span>
+                    <span class="input-group__error">ERROR! La descripción debe tener entre 5 y 2000 caracteres.</span>
                 </div>
 
             </div>
@@ -54,12 +54,13 @@
                 <div class="input-group__form-group">
                     <input type="checkbox" id="product-free-shipping" name="product-free-shipping" class="input-group__check">
                     <label class="input-group__label" for="product-free-shipping" id="label-checkbox">Envío sin cargo</label>
-                    <span class="input-group__error">ERROR!</span>
+                    <span class="input-group__error">¿El envío es sin cargo?</span>
                 </div>
                 <div class="input-group__form-group">
                     <label class="input-group__label" for="product-age-from" required>Edad desde / hasta</label>
                     <input class="input-group__input" name="product-age-from" id="product-age-from" type="text">
                     <input class="input-group__input" name="product-age-to" id="product-age-to" type="text">
+                    <span class="input-group__error">ERROR! Ingrese numeros de 0 a 99.</span>
 
                 </div>
                 <div class="input-group__form-group">
@@ -67,12 +68,12 @@
                     <label for="age-month">Meses</label>
                     <input type="radio" id="age-year" name="age-selector" class="input-group__radio">
                     <label for="age-month">Años</label>
-                    <span class="input-group__error">ERROR!</span>
+                    <span class="input-group__error">ERROR! Seleccione meses o años.</span>
                 </div>
                 <div class="input-group__form-group">
                     <label class="input-group__label" for="myFile" required>Fotos</label>
                     <input type="file" id="myFile" name="filename">
-                    <span class="input-group__error">ERROR!</span>
+                    <span class="input-group__error">ERROR! Debe cargar una imagen.</span>
                 </div>
             </div>
             <div class="input-group__buttons">
