@@ -1,3 +1,5 @@
+@use '../abstracts/variables' as color;
+
 .hamburger-button {
     display: block;
     cursor: pointer;
@@ -8,7 +10,7 @@
 
     @media (hover: hover) {
         &:hover {
-            background-color: #004173;
+            background-color: color.$darkblue;
         }
     }
 
@@ -19,7 +21,7 @@
         height: 10%;
         top: 20%;
         left: 10%;
-        background-color: #eee;
+        background-color: color.$white;
     }
 
     &__meat {
@@ -30,7 +32,7 @@
         width: 80%;
         height: 10%;
         transform: translateY(-50%);
-        background-color: #eee;
+        background-color: color.$white;
     }
 
     &__bottom-bread {
@@ -40,7 +42,6 @@
         display: block;
         width: 80%;
         height: 10%;
-        background-color: #eee;
+        background-color: olor.$white;
     }
-
 }

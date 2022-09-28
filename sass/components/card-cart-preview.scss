@@ -1,3 +1,5 @@
+@use '../abstracts/variables' as color;
+
 .cart-modal {
 
     &__products {
@@ -7,11 +9,11 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-            border: 1px solid #cecdcd;
+            border: 1px solid color.$lightgrey;
             border-radius: 8px;
             transition: all .2s;
             margin: 1em 0;
-            background-color: #ffffff;
+            background-color: color.$white;
             position: relative;
 
             &__image-container {
@@ -22,7 +24,6 @@
                 text-align: center;
                 margin: 1em;
                 cursor: pointer;
-
             }
 
             &__image {
@@ -65,24 +66,24 @@
                         padding: 3px;
                         cursor: pointer;
                         margin: 0 auto;
-                        background-color: #cecdcd;
+                        background-color: color.$lightgrey;
                         border-radius: 4px;
                     }
-                    
+
                     @media (hover: hover) {
 
                         & .fa-minus:hover,
                         .fa-plus:hover {
-                            background-color: #ebebeb;
+                            background-color: color.$lightgrey;
                         }
                     }
 
                     & input {
-                        background-color: #ffffff;
+                        background-color: color.$white;
                         padding: 3 15px;
                         border-radius: 3px;
                         width: 40px;
-                        border: 1px solid #000000;
+                        border: 1px solid color.$black;
                         text-align: center;
                     }
                 }
@@ -116,13 +117,12 @@
                     margin: 0 auto;
                 }
             }
+
             & .fa-trash-o {
                 display: block;
                 padding-right: .5em;
                 margin-bottom: 5px;
             }
         }
-
     }
-
 }

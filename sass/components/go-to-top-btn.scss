@@ -1,3 +1,5 @@
+@use '../abstracts/variables' as color;
+
 #myBtn {
     display: none;
     position: fixed;
@@ -7,7 +9,7 @@
     font-size: 18px;
     border: none;
     outline: none;
-    background-color:#004173;
+    background-color: color.$cyan;
     cursor: pointer;
     padding-left: 14px;
     padding-top: 5px;
@@ -15,40 +17,36 @@
     height: 64px;
     width: 64px;
     animation: fadeIn 1s;
-  }
-  @media (hover: hover) {
-   #myBtn:hover {
-    background-color: #00B2EB;
-  }
+}
+
+@media (hover: hover) {
+  #myBtn:hover {
+        background-color: color.$darkblue;
+    }
+
   #myBtn:hover span {
-    display: inline-block;
+        display: inline-block;
+    }
 }
-}
 
-
-
-  #myBtn:after {
+#myBtn:after {
     content: "\f077";
     font-family: FontAwesome;
     font-weight: normal;
     font-style: normal;
     font-size: 2em;
     line-height: 50px;
-    color: #fff;
-  }
+    color: color.$white;
+}
 
-  #myBtn span {
+#myBtn span {
     display: none;
-    background-color: #004173;
+    background-color: color.$darkblue;
     font-size: 1em;
-    color: #fff;
+    color: color.$white;
     padding: 5px;
     position: fixed;
     bottom: 115px;
     right: 90px;
     border-radius: 4px;
 }
-
-
-
-  

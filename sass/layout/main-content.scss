@@ -1,3 +1,5 @@
+@use '../abstracts/variables' as color;
+
 .main-content {
     width: 100%;
     display: inline-block;
@@ -13,7 +15,7 @@
 
     &__wrapper {
         max-width: 1600px;
-        background-color: #ffffff;
+        background-color: color.$white;
         /* BG  */
         margin: 0 auto;
         padding: 20px;

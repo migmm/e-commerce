@@ -204,16 +204,14 @@
 
         &__main-nav-container {
             display:none;
-
+            & .main-nav {
+                &__item:nth-child(3) {
+                    order: 4;
+                }
+            }
             @media (min-width: 900px) {
                 order: 1;
                 display: block;
-
-                & .main-nav {
-                    &__item:nth-child(3) {
-                        order: 4;
-                    }
-                }
             }
         }
     }

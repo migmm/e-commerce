@@ -1,10 +1,12 @@
+@use '../abstracts/variables' as color;
+
 .background-dark {
     position: fixed;
     top: 60px;
     right: 0;
     width: 100%;
     height: 100%;
-    background-color: hsla(0, 0%, 0%, 0.8);
+    background-color: color.$blacktransparent;
     z-index: 200;
     animation: fadeIn .5s;
 
@@ -14,6 +16,7 @@
 }
 
 @keyframes fadeIn {
+
     0% {
         opacity: 0;
     }
@@ -31,12 +34,11 @@
     position: fixed;
     top: 60px;
     right: -500px;
-    background-color: #ffffff;
+    background-color: color.$white;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     z-index: 201;
     padding: .5em;
-    //animation: slideIn .5s;
 
     & .fa-times-circle-o {
         position: absolute;
@@ -44,19 +46,20 @@
         right: 20px;
         width: 25px;
         height: 25px;
-        color: #000000;
+        color: color.$black;
         border: none;
         cursor: pointer;
     }
 
     @media (hover: hover) {
+
         & .fa-times-circle-o:hover {
-            color: #0061AF
+            color: color.$darkblue;
         }
     }
 
     & .fa-times-circle-o:active {
-        color: #35a4ff;
+        color: color.$cyan;
     }
 
 
@@ -71,7 +74,7 @@
     }
 
     &__title {
-        border-bottom: 1px solid #cecdcd;
+        border-bottom: 1px solid color.$lightgrey;
         padding-bottom: 8px;
         margin: 0px;
         padding: 1em;
@@ -89,7 +92,7 @@
         display: block;
         text-align: right;
         width: 100%;
-        border-top: 1px solid #cecdcd;
+        border-top: 1px solid color.$lightgrey;
 
         p {
             display: block;
@@ -102,11 +105,11 @@
         &__link-buy {
             display: block;
             width: 100%;
-            background-color: #be0000;
+            background-color: color.$red;
             border-radius: 0.6em;
             padding: 0.3em;
             text-decoration: none;
-            color: #ffffff;
+            color: color.$white;
             font-size: 1.2em;
             font-weight: 600;
             text-align: center;
@@ -114,17 +117,18 @@
         }
 
         @media (hover: hover) {
+
             &__link-buy:hover {
-                background-color: #810000;
+                background-color: color.$darkred;
             }
 
             &__link-keep:hover {
-                color: #0061AF;
+                color: color.$darkblue;
             }
         }
 
         &__link-buy:active {
-            background-color: #dd0000;
+            background-color: color.$red;
         }
 
         &__link-keep {
@@ -137,10 +141,9 @@
         }
 
         &__link-keep:active {
-            color: #35a4ff;
+            color: color.$cyan;
         }
     }
-
 }
 
 .cart-modal--opendrawer {

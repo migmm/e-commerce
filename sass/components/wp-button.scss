@@ -1,7 +1,9 @@
+@use '../abstracts/variables' as color;
+
 #button-whatsapp {
-    background-color: hsl(142, 70%, 49%);
+    background-color: color.$lightgreen;
     display: inline-block;
-    box-shadow: 3px 3px 4px hsla(0, 0%, 0%, .1);
+    box-shadow: 3px 3px 4px color.$shadow;
     border-radius: 50%;
     background-image: url('../img/icon-whatsapp.png');
     height: 64px;
@@ -10,25 +12,26 @@
     bottom: 20px;
     right: 20px;
     text-decoration: none;
-    color: #fff;
+    color: color.$white;
     z-index: 99;
 }
 
 #button-whatsapp span {
     display: none;
-    background-color: hsl(142, 70%, 40%);
+    background-color: color.$green;
     padding: 5px;
     position: relative;
     bottom: -20px;
     left: -90px;
     border-radius: 4px;
 }
-@media (hover: hover) {
-#button-whatsapp:hover {
-    background-color: hsl(142, 70%, 40%);
-}
 
-#button-whatsapp:hover span {
-    display: inline-block;
+@media (hover: hover) {
+    #button-whatsapp:hover {
+        background-color: color.$green;
+    }
+
+    #button-whatsapp:hover span {
+        display: inline-block;
+    }
 }
-  }
