@@ -1,6 +1,8 @@
+@use '../abstracts/variables' as color;
+
 .main-footer {
     width: 100%;
-    background-color: #0e0e0e;
+    background-color: color.$black;
     clear: left;
 
     &__wrapper {
@@ -15,21 +17,21 @@
     }
 
     & .footer-info {
-        color: #dadada;
+        color: color.$lightgrey;
         text-align: center;
         padding: 1px 0;
         font-size: .8em;
-        background-color: #000000;
+        background-color: color.$black;
 
         & p {
             & a {
-                color: #858585;
+                color: color.$darkgrey;
                 text-decoration: none;
             }
 
             @media (hover: hover) {
                 & a:hover {
-                    color: #dadada;
+                    color: color.$lightgrey;
                 }
             }
         }
@@ -50,7 +52,7 @@
 
         width: 100%;
         height: 100%;
-        color: #ffffff;
+        color: color.$white;
         align-items: center;
         text-align: center;
         padding-left: 1em;
@@ -89,23 +91,24 @@
 
             & a {
                 text-decoration: none;
-                color: #ffffff;
+                color: color.$white;
             }
 
             & a:visited {
-                color: #ffffff;
+                color: color.$white;
             }
 
             & a:hover {
-                color: #b3b3b3;
+                color: color.$lightgrey;
             }
 
             & a:active {
-                color: #4e4e4e;
+                color: color.$darkgrey;
             }
         }
 
         &__item &__item &__list,
+
         & .store-info {
             padding: 0;
         }
@@ -113,20 +116,20 @@
         & .store-info {
 
             & a {
-                color: #ffffff;
+                color: color.$white;
                 text-decoration: none;
             }
 
             & a:visited {
-                color: #ffffff;
+                color: color.$white;
             }
 
             & a:hover {
-                color: #b3b3b3;
+                color: color.$lightgrey;
             }
 
             & a:active {
-                color: #4e4e4e;
+                color: color.$darkgrey;
             }
         }
     }

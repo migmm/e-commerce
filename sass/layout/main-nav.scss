@@ -1,3 +1,5 @@
+@use '../abstracts/variables' as color;
+
 .main-nav {
 
     &__list {
@@ -8,6 +10,7 @@
         flex-direction: column;
         justify-content: flex-start;
         width: 100%;
+
         @media (min-width: 768px) {
             flex-direction: row;
         }
@@ -21,7 +24,7 @@
         display: block;
         width: 100%;
         padding: 1em .7em;
-        color: #ffffff;
+        color: color.$white;
         font-size: 1.2em;
         text-decoration: none;
     }
@@ -30,7 +33,7 @@
     &__link:focus {
 
         @media (min-width: 768px) {
-            color: #004173;
+            color: color.$darkblue;
         }
     }
 }

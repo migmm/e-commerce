@@ -1,6 +1,8 @@
+@use '../abstracts/variables' as color;
+
 ::selection {
-    color: #004173;
-    background: #00B2EB;
+    color: color.$darkblue;
+    background: color.$cyan;
 }
 
 .cards-container {

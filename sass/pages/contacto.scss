@@ -1,3 +1,5 @@
+@use '../abstracts/variables' as color;
+
 .main-content {
   &__wrapper {
     &__contact {
@@ -40,16 +42,17 @@
 
         & a {
           text-decoration: none;
-          color: #000000;
+          color: color.$black;
         }
 
         & a:visited {
-          color: #000000;
+          color: color.$black;
         }
 
         @media (hover: hover) {
+          
           & a:hover {
-            color: #858585;
+            color: color.$darkgrey;
           }
         }
       }

@@ -1,13 +1,15 @@
+@use '../abstracts/variables' as color;
+
 .main-nav-toggle {
     display: none;
 }
 
-.main-nav-toggle:checked ~ .main-header .main-header__wrapper__main-nav-container {
+.main-nav-toggle:checked~.main-header .main-header__wrapper__main-nav-container {
     display: block;
     flex-direction: column;
     position: fixed;
     top: 60px;
     justify-content: center;
-    background-color:  #00B2EB;
+    background-color: color.$cyan;
     width: 100%;
 }

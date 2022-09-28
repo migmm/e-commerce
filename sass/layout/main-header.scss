@@ -1,8 +1,11 @@
+@use '../abstracts/variables' as color;
+
 .main-header {
-    width:100%;
-    background-color: #00B2EB;
+    width: 100%;
+    background-color: color.$cyan;
     position: fixed;
     z-index: 100;
+
     &__wrapper {
 
         display: flex;
@@ -18,10 +21,11 @@
             margin-top: 2px;
             padding: 8px 0;
             flex-grow: 3;
+
             &__logo {
                 height: 2em;
             }
-            
+
             @media (min-width: 1024px) {
                 flex-basis: 10em;
                 cursor: pointer;
@@ -31,22 +35,19 @@
         &__search-form-container {
             padding: 1em;
             flex-grow: 2;
-
-            //
             width: 100%;
             order: 5;
             position: absolute;
             top: 45px;
-            background-color: #00B2EB;
-            //
- 
+            background-color: color.$cyan;
+
             @media (min-width: 768px) {
                 order: 2;
                 flex-basis: 15em;
                 flex-grow: 2;
                 flex-shrink: 1;
-            } 
- 
+            }
+
             @media (min-width: 600px) {
                 order: 2;
                 flex-basis: 15em;
@@ -54,17 +55,17 @@
                 flex-shrink: 1;
 
                 position: relative;
-                top:0;
+                top: 0;
             }
 
-            & form{
+            & form {
                 display: flex;
                 flex-wrap: nowrap;
             }
 
             & input {
                 width: 100%;
-                padding:.3em;
+                padding: .3em;
                 border-radius: 10px;
                 border: none;
                 padding-left: 0;
@@ -77,24 +78,24 @@
                 @media (max-width: 425px) {
                     display: none;
                 }
-                
+
             }
 
             & input::placeholder {
-                color: #004173;
+                color: color.$darkblue;
                 text-align: center;
             }
-            
+
             & button {
-                color: #fff;
+                color: color.$white;
                 border: none;
-                background-color: #00B2EB;
+                background-color: color.$cyan;
                 font-size: 120%;
                 cursor: pointer;
             }
 
             & :hover {
-                color: #004173;
+                color: color.$darkblue;
             }
         }
 
@@ -102,10 +103,11 @@
             padding: 0;
             padding-right: 1em;
             font-size: 120%;
-            color: #fff;
+            color: color.$white;
             cursor: pointer;
             position: relative;
             order: 3;
+
             &__button {
                 width: 2em;
             }
@@ -113,7 +115,7 @@
             & .login-button-menu {
                 display: none;
                 position: absolute;
-                background-color: #ffffff;
+                background-color: color.$white;
                 width: 200px;
                 text-align: center;
                 top: 2.7em;
@@ -121,7 +123,7 @@
                 padding: 1em;
                 border-radius: 3px;
                 text-decoration: none;
-                box-shadow: 0px 31px 19px -27px rgba(0, 0, 0, 0.75);
+                box-shadow: 0px 31px 19px -27px color.$shadow;
                 font-size: 16px;
                 line-height: 1.5em;
 
@@ -133,7 +135,7 @@
 
                 &__login-button:visited,
                 &__register-button:visited {
-                    color: #004173;
+                    color: color.$darkblue;
                 }
             }
 
@@ -143,8 +145,9 @@
 
             @media (min-width: 768px) {
                 order: 3;
+
                 & :hover {
-                    color: #004173;
+                    color: color.$darkblue;
                 }
             }
         }
@@ -152,14 +155,14 @@
         &__cart-button-container {
             padding: 0;
             padding-right: 1em;
-            color: #fff;
+            color: color.$white;
             cursor: pointer;
             margin-right: 0;
             position: relative;
             order: 3;
 
             &__qty-cart {
-                background-color: #be0000;
+                background-color: color.$red;
                 // width: 20px;
                 height: 20px;
                 border-radius: 50%;
@@ -169,10 +172,10 @@
                 top: -10px;
                 right: 8px;
             }
-    
+
             //FIXME: fix this
-            &__qty-cart:hover{
-                color: #ffffff; 
+            &__qty-cart:hover {
+                color: color.$white;
             }
 
             &__button {
@@ -184,7 +187,7 @@
                 margin-right: .5em;
 
                 & :hover {
-                    color: #004173;
+                    color: color.$darkblue;
                 }
             }
 
@@ -196,19 +199,22 @@
 
         &__hamburger-button-container {
             padding: 14px;
-            order:3;
+            order: 3;
+
             @media (min-width: 900px) {
                 display: none;
             }
         }
 
         &__main-nav-container {
-            display:none;
+            display: none;
+
             & .main-nav {
                 &__item:nth-child(3) {
                     order: 4;
                 }
             }
+
             @media (min-width: 900px) {
                 order: 1;
                 display: block;
