@@ -4,6 +4,7 @@
 ## Bootcamp FullStack Engineer de __EducaciónIT__ 
 Proyecto integrador que consiste en la creación de un e-commerce de una juguetería.
 
+ <img src="https://github.com/migmm/e-commerce/blob/main/public/img/logocolor.png" alt="Logo"/>
 
 Primer entrega: 02/08/2022.
 
