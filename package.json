@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "e-commerce",
   "version": "1.0.0",
   "description": "Proyecto integrador",
@@ -20,7 +21,6 @@
   "homepage": "https://github.com/migmm/e-commerce#readme",
   "dependencies": {
     "express": "^4.18.1",
-    "express-handlebars": "^6.0.6",
-    "nodemon": "^2.0.20"
+    "mongoose": "^6.6.5"
   }
 }

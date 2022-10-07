@@ -612,7 +612,7 @@ body {
   text-decoration: none;
 }
 @media (min-width: 768px) {
-  .main-nav__link:hover, .main-nav__link:focus {
+  .main-nav__link:hover {
     color: #004173;
   }
 }

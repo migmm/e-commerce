@@ -29,8 +29,7 @@
         text-decoration: none;
     }
 
-    &__link:hover,
-    &__link:focus {
+    &__link:hover{
 
         @media (min-width: 768px) {
             color: color.$darkblue;
