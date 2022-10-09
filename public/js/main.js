@@ -27,6 +27,7 @@ myButton.addEventListener('click', e => {
 
 
 async function renderTemplateCards(products) {
+    console.log(products.length)
     const textoToRender = await fetch('/templates/inicio.hbs').then(r => r.text());
     const template = Handlebars.compile(textoToRender);
     const html = template({ products });
