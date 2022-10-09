@@ -2,8 +2,15 @@
 
 # Proyecto integrador
 ## Bootcamp FullStack Engineer de __EducaciónIT__ 
-Proyecto integrador que consiste en la creación de un e-commerce de una juguetería.
+Proyecto integrador que consiste en la creación de un e-commerce.
 
+
+ <img src="https://github.com/migmm/e-commerce/blob/main/public/img/logocolor.png" alt="Logo"/>
+ 
+ 
+Tema: juguetería.
+
+Nombre: Juguetería Cósmica.
 
 Primer entrega: 02/08/2022.
 
