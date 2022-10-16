@@ -12,6 +12,32 @@ Tema: juguetería.
 
 Nombre: Juguetería Cósmica.
 
+Deploy: [Juguetería Cósmica](https://cosmica.cyclic.app/)
+
 Primer entrega: 02/08/2022.
 
 Segunda entrega: 26/09/2022.
+
+### Frontend
+
+Para el frontend se utilizó:
+
+- HTML
+- CSS
+- Javascript
+- SASS
+- Arquitectura BEM
+- Sistema SPA
+
+
+### Backend
+
+Para el backend se utilizó:
+
+- Node.JS
+- Express
+- Mongoose
+- MongoDB
+- Arquitectura en capas para una mejor escalabilidad y comprensión
+
+
