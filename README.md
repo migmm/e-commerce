@@ -26,6 +26,7 @@ Para el frontend se utilizó:
 - CSS
 - Javascript
 - SASS
+- Handlebars
 - Arquitectura BEM
 - Sistema SPA
 
