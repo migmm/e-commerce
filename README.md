@@ -1,4 +1,4 @@
-![npm](https://img.shields.io/npm/v/npm?color=green)  ![npm](https://img.shields.io/npm/v/express?label=express&logo=Express)  ![npm](https://img.shields.io/npm/v/express-handlebars?label=express-handlebars)  ![GitHub package.json version](https://img.shields.io/github/package-json/v/migmm/e-commerce)
+![npm](https://img.shields.io/npm/v/npm?color=green)  ![npm](https://img.shields.io/npm/v/express?label=express&logo=Express)  ![GitHub package.json version](https://img.shields.io/github/package-json/v/migmm/e-commerce)
 
 # Proyecto integrador
 ## Bootcamp FullStack Engineer de __EducaciónIT__ 
