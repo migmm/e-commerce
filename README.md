@@ -18,6 +18,8 @@ Primer entrega: 02/08/2022.
 
 Segunda entrega: 26/09/2022.
 
+Tercera entrega: a confirmar.
+
 ### Frontend
 
 Para el frontend se utilizó:
@@ -29,6 +31,7 @@ Para el frontend se utilizó:
 - Handlebars
 - Arquitectura BEM
 - Sistema SPA
+- Diseño responsivo / mobile first
 
 
 ### Backend
