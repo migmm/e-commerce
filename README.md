@@ -1,17 +1,64 @@
-![npm](https://img.shields.io/npm/v/npm?color=green)  ![npm](https://img.shields.io/npm/v/express?label=express&logo=Express)  ![npm](https://img.shields.io/npm/v/express-handlebars?label=express-handlebars)  ![GitHub package.json version](https://img.shields.io/github/package-json/v/migmm/e-commerce)
+![npm](https://img.shields.io/npm/v/npm?color=green)  ![npm](https://img.shields.io/npm/v/express?label=express&logo=Express)  ![GitHub package.json version](https://img.shields.io/github/package-json/v/migmm/e-commerce)
 
-# Proyecto integrador
-## Bootcamp FullStack Engineer de __EducaciónIT__ 
-Proyecto integrador que consiste en la creación de un e-commerce.
+# Final Project
+## Bootcamp FullStack Engineer from __EducaciónIT__ 
+Final project emulating a e-commerce.
 
 
  <img src="https://github.com/migmm/e-commerce/blob/main/public/img/logocolor.png" alt="Logo"/>
  
  
-Tema: juguetería.
+Topic: Toy store.
 
-Nombre: Juguetería Cósmica.
+Name: Juguetería Cósmica.
 
-Primer entrega: 02/08/2022.
+Deploy: [Juguetería Cósmica](https://cosmica.cyclic.app/)
 
-Segunda entrega: 26/09/2022.
+First delivery: 02/08/2022.
+
+Second delivery: 26/09/2022.
+
+Third delivery: On wait.
+
+### Frontend
+
+In frontend I used:
+
+- HTML
+- CSS
+- Javascript
+- SASS
+- Handlebars
+- BEM Architecture
+- SPA system
+- Responsive design / mobile first
+
+
+### Backend
+
+In Backend I used:
+
+- Node.JS
+- Express
+- Mongoose
+- MongoDB
+- Layer architecture to improve scalability and fast learning
+
+
+### Installación
+
+bash
+### `npm install` 
+
+
+
+or Yarn
+### `yarn install` 
+
+
+
+ In the project directory, you can run:
+### `npm start`
+
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
