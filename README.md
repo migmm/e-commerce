@@ -23,14 +23,6 @@ Third delivery: On wait.
 
 ### Frontend
 
-First delivery: 02/08/2022.
-
-Second delivery: 26/09/2022.
-
-third delivery: on wait.
-
-### Frontend
-
 In frontend I used:
 
 - HTML
@@ -42,17 +34,10 @@ In frontend I used:
 - SPA system
 - Responsive design / mobile first
 
-- Arquitectura BEM
-- Sistema SPA
-- Diseño responsivo / mobile first
-
 ### Backend
 
 
 In Backend I used:
-
-Para el backend se utilizó:
-
 
 - Node.JS
 - Express
@@ -76,7 +61,7 @@ or Yarn
 ### `npm start`
 
 Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
 
 
