@@ -1303,7 +1303,7 @@ body {
 }
 .cart-modal__products .card-cart-preview__content .qty-selector-container input {
   background-color: #fff;
-  padding: 3 15px;
+  padding: 3px 15px;
   border-radius: 3px;
   width: 40px;
   border: 1px solid #000;
@@ -1498,6 +1498,54 @@ body {
 .error-page a:visited {
   text-decoration: none;
   color: #004173;
+}
+
+.section-all-products {
+  margin-top: 3em;
+  display: flex;
+  flex-direction: row;
+}
+.section-all-products .section-options {
+  margin-top: 6em;
+}
+.section-all-products .section-options h4 {
+  font-size: 0.9em;
+}
+.section-all-products .section-options form select {
+  font-size: 0.9em;
+}
+.section-all-products .section-options ul li {
+  list-style-type: none;
+  margin-left: -2em;
+}
+.section-all-products .section-options ul li a,
+.section-all-products .section-options ul li a:visited {
+  color: #000;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+.section-all-products .section-options ul li a:hover {
+  color: #00b2eb;
+}
+.section-all-products .section-products {
+  width: 100%;
+}
+.section-all-products .section-products .section-cards .section-cards__header .section-qty form {
+  text-align: right;
+}
+.section-all-products .section-products .section-cards .section-cards__header .section-qty form select {
+  font-size: 0.9em;
+}
+.section-all-products .section-products .section-tags {
+  margin: 2em 0;
+}
+.section-all-products .section-products .section-tags span {
+  font-size: 0.9em;
+  background-color: #cecdcd;
+  border-radius: 10px;
+  padding: 5px;
+  cursor: pointer;
+  margin: 0 0.4em;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -26,14 +26,19 @@ myButton.addEventListener('click', e => {
 });
 
 
-async function renderTemplateCards(products) {
+async function renderTemplateCards(products, showTemplate = 'inicio') {
     console.log(products.length)
-    const textoToRender = await fetch('/templates/inicio.hbs').then(r => r.text());
+    const templates = `/templates/${showTemplate}.hbs`;
+    const textoToRender = await fetch(templates).then(r => r.text());
     const template = Handlebars.compile(textoToRender);
     const html = template({ products });
-    document.querySelector('.latest-products').innerHTML = html;
-    document.querySelector('.most-selled').innerHTML = html;
-    document.querySelector('.latest-viewed').innerHTML = html;
+    if (showTemplate === 'inicio') {
+        document.querySelector('.latest-products').innerHTML = html;
+        document.querySelector('.most-selled').innerHTML = html;
+        document.querySelector('.latest-viewed').innerHTML = html;
+    } else if (showTemplate === 'productos') {
+        document.querySelector('.all-products').innerHTML = html;
+    }
 }
 
 async function initInicio() {
@@ -82,6 +87,16 @@ function initNosotros() {
     console.log('initNosotros()');
 }
 
+async function initProductos() {
+
+    const products = await productController.getProducts();
+    renderTemplateCards(products, 'productos');
+
+    console.log(`Se encontraron ${products.length} productos.`);
+    console.log('initProductos()');
+
+}
+
 class Main {
 
     async ajax(url, method = 'get') {
@@ -121,7 +136,10 @@ class Main {
             initContacto();
         } else if (id === 'nosotros') {
             initNosotros();
+        } else if (id === 'productos') {
+            initProductos();
         }
+
     }
 
     async loadTemplate(id) {
