@@ -1,5 +1,6 @@
 ![npm](https://img.shields.io/npm/v/npm?color=green)  ![npm](https://img.shields.io/npm/v/express?label=express&logo=Express)  ![GitHub package.json version](https://img.shields.io/github/package-json/v/migmm/e-commerce)
 
+[PARA LEER EN ESPAÑOL](https://github.com/migmm/e-commerce/blob/main/README-ES.md)
 # Final Project
 ## Bootcamp FullStack Engineer from __EducaciónIT__ 
 Final project emulating a e-commerce.
