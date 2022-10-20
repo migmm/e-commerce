@@ -3,6 +3,7 @@
 .main-header {
     width: 100%;
     background-color: color.$cyan;
+    box-shadow: 0px 3px 4px color.$shadow;
     position: fixed;
     z-index: 100;
 

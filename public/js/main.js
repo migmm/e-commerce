@@ -26,6 +26,21 @@ myButton.addEventListener('click', e => {
 });
 
 
+///////////////////////////////////////////////////////////////////////////////////
+//                                                                               //
+//      ------ GO TO TOP AND CLOSE MENU IN MOBILE MODE ON CHANGE VIEW ------     //
+//                                                                               //
+///////////////////////////////////////////////////////////////////////////////////
+
+let checkMenu = document.querySelector('.main-nav-toggle');
+
+function goToTopAndCloseMenu () {
+    checkMenu.checked = false;
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+
+
 async function renderTemplateCards(products, showTemplate = 'inicio') {
     console.log(products.length)
     const templates = `/templates/${showTemplate}.hbs`;
@@ -76,15 +91,18 @@ async function initInicio() {
 function initAlta() {
     console.log('initAlta()');
     document.getElementById("product-name").focus();
+    goToTopAndCloseMenu ()
 }
 
 function initContacto() {
     console.log('initContacto()');
     document.getElementById("name").focus();
+    goToTopAndCloseMenu ()
 }
 
 function initNosotros() {
     console.log('initNosotros()');
+    goToTopAndCloseMenu ()
 }
 
 async function initProductos() {
@@ -469,6 +487,6 @@ document.querySelector('.main-nav').addEventListener('click', e => {
     if (e.target.classList.contains('main-nav__link')) {
         e.preventDefault();
         e.target.blur();
-        getAsyncRequestFromLink(e.target, main);
+       // getAsyncRequestFromLink(e.target, main);
     }
 });
