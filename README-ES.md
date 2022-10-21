@@ -47,7 +47,7 @@ Para el backend se utilizó:
 - Arquitectura en capas para una mejor escalabilidad y comprensión
 
 
-### Installación
+### Instalación
 ```bash
 npm install
 ```
