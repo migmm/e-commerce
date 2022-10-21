@@ -56,7 +56,7 @@ o Yarn
 yarn install 
 ```
 
- En la ubiación del proyecto ejecutar:
+ En la ubicación del proyecto ejecutar:
 
 ```bash
 npm start
