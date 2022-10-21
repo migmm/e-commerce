@@ -47,7 +47,7 @@ Para el backend se utilizó:
 - Arquitectura en capas para una mejor escalabilidad y comprensión
 
 
-### Installación
+### Instalación
 ```bash
 npm install
 ```
@@ -56,11 +56,11 @@ o Yarn
 yarn install 
 ```
 
- En la ubiación del proyecto ejecutar:
+ En la ubicación del proyecto ejecutar:
 
 ```bash
 npm start
 ```
 
 
-Abrir [http://localhost:8080](http://localhost:8080) para ver el e-commerce
+Abrir [http://localhost:27017](http://localhost:27017) para ver el e-commerce
