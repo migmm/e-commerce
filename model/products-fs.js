@@ -5,12 +5,13 @@ class ProductModelFile {
     productsFile = 'products.dat';
     charset = 'utf-8';
 
-    getNextProductId (products) {
-        const nextId = products.length ? String(Number(products[products.length - 1].id) + 1) : '1';
+    getNextProductId(products) {
+        const nextId = products.length ? String(Number(products[products.length - 1].id) + 1) : "1";
         return nextId;
     }
 
-    async readFileProducts () {
+    async readFileProducts() {
+        // return [];
         let products = [];
         try {
             const fileContent = await fs.promises.readFile(this.productsFile, this.charset);
@@ -21,50 +22,42 @@ class ProductModelFile {
         return products;
     }
 
-    async saveFileProducts (products) {
+    async saveFileProducts(products) {
+        // await fs.promises.writeFile(this.productsFile, JSON.stringify(products));
         await fs.promises.writeFile(this.productsFile, JSON.stringify(products, null, '\t'));
     }
 
-
     ////////////////////////////////////////////////////////////////////////////////
-    //                              CRUD - C: Create                              //
-    ////////////////////////////////////////////////////////////////////////////////`
+    //                                    CRUD                                    //
+    ////////////////////////////////////////////////////////////////////////////////
 
-    async createProduct (product) {
+    // CRUD - C: CREATE
+    async createProduct(product) {
         const products = await this.readFileProducts();
-
+        
         product.id = this.getNextProductId(products);
         products.push(product);
         await this.saveFileProducts(products);
         return product;
     }
 
-
-    ////////////////////////////////////////////////////////////////////////////////
-    //                               CRUD - R: Read                               //
-    ////////////////////////////////////////////////////////////////////////////////
-
-    async readProducts () {
+    // CRUD - R: READ
+    async readProducts() {
         const products = await this.readFileProducts();
         return products;
     }
 
-    async readProduct (id) {
+    async readProduct(id) {
         const products = await this.readFileProducts();
         const product = products.find( product => product.id === id ) || {};
         return product;
     }
 
-
-    ////////////////////////////////////////////////////////////////////////////////
-    //                              CRUD - U: Update                              //
-    ////////////////////////////////////////////////////////////////////////////////`
-
-    async updateProduct (id, product) {
-
+    // CRUD - U: UPDATE
+    async updateProduct(id, product) {
         const products = await this.readFileProducts();
-        
-        const index = products.findIndex( product => product.id === id );
+
+        const index = products.findIndex( product => product.id === id);
         // Si no se encontró
         if (index === -1) {
             return {};
@@ -76,14 +69,11 @@ class ProductModelFile {
         return product;
     }
 
-    ////////////////////////////////////////////////////////////////////////////////
-    //                              CRUD - D: Delete                              //
-    ////////////////////////////////////////////////////////////////////////////////
-
-    async deleteProduct (id) {
+    // CRUD - D: DELETE
+    async deleteProduct(id) {
         const products = await this.readFileProducts();
 
-        const index = products.findIndex( product => product.id === id);
+        const index = products.findIndex( product => product.id === id );
         // Si no se encontró
         if (index === -1) {
             return {};
@@ -93,7 +83,6 @@ class ProductModelFile {
         await this.saveFileProducts(products);
         return removedProduct;
     }
-
 
 }
 

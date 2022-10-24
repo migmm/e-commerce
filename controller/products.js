@@ -1,58 +1,63 @@
+// const {getProduct, getProducts} = require('../api/products');
 import api from '../api/products.js';
 
 ////////////////////////////////////////////////////////////////////////////////
-//                                 GET Controller                             //
+//                               GET Controllers                              //
 ////////////////////////////////////////////////////////////////////////////////
 
 const getProducts = async (req, res) => {
     res.json(await api.getProducts());
 };
 
-const getProduct = async(req, res) => {
+const getProduct = async (req, res) => {
+    // const id = Number(req.params.id);
     const id = req.params.id;
     res.json(await api.getProduct(id));
 };
 
 
 ///////////////////////////////////////////////////////////////////////////////
-//                                POST Controller                            //
+//                              POST Controllers                             //
 ///////////////////////////////////////////////////////////////////////////////
 
 const postProduct = async (req, res) => {
-    const product = req.body;
+    let product = req.body;
     const newProduct = await api.createProduct(product);
     res.json(newProduct);
 };
 
 
-///////////////////////////////////////////////////////////////////////////////
-//                                PUT Controller                             //
-///////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//                              PUT Controllers                             //
+//////////////////////////////////////////////////////////////////////////////
 
 const putProduct = async (req, res) => {
+    // const id = Number(req.params.id);
     const id = req.params.id;
     const product = req.body;
 
-    const updatedProduct = await api.updateProduct(id, product);
+    const updatedProduct = await api.updateProduct(id, product) || {};
     res.json(updatedProduct);
 };
 
 
 ///////////////////////////////////////////////////////////////////////////////
-//                               DELETE Controller                           //
+//                             DELETE Controllers                            //
 ///////////////////////////////////////////////////////////////////////////////
 
 const deleteProduct = async (req, res) => {
+    // const id = Number(req.params.id);
     const id = req.params.id;
-    const removedProduct = await api.deleteProduct(id);
+
+    const removedProduct = await api.deleteProduct(id) || {};
     res.json(removedProduct);
 };
 
 
 export default {
-    getProducts,   //getProducts: getProducts
+    getProducts,    // getProducts: getProducts
     getProduct,
     postProduct,
     putProduct,
-    deleteProduct
+    deleteProduct,
 };
