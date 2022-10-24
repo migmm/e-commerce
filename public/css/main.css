@@ -1347,7 +1347,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: black;
+  background-color: #000;
   margin: 3em 0;
   cursor: pointer;
 }
@@ -1356,7 +1356,7 @@ body {
   text-align: center;
   font-size: 5vw;
   line-height: 350px;
-  text-shadow: 4px 3px 5px rgba(0, 0, 0, 0.6);
+  text-shadow: 4px 3px 5px hsla(0deg, 0%, 0%, 0.8);
 }
 @media (min-width: 900px) {
   .separation-full-width__inner-text {

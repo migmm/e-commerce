@@ -8,23 +8,19 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: black;
+    background-color: color.$black;
     margin: 3em 0;
     cursor: pointer;
-   
 
     &__inner-text {
         color: color.$white;
         text-align: center;
         font-size: 5vw;
         line-height: 350px;
-        text-shadow: 4px 3px 5px rgba(0,0,0,0.6);
-
+        text-shadow: 4px 3px 5px color.$blacktransparent;
         
         @media (min-width: 900px) {
             font-size: 3.5vw;
         }
-
-
     }
 } 
