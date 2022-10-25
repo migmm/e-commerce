@@ -14,7 +14,7 @@ Tema: juguetería.
 
 Nombre: Juguetería Cósmica.
 
-Deploy: [Juguetería Cósmica](https://cosmica.cyclic.app/)
+Deploy: [Juguetería Cósmica](https://massive-iridescent-iron.glitch.me/)
 
 Primer entrega: 02/08/2022.
 

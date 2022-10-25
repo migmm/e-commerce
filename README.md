@@ -13,7 +13,7 @@ Topic: Toy store.
 
 Name: Juguetería Cósmica.
 
-Deploy: [Juguetería Cósmica](https://cosmica.cyclic.app/)
+Deploy: [Juguetería Cósmica](https://massive-iridescent-iron.glitch.me/)
 
 
 First delivery: 02/08/2022.
@@ -47,7 +47,7 @@ In Backend I used:
 - Layer architecture to improve scalability and fast learning
 
 
-### Installación
+### Installation
 
 bash
 ### `npm install` 
