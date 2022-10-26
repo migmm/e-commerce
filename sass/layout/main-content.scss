@@ -31,7 +31,7 @@
                 & img {
                     width: 103%;
                     height: 103%;
-                    object-fit: scale-down;
+                    object-fit: cover;
                     cursor: pointer;
                     transition: transform .4s;
                 }

@@ -660,7 +660,7 @@ body {
 .main-content__wrapper .promo-wall__categories img {
   width: 103%;
   height: 103%;
-  object-fit: scale-down;
+  object-fit: cover;
   cursor: pointer;
   transition: transform 0.4s;
 }
