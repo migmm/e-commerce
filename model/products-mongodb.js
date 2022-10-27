@@ -3,10 +3,27 @@ import DBMongoDB from "./DBMongoDB.js";
 
 // Esquema del documento Product
 const productSchema = mongoose.Schema({
-    name: String,
-    description: String,
-    price: Number
-});
+
+    productName: String,
+    price: Number,
+    discountPercent: Number,
+    vendor: String,
+    stock: Number,
+    category: String,
+    shortDescription: String,
+    longDescription: String,
+    freeShip: Boolean,
+    ageFrom: Number,
+    ageTo: Number,
+    addedDate: Date,
+    lastSell: Date,
+    images: Object,
+    colors: Array,
+},
+{
+    versionKey: false
+}
+);
 
 // Modelo del documento almacenado en una colección
 const ProductsModel = mongoose.model('products', productSchema);
@@ -70,7 +87,7 @@ class ProductModelMongoDB {
             //     returnDocument: 'after'
             // });
             // const updatedProduct = await ProductsModel.findByIdAndUpdate(id, {$set: product});
-            const updatedProduct = await ProductsModel.findByIdAndUpdate(id, {$set: product}, {
+            const updatedProduct = await ProductsModel.findByIdAndUpdate(id, { $set: product }, {
                 returnDocument: 'after'
             }).lean();
             return DBMongoDB.getObjectWithId(updatedProduct);
