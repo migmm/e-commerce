@@ -45,8 +45,18 @@ const getProduct = async id => {
 
 const createProduct = async product => {
 
-        const createdProduct = await modelProducts.createProduct(product);
-        return createdProduct;
+        const validationError = ProductValidator.validate(product);
+        
+        if(!validationError) {
+            const createdProduct = await modelProducts.createProduct(product);
+            return createdProduct;  
+        } else {
+            console.log(validationError);
+            // throw new Error(`Error de validación en updateProduct: ${validationError.details[0].message}`);
+            console.error(`Error de validación en createProduct: ${validationError.details[0].message}`);
+            return {};
+        }
+        
 
 };
 
