@@ -6,30 +6,15 @@ class ProductValidator {
     static validate(product) {
 
         const productSchema = Joi.object({
-/* 
-            productName: Joi.string().min(2).max(30).required(),
-            price: Joi.number().greater(0).required(),
-            discountPercent: Joi.number().greater(0).required(),
-            vendor: Joi.string().min(2).max(40).required(),
-            stock: Joi.number().integer().required(),
-            category: Joi.string().min(2).max(50).required(),
-            shortDescription: Joi.string().min(2).max(80).required(),
-            longDescription: Joi.string().min(2).max(200).required(),
-            freeShip: Joi.boolean().required(),
-            ageFrom: Joi.number().integer().required(),
-            ageTo: Joi.number().integer().required(),
-            addedDate: Joi.date().required(),
-            lastSell: Joi.date().required(),
-            images: Joi.object().required(),
-            colors: Joi.array().required(),
-             */
+    
+            // in case someone overrides frontend validations
 
-            productName: Joi.string().min(2).max(30).required(),
+            productName: Joi.string().min(2).max(30).pattern(new RegExp('^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-].*$')).required(),
             price: Joi.number().greater(0).required(),
-            discountPercent: Joi.number().greater(0).required(),
-            vendor: Joi.string().min(2).max(40).required(),
+            discountPercent: Joi.number().greater(-1).required(),
+            vendor: Joi.string().min(2).max(40).pattern(new RegExp('^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-].*$')).required(),
             stock: Joi.number().integer().required(),
-            category: Joi.string().min(2).max(50).required(),
+            category: Joi.string().min(2).max(50).pattern(new RegExp('^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-].*$')).required(),
             shortDescription: Joi.string().min(2).max(80).required(),
             longDescription: Joi.string().min(2).max(200).required(),
             freeShip: Joi.boolean().required(),
