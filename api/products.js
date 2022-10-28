@@ -57,7 +57,6 @@ const createProduct = async product => {
             return {};
         }
         
-
 };
 
 
