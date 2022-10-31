@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import DBMongoDB from "./DBMongoDB.js";
+import DBMongoDB from "../DBMongoDB.js";
 
 // Esquema del documento Product
 const productSchema = mongoose.Schema({
