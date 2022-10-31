@@ -2,9 +2,9 @@ import config from '../config.js';
 // import ProductModelMem from '../model/products-mem.js';
 // import ProductModelFile from '../model/products-fs.js';
 // import ProductModelMongoDB from '../model/products-mongodb.js';
-import ProductModel from "../model/products.js";
+import ProductModel from "../model/products/products.js";
 
-import ProductValidator from '../model/validators/ProductValidator.js';
+import ProductValidator from '../model/products/validators/ProductValidator.js';
 
 // const modelProducts = new ProductModelMongoDB();
 // const modelProducts = new ProductModelMem();

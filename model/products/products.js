@@ -1,4 +1,4 @@
-import config, {PERSISTENCE_TYPES} from '../config.js';
+import config, {PERSISTENCE_TYPES} from '../../config.js';
 import ProductModelMem from './products-mem.js';
 import ProductModelFile from './products-fs.js';
 import ProductModelMongoDB from './products-mongodb.js';
