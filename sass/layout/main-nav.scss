@@ -29,6 +29,10 @@
         text-decoration: none;
     }
 
+    &__link--active {
+        color: color.$lightblue;
+    }
+
     &__link:hover{
 
         @media (min-width: 768px) {

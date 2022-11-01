@@ -612,6 +612,9 @@ body {
   font-size: 1.2em;
   text-decoration: none;
 }
+.main-nav__link--active {
+  color: #0070C1;
+}
 @media (min-width: 768px) {
   .main-nav__link:hover {
     color: #004173;

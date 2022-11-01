@@ -29,7 +29,6 @@ class Main {
         return `./modules/${id}.js`;
     }
 
-    //FIXME: add class to active link
     setActiveLink(id) {
         const links = document.querySelectorAll('.main-nav__link');
         links.forEach(link => {
