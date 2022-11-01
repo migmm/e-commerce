@@ -1,6 +1,8 @@
 import config from '../config.js';
 import mongoose from "mongoose";
 
+mongoose.pluralize(null);
+
 class DBMongoDB {
 
     static READY_STATE_DISCONNECTED = 0;
