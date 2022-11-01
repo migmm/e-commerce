@@ -1,4 +1,20 @@
-//////////////////////////////
+
+console.log('🆗: Módulo PageAlta cargado.');
+
+class PageAlta {
+
+    static async init () {
+        console.log('PageAlta.init()');
+        document.getElementById("product-name").focus();
+        //goToTopAndCloseMenu ();
+    }
+}
+
+export default PageAlta;
+
+
+
+/* //////////////////////////////
 //                          //
 //      Form processing     //
 //                          //
@@ -107,4 +123,4 @@ function checkForm() {
 
 
 }
-checkForm()
+checkForm() */

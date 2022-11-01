@@ -1,4 +1,19 @@
-//////////////////////////////
+
+console.log('🆗: Módulo PageContacto cargado.');
+
+class PageContacto {
+
+    static async init () {
+        console.log('PageContacto.init()');
+        document.getElementById("name").focus();
+        //goToTopAndCloseMenu ();
+    }
+}
+
+export default PageContacto;
+
+
+/* //////////////////////////////
 //                          //
 //      Form processing     //
 //                          //
@@ -107,4 +122,4 @@ function checkForm() {
     });
 
 }
-checkForm()
+checkForm() */

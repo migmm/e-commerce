@@ -122,20 +122,28 @@ class Main {
     }
 
     getIdFromHash() {
-        console.log(location.hash.slice(1))
-        return location.hash.slice(1) || 'inicio';
+        let id = location.hash.slice(1);
+        if (id[0] === '/') {
+            id = id.slice(1);
+        }
+        return id || 'inicio';
     }
 
-    getUrlFromId(id) {
+    getViewUrlFromId(id) {
         return `views/${id}.html`;
     }
+
+    getModuleUrlFromId(id) {
+        return `./modules/${id}.js`;
+    }
+
+
 
     //FIXME: add class to active link
     setActiveLink (id) {
         const links = document.querySelectorAll('.main-nav__link');
         links.forEach(link => {
-            // if (id === link.href.split('#')[1]) {
-            if (id === link.id) {
+            if (link.getAttribute('href') === `#/${id}`) {
                 link.classList.add('main-nav__link--active');
                 link.ariaCurrent = 'page';
             } else {
@@ -145,23 +153,22 @@ class Main {
         });
     }
 
-    initJS(id) {
-        if (id === 'alta') {
-            initAlta();
-        } else if (id === 'inicio') {
-            initInicio();
-        } else if (id === 'contacto') {
-            initContacto();
-        } else if (id === 'nosotros') {
-            initNosotros();
-        } else if (id === 'productos') {
-            initProductos();
+    async initJS(id) {
+        const moduleUrl = this.getModuleUrlFromId(id);
+        try {
+            const {default: module} = await import(moduleUrl);
+            if (typeof module.init !== 'function') {
+                console.error(`El módulo ${id} no posee un método init().`);
+                return;
+            }
+            module.init();
+        } catch (error) {
+            console.error(`No se pudo importar el módulo ${moduleUrl}.`);
         }
-
     }
 
     async loadTemplate(id) {
-        const url = this.getUrlFromId(id);
+        const url = this.getViewUrlFromId(id);
         const view = await this.ajax(url);
         const main = document.querySelector('main');
         main.innerHTML = view;

@@ -1,4 +1,18 @@
-/////////////////////////////////////////////
+
+console.log('🆗: Módulo PageMain cargado.');
+
+class PageMain  {
+
+    static async init () {
+        console.log('PageMain .init()');
+        //goToTopAndCloseMenu ();
+    }
+}
+
+export default PageMain;
+
+
+/* /////////////////////////////////////////////
 //                                         //
 //      ------ GO TO TOP BUTTON ------     //
 //                                         //
@@ -394,4 +408,4 @@ document.querySelector('.main-nav').addEventListener('click', e => {
         e.target.blur();
         getAsyncRequestFromLink(e.target, main);
     }
-});
+}); */
