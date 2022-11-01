@@ -10,6 +10,8 @@ class PageInicio {
         const template = Handlebars.compile(hbsFile);
         const html = template({ products });
         document.querySelector('.cards-container').innerHTML = html;
+        document.querySelector('.most-selled').innerHTML = html;
+        document.querySelector('.latest-viewed').innerHTML = html;
     }
     
     static async init () {
