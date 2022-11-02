@@ -360,13 +360,14 @@ class Main {
         };
         updateCart()
 
-       /*  document.querySelector('.main-nav').addEventListener('click', e => {
+        /*  document.querySelector('.main-nav').addEventListener('click', e => {
             if (e.target.classList.contains('main-nav__link')) {
                 e.preventDefault();
                 e.target.blur();
                 // getAsyncRequestFromLink(e.target, main);
             }
-        }); */
+        }); 
+        */
     }
 
     async start() {

@@ -1,3 +1,4 @@
+import productController from '/js/controllers/product.js';
 
 console.log('🆗: Módulo PageAlta cargado.');
 
@@ -5,7 +6,7 @@ class PageAlta {
 
     static async init () {
         console.log('PageAlta.init()');
-        document.getElementById("product-name").focus();
+        document.getElementById('productName').focus();
         //goToTopAndCloseMenu ();
     }
 }
