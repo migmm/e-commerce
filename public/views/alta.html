@@ -4,7 +4,7 @@
 <div class="main-content__wrapper">
 
     <section class="input-group">
-        <form action="/api/products" autocomplete="off" id="form-add-products">
+        <form action="/api/products" autocomplete="off" method="post" id="form-add-products">
             <div class="main-content__divider-left">
                 <div class="input-group__form-group">
                     <label class="input-group__label" for="productName">Nombre</label>
@@ -14,7 +14,12 @@
                 <div class="input-group__form-group">
                     <label class="input-group__label" for="price">Precio</label>
                     <input class="input-group__input" name="price" id="price" type="text" required>
-                    <span class="input-group__error">ERROR!Ingrese números.</span>
+                    <span class="input-group__error">ERROR!Ingrese números positivos.</span>
+                </div>
+                <div class="input-group__form-group">
+                    <label class="input-group__label" for="discountPercent">Porcentaje de descuento</label>
+                    <input class="input-group__input" name="discountPercent" id="discountPercent" type="text" required>
+                    <span class="input-group__error">ERROR! Ingrese números positivos.</span>
                 </div>
                 <div class="input-group__form-group">
                     <label class="input-group__label" for="vendor">Fabricante</label>
