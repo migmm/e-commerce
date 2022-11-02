@@ -1340,6 +1340,7 @@ body {
   display: block;
   padding-right: 0.5em;
   margin-bottom: 5px;
+  cursor: pointer;
 }
 
 .separation-full-width {
