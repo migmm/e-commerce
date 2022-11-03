@@ -37,6 +37,11 @@
                     <span class="input-group__error">ERROR! La categoría debe tener entre 5 y 50 caracteres.</span>
                 </div>
                 <div class="input-group__form-group">
+                    <label class="input-group__label" for="colors" required>Colores principales</label>
+                    <input class="input-group__input" name="colors" id="colors" type="text">
+                    <span class="input-group__error">ERROR! Ingrese de 1 a 3 colores separados por comas.</span>
+                </div>
+                <div class="input-group__form-group">
                     <label class="input-group__label" for="shortDescription" required>Descripción corta</label>
                     <input class="input-group__input" name="shortDescription" id="shortDescription" type="text">
                     <span class="input-group__error">ERROR! La descripción debe tener entre 5 y 80 caracteres.</span>
@@ -56,7 +61,7 @@
             </div>
             <div class="main-content__divider-right">
                 <div class="input-group__form-group">
-                    <input type="checkbox" id="freeShip" name="freeShip" class="input-group__check">
+                    <input type="checkbox" id="freeShip" name="freeShip" value="false" class="input-group__check">
                     <label class="input-group__label" for="freeShip" id="label-checkbox">Envío sin cargo</label>
                     <span class="input-group__error">¿El envío es sin cargo?</span>
                 </div>
@@ -68,17 +73,17 @@
 
                 </div>
                 <div class="input-group__form-group">
-                    <input type="radio" id="ageMonth" name="ageMonth" class="input-group__radio">
+                    <input type="radio" id="ageMonth" value="0" name="ageSelect" class="input-group__radio">
                     <label for="ageMonth">Meses</label>
-                    <input type="radio" id="ageYear" name="ageYear" class="input-group__radio">
+                    <input type="radio" id="ageYear" value="0" name="ageSelect" class="input-group__radio">
                     <label for="ageYear">Años</label>
                     <span class="input-group__error">ERROR! Seleccione meses o años.</span>
                     <input type="hidden" value="" name="addedDate" id="addedDate">
                     <input type="hidden" value="" name="lastSell" id="lastSell">
                 </div>
                 <div class="input-group__form-group">
-                    <label class="input-group__label" for="images" required>Fotos</label>
-                    <input type="file" id="images" name="images">
+                    <label class="input-group__label" for="images" accept="image/png, image/gif, image/jpeg" required>Fotos</label>
+                    <input type="file" id="images" name="images" multiple>
                     <span class="input-group__error">ERROR! Debe cargar al menos una imagen.</span>
                 </div>
             </div>

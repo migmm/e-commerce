@@ -4,19 +4,8 @@ console.log('🆗: Módulo PageAlta cargado.');
 
 class PageAlta {
 
-    static async init () {
-        console.log('PageAlta.init()');
-        document.getElementById('productName').focus();
-        //goToTopAndCloseMenu ();
-    }
-
-
-    
     static form
     static fields
-    static btnCreate
-    static btnUpdate
-    static btnCancel
 
     static validators = {
         productName: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,30}$/,
@@ -27,14 +16,14 @@ class PageAlta {
         category: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,50}$/,
         shortDescription: /^.{5,80}$/,
         longDescription: /^.{5,2000}$/,
-        freeShip: '',
+        freeShip: /^(?:tru|fals)e$/,
         ageFrom: /^[0-9]*$/,
         ageTo: /^[0-9]*$/,
-        photos: '',
-        addedDate: '',
-        lastSell: '',
-        images: '',
-        colors: '',
+        ageSelect: /^[0-1]*$/,
+        addedDate: /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/,
+        lastSell: /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/,
+        images: /[^]*/,
+        colors: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{4,20}$/,
     };
 
     static emptyForm() {
@@ -57,7 +46,7 @@ class PageAlta {
         const productToSave = {};
         console.log('\n\n');
 
-    /*    for (const field of PageAlta.fields) {
+       for (const field of PageAlta.fields) {
             const validated = PageAlta.validate(field.value, PageAlta.validators[field.name]);
             console.log(field.name, validated);
             if (!validated) {
@@ -67,7 +56,7 @@ class PageAlta {
                 productToSave[field.name] = field.value;
             }
         } 
-    */
+   
 
         console.log('allValidated:', allValidated);
         if (!allValidated) {
@@ -80,7 +69,7 @@ class PageAlta {
         const savedProduct = await productController.saveProduct(product);
         const products = await productController.getProducts();
         console.log(`Ahora hay ${products.length} productos`);    
-        PageAlta.renderTemplateTable(products);
+       // PageAlta.renderTemplateTable(products);
         return savedProduct;
     }
 
@@ -96,8 +85,20 @@ class PageAlta {
         
         PageAlta.form.addEventListener('submit', async e => {
             e.preventDefault();
-            PageAlta.actualDate = document.getElementById('addedDate').value = new Date().toISOString();
-            PageAlta.lastSell = document.getElementById('lastSell').value = new Date('1900-01-01').toISOString();
+
+            document.getElementById('addedDate').value = new Date().toISOString();
+            document.getElementById('lastSell').value = new Date('1900-01-01').toISOString();
+            
+
+            let freeShip = document.getElementById('freeShip');
+            console.log("fdfddf" , freeShip.checked)
+            if (freeShip.checked){
+                freeShip.value = "true";
+            }
+
+            let files = document.getElementById('images').files;
+            files.value = JSON.stringify(files.value);
+            console.log("filezz", files.value);
 
             const productToSave = PageAlta.validateForm();
             if (productToSave) {
@@ -107,6 +108,20 @@ class PageAlta {
             }
         });
     }
+
+    static async init () {
+        console.log('PageAlta.init()');
+        PageAlta.form = document.getElementById('form-add-products');
+        PageAlta.fields = PageAlta.form.querySelectorAll('input, textarea');
+
+
+        
+
+        PageAlta.addFormEvents();
+        document.getElementById('productName').focus();
+        //goToTopAndCloseMenu ();
+    }
+
 }
 
 export default PageAlta;
