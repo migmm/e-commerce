@@ -19,6 +19,25 @@ const productSchema = mongoose.Schema({
     lastSell: Date,
     images: Object,
     colors: Array,
+    
+    /* 
+    //changed for testing
+    productName: String,
+    price: Number,
+    discountPercent: Number,
+    vendor: String,
+    stock: Number,
+    category: String,
+    shortDescription: String,
+    longDescription: String,
+    freeShip: Boolean,
+    ageFrom: Number,
+    ageTo: Number,
+    addedDate: Date,
+    lastSell: Date,
+    images: Array,
+    colors: Array,
+     */
 },
 {
     versionKey: false
