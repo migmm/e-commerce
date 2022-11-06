@@ -1,11 +1,8 @@
-import express from 'express';
-import multer from 'multer';
-import ProductModelMongoDB from '../model/products/products-mongodb.js';
-import api from '../api/products.js';
-/////////////////////////////////////////////////
-// START MULTER 
 
-//const routerUpload = express.Router();
+import multer from 'multer';
+
+import api from '../api/products.js';
+
 
 const storageLocation = './tmp/uploads/';
 
@@ -33,89 +30,55 @@ const upload = multer({ storage, fileFilter });
 
 const postImages = async function (req, res, next) {
 
-    const portada = req.files['avatar'][0];
-    const galeria = req.files['gallery'];
+    const firstProductImg = req.files['avatar'][0];
+    let productImgGallery = req.files['gallery'];
+
     const data = req.body
+
+    var product = {
+
+        productName: data.productName,
+        price: data.price,
+        discountPercent: data.discountPercent,
+        vendor: data.vendor,
+        stock: data.stock,
+        category: data.category,
+        shortDescription: data.shortDescription,
+        longDescription: data.longDescription,
+        freeShip: data.freeShip,
+        ageFrom: data.ageFrom,
+        ageTo: data.ageTo,
+        addedDate: data.addedDate,
+        lastSell: data.lastSell,
+        colors: data.colors
+    }
+
     let locationName = storageLocation.substring(2);
 
- 
-    
+    product['images'] = {}
 
-    console.log(portada)
+    if (firstProductImg) {
 
-    if (portada) {
-        if (galeria) {
-            // console.log(req.file);
-            var obj = {
-                
-                productName: data.productName,
-                price: data.price,
-                discountPercent: data.discountPercent,
-                vendor: data.vendor,
-                stock: data.stock,
-                category: data.category,
-                shortDescription: data.shortDescription,
-                longDescription: data.longDescription,
-                freeShip: data.freeShip,
-                ageFrom: data.ageFrom,
-                ageTo: data.ageTo,
-                addedDate: data.addedDate,
-                lastSell: data.lastSell,
-                
-                images: {
-                    portada: locationName + portada.filename,
-                    galeria0: locationName + galeria[0].filename,
-                    galeria1: locationName + galeria[1].filename,
-                   // galeria2: locationName + galeria[2].filename,
-                },
-                colors: data.colors
+        product['images']['portada'] = locationName + firstProductImg.filename;
+
+        if (productImgGallery) {
+
+            for (let i = 0; i <= productImgGallery.length; ++i) {
+
+                if (productImgGallery[i] != undefined) {
+                    product['images'][`${'galeria'+[i]}`] = locationName + productImgGallery[i].filename;
+                }
             }
-            const newProduct = await api.createProduct(obj);
-           // newProduct.save();
-            res.json({
-                images: {
-                    portada: locationName + portada.filename,
-                    galeria0: locationName + galeria[0].filename,
-                    galeria1: locationName + galeria[1].filename,
-                   // galeria2: locationName + galeria[2].filename,
-            },
-               // texto: text.dfsd
-            })
-            //res.send('<h1>¡Gracias!</h1><p>Archivo subido con éxito.</p>');
-            // res.send({status: 'ok'});
 
-        } else {
-            var obj = {
-                images: {
-                    portada: locationName + portada.filename,
-                    galeria0: locationName + galeria[0].filename,
-                    galeria1: locationName + galeria[1].filename,
-                   // galeria2: locationName + galeria[2].filename,
-            },
-                texto: text.dfsd
-            }
-            res.json({
-                portada: locationName + portada.filename,
-                texto: text.dfsd
-            })
+            const newProduct = await api.createProduct(product);
+            res.json(product);
         }
+
     } else {
         res.status(415).send('<h1>Se produjo un error.</h1>');
-        // res.status(415).send({ error: 'Se produjo un error.' });
     }
 
 }
-
-///////////////////////////////////////////////////////////////////////////////
-//                              POST Controllers                             //
-///////////////////////////////////////////////////////////////////////////////
-
-const postProduct = async (req, res) => {
-    let product = req.body;
-    const newProduct = await api.createProduct(product);
-    res.json(newProduct);
-};
-
 
 
 const fieldConfig = upload.fields([{ name: 'avatar', maxCount: 1 }, { name: 'gallery', maxCount: 3 }])
