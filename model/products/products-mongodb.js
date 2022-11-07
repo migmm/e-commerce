@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
 import DBMongoDB from "../DBMongoDB.js";
+import unlink from "fs-extra";
+import path from "path";
 
-// Esquema del documento Product
+
 const productSchema = mongoose.Schema({
 
     productName: String,
@@ -44,7 +46,6 @@ const productSchema = mongoose.Schema({
 }
 );
 
-// Modelo del documento almacenado en una colección
 const ProductsModel = mongoose.model('products', productSchema);
 
 
@@ -122,7 +123,13 @@ class ProductModelMongoDB {
             return {};
         }
         try {
-            // await ProductsModel.deleteOne({_id: id});
+            const productToDelete = await ProductsModel.findById(id).lean() || {};
+            unlink.remove(path.resolve('./public/' + productToDelete.images.portada));
+
+            await unlink.pathExists(path.resolve('./public/' + productToDelete.images.galeria0)) ? unlink.remove(path.resolve('./public/' + productToDelete.images.galeria0)) :  console.log ("galeria0 false");
+            await unlink.pathExists(path.resolve('./public/' + productToDelete.images.galeria1)) ? unlink.remove(path.resolve('./public/' + productToDelete.images.galeria1)) :  console.log ("galeria1 false");
+            await unlink.pathExists(path.resolve('./public/' + productToDelete.images.galeria2)) ? unlink.remove(path.resolve('./public/' + productToDelete.images.galeria2)) :  console.log ("galeria2 false");
+
             const deletedProduct = await ProductsModel.findByIdAndDelete(id).lean();
             return DBMongoDB.getObjectWithId(deletedProduct);
         } catch (error) {

@@ -2,7 +2,7 @@
 import multer from 'multer';
 import api from '../api/products.js';
 
-const storageLocation = './public/img/products';
+const storageLocation = './public/img/products/';
 
 
 ////////////////////////////////////////////////////////////////////////////////
