@@ -807,6 +807,48 @@ body {
   color: #4e4e4e;
 }
 
+.product-full-view {
+  border: solid 1px red;
+}
+.product-full-view__gallery {
+  display: flex;
+  flex-direction: row;
+}
+.product-full-view__gallery .img-select__img-container {
+  border: solid 1px red;
+  height: 100px;
+  width: 100px;
+  overflow: hidden;
+  padding: 8px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.product-full-view__gallery .img-select__img-container img {
+  height: 95%;
+  cursor: pointer;
+  display: block;
+  object-fit: contain;
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.product-full-view__gallery .img-select__img-container:hover {
+  opacity: 0.3;
+}
+.product-full-view__gallery .img-display__img-showcase {
+  width: 500px;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+}
+.product-full-view__gallery .img-display__img-showcase img {
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border: solid 1px red;
+}
 .card {
   max-width: 270px;
   flex-grow: 1;

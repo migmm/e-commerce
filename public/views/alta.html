@@ -8,7 +8,8 @@
             <div class="main-content__divider-left">
                 <div class="input-group__form-group">
                     <label class="input-group__label" for="productName">Nombre</label>
-                    <input class="input-group__input" name="productName" id="productName" type="text" required autofocus>
+                    <input class="input-group__input" name="productName" id="productName" type="text" required
+                        autofocus>
                     <span class="input-group__error">ERROR! EL nombre debe tener entre 5 y 30 caracteres.</span>
                 </div>
                 <div class="input-group__form-group">
@@ -48,13 +49,8 @@
                 </div>
                 <div class="input-group__form-group">
                     <label class="input-group__label" for="longDescription" required>Descripción larga.</label>
-                    <textarea
-                        class="input-group__textarea"
-                        name="longDescription"
-                        id="longDescription"
-                        cols="30"
-                        rows="10"
-                    ></textarea>
+                    <textarea class="input-group__textarea" name="longDescription" id="longDescription" cols="30"
+                        rows="10"></textarea>
                     <span class="input-group__error">ERROR! La descripción debe tener entre 5 y 2000 caracteres.</span>
                 </div>
 
@@ -82,7 +78,8 @@
                     <input type="hidden" value="" name="lastSell" id="lastSell">
                 </div>
                 <div class="input-group__form-group">
-                    <label class="input-group__label" for="images" accept="image/png, image/gif, image/jpeg" required>Fotos</label>
+                    <label class="input-group__label" for="images" accept="image/png, image/gif, image/jpeg"
+                        required>Fotos</label>
                     <input type="file" id="images" name="images" multiple>
                     <span class="input-group__error">ERROR! Debe cargar al menos una imagen.</span>
                 </div>
@@ -93,5 +90,55 @@
             </div>
         </form>
     </section>
+
+    <section>
+
+        <div class="product-full-view">
+            <div class="product-full-view__row">
+                <div class="product-full-view__gallery">
+                    <div class="img-select">
+                        
+                            <div class="img-select__img-container">
+                                <img src="../img/products/61e7q+l8V4L._cpt_.jpg" alt="Product image">
+                            </div>
+                        
+                            <div class="img-select__img-container">
+                            
+                                <img src="../img/products/61+cejJWJkL._cpt_.jpg" alt="Product image">
+                            
+                        
+                            </div>
+                            <div class="img-select__img-container">
+                                <img src="../img/products/61Bl1tNZ1HL._cpt_.jpg" alt="Product image">
+                            
+                        
+                            </div>
+                            <div class="img-select__img-container">
+                                <img src="../img/products/61ItCf+eWCL._cpt_.jpg" alt="Product image">
+                            </div>
+                        
+                    </div>
+                    <div class="img-display">
+                        <div class="img-display__img-showcase">
+                        
+                                <img src="../img/products/61e7q+l8V4L._cpt_.jpg" class="img-display__img-big" alt="Product image">
+                    
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="product-full-view__detail">
+
+            </div>
+        </div>
+        <div class="product-full-view__row">
+            <div class="product-full-view__extra-info">
+
+            </div>
+        </div>
+</div>
+</section>
+
 </div>
 <script src="js/form.js"></script>
