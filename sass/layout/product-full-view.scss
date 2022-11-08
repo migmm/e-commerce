@@ -1,10 +1,14 @@
+@use '../abstracts/variables' as color;
+
 .product-full-view {
     border: solid 1px red;
     display: flex;
     flex-direction: row;
 
     &__row {
-        
+        border: solid 3px rgb(173, 184, 26);
+        background-color: red;
+        width:100%;
     }
 
     &__gallery {
@@ -13,13 +17,14 @@
 
         & .img-select {
             &__img-container {
-                border: solid 1px red;
+                border: solid 3px red;
                 height: 100px;
                 width: 100px;
                 overflow: hidden;
                 padding: 8px;
                 position: relative;
                 transition: all 0.3s ease;
+                opacity: 0.8;
 
                 & img {
                     height: 95%;
@@ -34,36 +39,144 @@
             }
 
             &__img-container:hover {
-                opacity: 0.3;
+                opacity: 1;
             }
         }
 
         & .img-display {
 
             &__img-showcase {
-                width: 500px;
+                width: 350px;
                 height: 500px;
                 position: relative;
                 overflow: hidden;
-                border: solid 1px blue;
+                border: solid 3px blue;
 
                 & img {
                     height: 100%;
                     position: absolute;
                     left: 50%;
                     transform: translateX(-50%);
-                    border: solid 1px red;
+                    border: solid 3px red;
                 }
             }
-
         }
     }
 
     &__detail {
-        border: solid 1px green;
-        width:100%;
+        border: solid;
+        padding: 1em;
+    }
+    &__brand {
+        color: color.$darkblue;
     }
 
+    &__detail {}
+    
+    &__description {
+        font-weight: 600;
+    }
+
+    &__long-description {}
+
+    &__age {}
+
+    &__age-number {}
+
+    &__price-currency {
+        font-size: 2em;
+        font-weight: 500;
+    }
+
+    &__price-value {}
+
+    &__discount {}
+
+    &__discount--percent {}
+
+    &__latest-price-currency {
+        display:block;
+        text-decoration:line-through;
+        color: color.$grey;
+    }
+
+    &__latest-price {
+      
+    }
+
+    &__qty-and-buy-container {
+        display: flex;
+        align-items: center;
+       
+    }
+
+    &__qty-selector {
+        display:flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        margin: .7em;
+    }
+
+    &__qty {
+        width: 3em;
+        border-radius: 5px;
+        border: 1px solid color.$grey;
+        text-align: center;
+    }
+
+    &__qty-button {
+        color: color.$black;
+        background-color: color.$lightgrey;
+        width: 2em;
+        font-weight: 600;
+        height: 2em;
+        line-height: 2em;
+        border-radius: 5px;
+        text-align: center;
+        margin: 0 .2em;
+    }
+    @media (hover: hover) {
+
+    &__qty-button:hover {
+        
+        background-color: color.$grey;
+        
+    }
+}
+
+    &__link {
+  
+        width: 10em;
+        text-align: center;
+        background-color: color.$red;
+        text-decoration: none;
+        color: color.$white;
+        padding: .7em;
+        border-radius: .6em;
+    }
+
+    @media (hover: hover) {
+
+        &__link:hover {
+            background-color: color.$darkred;
+            font-weight: 500;
+        }
+    }
+
+    &__link:active {
+        background-color: color.$lightred;
+        font-weight: 500;
+    }
     &__extra-info {}
 
+    @media (min-width: 900px) {
+        
+    }
+
+    &__link:hover{
+
+        @media (min-width: 768px) {
+            
+        }
+    }
 }

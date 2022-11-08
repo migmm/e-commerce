@@ -812,18 +812,24 @@ body {
   display: flex;
   flex-direction: row;
 }
+.product-full-view__row {
+  border: solid 3px rgb(173, 184, 26);
+  background-color: red;
+  width: 100%;
+}
 .product-full-view__gallery {
   display: flex;
   flex-direction: row;
 }
 .product-full-view__gallery .img-select__img-container {
-  border: solid 1px red;
+  border: solid 3px red;
   height: 100px;
   width: 100px;
   overflow: hidden;
   padding: 8px;
   position: relative;
   transition: all 0.3s ease;
+  opacity: 0.8;
 }
 .product-full-view__gallery .img-select__img-container img {
   height: 95%;
@@ -836,25 +842,91 @@ body {
   transform: translateX(-50%);
 }
 .product-full-view__gallery .img-select__img-container:hover {
-  opacity: 0.3;
+  opacity: 1;
 }
 .product-full-view__gallery .img-display__img-showcase {
-  width: 500px;
+  width: 350px;
   height: 500px;
   position: relative;
   overflow: hidden;
-  border: solid 1px blue;
+  border: solid 3px blue;
 }
 .product-full-view__gallery .img-display__img-showcase img {
   height: 100%;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  border: solid 1px red;
+  border: solid 3px red;
 }
 .product-full-view__detail {
-  border: solid 1px green;
-  width: 100%;
+  border: solid;
+  padding: 1em;
+}
+.product-full-view__brand {
+  color: #004173;
+}
+.product-full-view__description {
+  font-weight: 600;
+}
+.product-full-view__price-currency {
+  font-size: 2em;
+  font-weight: 500;
+}
+.product-full-view__latest-price-currency {
+  display: block;
+  text-decoration: line-through;
+  color: #8b8b8b;
+}
+.product-full-view__qty-and-buy-container {
+  display: flex;
+  align-items: center;
+}
+.product-full-view__qty-selector {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin: 0.7em;
+}
+.product-full-view__qty {
+  width: 3em;
+  border-radius: 5px;
+  border: 1px solid #8b8b8b;
+  text-align: center;
+}
+.product-full-view__qty-button {
+  color: #000;
+  background-color: #cecdcd;
+  width: 2em;
+  font-weight: 600;
+  height: 2em;
+  line-height: 2em;
+  border-radius: 5px;
+  text-align: center;
+  margin: 0 0.2em;
+}
+@media (hover: hover) {
+  .product-full-view__qty-button:hover {
+    background-color: #8b8b8b;
+  }
+}
+.product-full-view__link {
+  width: 10em;
+  text-align: center;
+  background-color: #be0000;
+  text-decoration: none;
+  color: #fff;
+  padding: 0.7em;
+  border-radius: 0.6em;
+}
+@media (hover: hover) {
+  .product-full-view__link:hover {
+    background-color: #810000;
+    font-weight: 500;
+  }
+}
+.product-full-view__link:active {
+  background-color: #ff0000;
+  font-weight: 500;
 }
 .card {
   max-width: 270px;
