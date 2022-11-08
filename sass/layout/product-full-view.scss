@@ -1,4 +1,5 @@
 @use '../abstracts/variables' as color;
+@use '../abstracts/mixins' as mixin;
 
 .product-full-view {
     border: solid 1px red;
@@ -8,7 +9,7 @@
     &__row {
         border: solid 3px rgb(173, 184, 26);
         background-color: red;
-        width:100%;
+        width: 100%;
     }
 
     &__gallery {
@@ -67,12 +68,13 @@
         border: solid;
         padding: 1em;
     }
+
     &__brand {
         color: color.$darkblue;
     }
 
     &__detail {}
-    
+
     &__description {
         font-weight: 600;
     }
@@ -95,23 +97,21 @@
     &__discount--percent {}
 
     &__latest-price-currency {
-        display:block;
-        text-decoration:line-through;
+        display: block;
+        text-decoration: line-through;
         color: color.$grey;
     }
 
-    &__latest-price {
-      
-    }
+    &__latest-price {}
 
     &__qty-and-buy-container {
         display: flex;
         align-items: center;
-       
+
     }
 
     &__qty-selector {
-        display:flex;
+        display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
         margin: .7em;
@@ -134,49 +134,40 @@
         border-radius: 5px;
         text-align: center;
         margin: 0 .2em;
+        cursor: pointer;
     }
+
     @media (hover: hover) {
 
-    &__qty-button:hover {
-        
-        background-color: color.$grey;
-        
+        &__qty-button:hover {
+
+            background-color: color.$grey;
+
+        }
     }
-}
 
     &__link {
-  
+        @include mixin.red-button;
         width: 10em;
-        text-align: center;
-        background-color: color.$red;
-        text-decoration: none;
-        color: color.$white;
-        padding: .7em;
-        border-radius: .6em;
     }
 
     @media (hover: hover) {
 
         &__link:hover {
-            background-color: color.$darkred;
-            font-weight: 500;
+            @include mixin.red-button-hover;
         }
     }
 
     &__link:active {
-        background-color: color.$lightred;
-        font-weight: 500;
+        @include mixin.red-button-active;
     }
+
     &__extra-info {}
 
-    @media (min-width: 900px) {
-        
-    }
+    @media (min-width: 900px) {}
 
-    &__link:hover{
+    &__link:hover {
 
-        @media (min-width: 768px) {
-            
-        }
+        @media (min-width: 768px) {}
     }
 }

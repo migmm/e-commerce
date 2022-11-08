@@ -903,6 +903,7 @@ body {
   border-radius: 5px;
   text-align: center;
   margin: 0 0.2em;
+  cursor: pointer;
 }
 @media (hover: hover) {
   .product-full-view__qty-button:hover {
@@ -910,23 +911,21 @@ body {
   }
 }
 .product-full-view__link {
-  width: 10em;
   text-align: center;
   background-color: #be0000;
   text-decoration: none;
   color: #fff;
   padding: 0.7em;
   border-radius: 0.6em;
+  width: 10em;
 }
 @media (hover: hover) {
   .product-full-view__link:hover {
     background-color: #810000;
-    font-weight: 500;
   }
 }
 .product-full-view__link:active {
   background-color: #ff0000;
-  font-weight: 500;
 }
 .card {
   max-width: 270px;
@@ -1110,13 +1109,20 @@ body {
   padding: 1em;
 }
 .input-group__buttons button {
-  background-color: #810000;
+  text-align: center;
+  background-color: #be0000;
   text-decoration: none;
   color: #fff;
   padding: 0.7em;
   border-radius: 0.6em;
-  border: 0px;
+  border: none;
   cursor: pointer;
+}
+.input-group__buttons button:hover {
+  background-color: #810000;
+}
+.input-group__buttons button:active {
+  background-color: #ff0000;
 }
 
 #product-age-from,

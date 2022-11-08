@@ -1,0 +1,19 @@
+@use '../abstracts/variables' as color;
+
+@mixin red-button {
+    text-align: center;
+    background-color: color.$red;
+    text-decoration: none;
+    color: color.$white;
+    padding: .7em;
+    border-radius: .6em;
+}
+
+@mixin red-button-hover {
+            background-color: color.$darkred;
+    }
+
+
+@mixin red-button-active {
+        background-color: color.$lightred;
+}
