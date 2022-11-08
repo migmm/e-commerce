@@ -1,11 +1,16 @@
 .product-full-view {
     border: solid 1px red;
+    display: flex;
+    flex-direction: row;
 
-    &__row {}
+    &__row {
+        
+    }
 
     &__gallery {
         display: flex;
         flex-direction: row;
+
         & .img-select {
             &__img-container {
                 border: solid 1px red;
@@ -32,6 +37,7 @@
                 opacity: 0.3;
             }
         }
+
         & .img-display {
 
             &__img-showcase {
@@ -39,6 +45,8 @@
                 height: 500px;
                 position: relative;
                 overflow: hidden;
+                border: solid 1px blue;
+
                 & img {
                     height: 100%;
                     position: absolute;
@@ -47,13 +55,15 @@
                     border: solid 1px red;
                 }
             }
-    
+
         }
     }
 
-   
-
-    &__detail {}
+    &__detail {
+        border: solid 1px green;
+        width:100%;
+    }
 
     &__extra-info {}
+
 }

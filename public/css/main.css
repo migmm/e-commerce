@@ -809,6 +809,8 @@ body {
 
 .product-full-view {
   border: solid 1px red;
+  display: flex;
+  flex-direction: row;
 }
 .product-full-view__gallery {
   display: flex;
@@ -841,6 +843,7 @@ body {
   height: 500px;
   position: relative;
   overflow: hidden;
+  border: solid 1px blue;
 }
 .product-full-view__gallery .img-display__img-showcase img {
   height: 100%;
@@ -848,6 +851,10 @@ body {
   left: 50%;
   transform: translateX(-50%);
   border: solid 1px red;
+}
+.product-full-view__detail {
+  border: solid 1px green;
+  width: 100%;
 }
 .card {
   max-width: 270px;
