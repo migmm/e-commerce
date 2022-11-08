@@ -965,8 +965,8 @@ body {
   bottom: 1em;
   left: 50%;
   width: 10em;
-  text-align: center;
   transform: translateX(-50%);
+  text-align: center;
   background-color: #be0000;
   text-decoration: none;
   color: #fff;
@@ -976,12 +976,10 @@ body {
 @media (hover: hover) {
   .card__link:hover {
     background-color: #810000;
-    font-weight: 500;
   }
 }
 .card__link:active {
   background-color: #ff0000;
-  font-weight: 500;
 }
 .card__image-container {
   height: 200px;
