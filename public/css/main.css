@@ -901,7 +901,7 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  margin: 0.7em;
+  margin: 0.7em 0.7em 0.7em 0;
 }
 .product-full-view__qty {
   width: 3em;
@@ -943,6 +943,11 @@ body {
 .product-full-view__link:active {
   background-color: #ff0000;
 }
+.product-full-view__stock {
+  display: block;
+  margin: 0.7em 0.7em 0.7em 0;
+}
+
 .card {
   max-width: 270px;
   flex-grow: 1;

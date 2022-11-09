@@ -79,6 +79,7 @@ class Main {
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
         });
+
         Handlebars.registerHelper('compare', function (lvalue, operator, rvalue, options) {
 
             var operators, result;
@@ -200,7 +201,7 @@ class Main {
                 let img = document.querySelector('.img-select__avatar').src;
                 let qty = parseInt(document.querySelector('.product-full-view__qty').value);
 
-                addItemToCart(id, price, discount, shortDescription, brand, img, 3)
+                addItemToCart(id, price, discount, shortDescription, brand, img, qty)
                 updateCart()
                 return;
             }
@@ -272,15 +273,20 @@ class Main {
             // Click on plus to increase quantity on full product view
             if (e.target.classList.value === 'product-full-view__qty-button-plus') {
 
-                let fulBbtnPlus = document.querySelector('.product-full-view__qty-button-plus');
-                let fullQty =  document.querySelector('.product-full-view__qty'); 
+                let maxQty = document.querySelector('.product-full-view__stock-value');
+                let fullQty =  document.querySelector('.product-full-view__qty');
+                //console.log(maxQty.innerHTML)
+                
+                if (fullQty.value >= parseInt(maxQty.innerHTML)) {
+                    return;
+                }
                 ++fullQty.value;
+                //console.log(fullQty.value)
                 return;
             }
 
             // Click on minus to decrease quantity on full product view
             if (e.target.classList.value === 'product-full-view__qty-button-minus') {
-                let fullBtnMinus = document.querySelector('.product-full-view__qty-button-minus');
                 let fullQty =  document.querySelector('.product-full-view__qty'); 
                 if (fullQty.value <= 1) {
                     return;
