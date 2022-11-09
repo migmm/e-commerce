@@ -17,8 +17,8 @@
                 </div>
 
                 <div class="card__content">
-                    <span class="card__price-currency">$<span class="card__price-value">{{this.price}}</span></span>
-                    <span class="card__discount"><span class="card__discount__percent">{{this.discount}}</span>% DTO</span>
+                    <span class="card__price-currency">$<span class="card__price-value">{{discount this.price this.discountPercent}}</span></span>
+                    <span class="card__discount"><span class="card__discount__percent">{{this.discountPercent}}</span>% DTO</span>
                     <span class="card__latest-price-currency">$<span class="card__latest-price">{{this.price}}</span></span>
                     <span class="card__product-brand">{{this.vendor}}</span>
                     <h2 class="card__heading">{{this.productName}}</h2>

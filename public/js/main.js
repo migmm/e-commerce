@@ -119,6 +119,10 @@ class Main {
             }
         
         });
+
+        Handlebars.registerHelper('discount', function (price, discount) {
+            return price - ((price * discount) / 100);
+        });
     }
 
     cartFunctions() {
