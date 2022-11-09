@@ -9,21 +9,21 @@ class ProductValidator {
     
             // in case someone overrides frontend validations
 
-            productName: Joi.string(),
-            price: Joi.number(),
-            discountPercent: Joi.number(),
-            vendor: Joi.string(),
-            stock: Joi.number(),
-            category: Joi.string(),
-            shortDescription: Joi.string(),
-            longDescription: Joi.string(),
+            productName: Joi.string().required(),
+            price: Joi.number().required(),
+            discountPercent: Joi.number().required(),
+            vendor: Joi.string().required(),
+            stock: Joi.number().required(),
+            category: Joi.string().required(),
+            shortDescription: Joi.string().required(),
+            longDescription: Joi.string().required(),
             freeShip: Joi.boolean(),
-            ageFrom: Joi.number(),
-            ageTo:Joi.number(),
-            addedDate: Joi.string(),
-            lastSell: Joi.string(),
-            images: Joi.object(),
-            colors: Joi.array(),
+            ageFrom: Joi.number().required(),
+            ageTo:Joi.number().required(),
+            addedDate: Joi.string().required(),
+            lastSell: Joi.string().required(),
+            images: Joi.object().required(),
+            colors: Joi.array().required(),
 
             /* 
             //changed for testing

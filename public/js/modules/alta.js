@@ -31,7 +31,7 @@ class PageAlta {
         ageSelect: /^[0-1]*$/,
         addedDate: /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/,
         lastSell: /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/,
-        images: /[^]*/,
+        avatar: /[^]*/,
         colors: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{4,20}$/,
     };
 
@@ -101,13 +101,14 @@ class PageAlta {
 
             let freeShip = document.getElementById('freeShip');
             console.log("fdfddf" , freeShip.checked)
+            freeShip.value = false
             if (freeShip.checked){
-                freeShip.value = "true";
+                freeShip.value = 'true';
             }
 
-            let files = document.getElementById('images').files;
+            /* let files = document.getElementById('images').files;
             files.value = JSON.stringify(files.value);
-            console.log("filezz", files.value);
+            console.log("filezz", files.value); */
 
             const productToSave = PageAlta.validateForm();
             if (productToSave) {

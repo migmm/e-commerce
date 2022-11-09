@@ -47,6 +47,7 @@ const postProduct = async function (req, res, next) {
 
     const firstProductImg = req.files['avatar'][0];
     let productImgGallery = req.files['gallery'];
+    console.log (productImgGallery)
     const data = req.body
 
     var product = {
@@ -70,22 +71,22 @@ const postProduct = async function (req, res, next) {
     let locationName = storageLocation.substring(9);
     product['images'] = {}
 
-    if (firstProductImg) {
+    if (firstProductImg !== 'undefined') {
 
         product['images']['portada'] = locationName + firstProductImg.filename;
 
-        if (productImgGallery) {
-
+      /*   if (productImgGallery !== 'undefined') {
+            console.log("entro ")
             for (let i = 0; i <= productImgGallery.length; ++i) {
 
-                if (productImgGallery[i] != undefined) {
+                if (productImgGallery[i] !== 'undefined') {
                     product['images'][`${'galeria'+[i]}`] = locationName + productImgGallery[i].filename;
                 }
             }
-
+ */
             const newProduct = await api.createProduct(product);
             res.json(product);
-        }
+       // }
 
     } else {
         res.status(415).send('<h1>Se produjo un error.</h1>');

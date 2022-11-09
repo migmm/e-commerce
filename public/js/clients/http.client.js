@@ -11,11 +11,18 @@ class Http {
 
     /* POST */
     async post(url, dato) {
+       
+        let data = new FormData(document.getElementById("form-add-products"))
+        console.log(data)
+        const colorsString = data.get('colors');
+        data.delete('colors');
+        var colorsSplit = colorsString.split(',');
+        colorsSplit.forEach((item) => data.append("colors[]", item))
+        
         try {
             return await fetch(url, {
                 method: 'post',
-                body: JSON.stringify(dato),
-                headers: { 'content-type': 'application/json' }
+                body: data,
             }).then(r => r.json());
         } catch (error) {
             console.error('ERROR POST', error);
