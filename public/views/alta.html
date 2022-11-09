@@ -71,17 +71,23 @@
                 <div class="input-group__form-group">
                     <input type="radio" id="ageMonth" value="0" name="ageSelect" class="input-group__radio">
                     <label for="ageMonth">Meses</label>
-                    <input type="radio" id="ageYear" value="0" name="ageSelect" class="input-group__radio">
+                    <input type="radio" id="ageYear" value="1" name="ageSelect" class="input-group__radio">
                     <label for="ageYear">Años</label>
                     <span class="input-group__error">ERROR! Seleccione meses o años.</span>
                     <input type="hidden" value="" name="addedDate" id="addedDate">
                     <input type="hidden" value="" name="lastSell" id="lastSell">
                 </div>
                 <div class="input-group__form-group">
-                    <label class="input-group__label" for="avatar" >Fotos</label>
-                    <input type="file" id="avatar" class="file-avatar" name="avatar" accept="image/png, image/gif, image/jpeg"
-                    required>
-                    <span class="input-group__error">ERROR! Debe cargar al menos una imagen.</span>
+                    <label class="input-group__label" for="avatar">Foto de portada</label>
+                    <input type="file" id="avatar" class="file-avatar" name="avatar"
+                        accept="image/png, image/gif, image/jpeg" required>
+                    <span class="input-group__error">ERROR! Debe cargar una imagen.</span>
+                </div>
+                <div class="input-group__form-group">
+                    <label class="input-group__label" for="gallery">Fotos de galería</label>
+                    <input type="file" id="gallery" class="file-gallery" name="gallery"
+                        accept="image/png, image/gif, image/jpeg">
+                    <span class="input-group__error">ERROR! Mínimo una imagen, máximo 3.</span>
                 </div>
             </div>
             <div class="input-group__buttons">
@@ -135,7 +141,8 @@
                     1/6 (2021). Aventúrate junto al Capitán América en sus aventuras con los Vengadores luchando contra
                     el mal. Embalaje: En caja Descripción: La figura coleccionable de alta precisión está diseñada por
                     expertos en función de la apariencia de Chris Evans como el Capitán América/Steve Rogers </p>
-                    <p class="product-full-view__age">No apto para menores de <span class="product-full-view__age-number">5</span> años</p>
+                <p class="product-full-view__age">No apto para menores de <span
+                        class="product-full-view__age-number">5</span> <span>años</span>.</p>
                 <span class="product-full-view__price-currency">$<span
                         class="product-full-view__price-value">5000</span></span>
                 <span class="product-full-view__discount"><span class="product-full-view__discount--percent">20</span>%
@@ -144,7 +151,9 @@
                         class="product-full-view__latest-price">3000</span></span>
                 <div class="product-full-view__qty-and-buy-container">
                     <div class="product-full-view__qty-selector">
-                        <span class="product-full-view__qty-button">+</span> <input type="text" class="product-full-view__qty" value="1"> <span  class="product-full-view__qty-button">-</span>
+                        <span class="product-full-view__qty-button">+</span> <input type="text"
+                            class="product-full-view__qty" value="1"> <span
+                            class="product-full-view__qty-button">-</span>
                     </div>
 
                     <a href="#" class="product-full-view__link" data-id="{{this.id}}">Agregar al carrito</a>

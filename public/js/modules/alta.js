@@ -32,7 +32,8 @@ class PageAlta {
         addedDate: /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/,
         lastSell: /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/,
         avatar: /[^]*/,
-        colors: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{4,20}$/,
+        gallery: /[^]*/,
+        colors: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,_-]{4,50}$/,
     };
 
     static emptyForm() {
@@ -55,7 +56,7 @@ class PageAlta {
         const productToSave = {};
         console.log('\n\n');
 
-       for (const field of PageAlta.fields) {
+        for (const field of PageAlta.fields) {
             const validated = PageAlta.validate(field.value, PageAlta.validators[field.name]);
             console.log(field.name, validated);
             if (!validated) {
@@ -65,7 +66,6 @@ class PageAlta {
                 productToSave[field.name] = field.value;
             }
         } 
-   
 
         console.log('allValidated:', allValidated);
         if (!allValidated) {
@@ -97,7 +97,6 @@ class PageAlta {
 
             document.getElementById('addedDate').value = new Date().toISOString();
             document.getElementById('lastSell').value = new Date('1900-01-01').toISOString();
-            
 
             let freeShip = document.getElementById('freeShip');
             console.log("fdfddf" , freeShip.checked)
@@ -105,10 +104,6 @@ class PageAlta {
             if (freeShip.checked){
                 freeShip.value = 'true';
             }
-
-            /* let files = document.getElementById('images').files;
-            files.value = JSON.stringify(files.value);
-            console.log("filezz", files.value); */
 
             const productToSave = PageAlta.validateForm();
             if (productToSave) {
@@ -123,9 +118,6 @@ class PageAlta {
         console.log('PageAlta.init()');
         PageAlta.form = document.getElementById('form-add-products');
         PageAlta.fields = PageAlta.form.querySelectorAll('input, textarea');
-
-
-        
 
         PageAlta.addFormEvents();
         document.getElementById('productName').focus();

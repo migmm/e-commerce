@@ -17,29 +17,11 @@ const productSchema = mongoose.Schema({
     freeShip: Boolean,
     ageFrom: Number,
     ageTo: Number,
+    ageSelect: Number,
     addedDate: Date,
     lastSell: Date,
     images: Object,
     colors: Array,
-    
-    /* 
-    //changed for testing
-    productName: String,
-    price: Number,
-    discountPercent: Number,
-    vendor: String,
-    stock: Number,
-    category: String,
-    shortDescription: String,
-    longDescription: String,
-    freeShip: Boolean,
-    ageFrom: Number,
-    ageTo: Number,
-    addedDate: Date,
-    lastSell: Date,
-    images: Array,
-    colors: Array,
-     */
 },
 {
     versionKey: false
@@ -85,8 +67,6 @@ class ProductModelMongoDB {
             return {};
         }
         try {
-            // const product = await ProductsModel.find({_id: id});
-            // const product = await ProductsModel.findOne({_id: id});
             const product = await ProductsModel.findById(id).lean() || {};
             return DBMongoDB.getObjectWithId(product);
         } catch (error) {
@@ -101,12 +81,6 @@ class ProductModelMongoDB {
             return {};
         }
         try {
-            // await ProductsModel.updateOne({_id: id}, {$set: product});
-            // const updatedProduct = await ProductsModel.findOneAndUpdate({_id: id}, {$set: product});
-            // const updatedProduct = await ProductsModel.findOneAndUpdate({_id: id}, {$set: product}, {
-            //     returnDocument: 'after'
-            // });
-            // const updatedProduct = await ProductsModel.findByIdAndUpdate(id, {$set: product});
             const updatedProduct = await ProductsModel.findByIdAndUpdate(id, { $set: product }, {
                 returnDocument: 'after'
             }).lean();

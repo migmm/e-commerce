@@ -47,7 +47,12 @@ const postProduct = async function (req, res, next) {
 
     const firstProductImg = req.files['avatar'][0];
     let productImgGallery = req.files['gallery'];
-    console.log (productImgGallery)
+    console.log(productImgGallery)
+    if (req.files['gallery']) {
+        console.log("tiene archi");
+    } else {
+        console.log(" nooooooooo tiene archi");
+    }
     const data = req.body
 
     var product = {
@@ -63,6 +68,7 @@ const postProduct = async function (req, res, next) {
         freeShip: data.freeShip,
         ageFrom: data.ageFrom,
         ageTo: data.ageTo,
+        ageSelect: data.ageSelect,
         addedDate: data.addedDate,
         lastSell: data.lastSell,
         colors: data.colors
@@ -71,22 +77,20 @@ const postProduct = async function (req, res, next) {
     let locationName = storageLocation.substring(9);
     product['images'] = {}
 
-    if (firstProductImg !== 'undefined') {
+    if (firstProductImg != 'undefined') {
 
         product['images']['portada'] = locationName + firstProductImg.filename;
 
-      /*   if (productImgGallery !== 'undefined') {
+        if (productImgGallery !== undefined) {
             console.log("entro ")
             for (let i = 0; i <= productImgGallery.length; ++i) {
-
-                if (productImgGallery[i] !== 'undefined') {
-                    product['images'][`${'galeria'+[i]}`] = locationName + productImgGallery[i].filename;
+                if (productImgGallery[i] !== undefined) {
+                    product['images'][`${'galeria' + [i]}`] = locationName + productImgGallery[i].filename;
                 }
             }
- */
-            const newProduct = await api.createProduct(product);
-            res.json(product);
-       // }
+        }
+        const newProduct = await api.createProduct(product);
+        res.json(product);
 
     } else {
         res.status(415).send('<h1>Se produjo un error.</h1>');
