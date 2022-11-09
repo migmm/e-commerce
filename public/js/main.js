@@ -149,6 +149,22 @@ class Main {
                 updateCart()
                 return;
             }
+            
+            // Click on button product-full-view__link
+            if (e.target.classList.value === 'product-full-view__link') {
+                e.preventDefault();
+                let id = e.target.getAttribute("data-id");
+                let price = document.querySelector('.product-full-view__price-value').innerHTML;
+                let discount = document.querySelector('.product-full-view__discount-percent').innerHTML;
+                let shortDescription = document.querySelector('.product-full-view__description').innerHTML;
+                let brand = document.querySelector('.product-full-view__heading').innerHTML;
+                let img = document.querySelector('.img-select__avatar').src;
+                let qty = parseInt(document.querySelector('.product-full-view__qty').value);
+
+                addItemToCart(id, price, discount, shortDescription, brand, img, 3)
+                updateCart()
+                return;
+            }
 
             // Click on button user icon
             if (e.target.classList.value === 'fa fa-user fa-lg') {
@@ -214,6 +230,26 @@ class Main {
                 return;
             }
 
+            // Click on plus to increase quantity on full product view
+            if (e.target.classList.value === 'product-full-view__qty-button-plus') {
+
+                let fulBbtnPlus = document.querySelector('.product-full-view__qty-button-plus');
+                let fullQty =  document.querySelector('.product-full-view__qty'); 
+                ++fullQty.value;
+                return;
+            }
+
+            // Click on minus to decrease quantity on full product view
+            if (e.target.classList.value === 'product-full-view__qty-button-minus') {
+                let fullBtnMinus = document.querySelector('.product-full-view__qty-button-minus');
+                let fullQty =  document.querySelector('.product-full-view__qty'); 
+                if (fullQty.value <= 1) {
+                    return;
+                }
+                --fullQty.value;
+                return;
+            }
+
             //Clic on Keep Buyng
             if (e.target.classList.value === 'cart-modal__footer__link-keep') {
                 toggleCart();
@@ -265,7 +301,7 @@ class Main {
 
                 if (cart[i]['id'] === id) {
 
-                    cart[i].qty = cart[i].qty + 1
+                    cart[i].qty = cart[i].qty + qty
                     return
                 }
             }

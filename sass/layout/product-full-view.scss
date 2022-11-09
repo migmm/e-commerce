@@ -73,7 +73,9 @@
         color: color.$darkblue;
     }
 
-    &__detail {}
+    &__heading {
+        font-weight: 800;
+    }
 
     &__description {
         font-weight: 600;
@@ -90,9 +92,22 @@
         font-weight: 500;
     }
 
+    &__price-and-discount-order {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
     &__price-value {}
 
-    &__discount {}
+    &__discount { 
+        background-color: color.$yellow;
+        padding: .5em;
+        border-radius: 1em;
+        font-size: .8em;
+        font-weight: 600;
+        margin-left: .5em;
+    }
 
     &__discount--percent {}
 
@@ -124,7 +139,8 @@
         text-align: center;
     }
 
-    &__qty-button {
+    &__qty-button-plus,
+    &__qty-button-minus {
         color: color.$black;
         background-color: color.$lightgrey;
         width: 2em;
@@ -139,7 +155,8 @@
 
     @media (hover: hover) {
 
-        &__qty-button:hover {
+        &__qty-button-plus:hover,
+        &__qty-button-minus:hover {
 
             background-color: color.$grey;
 

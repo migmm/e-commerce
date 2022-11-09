@@ -121,6 +121,13 @@ class PageAlta {
 
         PageAlta.addFormEvents();
         document.getElementById('productName').focus();
+
+        document.addEventListener('click', e => {
+
+            // You are about to enter to the sibling zone...
+            // Click on button card_linK
+            
+        });
         //goToTopAndCloseMenu ();
     }
 
