@@ -63,26 +63,12 @@ class PageAlta {
             let errorField = document.getElementsByName(field.name)[0];
             let ancest = errorField.closest(".input-group__form-group");
             let spanElement = ancest.querySelector('span:last-child')
-            
-            console.log(spanElement)
-          /*   
-            let closest;
-            let closest2;
- */
+
             if (!validated) {
 
                 errorField.classList.remove("input-group__input--ok");
                 errorField.classList.add("input-group__input--error");
                 spanElement.style.visibility = 'visible';
- /*                 
-                closest = errorField.nextElementSibling;
-
-                if (closest.tagName.toLowerCase() === 'span') {
-                    closest.style.visibility = 'visible';
-                } else {
-                    closest2 = errorField.nextElementSibling.nextElementSibling;
-                    closest2.style.visibility = 'visible';
-                } */
 
                 allValidated = false;
                 break;
@@ -94,19 +80,6 @@ class PageAlta {
                 errorField.classList.remove("input-group__input--error");
                 errorField.classList.add("input-group__input--ok");
                 spanElement.style.visibility = 'hidden';
-/*                  spanElement.style.visibility = 'visible';
-                closest = errorField.nextElementSibling;
-                closest2 = errorField.nextElementSibling.nextElementSibling;
-
-                if (closest.tagName.toLowerCase() === 'span') {
-                    closest.style.visibility = 'hidden';
-
-                } else {
-                    closest2 = errorField.nextElementSibling.nextElementSibling;
-                    closest2.style.visibility = 'hidden';
-                } */
-
-
             }
         }
 

@@ -27,7 +27,7 @@ class ProductValidator {
             colors: Joi.array().required(),
 
             /* 
-            //changed for testing
+            changed for testing
             productName: Joi.string().min(2).max(30).pattern(new RegExp('^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-].*$')).required(),
             price: Joi.number().greater(0).required(),
             discountPercent: Joi.number().greater(-1).required(),
@@ -42,7 +42,7 @@ class ProductValidator {
             ageSelect: Joi.number().required(),
             addedDate: Joi.date().required(),
             lastSell: Joi.date().required(),
-           // images: Joi.object().required(),
+            images: Joi.object().required(),
             colors: Joi.array().required(),
             */
 
