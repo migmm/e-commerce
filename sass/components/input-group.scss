@@ -43,6 +43,12 @@
     // Errors on form input 
     &__input--error {
         border: solid 1px color.$lightred;
+        background-color: color.$softred;
+    }
+
+    &__input--ok {
+        border: solid 1px color.$green;
+        background-color: #b6ffba;
     }
 
     &__error--show {

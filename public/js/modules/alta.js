@@ -2,15 +2,15 @@ import productController from '/js/controllers/product.js';
 
 console.log('🆗: Módulo PageAlta cargado.');
 
-        const imgSelect = document.querySelectorAll('.img-select__img-container');
-        imgSelect.forEach(function(image){
-            image.addEventListener('click', (e)=>{
-                e.preventDefault();
-                const bigImg = document.querySelector('.img-display__img-big');
-                bigImg.src = e.target.src;
-            })
-        })
-        
+const imgSelect = document.querySelectorAll('.img-select__img-container');
+imgSelect.forEach(function (image) {
+    image.addEventListener('click', (e) => {
+        e.preventDefault();
+        const bigImg = document.querySelector('.img-display__img-big');
+        bigImg.src = e.target.src;
+    })
+})
+
 class PageAlta {
 
     static form
@@ -59,13 +59,56 @@ class PageAlta {
         for (const field of PageAlta.fields) {
             const validated = PageAlta.validate(field.value, PageAlta.validators[field.name]);
             console.log(field.name, validated);
+            
+            let errorField = document.getElementsByName(field.name)[0];
+            let ancest = errorField.closest(".input-group__form-group");
+            let spanElement = ancest.querySelector('span:last-child')
+            
+            console.log(spanElement)
+          /*   
+            let closest;
+            let closest2;
+ */
             if (!validated) {
+
+                errorField.classList.remove("input-group__input--ok");
+                errorField.classList.add("input-group__input--error");
+                spanElement.style.visibility = 'visible';
+ /*                 
+                closest = errorField.nextElementSibling;
+
+                if (closest.tagName.toLowerCase() === 'span') {
+                    closest.style.visibility = 'visible';
+                } else {
+                    closest2 = errorField.nextElementSibling.nextElementSibling;
+                    closest2.style.visibility = 'visible';
+                } */
+
                 allValidated = false;
                 break;
+
             } else {
+
                 productToSave[field.name] = field.value;
+
+                errorField.classList.remove("input-group__input--error");
+                errorField.classList.add("input-group__input--ok");
+                spanElement.style.visibility = 'hidden';
+/*                  spanElement.style.visibility = 'visible';
+                closest = errorField.nextElementSibling;
+                closest2 = errorField.nextElementSibling.nextElementSibling;
+
+                if (closest.tagName.toLowerCase() === 'span') {
+                    closest.style.visibility = 'hidden';
+
+                } else {
+                    closest2 = errorField.nextElementSibling.nextElementSibling;
+                    closest2.style.visibility = 'hidden';
+                } */
+
+
             }
-        } 
+        }
 
         console.log('allValidated:', allValidated);
         if (!allValidated) {
@@ -77,21 +120,21 @@ class PageAlta {
     static async saveProduct(product) {
         const savedProduct = await productController.saveProduct(product);
         const products = await productController.getProducts();
-        console.log(`Ahora hay ${products.length} productos`);    
-       // PageAlta.renderTemplateTable(products);
+        console.log(`Ahora hay ${products.length} productos`);
+        // PageAlta.renderTemplateTable(products);
         return savedProduct;
     }
 
     static async updateProduct(product) {
         const updatedProduct = await productController.updateProduct(product.id, product);
         const products = await productController.getProducts();
-        console.log(`Ahora hay ${products.length} productos`);    
+        console.log(`Ahora hay ${products.length} productos`);
         PageAlta.renderTemplateTable(products);
         return updatedProduct;
     }
 
     static async addFormEvents() {
-        
+
         PageAlta.form.addEventListener('submit', async e => {
             e.preventDefault();
 
@@ -99,9 +142,8 @@ class PageAlta {
             document.getElementById('lastSell').value = new Date('1900-01-01').toISOString();
 
             let freeShip = document.getElementById('freeShip');
-            console.log("fdfddf" , freeShip.checked)
             freeShip.value = false
-            if (freeShip.checked){
+            if (freeShip.checked) {
                 freeShip.value = 'true';
             }
 
@@ -114,7 +156,7 @@ class PageAlta {
         });
     }
 
-    static async init () {
+    static async init() {
         console.log('PageAlta.init()');
         PageAlta.form = document.getElementById('form-add-products');
         PageAlta.fields = PageAlta.form.querySelectorAll('input, textarea');
@@ -122,12 +164,6 @@ class PageAlta {
         PageAlta.addFormEvents();
         document.getElementById('productName').focus();
 
-        document.addEventListener('click', e => {
-
-            // You are about to enter to the sibling zone...
-            // Click on button card_linK
-            
-        });
         //goToTopAndCloseMenu ();
     }
 

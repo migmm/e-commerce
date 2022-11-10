@@ -1117,6 +1117,11 @@ body {
 }
 .input-group__input--error {
   border: solid 1px #ff0000;
+  background-color: #ffa4a4;
+}
+.input-group__input--ok {
+  border: solid 1px #1fad53;
+  background-color: #b6ffba;
 }
 .input-group__error--show {
   visibility: visible;
