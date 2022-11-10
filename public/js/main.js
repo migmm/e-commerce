@@ -82,7 +82,7 @@ class Main {
 
         Handlebars.registerHelper('compare', function (lvalue, operator, rvalue, options) {
 
-            var operators, result;
+            let operators, result;
             
             if (arguments.length < 3) {
                 throw new Error("Handlerbars Helper 'compare' needs 2 parameters");
@@ -141,6 +141,7 @@ class Main {
         let cart = [];
         let isCartPreviewOpen = false;
         let idLoaded;
+
         function toggleCart() {
             backgroundDark.classList.toggle('background-dark--hidden');
             cartPreview.classList.toggle('cart-modal--opendrawer');
@@ -189,6 +190,16 @@ class Main {
                 let brand = e.target.nextElementSibling.childNodes[7].childNodes[5].innerHTML;
                 let img = e.target.nextElementSibling.childNodes[5].childNodes[1].src;
                 let stock = e.target.previousElementSibling.value;
+
+              /*   for (let i = 0; i < cart.length; ++i) {
+                    if(cart[i].id === id) {
+                        if(parseInt(cart[i].stock) <= parseInt(stock)){
+                            return;
+                        }
+                        return;
+                    } 
+                    break;
+                } */
 
                 addItemToCart(id, price, discount, shortDescription, brand, img, stock, 1)
                 updateCart()
@@ -247,7 +258,7 @@ class Main {
 
                 idLoaded = e.target.parentNode.parentNode.nextElementSibling.nextElementSibling.getAttribute('data-id');
 
-                for (var i = 0; i < cart.length; ++i) {
+                for (let i = 0; i < cart.length; ++i) {
                     let idInCart = cart[i]['id'];
                     let idInElement = idLoaded;
                     if (idInCart === idInElement) {
@@ -270,7 +281,7 @@ class Main {
                 //btnMinus = parseInt(btnMinus) - 1;
                 e.target.nextElementSibling.value = btnMinus;
                 idLoaded = e.target.parentNode.parentNode.nextElementSibling.nextElementSibling.getAttribute('data-id');
-                for (var i = 0; i < cart.length; ++i) {
+                for (let i = 0; i < cart.length; ++i) {
                     let idInCart = cart[i]['id'];
                     let idInElement = idLoaded;
                     if (idInCart === idInElement) {
@@ -354,7 +365,7 @@ class Main {
             qty = parseInt(qty)
 
             // Check if exist
-            for (var i = 0; i < cart.length; ++i) {
+            for (let i = 0; i < cart.length; ++i) {
 
                 if (cart[i]['id'] === id) {
 
@@ -371,7 +382,7 @@ class Main {
         function removeItemToCart(id) {
 
             // Check if exist
-            for (var i = 0; i < cart.length; ++i) {
+            for (let i = 0; i < cart.length; ++i) {
                 if (cart[i]['id'] === id) {
                     cart.splice(i, 1);
                     qtyBadge.innerHTML = parseInt(qtyBadge.innerHTML) - 1;
@@ -391,7 +402,7 @@ class Main {
             cartPreviewContent.innerHTML = '';
             let checkReveal = 0;
 
-            for (var i = 0; i < cart.length; ++i) {
+            for (let i = 0; i < cart.length; ++i) {
 
                 checkReveal = checkReveal + parseInt(cart[i].qty);
                 qtyBadge.innerHTML = parseInt(qtyBadge.innerHTML) + parseInt(cart[i].qty);

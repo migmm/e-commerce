@@ -62,5 +62,5 @@ yarn install
 npm start
 ```
 
-
+To run the app<br />
 Abrir [http://localhost:8080](http://localhost:8080) para ver el e-commerce
