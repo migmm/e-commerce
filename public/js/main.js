@@ -188,6 +188,7 @@ class Main {
                 let shortDescription = e.target.nextElementSibling.childNodes[7].childNodes[9].innerHTML;
                 let brand = e.target.nextElementSibling.childNodes[7].childNodes[5].innerHTML;
                 let img = e.target.nextElementSibling.childNodes[5].childNodes[1].src;
+                
 
                 addItemToCart(id, price, discount, shortDescription, brand, img, 1)
                 updateCart()

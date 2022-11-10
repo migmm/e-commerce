@@ -1077,6 +1077,11 @@ body {
   padding-top: 2em;
 }
 
+.hide-elements {
+  color: #fff;
+  background-color: #fff;
+}
+
 .input-group {
   width: 100%;
 }
