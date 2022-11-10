@@ -1459,7 +1459,7 @@ body {
 }
 .cart-modal__products .card-cart-preview__content .qty-selector-container input {
   background-color: #fff;
-  padding: 3px 15px;
+  padding: 3px 10px;
   border-radius: 3px;
   width: 40px;
   border: 1px solid #000;

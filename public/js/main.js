@@ -188,9 +188,9 @@ class Main {
                 let shortDescription = e.target.nextElementSibling.childNodes[7].childNodes[9].innerHTML;
                 let brand = e.target.nextElementSibling.childNodes[7].childNodes[5].innerHTML;
                 let img = e.target.nextElementSibling.childNodes[5].childNodes[1].src;
-                
+                let stock = e.target.previousElementSibling.value;
 
-                addItemToCart(id, price, discount, shortDescription, brand, img, 1)
+                addItemToCart(id, price, discount, shortDescription, brand, img, stock, 1)
                 updateCart()
                 return;
             }
@@ -233,8 +233,15 @@ class Main {
             if (e.target.classList.value === 'fa fa-plus') {
 
                 let btnPlus = e.target.previousElementSibling.value;
-                // btnPlus = parseInt(btnPlus) + 1;
+                let stockf = e.target.parentNode.parentNode.previousElementSibling.value;
+                console.log(stockf)
                 btnPlus = parseInt(btnPlus)
+
+                if (btnPlus >= parseInt(stockf)) {
+                    return;
+                }
+                // btnPlus = parseInt(btnPlus) + 1;
+                
                 btnPlus++
                 e.target.previousElementSibling.value = btnPlus;
 
@@ -339,7 +346,7 @@ class Main {
         //TODO: async
         //TODO: open cart when add product
 
-        function addItemToCart(id, price, discount, shortDescription, brand, img, qty) {
+        function addItemToCart(id, price, discount, shortDescription, brand, img, stock, qty) {
             
             // id = parseInt(id)
             price = parseInt(price)
@@ -355,7 +362,7 @@ class Main {
                     return
                 }
             }
-            cart.push({ 'id': id, 'price': price, 'discount': discount, 'shortDescription': shortDescription, 'brand': brand, 'img': img, 'qty': qty });
+            cart.push({ 'id': id, 'price': price, 'discount': discount, 'shortDescription': shortDescription, 'brand': brand, 'img': img, 'stock': stock, 'qty': qty });
 
             saveCart()
             updateCart()
@@ -394,6 +401,7 @@ class Main {
         <div class="card-cart-preview__image-container">
             <img src=${cart[i].img} alt="Producto" class="card-cart-preview__image">
         </div>
+        <input type="hidden" name="stocks" id="stocks" class="stocks" value="${cart[i].stock}">
         <div class="card-cart-preview__content">
             <p class="card-cart-preview__description">${cart[i].shortDescription}</p>
             <div class="qty-selector-container">
