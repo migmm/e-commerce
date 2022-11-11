@@ -102,8 +102,35 @@ const putProduct = async (req, res) => {
     const id = req.params.id;
     const product = req.body;
 
-    const updatedProduct = await api.updateProduct(id, product) || {};
-    res.json(updatedProduct);
+    if (req.files['avatar']) {
+        const firstProductImg = req.files['avatar'][0];
+        let productImgGallery = req.files['gallery'];
+
+       // const data = req.body
+    /*     const previousAvatar = data.images.prevAvatar;
+        const previousGalleryImg0 = data.images.prevGallery0
+        const previousGalleryImg1 = data.images.prevGallery1
+        const previousGalleryImg2 = data.images.prevGallery2 */
+        let locationName = storageLocation.substring(9);
+
+        product['images'] = {}
+        product['images']['portada'] = locationName + firstProductImg.filename;
+
+        if (productImgGallery !== undefined) {
+
+            for (let i = 0; i <= productImgGallery.length; ++i) {
+                if (productImgGallery[i] !== undefined) {
+                    product['images'][`${'galeria' + [i]}`] = locationName + productImgGallery[i].filename;
+                }
+            }
+        }
+    
+        const updatedProduct = await api.updateProduct(id, product) || {};
+        res.json(updatedProduct);
+
+    } else {
+        res.status(415).send('<h1>Se produjo un error.</h1>');
+    }
 };
 
 
