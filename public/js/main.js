@@ -215,9 +215,10 @@ class Main {
                 let shortDescription = document.querySelector('.product-full-view__description').innerHTML;
                 let brand = document.querySelector('.product-full-view__heading').innerHTML;
                 let img = document.querySelector('.img-select__avatar').src;
+                let stock = document.querySelector('.product-full-view__stock-value').innerHTML;
                 let qty = parseInt(document.querySelector('.product-full-view__qty').value);
 
-                addItemToCart(id, price, discount, shortDescription, brand, img, qty)
+                addItemToCart(id, price, discount, shortDescription, brand, img, stock, qty)
                 updateCart()
                 return;
             }
