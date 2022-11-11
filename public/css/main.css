@@ -949,7 +949,7 @@ body {
 }
 
 .card {
-  max-width: 270px;
+  width: 270px;
   flex-grow: 1;
   border: 1px solid #cecdcd;
   border-radius: 8px;

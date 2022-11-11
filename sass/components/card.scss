@@ -2,7 +2,7 @@
 @use '../abstracts/mixins' as mixin;
 
 .card {
-    max-width: 270px;
+    width: 270px;
     flex-grow: 1;
     border: 1px solid color.$lightgrey;
     border-radius: 8px;
