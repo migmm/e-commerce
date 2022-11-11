@@ -191,16 +191,6 @@ class Main {
                 let img = e.target.nextElementSibling.childNodes[5].childNodes[1].src;
                 let stock = e.target.previousElementSibling.value;
 
-              /*   for (let i = 0; i < cart.length; ++i) {
-                    if(cart[i].id === id) {
-                        if(parseInt(cart[i].stock) <= parseInt(stock)){
-                            return;
-                        }
-                        return;
-                    } 
-                    break;
-                } */
-
                 addItemToCart(id, price, discount, shortDescription, brand, img, stock, 1)
                 updateCart()
                 return;
@@ -465,15 +455,7 @@ class Main {
             localStorage.setItem('shoppingCart', JSON.stringify(cart));
         };
         updateCart()
-
-        /*  document.querySelector('.main-nav').addEventListener('click', e => {
-            if (e.target.classList.contains('main-nav__link')) {
-                e.preventDefault();
-                e.target.blur();
-                // getAsyncRequestFromLink(e.target, main);
-            }
-        }); 
-        */
+        
     }
 
     async start() {
