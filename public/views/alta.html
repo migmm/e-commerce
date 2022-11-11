@@ -59,18 +59,12 @@
                     <span class="input-group__error">ERROR! La descripción debe tener entre 5 y 2000 caracteres.</span>
                 </div>
             </div>
-            <div class="input-group__fifth-row">
-                <div class="input-group__form-group">
-                    <input type="checkbox" id="freeShip" name="freeShip" value="false" class="input-group__check">
-                    <label class="input-group__label" for="freeShip" id="label-checkbox">Envío sin cargo</label>
-                    <span class="input-group__error">¿El envío es sin cargo?</span>
-                </div>
+            <div class="input-group__fifth-row"> 
                 <div class="input-group__form-group">
                     <label class="input-group__label" for="ageFrom">Edad desde / hasta</label>
                     <input class="input-group__input" name="ageFrom" id="ageFrom" type="text">
                     <input class="input-group__input" name="ageTo" id="ageTo" type="text">
-                    <span class="input-group__error">ERROR! Ingrese numeros de 0 a 99.</span>
-
+                    <span class="input-group__error">ERROR! Ingrese numeros <br> de 0 a 99.</span>
                 </div>
                 <div class="input-group__form-group">
                     <input type="radio" id="ageMonth" value="0" name="ageSelect" class="input-group__radio">
@@ -80,6 +74,11 @@
                     <input type="hidden" value="" name="addedDate" id="addedDate">
                     <input type="hidden" value="" name="lastSell" id="lastSell">
                     <span class="input-group__error">ERROR! Seleccione meses o años.</span>
+                </div>
+                <div class="input-group__form-group">
+                    <input type="checkbox" id="freeShip" name="freeShip" value="false" class="input-group__check">
+                    <label class="input-group__label" for="freeShip" id="label-checkbox">Envío sin cargo</label>
+                    <span class="input-group__error">¿El envío es sin cargo?</span>
                 </div>
             </div>
             <div class="input-group__files-row">

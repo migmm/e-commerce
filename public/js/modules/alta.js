@@ -31,7 +31,7 @@ class PageAlta {
         ageSelect: /^[0-1]{1,2}$/,
         addedDate: /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/,
         lastSell: /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/,
-        avatar: /[^]*/,
+        avatar: /^.+\.(jpe?g|gif|png)$/i,
         gallery: /[^]*/,
         colors: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9., _-]{4,50}$/,
     };
