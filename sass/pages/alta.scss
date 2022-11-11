@@ -1,37 +1,55 @@
 .input-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 
-  & #form-add-products {
+  &__first-row {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: space-between;
 
-    .main-content {
-      &__divider-left {
-        width: 100%;
-
-        @media (min-width: 845px) {
-
-          width: 70%;
-          float: left;
-        }
-      }
-    }
-
-    .main-content {
-
-      &__divider-right {
-        width: 100%;
-
-        @media (min-width: 845px) {
-
-          width: 70%;
-          float: right;
-        }
-      }
+    & :first-child {
+      flex-grow: 2;
     }
   }
 
-  &__form-group {
-    text-align: center;
+  &__second-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: space-between;
+
+    & :first-child,
+    & :nth-child(2),
+    & :nth-child(3) {
+      flex-grow: 1;
+    }
+  }
+
+  &__fifth-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: space-between;
+
+    & :nth-child(3) {
+      flex-grow: 2;
+    }
+  }
+
+  &__files-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+
+    & :first-child,
+    & :nth-child(2) {
+      flex-grow: 1;
+    }
   }
 }

@@ -5,32 +5,33 @@
 
     <section class="input-group">
         <form action="/api/products" autocomplete="off" method="post" id="form-add-products">
-            <div class="main-content__divider-left">
+            <div class="input-group__first-row">
                 <div class="input-group__form-group">
                     <label class="input-group__label" for="productName">Nombre</label>
-                    <input class="input-group__input" name="productName" id="productName" type="text" 
-                        autofocus>
+                    <input class="input-group__input" name="productName" id="productName" type="text" autofocus>
                     <span class="input-group__error">ERROR! EL nombre debe tener entre 5 y 30 caracteres.</span>
                 </div>
                 <div class="input-group__form-group">
                     <label class="input-group__label" for="price">Precio</label>
-                    <input class="input-group__input" name="price" id="price" type="text" >
+                    <input class="input-group__input" name="price" id="price" type="text">
                     <span class="input-group__error">ERROR!Ingrese números positivos.</span>
                 </div>
                 <div class="input-group__form-group">
                     <label class="input-group__label" for="discountPercent">Porcentaje de descuento</label>
-                    <input class="input-group__input" name="discountPercent" id="discountPercent" type="text" >
+                    <input class="input-group__input" name="discountPercent" id="discountPercent" type="text">
                     <span class="input-group__error">ERROR! Ingrese números positivos.</span>
                 </div>
+                <div class="input-group__form-group">
+                    <label class="input-group__label" for="stock">Stock</label>
+                    <input class="input-group__input" name="stock" id="stock" type="text">
+                    <span class="input-group__error">ERROR! Ingrese números.</span>
+                </div>
+            </div>
+            <div class="input-group__second-row">
                 <div class="input-group__form-group">
                     <label class="input-group__label" for="vendor">Fabricante</label>
                     <input class="input-group__input" name="vendor" id="vendor" type="text">
                     <span class="input-group__error">ERROR! El fabricante debe tener entre 5 y 40 caracteres.</span>
-                </div>
-                <div class="input-group__form-group">
-                    <label class="input-group__label" for="stock">Stock</label>
-                    <input class="input-group__input" name="stock" id="stock" type="text" >
-                    <span class="input-group__error">ERROR! Ingrese números.</span>
                 </div>
                 <div class="input-group__form-group">
                     <label class="input-group__label" for="category">Categoría</label>
@@ -38,31 +39,34 @@
                     <span class="input-group__error">ERROR! La categoría debe tener entre 5 y 50 caracteres.</span>
                 </div>
                 <div class="input-group__form-group">
-                    <label class="input-group__label" for="colors" >Colores principales</label>
+                    <label class="input-group__label" for="colors">Colores principales</label>
                     <input class="input-group__input" name="colors" id="colors" type="text">
                     <span class="input-group__error">ERROR! Ingrese de 1 a 3 colores separados por comas.</span>
                 </div>
+            </div>
+            <div class="input-group__third-row">
                 <div class="input-group__form-group">
-                    <label class="input-group__label" for="shortDescription" >Descripción corta</label>
+                    <label class="input-group__label" for="shortDescription">Descripción corta</label>
                     <input class="input-group__input" name="shortDescription" id="shortDescription" type="text">
                     <span class="input-group__error">ERROR! La descripción debe tener entre 5 y 80 caracteres.</span>
                 </div>
+            </div>
+            <div class="input-group__fourth-row">
                 <div class="input-group__form-group">
-                    <label class="input-group__label" for="longDescription" >Descripción larga.</label>
+                    <label class="input-group__label" for="longDescription">Descripción larga.</label>
                     <textarea class="input-group__textarea" name="longDescription" id="longDescription" cols="30"
                         rows="10"></textarea>
                     <span class="input-group__error">ERROR! La descripción debe tener entre 5 y 2000 caracteres.</span>
                 </div>
-
             </div>
-            <div class="main-content__divider-right">
+            <div class="input-group__fifth-row">
                 <div class="input-group__form-group">
                     <input type="checkbox" id="freeShip" name="freeShip" value="false" class="input-group__check">
                     <label class="input-group__label" for="freeShip" id="label-checkbox">Envío sin cargo</label>
                     <span class="input-group__error">¿El envío es sin cargo?</span>
                 </div>
                 <div class="input-group__form-group">
-                    <label class="input-group__label" for="ageFrom" >Edad desde / hasta</label>
+                    <label class="input-group__label" for="ageFrom">Edad desde / hasta</label>
                     <input class="input-group__input" name="ageFrom" id="ageFrom" type="text">
                     <input class="input-group__input" name="ageTo" id="ageTo" type="text">
                     <span class="input-group__error">ERROR! Ingrese numeros de 0 a 99.</span>
@@ -77,10 +81,12 @@
                     <input type="hidden" value="" name="lastSell" id="lastSell">
                     <span class="input-group__error">ERROR! Seleccione meses o años.</span>
                 </div>
+            </div>
+            <div class="input-group__files-row">
                 <div class="input-group__form-group">
                     <label class="input-group__label" for="avatar">Foto de portada</label>
                     <input type="file" id="avatar" class="file-avatar" name="avatar"
-                        accept="image/png, image/gif, image/jpeg" >
+                        accept="image/png, image/gif, image/jpeg">
                     <span class="input-group__error">ERROR! Debe cargar una imagen.</span>
                 </div>
                 <div class="input-group__form-group">
@@ -104,7 +110,8 @@
                     <div class="img-select">
 
                         <div class="img-select__img-container">
-                            <img class="img-select__avatar" src="../img/products/61e7q+l8V4L._cpt_.jpg" alt="Product image">
+                            <img class="img-select__avatar" src="../img/products/61e7q+l8V4L._cpt_.jpg"
+                                alt="Product image">
                         </div>
 
                         <div class="img-select__img-container">
@@ -129,12 +136,12 @@
 
                         </div>
                     </div>
-
                 </div>
             </div>
             <div class="product-full-view__detail">
-                <h2 class="product-full-view__brand">Hot toys</h2>
                 <h1 class="product-full-view__heading">CAPITAN AMERICA</h1>
+                <h2 class="product-full-view__brand">Hot toys</h2>
+
 
                 <p class="product-full-view__description">Figura de 12 cm del Capitán América</p>
                 <p class="product-full-view__long-description"> Figura de acción coleccionable Avengers: Endgame escala
@@ -152,15 +159,17 @@
                 </div>
                 <span class="product-full-view__latest-price-currency">$<span
                         class="product-full-view__latest-price">3000</span></span>
-                <span class="product-full-view__stock">Stock <span class="product-full-view__stock-value">10</span> unidades.</span>
+                <span class="product-full-view__stock">Stock <span class="product-full-view__stock-value">10</span>
+                    unidades.</span>
 
                 <div class="product-full-view__qty-and-buy-container">
                     <div class="product-full-view__qty-selector">
                         <span class="product-full-view__qty-button-minus">-</span> <input type="text"
-                            class="product-full-view__qty" value="1"> 
-                            <span class="product-full-view__qty-button-plus">+</span>
+                            class="product-full-view__qty" value="1">
+                        <span class="product-full-view__qty-button-plus">+</span>
                     </div>
-                    <a href="#" class="product-full-view__link" data-id="63423cccac4d4479a9f17310">Agregar al carrito</a>
+                    <a href="#" class="product-full-view__link" data-id="63423cccac4d4479a9f17310">Agregar al
+                        carrito</a>
                 </div>
             </div>
         </div>
@@ -170,8 +179,5 @@
 
             </div>
         </div>
+    </section>
 </div>
-</section>
-
-</div>
-<script src="js/form.js"></script>
