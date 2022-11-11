@@ -33,7 +33,7 @@ class PageAlta {
         lastSell: /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/,
         avatar: /^.+\.(jpe?g|gif|png)$/i,
         gallery: /[^]*/,
-        colors: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9., _-]{4,50}$/,
+        colors: /^\s*([a-zA-Z0-9ÁáÉéÍíÓóÚúÑñ,.-_]+\s*){1,3}$/,
     };
 
     static emptyForm() {
