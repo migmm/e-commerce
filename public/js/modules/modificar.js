@@ -132,7 +132,7 @@ class PageModificar {
             // row.remove();
             const products = await productController.getProducts();
             console.log(`Aún quedan ${products.length} productos`);    
-            PageAlta.renderTemplateTable(products);
+            PageModificar.renderTemplateTable(products);
         };
 
         /*  
@@ -155,7 +155,7 @@ class PageModificar {
 
         document.querySelector('.products-table-container').addEventListener('click', e => {
             if (e.target.classList.contains('btn-delete')) {
-                //deleteProduct(e);
+                deleteProduct(e);
                 console.log("delete")
                 return;
             }
