@@ -19,7 +19,7 @@
 
                     <div class="card__content">
                         {{#compare this.discountPercent ">=" 1 }}
-                            <span class="card__price-currency">$<span class="card__price-value">{{discountthis.price this.discountPercent}}</span></span>
+                            <span class="card__price-currency">$<span class="card__price-value">{{discount this.price this.discountPercent}}</span></span>
                             <span class="card__discount"><span class="card__discount__percent">{{this.discountPercent}}</span>% DTO</span>
                             <span class="card__latest-price-currency">$<span class="card__latest-price">{{this.price}}</span></span>
                         {{else}}

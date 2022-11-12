@@ -948,6 +948,43 @@ body {
   margin: 0.7em 0.7em 0.7em 0;
 }
 
+.table-products {
+  width: 100%;
+}
+.table-products__thead {
+  background-color: rgb(214, 214, 214);
+}
+.table-products__tbody .table-content__cell-image-container, .table-products__tbody .table-content__cell-buttons, .table-products__tbody .table-content__cell-stock, .table-products__tbody .table-content__cell-price {
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+.table-products__tbody .table-content__cell-name, .table-products__tbody .table-content__cell-description {
+  padding-left: 1em;
+  border-bottom: 1px solid #ddd;
+}
+.table-products__tbody .table-content__image {
+  height: 100px;
+  max-width: 100px;
+  object-fit: contain;
+}
+.table-products__tbody .table-content__cell-image-container {
+  background-color: white;
+  border-bottom: 1px solid #ddd;
+  width: 100px;
+  height: 100px;
+}
+.table-products__tbody .table-content__btn-view, .table-products__tbody .table-content__btn-edit, .table-products__tbody .table-content__btn-delete {
+  border: none;
+  background-color: white;
+}
+.table-products__tbody .table-content__btn-view:hover, .table-products__tbody .table-content__btn-edit:hover, .table-products__tbody .table-content__btn-delete:hover {
+  color: red;
+  cursor: pointer;
+}
+.table-products__tfoot {
+  background-color: rgb(110, 110, 110);
+}
+
 .card {
   width: 270px;
   flex-grow: 1;

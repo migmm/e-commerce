@@ -1,0 +1,40 @@
+{{#if products.length}}
+    <table class="table-products">
+        <thead class="table-products__thead">
+            <tr class="table-head">
+                <th class="table-head__th" scope="column">Imagen</th>
+                <th class="table-head__th" scope="column">Nombre</th>
+                <th class="table-head__th" scope="column">Descripción</th>
+                <th class="table-head__th" scope="column">Stock</th>
+                <th class="table-head__th" scope="column">Precio</th>
+                <th class="table-head__th" scope="column">Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody class="table-products__tbody">
+
+            {{#each products}}
+
+                <tr class="table-content" data-id="{{this.id}}">
+                    <td class="table-content__cell-image-container"><img class="table-content__image" src="{{this.images.portada}}" alt="Foto de producto"/></td>
+                    <td class="table-content__cell-name">{{this.productName}}</td>
+                    <td class="table-content__cell-description">{{this.shortDescription}}</td>
+                    <td class="table-content__cell-stock">{{this.stock}}</td>
+                    <td class="table-content__cell-price"><span>$</span>{{this.price}}</td>
+                    <td class="table-content__cell-buttons">
+                        <button class="table-content__btn-view"><i class="fa fa-eye btn-view" aria-hidden="true"></i></button>
+                        <button class="table-content__btn-edit"><i class="fa fa-pencil btn-edit" aria-hidden="true"></i></button>
+                        <button class="table-content__btn-delete"><i class="fa fa-trash btn-delete" aria-hidden="true"></i></button>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+        <tfoot class="table-products__tfoot">
+            <tr class="table-foot">
+                <td class="table-foot_content" colspan="6">Total: {{products.length}} productos</td>
+            </tr>
+        </tfoot>
+    </table>
+{{else}}
+    <p>No se encontraron productos</p>
+{{/if}}

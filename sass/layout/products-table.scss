@@ -1,0 +1,62 @@
+.table-products {
+    width: 100%;
+   // background-color: #a8a8a8;
+
+    &__thead {
+        background-color: rgb(214, 214, 214);
+    }
+
+    &__tbody {
+
+        & .table-content {
+            //background-color: white;
+          
+            &__cell-image-container,
+            &__cell-buttons, 
+            &__cell-stock, 
+            &__cell-price {
+                text-align: center;
+                border-bottom: 1px solid #ddd;
+            }
+
+            &__cell-name, 
+            &__cell-description {
+                padding-left: 1em;
+                border-bottom: 1px solid #ddd;
+            } 
+
+            &__image{
+                height: 100px;
+                max-width: 100px;
+                object-fit: contain;
+            }
+
+            &__cell-image-container {
+                background-color: white;
+                border-bottom: 1px solid #ddd;
+                width:100px;
+                height: 100px;
+            }
+
+            &__btn-view,
+            &__btn-edit,
+            &__btn-delete {
+                border: none;
+                background-color: white;
+            }
+
+            &__btn-view:hover,
+            &__btn-edit:hover,
+            &__btn-delete:hover {
+              color: red;
+              cursor: pointer
+            }
+           
+        }
+
+    }
+
+    &__tfoot {
+        background-color: rgb(110, 110, 110);
+    }
+}
