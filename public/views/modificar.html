@@ -9,6 +9,7 @@
     <div class="product-update-wrapper">
         <section class="input-group">
             <form action="/api/products" autocomplete="off" method="post" id="form-add-products">
+                
                 <div class="input-group__first-row">
                     <div class="input-group__form-group">
                         <label class="input-group__label" for="productName">Nombre</label>
@@ -70,6 +71,8 @@
                         <label class="input-group__label" for="ageFrom">Edad desde / hasta</label>
                         <input class="input-group__input" name="ageFrom" id="ageFrom" type="text">
                         <input class="input-group__input" name="ageTo" id="ageTo" type="text">
+                        <input type="hidden" value="" name="ageSelect" id="ageSelect">
+                        <input type="hidden" id="id" name="id">
                         <span class="input-group__error">ERROR! Ingrese numeros <br> de 0 a 99.</span>
                     </div>
                     <div class="input-group__form-group">
@@ -77,8 +80,7 @@
                         <label for="ageMonth">Meses</label>
                         <input type="radio" id="ageYear" value="1" name="ageSelect" class="input-group__radio">
                         <label for="ageYear">Años</label>
-                        <input type="hidden" value="" name="addedDate" id="addedDate">
-                        <input type="hidden" value="" name="lastSell" id="lastSell">
+
                         <span class="input-group__error">ERROR! Seleccione meses o años.</span>
                     </div>
                     <div class="input-group__form-group">
@@ -102,9 +104,10 @@
                     </div>
                 </div>
                 <div class="input-group__buttons">
-                    <button type="submit">Actualizar</button>
-                    <button type="reset">Cancelar</button>
+                    <button type="button" id="btn-update">Actualizar</button>
+                    <button type="button" id="btn-cancel">Cancelar</button>
                 </div>
+                
             </form>
         </section>
 

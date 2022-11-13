@@ -102,7 +102,7 @@ const putProduct = async (req, res) => {
     const id = req.params.id;
     const product = req.body;
 
-    if (req.files['avatar']) {
+    if (req.file !== undefined) {
         const firstProductImg = req.files['avatar'][0];
         let productImgGallery = req.files['gallery'];
 
@@ -125,12 +125,15 @@ const putProduct = async (req, res) => {
             }
         }
     
-        const updatedProduct = await api.updateProduct(id, product) || {};
-        res.json(updatedProduct);
+        
 
-    } else {
+    } /* else {
         res.status(415).send('<h1>Se produjo un error.</h1>');
-    }
+    } */
+
+    const updatedProduct = await api.updateProduct(id, product) || {};
+    res.json(updatedProduct);
+
 };
 
 

@@ -954,7 +954,7 @@ body {
 .table-products__thead {
   background-color: rgb(214, 214, 214);
 }
-.table-products__tbody .table-content__cell-image-container, .table-products__tbody .table-content__cell-buttons, .table-products__tbody .table-content__cell-stock, .table-products__tbody .table-content__cell-price {
+.table-products__tbody .table-content__cell-image-container, .table-products__tbody .table-content__cell-buttons, .table-products__tbody .table-content__cell-stock, .table-products__tbody .table-content__cell-price-container {
   text-align: center;
   border-bottom: 1px solid #ddd;
 }

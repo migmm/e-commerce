@@ -10,8 +10,9 @@ class Http {
     }
 
     /* POST */
-    async post(url, dato) {
-       
+    async post(url) {
+
+        //Bypass to get the files too
         let data = new FormData(document.getElementById("form-add-products"))
         console.log(data)
         const colorsString = data.get('colors');
@@ -31,6 +32,13 @@ class Http {
 
     /* PUT */
     async put(url, id, dato) {
+    
+        console.log("datazoooooooooooooooooooooooooo", dato);
+        let colorsString = dato.colors;
+        let colorsSplit = colorsString.split(',');
+        dato["colors"] = colorsSplit;
+        console.log(dato)
+
         try {
             return await fetch(url + id, {
                 method: 'put',

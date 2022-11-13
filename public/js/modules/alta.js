@@ -120,6 +120,19 @@ class PageAlta {
                 freeShip.value = 'true';
             }
 
+            let ageYear = document.getElementById('ageYear');
+            let ageMonth = document.getElementById('ageMonth');
+            let ageSelect = document.getElementById('ageSelect');
+
+            ageSelect.value = null
+
+            if (ageYear.checked) {
+                ageSelect.value = '1';
+            } 
+            if (ageMonth.checked) {
+                ageSelect.value = '0';
+            } 
+
             const productToSave = PageAlta.validateForm();
             if (productToSave) {
                 const savedProduct = await PageAlta.saveProduct(productToSave);
@@ -132,10 +145,11 @@ class PageAlta {
     static async init() {
         console.log('PageAlta.init()');
         PageAlta.form = document.getElementById('form-add-products');
-        PageAlta.fields = PageAlta.form.querySelectorAll('input, textarea');
-
+        // PageAlta.fields = PageAlta.form.querySelectorAll('input, textarea');
+        PageAlta.fields = PageAlta.form.querySelectorAll(`textarea, input:not([type='radio']`);
         PageAlta.addFormEvents();
         document.getElementById('productName').focus();
+        console.log(PageAlta.fields)
 
         //goToTopAndCloseMenu ();
     }

@@ -21,7 +21,7 @@
                     <td class="table-content__cell-name">{{this.productName}}</td>
                     <td class="table-content__cell-description">{{this.shortDescription}}</td>
                     <td class="table-content__cell-stock">{{this.stock}}</td>
-                    <td class="table-content__cell-price"><span>$</span>{{this.price}}</td>
+                    <td class="table-content__cell-price-container">$<span class="table-content__cell-price">{{this.price}}</span></td>
 
                     <td class="cell-img-galeria1 cell-hide" data-galeria0=""></td>
                     <td class="cell-img-galeria2 cell-hide" data-galeria1=""></td>
@@ -53,7 +53,6 @@
             </tr>
         </tfoot>
     </table>
-                   
 {{else}}
     <p>No se encontraron productos</p>
 {{/if}}

@@ -8,7 +8,7 @@ class ProductValidator {
         const productSchema = Joi.object({
     
             // in case someone overrides frontend validations
-
+            id: Joi.string(),
             productName: Joi.string().required(),
             price: Joi.number().required(),
             discountPercent: Joi.number().required(),
@@ -21,9 +21,9 @@ class ProductValidator {
             ageFrom: Joi.number().required(),
             ageTo:Joi.number().required(),
             ageSelect: Joi.number().required(),
-            addedDate: Joi.string().required(),
-            lastSell: Joi.string().required(),
-            images: Joi.object().required(),
+            addedDate: Joi.string(),
+            lastSell: Joi.string(),
+            images: Joi.object(),
             colors: Joi.array().required(),
 
             /* 

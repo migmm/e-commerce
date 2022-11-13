@@ -7,18 +7,31 @@ class PageModificar {
 
     static form
     static fields
+    static btnUpdate
 
-    /*     
-        static validators = {
-            'id': /^[\da-f]{24}$/,
-            'name': /^[\wáéíóúüÁÉÍÓÚÜ .,-]{1,30}$/,
-            'price': /^\d+$/,
-            'description': /^[\wáéíóúüÁÉÍÓÚÜ ¿?¡!.,:-]{1,200}$/,
-        };
-     */
+    static validators = {
+        id: /^[\da-f]{24}$/,
+        productName: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,30}$/,
+        price: /^[0-9,]{1,30}$/,
+        discountPercent: /^[0-9,]{1,30}$/,
+        vendor: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,40}$/,
+        stock: /^-?[0-9]{1,30}$/,
+        category: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,50}$/,
+        shortDescription: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,80}$/,
+        longDescription: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,2000}$/,
+        freeShip: /^(?:tru|fals)e$/,
+        ageFrom: /^[0-9]{1,3}$/,
+        ageTo: /^[0-9]{1,3}$/,
+        ageSelect: /^[0-1]{1,2}$/,
+        //addedDate: /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/,
+        //lastSell: /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/,
+        avatar: /^.+\.(jpe?g|gif|png)$/i,
+        gallery: /[^]*/,
+        colors: /^\s*([a-zA-Z0-9ÁáÉéÍíÓóÚúÑñ,.-_]+\s*){1,3}$/,
+    };
 
         static emptyForm() {
-            PageAlta.fields.forEach(field => field.value = '');
+            PageModificar.fields.forEach(field => field.value = '');
         }
     
 
@@ -27,7 +40,7 @@ class PageModificar {
                 if (field.name === 'freeShip') {
                     if (product[field.name] === 'true') {
                         document.getElementById("freeShip").checked = true;
-     
+
                     }
                     
                 }
@@ -35,62 +48,75 @@ class PageModificar {
                 if (field.name === 'ageSelect') {
                     if (product[field.name] === '1') {
                         document.getElementById("ageMonth").checked = true;
-                      
+
                     } else {
                         document.getElementById("ageYear").checked = true;
                     }
                     
                 }
                     field.value = product[field.name];
-                
-                
+
                 console.log(product[field.name])
             });
         }
 
-
-    /*     static validate(value, validator) {
+        static validate(value, validator) {
             return validator.test(value);
         }
-    
-     */
-    /*     static validateForm() {
-            let allValidated = true;
-            const productToSave = {};
-            console.log('\n\n');
-    
-            for (const field of PageAlta.fields) {
-                const validated = PageAlta.validate(field.value, PageAlta.validators[field.name]);
-                console.log(field.name, validated);
-                if (!validated) {
-                    allValidated = false;
-                    break;
-                } else {
-                    productToSave[field.name] = field.value;
-                }
-            }
-            console.log('allValidated:', allValidated);
-            if (!allValidated) {
-                return false;
-            }
-            return productToSave;
-        } */
 
+     static validateForm() {
+        let allValidated = true;
+        const productToSave = {};
+        console.log('\n\n');
 
-    /*     static async saveProduct(product) {
-            const savedProduct = await productController.saveProduct(product);
-            const products = await productController.getProducts();
-            console.log(`Ahora hay ${products.length} productos`);    
-            PageAlta.renderTemplateTable(products);
-            return savedProduct;
+        for (const field of PageModificar.fields) {
+            const validated = PageModificar.validate(field.value, PageModificar.validators[field.name]);
+            console.log(field.name, validated);
+            
+            let errorField = document.getElementsByName(field.name)[0];
+            let ancest = errorField.closest(".input-group__form-group");
+            let spanElement = ancest.querySelector('span:last-child')
+
+            if (!validated) {
+
+                errorField.classList.remove("input-group__input--ok");
+                errorField.classList.add("input-group__input--error");
+                spanElement.style.visibility = 'visible';
+
+                allValidated = false;
+                break;
+
+            } else {
+
+                productToSave[field.name] = field.value;
+
+                errorField.classList.remove("input-group__input--error");
+                errorField.classList.add("input-group__input--ok");
+                spanElement.style.visibility = 'hidden';
+            }
         }
-     */
+
+        console.log('allValidated:', allValidated);
+        if (!allValidated) {
+            return false;
+        }
+        return productToSave;
+    }
+
+    static async saveProduct(product) {
+        const savedProduct = await productController.saveProduct(product);
+        const products = await productController.getProducts();
+        console.log(`Ahora hay ${products.length} productos`);
+        // PageModificar.renderTemplateTable(products);
+        return savedProduct;
+    }
+
 
     static async updateProduct(product) {
         const updatedProduct = await productController.updateProduct(product.id, product);
         const products = await productController.getProducts();
         console.log(`Ahora hay ${products.length} productos`);
-        PageAlta.renderTemplateTable(products);
+        PageModificar.renderTemplateTable(products);
         return updatedProduct;
     }
 
@@ -98,35 +124,40 @@ class PageModificar {
 
     static async addFormEvents() {
 
-        /*    PageAlta.form.addEventListener('submit', async e => {
-               e.preventDefault();
-   
-               const productToSave = PageAlta.validateForm();
-               if (productToSave) {
-                   const savedProduct = await PageAlta.saveProduct(productToSave);
-                   console.log('savedProduct:', savedProduct);
-                   PageAlta.emptyForm();
-               }
-           });
-   
-           this.btnCancel.addEventListener('click', e => {
-               PageAlta.emptyForm();
-               PageAlta.btnCreate.disabled = false;
-               PageAlta.btnUpdate.disabled = true;
-               PageAlta.btnCancel.disabled = true;
-           });
-    */
-        this.btnUpdate.addEventListener('click', async e => {
-            const productToSave = PageAlta.validateForm();
+        PageModificar.form.addEventListener('submit', async e => {
+
+            e.preventDefault();
+
+            const productToSave = PageModificar.validateForm();
             if (productToSave) {
-                const updatedProduct = await PageAlta.updateProduct(productToSave);
+                console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+                const updatedProduct = await PageModificar.updateProduct(productToSave);
                 console.log('updatedProduct:', updatedProduct);
             }
-            PageAlta.emptyForm();
-            PageAlta.btnCreate.disabled = false;
-            PageAlta.btnUpdate.disabled = true;
-            PageAlta.btnCancel.disabled = true;
+            PageModificar.emptyForm();
+        });
 
+        this.btnUpdate.addEventListener('click', async e => {
+            console.log (" fdfdffdfd")
+            const productToSave = PageModificar.validateForm();
+            if (productToSave) {
+                const updatedProduct = await PageModificar.updateProduct(productToSave);
+                console.log('updatedProduct:', updatedProduct);
+            }
+            let ageYear = document.getElementById('ageYear');
+            let ageMonth = document.getElementById('ageMonth');
+            let ageSelect = document.getElementById('ageSelect');
+
+            ageSelect.value = null
+
+            if (ageYear.checked) {
+                ageSelect.value = '1';
+            } 
+            if (ageMonth.checked) {
+                ageSelect.value = '0';
+            } 
+
+            PageModificar.emptyForm();
         });
     }
 
@@ -202,6 +233,7 @@ class PageModificar {
             productToEdit.freeShip = freeShip;
             productToEdit.ageFrom = ageFrom;
             productToEdit.ageTo = ageTo;
+            productToEdit.ageSelect = ageSelect;
             productToEdit.colors = colors;
 
 
@@ -209,9 +241,9 @@ class PageModificar {
 
             PageModificar.completeForm(productToEdit);
             /* 
-            PageAlta.btnCreate.disabled = true;
-            PageAlta.btnUpdate.disabled = false;
-            PageAlta.btnCancel.disabled = false; */
+            PageModificar.btnCreate.disabled = true;
+            PageModificar.btnUpdate.disabled = false;
+            PageModificar.btnCancel.disabled = false; */
         };
 
         document.querySelector('.products-table-container').addEventListener('click', e => {
@@ -239,21 +271,21 @@ class PageModificar {
         console.log('PageModificar.init()');
         PageModificar.form = document.getElementById('form-add-products');
         PageModificar.fields = PageModificar.form.querySelectorAll(`textarea, input:not([type='file']`);
-
+        PageModificar.btnUpdate = PageModificar.form.querySelector('#btn-update');
         console.log(PageModificar.fields)
        // PageModificar.fields.querySelectorAll(".file-avatar").forEach(e => e.remove());
        // document.querySelectorAll('.file-avatar').forEach(el => el.remove());
        //console.log(PageModificar.fields)
         /*   console.log('PageModifacar.init()');
   
-          PageAlta.form = document.getElementById('form-alta-producto');
+          PageModificar.form = document.getElementById('form-Modificar-producto');
     
-          PageAlta.btnCreate = PageAlta.form.querySelector('#btn-create');
-          PageAlta.btnUpdate = PageAlta.form.querySelector('#btn-update');
-          PageAlta.btnCancel = PageAlta.form.querySelector('#btn-cancel');
-  
-          PageAlta.addFormEvents();
-      */
+          PageModificar.btnCreate = PageModificar.form.querySelector('#btn-create');
+          PageModificar.btnUpdate = PageModificar.form.querySelector('#btn-update');
+          PageModificar.btnCancel = PageModificar.form.querySelector('#btn-cancel');
+  */
+        PageModificar.addFormEvents();
+
         const products = await productController.getProducts();
         console.log(`Se encontraron ${products.length} productos`);
 
@@ -263,4 +295,3 @@ class PageModificar {
 }
 
 export default PageModificar;
-
