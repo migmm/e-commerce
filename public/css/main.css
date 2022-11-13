@@ -973,6 +973,9 @@ body {
   width: 100px;
   height: 100px;
 }
+.table-products__tbody .table-content .cell-hide {
+  display: none;
+}
 .table-products__tbody .table-content__btn-view, .table-products__tbody .table-content__btn-edit, .table-products__tbody .table-content__btn-delete {
   border: none;
   background-color: white;
@@ -1796,6 +1799,10 @@ body {
   padding: 5px;
   cursor: pointer;
   margin: 0 0.4em;
+}
+
+.product-update-wrapper {
+  margin: 2em 0 2em 0;
 }
 
 /*# sourceMappingURL=main.css.map */

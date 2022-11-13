@@ -38,6 +38,9 @@
                 height: 100px;
             }
 
+            & .cell-hide {
+                display: none;
+            }
             &__btn-view,
             &__btn-edit,
             &__btn-delete {

@@ -6,4 +6,108 @@
     <div class="products-table-container">
     </div>
 
+    <div class="product-update-wrapper">
+        <section class="input-group">
+            <form action="/api/products" autocomplete="off" method="post" id="form-add-products">
+                <div class="input-group__first-row">
+                    <div class="input-group__form-group">
+                        <label class="input-group__label" for="productName">Nombre</label>
+                        <input class="input-group__input" name="productName" id="productName" type="text" autofocus>
+                        <span class="input-group__error">ERROR! EL nombre debe tener entre 5 y 30 caracteres.</span>
+                    </div>
+                    <div class="input-group__form-group">
+                        <label class="input-group__label" for="price">Precio</label>
+                        <input class="input-group__input" name="price" id="price" type="text">
+                        <span class="input-group__error">ERROR!Ingrese números positivos.</span>
+                    </div>
+                    <div class="input-group__form-group">
+                        <label class="input-group__label" for="discountPercent">Porcentaje de descuento</label>
+                        <input class="input-group__input" name="discountPercent" id="discountPercent" type="text">
+                        <span class="input-group__error">ERROR! Ingrese números positivos.</span>
+                    </div>
+                    <div class="input-group__form-group">
+                        <label class="input-group__label" for="stock">Stock</label>
+                        <input class="input-group__input" name="stock" id="stock" type="text">
+                        <span class="input-group__error">ERROR! Ingrese números.</span>
+                    </div>
+                </div>
+                <div class="input-group__second-row">
+                    <div class="input-group__form-group">
+                        <label class="input-group__label" for="vendor">Fabricante</label>
+                        <input class="input-group__input" name="vendor" id="vendor" type="text">
+                        <span class="input-group__error">ERROR! El fabricante debe tener entre 5 y 40 caracteres.</span>
+                    </div>
+                    <div class="input-group__form-group">
+                        <label class="input-group__label" for="category">Categoría</label>
+                        <input class="input-group__input" name="category" id="category" type="text">
+                        <span class="input-group__error">ERROR! La categoría debe tener entre 5 y 50 caracteres.</span>
+                    </div>
+                    <div class="input-group__form-group">
+                        <label class="input-group__label" for="colors">Colores principales</label>
+                        <input class="input-group__input" name="colors" id="colors" type="text">
+                        <span class="input-group__error">ERROR! Ingrese de 1 a 3 colores separados por comas.</span>
+                    </div>
+                </div>
+                <div class="input-group__third-row">
+                    <div class="input-group__form-group">
+                        <label class="input-group__label" for="shortDescription">Descripción corta</label>
+                        <input class="input-group__input" name="shortDescription" id="shortDescription" type="text">
+                        <span class="input-group__error">ERROR! La descripción debe tener entre 5 y 80
+                            caracteres.</span>
+                    </div>
+                </div>
+                <div class="input-group__fourth-row">
+                    <div class="input-group__form-group">
+                        <label class="input-group__label" for="longDescription">Descripción larga.</label>
+                        <textarea class="input-group__textarea" name="longDescription" id="longDescription" cols="30"
+                            rows="10"></textarea>
+                        <span class="input-group__error">ERROR! La descripción debe tener entre 5 y 2000
+                            caracteres.</span>
+                    </div>
+                </div>
+                <div class="input-group__fifth-row">
+                    <div class="input-group__form-group">
+                        <label class="input-group__label" for="ageFrom">Edad desde / hasta</label>
+                        <input class="input-group__input" name="ageFrom" id="ageFrom" type="text">
+                        <input class="input-group__input" name="ageTo" id="ageTo" type="text">
+                        <span class="input-group__error">ERROR! Ingrese numeros <br> de 0 a 99.</span>
+                    </div>
+                    <div class="input-group__form-group">
+                        <input type="radio" id="ageMonth" value="0" name="ageSelect" class="input-group__radio">
+                        <label for="ageMonth">Meses</label>
+                        <input type="radio" id="ageYear" value="1" name="ageSelect" class="input-group__radio">
+                        <label for="ageYear">Años</label>
+                        <input type="hidden" value="" name="addedDate" id="addedDate">
+                        <input type="hidden" value="" name="lastSell" id="lastSell">
+                        <span class="input-group__error">ERROR! Seleccione meses o años.</span>
+                    </div>
+                    <div class="input-group__form-group">
+                        <input type="checkbox" id="freeShip" name="freeShip" value="false" class="input-group__check">
+                        <label class="input-group__label" for="freeShip" id="label-checkbox">Envío sin cargo</label>
+                        <span class="input-group__error">¿El envío es sin cargo?</span>
+                    </div>
+                </div>
+                <div class="input-group__files-row">
+                    <div class="input-group__form-group">
+                        <label class="input-group__label" for="avatar">Foto de portada</label>
+                        <input type="file" id="avatar" class="file-avatar" name="avatar"
+                            accept="image/png, image/gif, image/jpeg">
+                        <span class="input-group__error">ERROR! Debe cargar una imagen.</span>
+                    </div>
+                    <div class="input-group__form-group">
+                        <label class="input-group__label" for="gallery">Fotos de galería</label>
+                        <input type="file" id="gallery" class="file-gallery" name="gallery"
+                            accept="image/png, image/gif, image/jpeg">
+                        <span class="input-group__error">ERROR! Mínimo una imagen, máximo 3.</span>
+                    </div>
+                </div>
+                <div class="input-group__buttons">
+                    <button type="submit">Actualizar</button>
+                    <button type="reset">Cancelar</button>
+                </div>
+            </form>
+        </section>
+
+    </div>
+
 </div>
