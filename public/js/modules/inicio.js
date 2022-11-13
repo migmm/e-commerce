@@ -13,7 +13,7 @@ class PageInicio {
         document.querySelector('.most-selled').innerHTML = html;
         document.querySelector('.latest-viewed').innerHTML = html;
     }
-    
+
     static async init () {
         console.log('PageInicio.init()');
         //goToTopAndCloseMenu ();
