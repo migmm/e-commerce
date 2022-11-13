@@ -22,6 +22,8 @@ class Main {
 
     setActiveLink(id) {
         const links = document.querySelectorAll('.main-nav__link');
+        let closeMenu = document.getElementById('main-nav-toggle');
+
         links.forEach(link => {
             if (link.getAttribute('href') === `#/${id}`) {
                 link.classList.add('main-nav__link--active');
@@ -30,6 +32,7 @@ class Main {
                 link.classList.remove('main-nav__link--active');
                 link.removeAttribute('aria-current');
             }
+            closeMenu.checked = false;
         });
     }
 
