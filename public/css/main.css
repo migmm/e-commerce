@@ -952,15 +952,15 @@ body {
   width: 100%;
 }
 .table-products__thead {
-  background-color: rgb(214, 214, 214);
+  background-color: #cecdcd;
 }
 .table-products__tbody .table-content__cell-image-container, .table-products__tbody .table-content__cell-buttons, .table-products__tbody .table-content__cell-stock, .table-products__tbody .table-content__cell-price-container {
   text-align: center;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #cecdcd;
 }
 .table-products__tbody .table-content__cell-name, .table-products__tbody .table-content__cell-description {
   padding-left: 1em;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #cecdcd;
 }
 .table-products__tbody .table-content__image {
   height: 100px;
@@ -968,8 +968,8 @@ body {
   object-fit: contain;
 }
 .table-products__tbody .table-content__cell-image-container {
-  background-color: white;
-  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+  border-bottom: 1px solid #cecdcd;
   width: 100px;
   height: 100px;
 }
@@ -978,10 +978,16 @@ body {
 }
 .table-products__tbody .table-content__btn-view, .table-products__tbody .table-content__btn-edit, .table-products__tbody .table-content__btn-delete {
   border: none;
-  background-color: white;
+  background-color: #fff;
 }
-.table-products__tbody .table-content__btn-view:hover, .table-products__tbody .table-content__btn-edit:hover, .table-products__tbody .table-content__btn-delete:hover {
-  color: red;
+@media (hover: hover) {
+  .table-products__tbody .table-content__btn-view:hover, .table-products__tbody .table-content__btn-edit:hover, .table-products__tbody .table-content__btn-delete:hover {
+    color: #be0000;
+    cursor: pointer;
+  }
+}
+.table-products__tbody .table-content__btn-view:active, .table-products__tbody .table-content__btn-edit:active, .table-products__tbody .table-content__btn-delete:active {
+  color: #ff0000;
   cursor: pointer;
 }
 .table-products__tfoot {

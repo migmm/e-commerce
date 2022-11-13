@@ -1,60 +1,72 @@
+@use '../abstracts/variables' as color;
+
 .table-products {
     width: 100%;
-   // background-color: #a8a8a8;
 
     &__thead {
-        background-color: rgb(214, 214, 214);
+        background-color: color.$lightgrey;
     }
 
     &__tbody {
 
         & .table-content {
-            //background-color: white;
-          
+
             &__cell-image-container,
-            &__cell-buttons, 
-            &__cell-stock, 
+            &__cell-buttons,
+            &__cell-stock,
             &__cell-price-container {
                 text-align: center;
-                border-bottom: 1px solid #ddd;
+                border-bottom: 1px solid color.$lightgrey;
+                ;
             }
 
-            &__cell-name, 
+            &__cell-name,
             &__cell-description {
                 padding-left: 1em;
-                border-bottom: 1px solid #ddd;
-            } 
+                border-bottom: 1px solid color.$lightgrey;
+                
+            }
 
-            &__image{
+            &__image {
                 height: 100px;
                 max-width: 100px;
                 object-fit: contain;
             }
 
             &__cell-image-container {
-                background-color: white;
-                border-bottom: 1px solid #ddd;
-                width:100px;
+                background-color: color.$white;
+                border-bottom: 1px solid color.$lightgrey;
+                width: 100px;
                 height: 100px;
             }
 
             & .cell-hide {
                 display: none;
             }
+
             &__btn-view,
             &__btn-edit,
             &__btn-delete {
                 border: none;
-                background-color: white;
+                background-color: color.$white;
             }
 
-            &__btn-view:hover,
-            &__btn-edit:hover,
-            &__btn-delete:hover {
-              color: red;
-              cursor: pointer
+            @media (hover: hover) {
+
+                &__btn-view:hover,
+                &__btn-edit:hover,
+                &__btn-delete:hover {
+                    color: color.$red;
+                    cursor: pointer;
+                }
             }
-           
+
+            &__btn-view:active,
+            &__btn-edit:active,
+            &__btn-delete:active {
+                color: color.$lightred;
+                cursor: pointer;
+            }
         }
 
     }

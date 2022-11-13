@@ -82,27 +82,14 @@ class ProductModelMongoDB {
         }
         try {
 
+     /*        const productToUpdate = await ProductsModel.findById(id).lean() || {};
 
-
-
-            const productToUpdate = await ProductsModel.findById(id).lean() || {};
             await unlink.pathExists(path.resolve('./public/' + productToUpdate.images.portada)) ? unlink.remove(path.resolve('./public/' + productToUpdate.images.portada)) : console.log ("portada false"); ;
             await unlink.pathExists(path.resolve('./public/' + productToUpdate.images.galeria0)) ? unlink.remove(path.resolve('./public/' + productToUpdate.images.galeria0)) : console.log ("galeria0 false");
             await unlink.pathExists(path.resolve('./public/' + productToUpdate.images.galeria0)) ? unlink.remove(path.resolve('./public/' + productToUpdate.images.galeria0)) : console.log ("galeria0 false");
             await unlink.pathExists(path.resolve('./public/' + productToUpdate.images.galeria1)) ? unlink.remove(path.resolve('./public/' + productToUpdate.images.galeria1)) : console.log ("galeria1 false");
             await unlink.pathExists(path.resolve('./public/' + productToUpdate.images.galeria2)) ? unlink.remove(path.resolve('./public/' + productToUpdate.images.galeria2)) : console.log ("galeria2 false");
-
-
-
-
-
-
-
-
-
-
-
-
+ */
             const updatedProduct = await ProductsModel.findByIdAndUpdate(id, { $set: product }, {
                 returnDocument: 'after'
             }).lean();

@@ -47,10 +47,10 @@ class PageModificar {
 
                 if (field.name === 'ageSelect') {
                     if (product[field.name] === '1') {
-                        document.getElementById("ageMonth").checked = true;
+                        document.getElementById("ageYear").checked = true;
 
                     } else {
-                        document.getElementById("ageYear").checked = true;
+                        document.getElementById("ageMonth").checked = true;
                     }
                     
                 }
@@ -64,7 +64,7 @@ class PageModificar {
             return validator.test(value);
         }
 
-     static validateForm() {
+    static validateForm() {
         let allValidated = true;
         const productToSave = {};
         console.log('\n\n');
@@ -87,7 +87,6 @@ class PageModificar {
                 break;
 
             } else {
-
                 productToSave[field.name] = field.value;
 
                 errorField.classList.remove("input-group__input--error");
@@ -120,8 +119,6 @@ class PageModificar {
         return updatedProduct;
     }
 
-
-
     static async addFormEvents() {
 
         PageModificar.form.addEventListener('submit', async e => {
@@ -130,7 +127,6 @@ class PageModificar {
 
             const productToSave = PageModificar.validateForm();
             if (productToSave) {
-                console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
                 const updatedProduct = await PageModificar.updateProduct(productToSave);
                 console.log('updatedProduct:', updatedProduct);
             }
@@ -138,12 +134,13 @@ class PageModificar {
         });
 
         this.btnUpdate.addEventListener('click', async e => {
-            console.log (" fdfdffdfd")
             const productToSave = PageModificar.validateForm();
+
             if (productToSave) {
                 const updatedProduct = await PageModificar.updateProduct(productToSave);
                 console.log('updatedProduct:', updatedProduct);
             }
+
             let ageYear = document.getElementById('ageYear');
             let ageMonth = document.getElementById('ageMonth');
             let ageSelect = document.getElementById('ageSelect');
@@ -177,46 +174,30 @@ class PageModificar {
             const id = row.dataset.id;
             const deletedProduct = await productController.deleteProduct(id);
             console.log('Producto eliminado:', deletedProduct);
-            // row.remove();
+
             const products = await productController.getProducts();
             console.log(`Aún quedan ${products.length} productos`);
             PageModificar.renderTemplateTable(products);
         };
 
-
         const editProduct = async e => {
             const row = e.target.closest('tr');
 
             const id = row.dataset.id;
-            console.log(id)
             const productName = row.querySelector('.table-content__cell-name').innerHTML;
-            console.log(productName)
             const price = row.querySelector('.table-content__cell-price').innerHTML;
-            console.log(price )
             const image = row.querySelector('.table-content__cell-image-container').innerHTML;
-            console.log(price )
             const discountPercent = row.querySelector('.cell-discount-percent').innerHTML;
-            console.log(discountPercent)
             const vendor = row.querySelector('.cell-vendor').innerHTML;
-            console.log(vendor)
             const stock = row.querySelector('.table-content__cell-stock').innerHTML;
-            console.log(stock)
-            const category = row.querySelector('.cell-category').innerHTML
-            console.log(category) 
+            const category = row.querySelector('.cell-category').innerHTML 
             const shortDescription = row.querySelector('.table-content__cell-description').innerHTML;
-            console.log(shortDescription)
             const longDescription = row.querySelector('.cell-long-description').innerHTML;
-            console.log(longDescription)
             const freeShip = row.querySelector('.cell-free-ship').innerHTML;
-            console.log(freeShip)
             const ageFrom = row.querySelector('.cell-age-from').innerHTML;
-            console.log(ageFrom)
             const ageTo = row.querySelector('.cell-age-to').innerHTML;
-            console.log(ageTo)
             const ageSelect = row.querySelector('.cell-age-select').innerHTML;
-            console.log(ageSelect)
             const colors = row.querySelector('.cell-colors').innerHTML;
-            console.log(colors)
             const productToEdit = {};
 
             productToEdit.id = id;
@@ -236,54 +217,33 @@ class PageModificar {
             productToEdit.ageSelect = ageSelect;
             productToEdit.colors = colors;
 
-
-
-
             PageModificar.completeForm(productToEdit);
-            /* 
-            PageModificar.btnCreate.disabled = true;
-            PageModificar.btnUpdate.disabled = false;
-            PageModificar.btnCancel.disabled = false; */
         };
 
         document.querySelector('.products-table-container').addEventListener('click', e => {
             if (e.target.classList.contains('btn-delete')) {
                 deleteProduct(e);
-                console.log("delete")
                 return;
             }
 
             if (e.target.classList.contains('btn-edit')) {
                 editProduct(e);
-                console.log("edit")
                 return;
             }
 
             if (e.target.classList.contains('btn-view')) {
-                //editProduct(e);
-                console.log("modifica")
                 return;
             }
         });
     }
-    
+
     static async init() {
         console.log('PageModificar.init()');
         PageModificar.form = document.getElementById('form-add-products');
         PageModificar.fields = PageModificar.form.querySelectorAll(`textarea, input:not([type='file']`);
         PageModificar.btnUpdate = PageModificar.form.querySelector('#btn-update');
         console.log(PageModificar.fields)
-       // PageModificar.fields.querySelectorAll(".file-avatar").forEach(e => e.remove());
-       // document.querySelectorAll('.file-avatar').forEach(el => el.remove());
-       //console.log(PageModificar.fields)
-        /*   console.log('PageModifacar.init()');
-  
-          PageModificar.form = document.getElementById('form-Modificar-producto');
-    
-          PageModificar.btnCreate = PageModificar.form.querySelector('#btn-create');
-          PageModificar.btnUpdate = PageModificar.form.querySelector('#btn-update');
-          PageModificar.btnCancel = PageModificar.form.querySelector('#btn-cancel');
-  */
+
         PageModificar.addFormEvents();
 
         const products = await productController.getProducts();
