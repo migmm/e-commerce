@@ -236,7 +236,7 @@ class PageModificar {
             if (e.target.classList.contains('btn-edit')) {
                 editProduct(e);
                 let formModifica = document.getElementsByClassName('product-update-wrapper')[0]
-                formModifica.classList.toggle('product-update-wrapper--on')
+                formModifica.classList.add('product-update-wrapper--on')
 
                 let top = document.getElementById('form-modifica').offsetTop - 100;
                 window.scrollTo(0, top);

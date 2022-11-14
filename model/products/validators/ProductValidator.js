@@ -9,7 +9,7 @@ class ProductValidator {
     
             // in case someone overrides frontend validations
             // same validations in frontend
-
+            id: Joi.string().required(),
             productName: Joi.string().min(2).max(30).pattern(new RegExp('^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-].*$')).required(),
             price: Joi.number().greater(-1).required(),
             discountPercent: Joi.number().greater(-1).required(),
@@ -22,8 +22,8 @@ class ProductValidator {
             ageFrom: Joi.number().integer().greater(0).required(),
             ageTo:Joi.number().integer().greater(0).required(),
             ageSelect: Joi.number().required(),
-            addedDate: Joi.date().required(),
-            lastSell: Joi.date().required(),
+            addedDate: Joi.date(),
+            lastSell: Joi.date(),
             images: Joi.object(), // This is indiferent, files are managed with multer
             colors: Joi.array().required(),
         });
