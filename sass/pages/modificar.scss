@@ -1,4 +1,15 @@
 .product-update-wrapper {
-    //display: none;
+    display: none;
     margin: 2em 0 2em 0;
+
+    & .input-group {
+
+        &__files-row {
+            display: none;
+        }
+    }
+
+}
+.product-update-wrapper--on {
+    display: block;
 }

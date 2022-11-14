@@ -1828,7 +1828,15 @@ body {
 }
 
 .product-update-wrapper {
+  display: none;
   margin: 2em 0 2em 0;
+}
+.product-update-wrapper .input-group__files-row {
+  display: none;
+}
+
+.product-update-wrapper--on {
+  display: block;
 }
 
 /*# sourceMappingURL=main.css.map */
