@@ -8,6 +8,7 @@ class PageModificar {
     static form
     static fields
     static btnUpdate
+    static btnCancel
 
     static validators = {
         id: /^[\da-f]{24}$/,
@@ -31,7 +32,7 @@ class PageModificar {
     };
 
         static emptyForm() {
-            PageModificar.fields.forEach(field => field.value = '');
+            PageModificar.fields.forEach(field =>field.value = '');
         }
 
         static completeForm(product) {
@@ -158,6 +159,12 @@ class PageModificar {
 
             PageModificar.emptyForm();
         });
+
+        this.btnCancel.addEventListener('click', async e => {
+            let formModifica = document.getElementsByClassName('product-update-wrapper')[0]
+                formModifica.classList.remove('product-update-wrapper--on')
+            PageModificar.emptyForm();
+        });
     }
 
     static async renderTemplateTable(products) {
@@ -236,6 +243,10 @@ class PageModificar {
                 let top = document.getElementById('form-modifica').offsetTop - 100;
                 window.scrollTo(0, top);
 
+                PageModificar.fields.forEach(function (field) {
+                    field.classList.remove('input-group__input--ok');}
+                );
+
                 return;
             }
 
@@ -250,6 +261,7 @@ class PageModificar {
         PageModificar.form = document.getElementById('form-add-products');
         PageModificar.fields = PageModificar.form.querySelectorAll(`textarea, input:not([type='file']`);
         PageModificar.btnUpdate = PageModificar.form.querySelector('#btn-update');
+        PageModificar.btnCancel = PageModificar.form.querySelector('#btn-cancel');
         console.log(PageModificar.fields)
 
         PageModificar.addFormEvents();
