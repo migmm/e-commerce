@@ -14,40 +14,34 @@ class PageInicio {
         document.querySelector('.latest-viewed').innerHTML = html;
     }
 
-    static async init () {
+    static carousel() {
+        var slideIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+
+            slideIndex++;
+            if (slideIndex > x.length) { slideIndex = 1 }
+            x[slideIndex - 1].style.display = "block";
+            setTimeout(carousel, 2000);
+            x = false // Change image every 2 seconds
+        }
+    }
+    static async init() {
         console.log('PageInicio.init()');
         //goToTopAndCloseMenu ();
 
         const products = await productController.getProducts();
         console.log(`Se encontraron ${products.length} productos`);
-        
+        PageInicio.carousel()
         await PageInicio.renderTemplateCards(products);
-        
+
     }
 }
 
 export default PageInicio;
-
-
-/* ////////////////////////////////
-//                            //
-//    //Pseudo hero slider    //
-//                            //
-////////////////////////////////
- //-Need improvements-
-var slideIndex = 0;
-carousel();
-
-function carousel() {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-    }
-    
-    slideIndex++;
-    if (slideIndex > x.length) {slideIndex = 1}
-    x[slideIndex-1].style.display = "block";
-    setTimeout(carousel, 2000);
-    x= false // Change image every 2 seconds
-} */
