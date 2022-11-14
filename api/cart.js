@@ -45,7 +45,10 @@ const getItem = async id => {
 
 const addItem = async item => {
 
-        const validationError = ItemValidator.validate(item);
+    const createdItem = await modelCart.addItem(item);
+    return createdItem;  
+        //const validationError = ItemValidator.validate(item);
+      /*   const validationError = ItemValidator.validate(item);
         
         if(!validationError) {
             const createdItem = await modelCart.addItem(item);
@@ -53,9 +56,9 @@ const addItem = async item => {
         } else {
             console.log(validationError);
             // throw new Error(`Error de validación en updateProduct: ${validationError.details[0].message}`);
-            console.error(`Error de validación en createItem: ${validationError.details[0].message}`);
+            console.error(`Error de validación en createdItem: ${validationError.details[0].message}`);
             return {};
-        }
+        } */
         
 };
 
@@ -66,7 +69,9 @@ const addItem = async item => {
 
 const updateItem = async (id, item) => {
 
-    const validationError = ItemValidator.validate(item);
+    const updatedItem = await modelCart.updateItem(id, item);
+    return updatedItem;    
+   /*  const validationError = ItemValidator.validate(item);
 
     if(!validationError) {
         const updatedItem = await modelCart.updateItem(id, item);
@@ -76,7 +81,7 @@ const updateItem = async (id, item) => {
         // throw new Error(`Error de validación en updateProduct: ${validationError.details[0].message}`);
         console.error(`Error de validación en updateItem: ${validationError.details[0].message}`);
         return {};
-    }
+    } */
 
 };
 

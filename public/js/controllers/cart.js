@@ -2,10 +2,12 @@
 
 class CartController {
 
-    static some (){
+    cart = [];
 
+    static init (){
+        cart = JSON.parse(localStorage.getItem('shoppingCart')) 
     }
-    
+
     addItem(id) {
         
     }

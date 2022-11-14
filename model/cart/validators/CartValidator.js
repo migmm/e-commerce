@@ -8,17 +8,17 @@ class ItemValidator {
         const itemSchema = Joi.object({
     
             // in case someone overrides frontend validations
-
+/* 
 
             productID: Joi.string(),
             productName: Joi.string(),
-            price: Joi.number(),
+            price: Joi.string(),
             shortDescription: Joi.string(),
-            quantity: Joi.number(),
-            discountPercent: Joi.number(),
-            freeShip: Joi.boolean(),
+            quantity: Joi.string(),
+            discountPercent: Joi.string(),
+            freeShip: Joi.string(),
             productLink: Joi.string()
-
+ */
             /* 
             productName: Joi.string().min(2).max(30).pattern(new RegExp('^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-].*$')).required(),
             price: Joi.number().greater(0).required(),

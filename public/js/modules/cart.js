@@ -1,10 +1,11 @@
+import cartService from '../services/cart.js'
 
 console.log('🆗: Módulo ModuleCart cargado.');
 
 class ModuleCart {
 
     static cartFunctions() {
-        
+
         /////////////////////////////////////////
         //                                     //
         //      ------ Cart preview ------     //
@@ -245,7 +246,7 @@ class ModuleCart {
             }
             cart.push({ 'id': id, 'price': price, 'discount': discount, 'shortDescription': shortDescription, 'brand': brand, 'img': img, 'stock': stock, 'qty': qty });
 
-            saveCart()
+            //saveCart()
             updateCart()
         };
 
@@ -259,7 +260,7 @@ class ModuleCart {
                     break;
                 }
             }
-            saveCart()
+            //saveCart()
             updateCart()
         };
 
@@ -330,17 +331,49 @@ class ModuleCart {
             cart = JSON.parse(localStorage.getItem('shoppingCart'));
         };
 
-        function saveCart() {
+        async function saveCart() {
             localStorage.setItem('shoppingCart', JSON.stringify(cart));
+
+            const cartLoaded = await cartService.loadCart()
+            console.log('cart guardado en mongo', cartLoaded)
+            let cartActual = cart
+            console.log('cart actual', cartActual)
+            // var result = cartLoaded.find(item =>  item.userID === 'carlos23');
+            let loggedIn = true;
+            let user = 'carlos23'; // johnse - alfredoro - carlos23
+            let savedCart = {};
+
+            if (loggedIn) {
+
+                var index = cartLoaded.findIndex(item => item.userID === user);
+                console.log(index);
+                console.log(cartLoaded[index].id);
+                let userID = cartLoaded[index].id;
+
+                savedCart.userID = 'carlos23'
+                savedCart.cartContent = cart
+                await cartService.updateCart(savedCart, userID)
+            }
+
+
+
+
+            //console.log('resultado', result)
+            /*  let savedCart = {}
+             savedCart.userID = 'carlos23'
+             savedCart.cartContent = cart
+             console.log(savedCart)
+             await cartService.saveCart(savedCart) */
         };
 
-        updateCart()
+        //updateCart()
 
     }
 
-    static async init () {
+    static async init() {
         console.log('ModuleCart.init()');
-       // ModuleCart.updateCart()
+        // ModuleCart.updateCart()
+        loadCart()
         //goToTopAndCloseMenu ();
     }
 }

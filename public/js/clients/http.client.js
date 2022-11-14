@@ -9,7 +9,21 @@ class Http {
         }
     }
 
-    /* POST */
+/* POST */
+//Normal post to work with every request
+    async postc(url, dato) {
+    try {
+        return await fetch(url, {
+            method: 'post',
+            body: JSON.stringify(dato),
+            headers: { 'content-type': 'application/json' }
+        }).then(r => r.json());
+    } catch (error) {
+        console.error('ERROR POST', error);
+    }
+}
+
+    //adapted to work with FormData
     async post(url) {
 
         //Bypass to get the files too
@@ -31,6 +45,8 @@ class Http {
     }
 
     /* PUT */
+    //As POST, this is adapted to work with
+    // TODO: put all in a controller 
     async put(url, id, dato) {
     
         console.log("datazoooooooooooooooooooooooooo", dato);
@@ -49,6 +65,21 @@ class Http {
             console.error('ERROR PUT', error);
         }
     }
+
+    //For normal use
+    async putc(url, id, dato) {
+
+        try {
+            return await fetch(url + id, {
+                method: 'put',
+                body: JSON.stringify(dato),
+                headers: { 'content-type': 'application/json' }
+            }).then(r => r.json());
+        } catch (error) {
+            console.error('ERROR PUT', error);
+        }
+    }
+
 
     /* DELETE */
     async delete(url, id) {

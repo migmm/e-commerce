@@ -4,14 +4,19 @@ import DBMongoDB from "../DBMongoDB.js";
 // Esquema del documento Product
 const cartSchema = mongoose.Schema({
 
-    productID: String,
-    productName: String,
+    userID: String,
+    cartContent: Object,
+
+    
+    /*   productID: Object,
+    productName: Object,
     price: Number,
-    shortDescription: String,
+    shortDescription: Object,
     quantity: Number,
     discountPercent: Number,
     freeShip: Boolean,
-    productLink: String
+    productLink: Object
+     */
 },
 {
     versionKey: false
