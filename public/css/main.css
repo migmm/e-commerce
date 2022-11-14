@@ -573,8 +573,8 @@ body {
 .main-header__wrapper__main-nav-container {
   display: none;
 }
-.main-header__wrapper__main-nav-container .main-nav__item:nth-child(3) {
-  order: 4;
+.main-header__wrapper__main-nav-container .main-nav__item:nth-child(4) {
+  order: 1;
 }
 @media (min-width: 900px) {
   .main-header__wrapper__main-nav-container {
