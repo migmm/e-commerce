@@ -1,72 +1,73 @@
 @media (min-width: 950px) {
 
+    .input-group {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        &__first-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            width: 100%;
+            justify-content: space-between;
+
+            & :first-child {
+                flex-grow: 2;
+            }
+        }
+
+        &__second-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            width: 100%;
+            justify-content: space-between;
+
+            & :first-child,
+            & :nth-child(2),
+            & :nth-child(3) {
+                flex-grow: 1;
+            }
+        }
+
+        &__fifth-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            width: 100%;
+            align-items: center;
 
 
-.input-group {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+          & :first-child>input {
+                display: inline-block;
+                width: 20%;
 
-  &__first-row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    width: 100%;
-    justify-content: space-between;
+            }
 
-    & :first-child {
-      flex-grow: 2;
+            & :first-child>span {
+                background-color: red;
+            }
+
+            & :nth-child(3) {
+                flex-grow: 3;
+            }
+        }
+
+        &__files-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            width: 100%;
+
+            & :first-child,
+            & :nth-child(2) {
+                flex-grow: 1;
+            }
+        }
     }
-  }
 
-  &__second-row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    width: 100%;
-    justify-content: space-between;
-
-    & :first-child,
-    & :nth-child(2),
-    & :nth-child(3) {
-      flex-grow: 1;
+    .product-full-view {
+      display: none;
     }
-  }
-
-  &__fifth-row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    width: 100%;
-    align-items: center;
-
-
-    & :first-child>input {
-      display: inline-block;
-      width: 20%;
-
-    }
-
-    & :first-child>span {
-      background-color: red;
-    }
-
-    & :nth-child(3) {
-      flex-grow: 3;
-    }
-  }
-
-  &__files-row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    width: 100%;
-
-    & :first-child,
-    & :nth-child(2) {
-      flex-grow: 1;
-    }
-  }
-}
-
 }

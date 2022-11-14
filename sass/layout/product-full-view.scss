@@ -2,13 +2,13 @@
 @use '../abstracts/mixins' as mixin;
 
 .product-full-view {
-    border: solid 1px red;
+    border: solid 1px color.$red;
     display: flex;
     flex-direction: row;
 
     &__row {
-        border: solid 3px rgb(173, 184, 26);
-        background-color: red;
+        //border: solid 3px color.$yellow;
+        background-color: color.$red;
         width: 100%;
     }
 
@@ -18,7 +18,7 @@
 
         & .img-select {
             &__img-container {
-                border: solid 3px red;
+                border: solid 3px color.$red;
                 height: 100px;
                 width: 100px;
                 overflow: hidden;
@@ -51,14 +51,14 @@
                 height: 500px;
                 position: relative;
                 overflow: hidden;
-                border: solid 3px blue;
+                border: solid 3px color.$darkblue;
 
                 & img {
                     height: 100%;
                     position: absolute;
                     left: 50%;
                     transform: translateX(-50%);
-                    border: solid 3px red;
+                    border: solid 3px color.$red;
                 }
             }
         }
@@ -81,12 +81,6 @@
         font-weight: 600;
     }
 
-    &__long-description {}
-
-    &__age {}
-
-    &__age-number {}
-
     &__price-currency {
         font-size: 2em;
         font-weight: 500;
@@ -98,8 +92,6 @@
         align-items: center;
     }
 
-    &__price-value {}
-
     &__discount { 
         background-color: color.$yellow;
         padding: .5em;
@@ -109,15 +101,11 @@
         margin-left: .5em;
     }
 
-    &__discount--percent {}
-
     &__latest-price-currency {
         display: block;
         text-decoration: line-through;
         color: color.$grey;
     }
-
-    &__latest-price {}
 
     &__qty-and-buy-container {
         display: flex;
@@ -177,15 +165,6 @@
 
     &__link:active {
         @include mixin.red-button-active;
-    }
-
-    &__extra-info {}
-
-    @media (min-width: 900px) {}
-
-    &__link:hover {
-
-        @media (min-width: 768px) {}
     }
 
     &__stock {
