@@ -329,6 +329,7 @@ class ModuleCart {
 
         function loadCart() {
             cart = JSON.parse(localStorage.getItem('shoppingCart'));
+            updateCart();
         };
 
         async function saveCart() {
