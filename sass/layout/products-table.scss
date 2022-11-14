@@ -5,6 +5,13 @@
 
     &__thead {
         background-color: color.$lightgrey;
+
+        & .table-head {
+
+            &__th {
+                padding: 1em;
+            }
+        }
     }
 
     &__tbody {
@@ -70,6 +77,14 @@
     }
 
     &__tfoot {
-        background-color: rgb(110, 110, 110);
+        background-color: rgb(151, 151, 151);
+
+        & .table-foot {
+
+            &__content {
+                padding: .5em;
+            }
+
+        }
     }
 }

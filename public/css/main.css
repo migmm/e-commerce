@@ -974,6 +974,9 @@ body {
 .table-products__thead {
   background-color: #cecdcd;
 }
+.table-products__thead .table-head__th {
+  padding: 1em;
+}
 .table-products__tbody .table-content__cell-image-container, .table-products__tbody .table-content__cell-buttons, .table-products__tbody .table-content__cell-stock, .table-products__tbody .table-content__cell-price-container {
   text-align: center;
   border-bottom: 1px solid #cecdcd;
@@ -1011,7 +1014,10 @@ body {
   cursor: pointer;
 }
 .table-products__tfoot {
-  background-color: rgb(110, 110, 110);
+  background-color: rgb(151, 151, 151);
+}
+.table-products__tfoot .table-foot__content {
+  padding: 0.5em;
 }
 
 .card {
