@@ -71,8 +71,8 @@ class ModuleCart {
                 let img = e.target.nextElementSibling.childNodes[5].childNodes[1].src;
                 let stock = e.target.previousElementSibling.value;
 
-                addItemToCart(id, price, discount, shortDescription, brand, img, stock, 1)
-                updateCart()
+                addItemToCart(id, price, discount, shortDescription, brand, img, stock, 1);
+                updateCart();
                 return;
             }
 
@@ -88,14 +88,14 @@ class ModuleCart {
                 let stock = document.querySelector('.product-full-view__stock-value').innerHTML;
                 let qty = parseInt(document.querySelector('.product-full-view__qty').value);
 
-                addItemToCart(id, price, discount, shortDescription, brand, img, stock, qty)
-                updateCart()
+                addItemToCart(id, price, discount, shortDescription, brand, img, stock, qty);
+                updateCart();
                 return;
             }
 
             // Click on button user icon
             if (e.target.classList.value === 'fa fa-user fa-lg') {
-                userLogin.classList.toggle("login-menu")
+                userLogin.classList.toggle("login-menu");
                 return;
             }
 
@@ -104,10 +104,8 @@ class ModuleCart {
                 e.preventDefault();
 
                 let id = e.target.getAttribute('data-id');
-                console.log(id)
-                removeItemToCart(id)
-
-                updateCart()
+                removeItemToCart(id);
+                updateCart();
                 return;
             }
 
@@ -116,13 +114,14 @@ class ModuleCart {
 
                 let btnPlus = e.target.previousElementSibling.value;
                 let stockf = e.target.parentNode.parentNode.previousElementSibling.value;
-                console.log(stockf)
-                btnPlus = parseInt(btnPlus)
+                btnPlus = parseInt(btnPlus);
 
                 if (btnPlus >= parseInt(stockf)) {
+                    e.target.classList.add('plus-and-minus-deactivated');
                     return;
+                } else { 
+                    e.target.classList.remove('plus-and-minus-deactivated');
                 }
-                // btnPlus = parseInt(btnPlus) + 1;
 
                 btnPlus++
                 e.target.previousElementSibling.value = btnPlus;
@@ -145,7 +144,10 @@ class ModuleCart {
             if (e.target.classList.value === 'fa fa-minus') {
                 let btnMinus = e.target.nextElementSibling.value;
                 if (btnMinus <= 1) {
+                    e.target.classList.add('plus-and-minus-deactivated');
                     return;
+                } else {
+                    e.target.classList.remove('plus-and-minus-deactivated');
                 }
                 btnMinus = parseInt(btnMinus)
                 --btnMinus
@@ -169,13 +171,11 @@ class ModuleCart {
 
                 let maxQty = document.querySelector('.product-full-view__stock-value');
                 let fullQty = document.querySelector('.product-full-view__qty');
-                //console.log(maxQty.innerHTML)
 
                 if (fullQty.value >= parseInt(maxQty.innerHTML)) {
                     return;
                 }
                 ++fullQty.value;
-                //console.log(fullQty.value)
                 return;
             }
 
@@ -229,22 +229,22 @@ class ModuleCart {
         function addItemToCart(id, price, discount, shortDescription, brand, img, stock, qty) {
 
             // id = parseInt(id)
-            price = parseInt(price)
-            discount = parseInt(discount)
-            qty = parseInt(qty)
+            price = parseInt(price);
+            discount = parseInt(discount);
+            qty = parseInt(qty);
 
             // Check if exist
             for (let i = 0; i < cart.length; ++i) {
 
                 if (cart[i]['id'] === id) {
 
-                    cart[i].qty = cart[i].qty + qty
-                    return
+                    cart[i].qty = cart[i].qty + qty;
+                    return;
                 }
             }
             cart.push({ 'id': id, 'price': price, 'discount': discount, 'shortDescription': shortDescription, 'brand': brand, 'img': img, 'stock': stock, 'qty': qty });
 
-            updateCart()
+            updateCart();
         };
 
         function removeItemToCart(id) {
@@ -257,7 +257,7 @@ class ModuleCart {
                     break;
                 }
             }
-            updateCart()
+            updateCart();
         };
 
         function updateCart() {
@@ -284,7 +284,7 @@ class ModuleCart {
             <p class="card-cart-preview__description">${cart[i].shortDescription}</p>
             <div class="qty-selector-container">
             <i class="fa fa-minus" aria-hidden="true"></i>
-                <input type="text" class="qty-selector-container__qty" value=${cart[i].qty}>
+                <input type="text" class="qty-selector-container__qty" value=${cart[i].qty} readonly>
                 <i class="fa fa-plus" aria-hidden="true"></i>
             </div>
         </div>
@@ -303,13 +303,12 @@ class ModuleCart {
             }
 
             if (parseInt(checkReveal) === 0) {
-                qtyBadge.classList.add("hidden")
+                qtyBadge.classList.add("hidden");
 
             } else {
-                qtyBadge.classList.remove("hidden")
+                qtyBadge.classList.remove("hidden");
             }
-
-            saveCart()
+            saveCart();
         };
 
 
@@ -331,10 +330,10 @@ class ModuleCart {
         async function saveCart() {
             localStorage.setItem('shoppingCart', JSON.stringify(cart));
 
-            const cartLoaded = await cartService.loadCart()
-            console.log('cart guardado en mongo', cartLoaded)
-            let cartActual = cart
-            console.log('cart actual', cartActual)
+            const cartLoaded = await cartService.loadCart();
+            console.log('cart guardado en mongo', cartLoaded);
+            let cartActual = cart;
+            console.log('cart actual', cartActual);
             // var result = cartLoaded.find(item =>  item.userID === 'carlos23');
 
             //Variables to simulate User loggedin
@@ -354,8 +353,8 @@ class ModuleCart {
                 let userID = cartLoaded[index].id;
 
                 savedCart.userID = 'carlos23'
-                savedCart.cartContent = cart
-                await cartService.updateCart(savedCart, userID)
+                savedCart.cartContent = cart;
+                await cartService.updateCart(savedCart, userID);
             }
         };
 
@@ -363,7 +362,7 @@ class ModuleCart {
 
     static async init() {
         console.log('ModuleCart.init()');
-        loadCart()
+        loadCart();
     }
 }
 

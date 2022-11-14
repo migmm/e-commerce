@@ -1528,6 +1528,9 @@ body {
   background-color: #cecdcd;
   border-radius: 4px;
 }
+.cart-modal__products .card-cart-preview__content .qty-selector-container .plus-and-minus-deactivated {
+  color: #cecdcd;
+}
 @media (hover: hover) {
   .cart-modal__products .card-cart-preview__content .qty-selector-container .fa-minus:hover,
 .cart-modal__products .card-cart-preview__content .qty-selector-container .fa-plus:hover {

@@ -70,6 +70,10 @@
                         border-radius: 4px;
                     }
 
+                    .plus-and-minus-deactivated {
+                        color: color.$lightgrey;
+                    }
+
                     @media (hover: hover) {
 
                         & .fa-minus:hover,
