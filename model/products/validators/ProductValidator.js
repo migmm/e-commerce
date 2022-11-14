@@ -18,7 +18,7 @@ class ProductValidator {
             category: Joi.string().min(2).max(50).pattern(new RegExp('^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-].*$')).required(),
             shortDescription: Joi.string().min(2).max(80).required(),
             longDescription: Joi.string().min(2).max(200).required(),
-            freeShip: Joi.boolean().required(),
+            freeShip: Joi.boolean(),
             ageFrom: Joi.number().integer().greater(0).required(),
             ageTo:Joi.number().integer().greater(0).required(),
             ageSelect: Joi.number().required(),
