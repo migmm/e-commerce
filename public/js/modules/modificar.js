@@ -33,16 +33,13 @@ class PageModificar {
         static emptyForm() {
             PageModificar.fields.forEach(field => field.value = '');
         }
-    
 
         static completeForm(product) {
             PageModificar.fields.forEach(field => {
                 if (field.name === 'freeShip') {
                     if (product[field.name] === 'true') {
                         document.getElementById("freeShip").checked = true;
-
                     }
-                    
                 }
 
                 if (field.name === 'ageSelect') {
@@ -52,7 +49,6 @@ class PageModificar {
                     } else {
                         document.getElementById("ageMonth").checked = true;
                     }
-                    
                 }
                     field.value = product[field.name];
 
@@ -110,7 +106,6 @@ class PageModificar {
         return savedProduct;
     }
 
-
     static async updateProduct(product) {
         const updatedProduct = await productController.updateProduct(product.id, product);
         const products = await productController.getProducts();
@@ -150,7 +145,7 @@ class PageModificar {
             if (ageYear.checked) {
                 ageSelect.value = '1';
             } 
-            
+
             if (ageMonth.checked) {
                 ageSelect.value = '0';
             } 
@@ -240,7 +235,7 @@ class PageModificar {
 
                 let top = document.getElementById('form-modifica').offsetTop - 100;
                 window.scrollTo(0, top);
-                
+
                 return;
             }
 
