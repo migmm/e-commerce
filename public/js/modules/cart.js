@@ -352,7 +352,7 @@ class ModuleCart {
 
                 savedCart.userID = 'carlos23'
                 savedCart.cartContent = cart
-                await cartService.updateCart(savedCart, userID)
+                await cartService.updateCart(cart, userID)
             }
 
 
