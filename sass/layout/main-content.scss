@@ -23,10 +23,17 @@
         & .promo-wall {
 
             &__categories {
-                max-width: 100%;
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
+                display: flex;
+                flex-direction: column;
                 gap: 1em;
+
+                @media (min-width: 768px) {
+                    max-width: 100%;
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 1em;
+                    //aspect-ratio: 2 / 1;
+                }
 
                 & img {
                     width: 103%;
@@ -34,12 +41,18 @@
                     object-fit: cover;
                     cursor: pointer;
                     transition: transform .4s;
+                    aspect-ratio: 2 / 1;
+
+                    @media (min-width: 768px) {
+                        aspect-ratio: unset;
+                    }
                 }
             }
 
             &__img {
                 overflow: hidden;
-
+                position: relative;
+                
                 @media (hover: hover) {
                     & img:hover {
                         transform: scale(1.3);
@@ -54,6 +67,13 @@
 
             &__img:nth-child(4) {
                 grid-column-start: span 2;
+            }
+
+            @media (min-width: 768px) {
+                &__img:nth-child(6) {
+                    width: 500px;
+                    aspect-ratio: 1/1;
+                }
             }
 
             &__header {
