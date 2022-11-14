@@ -1590,6 +1590,10 @@ body {
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 ::selection {
   color: #004173;
   background: #00b2eb;

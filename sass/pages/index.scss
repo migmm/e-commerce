@@ -1,5 +1,9 @@
 @use '../abstracts/variables' as color;
 
+html {
+    scroll-behavior: smooth;
+}
+
 ::selection {
     color: color.$darkblue;
     background: color.$cyan;
