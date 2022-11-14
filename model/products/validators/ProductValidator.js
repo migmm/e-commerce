@@ -8,28 +8,10 @@ class ProductValidator {
         const productSchema = Joi.object({
     
             // in case someone overrides frontend validations
-            id: Joi.string(),
-            productName: Joi.string().required(),
-            price: Joi.number().required(),
-            discountPercent: Joi.number().required(),
-            vendor: Joi.string().required(),
-            stock: Joi.number().required(),
-            category: Joi.string().required(),
-            shortDescription: Joi.string().required(),
-            longDescription: Joi.string().required(),
-            freeShip: Joi.boolean(),
-            ageFrom: Joi.number().required(),
-            ageTo:Joi.number().required(),
-            ageSelect: Joi.number().required(),
-            addedDate: Joi.string(),
-            lastSell: Joi.string(),
-            images: Joi.object(),
-            colors: Joi.array().required(),
+            // same validations in frontend
 
-            /* 
-            changed for testing
             productName: Joi.string().min(2).max(30).pattern(new RegExp('^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-].*$')).required(),
-            price: Joi.number().greater(0).required(),
+            price: Joi.number().greater(-1).required(),
             discountPercent: Joi.number().greater(-1).required(),
             vendor: Joi.string().min(2).max(40).pattern(new RegExp('^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-].*$')).required(),
             stock: Joi.number().integer().required(),
@@ -42,10 +24,8 @@ class ProductValidator {
             ageSelect: Joi.number().required(),
             addedDate: Joi.date().required(),
             lastSell: Joi.date().required(),
-            images: Joi.object().required(),
+            images: Joi.object(), // This is indiferent, files are managed with multer
             colors: Joi.array().required(),
-            */
-
         });
 
         const { error } = productSchema.validate(product);
