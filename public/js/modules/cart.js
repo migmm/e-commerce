@@ -208,8 +208,6 @@ class ModuleCart {
             }
         });
 
-
-
         ///////////////////////////////////////
         //                                   //
         //    ------ Shopping cart ------    //
@@ -246,7 +244,6 @@ class ModuleCart {
             }
             cart.push({ 'id': id, 'price': price, 'discount': discount, 'shortDescription': shortDescription, 'brand': brand, 'img': img, 'stock': stock, 'qty': qty });
 
-            //saveCart()
             updateCart()
         };
 
@@ -260,7 +257,6 @@ class ModuleCart {
                     break;
                 }
             }
-            //saveCart()
             updateCart()
         };
 
@@ -340,6 +336,12 @@ class ModuleCart {
             let cartActual = cart
             console.log('cart actual', cartActual)
             // var result = cartLoaded.find(item =>  item.userID === 'carlos23');
+
+            //Variables to simulate User loggedin
+            // If loggedin, use content from database
+            // If not Use content in LocalStorage
+            // When user login localstorage content is replaced in database content
+
             let loggedIn = true;
             let user = 'carlos23'; // johnse - alfredoro - carlos23
             let savedCart = {};
@@ -353,29 +355,15 @@ class ModuleCart {
 
                 savedCart.userID = 'carlos23'
                 savedCart.cartContent = cart
-                await cartService.updateCart(cart, userID)
+                await cartService.updateCart(savedCart, userID)
             }
-
-
-
-
-            //console.log('resultado', result)
-            /*  let savedCart = {}
-             savedCart.userID = 'carlos23'
-             savedCart.cartContent = cart
-             console.log(savedCart)
-             await cartService.saveCart(savedCart) */
         };
-
-        //updateCart()
 
     }
 
     static async init() {
         console.log('ModuleCart.init()');
-        // ModuleCart.updateCart()
         loadCart()
-        //goToTopAndCloseMenu ();
     }
 }
 
