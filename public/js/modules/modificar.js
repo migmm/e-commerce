@@ -271,6 +271,7 @@ class PageModificar {
 
         await PageModificar.renderTemplateTable(products);
         PageModificar.addTableEvents();
+
     }
 }
 
