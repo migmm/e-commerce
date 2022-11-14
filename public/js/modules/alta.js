@@ -17,7 +17,7 @@ class PageAlta {
     static fields
 
     static validators = {
-        productName: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,30}$/,
+        productName: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{4,30}$/,
         price: /^[0-9,]{1,30}$/,
         discountPercent: /^[0-9,]{1,30}$/,
         vendor: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,40}$/,
