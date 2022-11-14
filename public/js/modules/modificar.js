@@ -147,18 +147,19 @@ class PageModificar {
 
             ageSelect.value = null
 
+            if (ageYear.checked) {
+                ageSelect.value = '1';
+            } 
+            
+            if (ageMonth.checked) {
+                ageSelect.value = '0';
+            } 
+
             let freeShip = document.getElementById('freeShip');
             freeShip.value = false
             if (freeShip.checked) {
                 freeShip.value = 'true';
             }
-            
-            if (ageYear.checked) {
-                ageSelect.value = '1';
-            } 
-            if (ageMonth.checked) {
-                ageSelect.value = '0';
-            } 
 
             PageModificar.emptyForm();
         });
