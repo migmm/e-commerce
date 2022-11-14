@@ -147,6 +147,12 @@ class PageModificar {
 
             ageSelect.value = null
 
+            let freeShip = document.getElementById('freeShip');
+            freeShip.value = false
+            if (freeShip.checked) {
+                freeShip.value = 'true';
+            }
+            
             if (ageYear.checked) {
                 ageSelect.value = '1';
             } 
