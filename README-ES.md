@@ -14,13 +14,14 @@ Tema: juguetería.
 
 Nombre: Juguetería Cósmica.
 
-Deploy: [Juguetería Cósmica](https://massive-iridescent-iron.glitch.me/)
+Deploy: [www.jugueteriacosmica.com.ar](https://www.jugueteriacosmica.com.ar/)
+Deploy: [Glitch](https://massive-iridescent-iron.glitch.me/)
 
 Primer entrega: 02/08/2022.
 
 Segunda entrega: 26/09/2022.
 
-Tercera entrega: a confirmar.
+Tercera entrega: 14/11/2022.
 
 ### Frontend
 
@@ -62,5 +63,5 @@ yarn install
 npm start
 ```
 
-To run the app<br />
+Para ver el proyecto:<br />
 Abrir [http://localhost:8080](http://localhost:8080) para ver el e-commerce

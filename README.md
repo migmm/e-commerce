@@ -13,14 +13,15 @@ Topic: Toy store.
 
 Name: Juguetería Cósmica.
 
-Deploy: [Juguetería Cósmica](https://massive-iridescent-iron.glitch.me/)
+Deploy: [www.jugueteriacosmica.com.ar](https://www.jugueteriacosmica.com.ar/)
+Deploy: [Glitch](https://massive-iridescent-iron.glitch.me/)
 
 
 First delivery: 02/08/2022.
 
 Second delivery: 26/09/2022.
 
-Third delivery: On wait.
+Third delivery: 14/11/2022.
 
 ### Frontend
 
@@ -61,7 +62,7 @@ or Yarn
  In the project directory, you can run:
 ### `npm start`
 
-To run the app<br />
+To run the app:<br />
 Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
 
