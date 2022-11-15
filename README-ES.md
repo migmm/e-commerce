@@ -15,6 +15,7 @@ Tema: juguetería.
 Nombre: Juguetería Cósmica.
 
 Deploy: [www.jugueteriacosmica.com.ar](https://www.jugueteriacosmica.com.ar/)
+
 Deploy: [Glitch](https://massive-iridescent-iron.glitch.me/)
 
 Primer entrega: 02/08/2022.
