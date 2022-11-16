@@ -25,46 +25,18 @@ const getProduct = async (req, res) => {
 
 const postProduct = async function (req, res, next) {
 
-    // const firstProductImg = req.files['avatar'][0];
-    // let productImgGallery = req.files['gallery'];
-
-    const data = req.body
-    const files = req.files
-    console.log('hay files', files.avatar)
-    console.log('avatar', req.files['avatar'])
-    //console.log('avatar 0', req.files['avatar'][0])
-    console.log('gall', req.files['gallery'])
-    if (req.file === undefined) {
-        console.log('hay files')
-    }
-
-    var product = {
-
-        productName: data.productName,
-        price: data.price,
-        discountPercent: data.discountPercent,
-        vendor: data.vendor,
-        stock: data.stock,
-        category: data.category,
-        shortDescription: data.shortDescription,
-        longDescription: data.longDescription,
-        freeShip: data.freeShip,
-        ageFrom: data.ageFrom,
-        ageTo: data.ageTo,
-        ageSelect: data.ageSelect,
-        addedDate: data.addedDate,
-        lastSell: data.lastSell,
-        colors: data.colors
-    }
+    const product = req.body;
+    const files = req.files;
 
     let locationName = PRODUCT_IMG_UPLOAD_LOCATION.STORAGE_LOCATION.substring(9);
 
-    product['images'] = {}
+    product['images'] = {};
 
     if (files.avatar !== undefined) {
 
         const firstProductImg = req.files['avatar'][0];
-        let productImgGallery = req.files['gallery'];
+        const productImgGallery = req.files['gallery'];
+
         product['images']['portada'] = locationName + firstProductImg.filename;
 
         if (productImgGallery !== undefined) {
@@ -75,6 +47,7 @@ const postProduct = async function (req, res, next) {
                 }
             }
         }
+
         const newProduct = await api.createProduct(product);
         res.json(newProduct);
 
