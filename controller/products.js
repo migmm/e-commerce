@@ -1,8 +1,7 @@
 // const {getProduct, getProducts} = require('../api/products');
-import multer from 'multer';
 import api from '../api/products.js';
+import multerFS from '../middlewares/multer.js';
 
-const storageLocation = './public/img/products/';
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -23,25 +22,6 @@ const getProduct = async (req, res) => {
 //                              POST Controllers                             //
 ///////////////////////////////////////////////////////////////////////////////
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        const error = null;
-        cb(error, storageLocation);
-    },
-    filename: function (req, file, cb) {
-        const error = null;
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(error, `${uniqueSuffix}-${file.originalname.toLowerCase().replaceAll(' ', '-')}`);
-    }
-});
-
-const fileFilter = (req, file, cb) => {
-    const validaMimeTypes = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'];
-    const mimeTypeIsOk = validaMimeTypes.includes(file.mimetype);
-    cb(null, mimeTypeIsOk);
-};
-
-const upload = multer({ storage, fileFilter });
 
 const postProduct = async function (req, res, next) {
 
@@ -68,7 +48,8 @@ const postProduct = async function (req, res, next) {
         colors: data.colors
     }
 
-    let locationName = storageLocation.substring(9);
+    let locationName = multerFS.storageLocation.substring(9);
+    
     product['images'] = {}
 
     if (firstProductImg !== undefined) {
@@ -91,7 +72,7 @@ const postProduct = async function (req, res, next) {
     }
 }
 
-const fieldConfig = upload.fields([{ name: 'avatar', maxCount: 1 }, { name: 'gallery', maxCount: 3 }])
+
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -154,5 +135,4 @@ export default {
     postProduct,
     putProduct,
     deleteProduct,
-    fieldConfig,
 };
