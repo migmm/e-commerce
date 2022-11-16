@@ -1,8 +1,6 @@
-![npm](https://img.shields.io/npm/v/npm?color=green)  ![npm](https://img.shields.io/npm/v/express?label=express&logo=Express)  ![GitHub package.json version](https://img.shields.io/github/package-json/v/migmm/e-commerce)
+![npm](https://img.shields.io/npm/v/npm?color=green)  ![npm](https://img.shields.io/npm/v/express?label=express&logo=Express)  ![GitHub package.json version](https://img.shields.io/github/package-json/v/migmm/e-commerce)  ![master](https://img.shields.io/github/last-commit/migmm/e-commerce)
 
-[ENGLISH VERSION](https://github.com/migmm/e-commerce/blob/main/README.md)
-
-# Proyecto integrador
+[ENGLISH VERSION](https://github.com/migmm/e-commerce/blob/main/README.md# Proyecto integrador
 ## Bootcamp FullStack Engineer de __EducaciónIT__ 
 Proyecto integrador que consiste en la creación de un e-commerce.
 
