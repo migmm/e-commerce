@@ -1,6 +1,6 @@
 // const {getProduct, getProducts} = require('../api/products');
 import api from '../api/products.js';
-import {PRODUCT_IMG_UPLOAD_LOCATION} from '../config.js';
+import { PRODUCT_IMG_UPLOAD_LOCATION } from '../config.js';
 
 
 
@@ -25,9 +25,18 @@ const getProduct = async (req, res) => {
 
 const postProduct = async function (req, res, next) {
 
-    const firstProductImg = req.files['avatar'][0];
-    let productImgGallery = req.files['gallery'];
+    // const firstProductImg = req.files['avatar'][0];
+    // let productImgGallery = req.files['gallery'];
+
     const data = req.body
+    const files = req.files
+    console.log('hay files', files.avatar)
+    console.log('avatar', req.files['avatar'])
+    //console.log('avatar 0', req.files['avatar'][0])
+    console.log('gall', req.files['gallery'])
+    if (req.file === undefined) {
+        console.log('hay files')
+    }
 
     var product = {
 
@@ -49,11 +58,13 @@ const postProduct = async function (req, res, next) {
     }
 
     let locationName = PRODUCT_IMG_UPLOAD_LOCATION.STORAGE_LOCATION.substring(9);
-    
+
     product['images'] = {}
 
-    if (firstProductImg !== undefined) {
+    if (files.avatar !== undefined) {
 
+        const firstProductImg = req.files['avatar'][0];
+        let productImgGallery = req.files['gallery'];
         product['images']['portada'] = locationName + firstProductImg.filename;
 
         if (productImgGallery !== undefined) {
@@ -87,11 +98,11 @@ const putProduct = async (req, res) => {
         const firstProductImg = req.files['avatar'][0];
         let productImgGallery = req.files['gallery'];
 
-       // const data = req.body
-    /*     const previousAvatar = data.images.prevAvatar;
-        const previousGalleryImg0 = data.images.prevGallery0
-        const previousGalleryImg1 = data.images.prevGallery1
-        const previousGalleryImg2 = data.images.prevGallery2 */
+        // const data = req.body
+        /*     const previousAvatar = data.images.prevAvatar;
+            const previousGalleryImg0 = data.images.prevGallery0
+            const previousGalleryImg1 = data.images.prevGallery1
+            const previousGalleryImg2 = data.images.prevGallery2 */
         let locationName = storageLocation.substring(9);
 
         product['images'] = {}
@@ -105,8 +116,8 @@ const putProduct = async (req, res) => {
                 }
             }
         }
-    
-        
+
+
 
     } /* else {
         res.status(415).send('<h1>Se produjo un error.</h1>');

@@ -28,5 +28,4 @@ const fieldConfig = upload.fields([{ name: 'avatar', maxCount: 1 }, { name: 'gal
 
 export default {
     fieldConfig,
-    storageLocation,
 };
