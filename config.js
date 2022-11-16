@@ -1,6 +1,9 @@
 import * as dotenv from 'dotenv'
 dotenv.config()
 
+const PRODUCT_IMG_UPLOAD_LOCATION = {
+    STORAGE_LOCATION: './public/img/products/',
+}
 
 const PERSISTENCE_TYPES = {
     TYPE_MONGODB: 'MONGODB',
@@ -13,4 +16,4 @@ const config = {
     MONGODB_TIMEOUT: 30000, 
 };
 
-export {PERSISTENCE_TYPES, config as default};
+export {PERSISTENCE_TYPES, PRODUCT_IMG_UPLOAD_LOCATION, config as default};

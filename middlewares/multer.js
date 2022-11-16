@@ -1,7 +1,8 @@
 
 import multer from 'multer';
+import {PRODUCT_IMG_UPLOAD_LOCATION} from '../config.js';
 
-const storageLocation = './public/img/products/';
+const storageLocation = PRODUCT_IMG_UPLOAD_LOCATION.STORAGE_LOCATION;
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {

@@ -1,6 +1,6 @@
 // const {getProduct, getProducts} = require('../api/products');
 import api from '../api/products.js';
-import multerFS from '../middlewares/multer.js';
+import {PRODUCT_IMG_UPLOAD_LOCATION} from '../config.js';
 
 
 
@@ -48,7 +48,7 @@ const postProduct = async function (req, res, next) {
         colors: data.colors
     }
 
-    let locationName = multerFS.storageLocation.substring(9);
+    let locationName = PRODUCT_IMG_UPLOAD_LOCATION.STORAGE_LOCATION.substring(9);
     
     product['images'] = {}
 
