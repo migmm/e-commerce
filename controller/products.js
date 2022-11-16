@@ -39,7 +39,7 @@ const postProduct = async function (req, res, next) {
 
         product['images']['portada'] = locationName + firstProductImg.filename;
 
-        if (productImgGallery !== undefined) {
+        if (files.gallery !== undefined) {
 
             for (let i = 0; i <= productImgGallery.length; ++i) {
                 if (productImgGallery[i] !== undefined) {
@@ -55,8 +55,6 @@ const postProduct = async function (req, res, next) {
         res.status(415).send('<h1>Se produjo un error.</h1>');
     }
 }
-
-
 
 
 //////////////////////////////////////////////////////////////////////////////
