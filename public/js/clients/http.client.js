@@ -31,6 +31,7 @@ class Http {
         console.log(data)
         const colorsString = data.get('colors');
         data.delete('colors');
+        data.delete('ageSelects');
         var colorsSplit = colorsString.split(',');
         colorsSplit.forEach((item) => data.append("colors[]", item))
         
