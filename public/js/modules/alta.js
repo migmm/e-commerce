@@ -59,7 +59,7 @@ class PageAlta {
         for (const field of PageAlta.fields) {
             const validated = PageAlta.validate(field.value, PageAlta.validators[field.name]);
             console.log(field.name, validated);
-            
+
             let errorField = document.getElementsByName(field.name)[0];
             let ancest = errorField.closest(".input-group__form-group");
             let spanElement = ancest.querySelector('span:last-child')
@@ -128,14 +128,25 @@ class PageAlta {
 
             if (ageYear.checked) {
                 ageSelect.value = '1';
-            } 
+            }
             if (ageMonth.checked) {
                 ageSelect.value = '0';
-            } 
+            }
 
             const productToSave = PageAlta.validateForm();
+
+            //Bypass to get the files too
+            let dataProducts = new FormData(document.getElementById("form-add-products"))
+            console.log(dataProducts)
+            const colorsString = dataProducts.get('colors');
+            dataProducts.delete('colors');
+            dataProducts.delete('ageSelects');
+            var colorsSplit = colorsString.split(',');
+            colorsSplit.forEach((item) => dataProducts.append("colors[]", item))
+
+
             if (productToSave) {
-                const savedProduct = await PageAlta.saveProduct(productToSave);
+                const savedProduct = await PageAlta.saveProduct(dataProducts);
                 console.log('savedProduct:', savedProduct);
                 PageAlta.emptyForm();
             }

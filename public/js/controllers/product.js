@@ -16,18 +16,7 @@ class ProductController {
     
     async saveProduct(product) {
         // console.log('saveProduct:', product);
-
-           //Bypass to get the files too
-           let data = new FormData(document.getElementById("form-add-products"))
-           console.log(data)
-           const colorsString = data.get('colors');
-           data.delete('colors');
-           data.delete('ageSelects');
-           var colorsSplit = colorsString.split(',');
-           colorsSplit.forEach((item) => data.append("colors[]", item))
-
-
-        const savedProduct = await productService.saveProduct(data);
+        const savedProduct = await productService.saveProduct(product);
         return savedProduct;
     }
 
