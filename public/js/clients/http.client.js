@@ -23,22 +23,14 @@ class Http {
     }
 }
 
-    //adapted to work with FormData
-    async post(url) {
-
-        //Bypass to get the files too
-        let data = new FormData(document.getElementById("form-add-products"))
-        console.log(data)
-        const colorsString = data.get('colors');
-        data.delete('colors');
-        data.delete('ageSelects');
-        var colorsSplit = colorsString.split(',');
-        colorsSplit.forEach((item) => data.append("colors[]", item))
-        
+    // Function adapted to work with FormData
+    // If you send JSON add uncommented lines
+    async post(url, data) {
         try {
             return await fetch(url, {
                 method: 'post',
-                body: data,
+                body: data, // JSON.stringify(data),
+                // headers: { 'content-type': 'application/json' }
             }).then(r => r.json());
         } catch (error) {
             console.error('ERROR POST', error);
