@@ -119,7 +119,7 @@ class ModuleCart {
                 if (btnPlus >= parseInt(stockf)) {
                     e.target.classList.add('plus-and-minus-deactivated');
                     return;
-                } else { 
+                } else {
                     e.target.classList.remove('plus-and-minus-deactivated');
                 }
 
@@ -341,8 +341,8 @@ class ModuleCart {
             // If not Use content in LocalStorage
             // When user login localstorage content is replaced in database content
 
-            let loggedIn = true;
-            let user = 'carlos23'; // johnse - alfredoro - carlos23
+            const loggedIn = true;
+            const user = 'arthemis'; // johnse - alfredoro - carlos23
             let savedCart = {};
 
             if (loggedIn) {
@@ -352,7 +352,7 @@ class ModuleCart {
                 console.log(cartLoaded[index].id);
                 let userID = cartLoaded[index].id;
 
-                savedCart.userID = 'carlos23'
+                savedCart.userID = user;
                 savedCart.cartContent = cart;
                 await cartService.updateCart(savedCart, userID);
             }

@@ -1,0 +1,29 @@
+{{#if products}}
+    {{#each products}}
+        <div class="card-cart-preview">
+            <div class="card-cart-preview__image-container">
+                <img src="${cart[i].img}" alt="Producto" class="card-cart-preview__image" />
+            </div>
+            <input type="hidden" name="ids" id="ids" class="ids" value="{{this.id}}"/>
+            <input type="hidden" name="stocks" id="stocks" class="stocks" value="{{this.stock}}" />
+            <div class="card-cart-preview__content">
+                <p class="card-cart-preview__description">{{this.shortDescription}}</p>
+                <div class="qty-selector-container">
+                    <i class="fa fa-minus" aria-hidden="true"></i>
+                    <input type="text" class="qty-selector-container__qty" value="${cart[i].qty}" readonly />
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="card-cart-preview__price">
+                <span class="card-cart-preview__price__price-currency">Precio: $<span class="card-cart-preview__price__price-value">{{discount this.price this.discountPercent}}</span>
+                </span>
+                <span class="card-cart-preview__price__sub-price-currency">Subtotal: $<span class="card-cart-preview__price__price-value"
+                    >${parseInt(cart[i].price) * parseInt(cart[i].qty)}</span>
+                </span>
+            </div>
+            <i class="fa fa-trash-o" aria-hidden="true" data-id="${cart[i].id}"></i>
+        </div>
+    {{/each}}
+{{else}}
+    <h2>No se encontraron productos</h2>
+{{/if}}
