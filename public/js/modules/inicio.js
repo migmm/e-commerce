@@ -1,5 +1,6 @@
 
 import productController from '/js/controllers/product.js';
+import cartController from '/js/modules/cart.js';
 
 console.log('🆗: Módulo PageInicio cargado.');
 
@@ -40,6 +41,7 @@ class PageInicio {
         console.log(`Se encontraron ${products.length} productos`);
         PageInicio.carousel()
         await PageInicio.renderTemplateCards(products);
+        await cartController.renderCardsCartPreview(products)
 
     }
 }

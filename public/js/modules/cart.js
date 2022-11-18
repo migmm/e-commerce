@@ -4,6 +4,15 @@ console.log('🆗: Módulo ModuleCart cargado.');
 
 class ModuleCart {
 
+    cart = []
+
+    static async renderCardsCartPreview(products) {
+        const hbsFile = await fetch('templates/card-cart-preview.hbs').then(r => r.text());
+        const template = Handlebars.compile(hbsFile);
+        const html = template({ products });
+        document.querySelector('.cart-modal__products').innerHTML = html;
+    }
+    
     static cartFunctions() {
 
         /////////////////////////////////////////
@@ -61,6 +70,7 @@ class ModuleCart {
 
             // You are about to enter to the sibling zone...
             // Click on button card_linK
+            /* 
             if (e.target.classList.value === 'card__link') {
                 e.preventDefault();
                 let id = e.target.getAttribute("data-id");
@@ -355,14 +365,15 @@ class ModuleCart {
                 savedCart.userID = user;
                 savedCart.cartContent = cart;
                 await cartService.updateCart(savedCart, userID);
-            }
-        };
+            } */
+        });
 
     }
 
     static async init() {
         console.log('ModuleCart.init()');
-        loadCart();
+       // await ModuleCart.renderCardsCartPreview(products);
+        //loadCart();
     }
 }
 
