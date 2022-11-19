@@ -31,26 +31,33 @@ const postProduct = async function (req, res, next) {
 
     product['images'] = {};
 
-    if (files.avatar !== undefined) {
+    try {
+        if (files.avatar !== 'undefined') {
 
-        const firstProductImg = req.files['avatar'][0];
-        const productImgGallery = req.files['gallery'];
+            const firstProductImg = req.files['avatar'][0];
+            const productImgGallery = req.files['gallery'];
 
-        product['images']['portada'] = locationName + firstProductImg.filename;
+            product['images']['portada'] = locationName + firstProductImg.filename;
 
-        if (files.gallery !== undefined) {
+            if (files.gallery !== undefined) {
 
-            for (let i = 0; i <= productImgGallery.length; ++i) {
-                if (productImgGallery[i] !== undefined) {
-                    product['images'][`${'galeria' + [i]}`] = locationName + productImgGallery[i].filename;
+                for (let i = 0; i <= productImgGallery.length; ++i) {
+                    if (productImgGallery[i] !== undefined) {
+                        product['images'][`${'galeria' + [i]}`] = locationName + productImgGallery[i].filename;
+                    }
                 }
             }
+
+            const newProduct = await api.createProduct(product);
+            res.json(newProduct);
+
+            /* } else {
+                res.status(415).send('<h1>Se produjo un error.</h1>');
+            } */
         }
+    }
 
-        const newProduct = await api.createProduct(product);
-        res.json(newProduct);
-
-    } else {
+    catch (err) {
         res.status(415).send('<h1>Se produjo un error.</h1>');
     }
 }
@@ -69,18 +76,18 @@ const putProduct = async (req, res) => {
     if (files.avatar !== undefined) {
 
         const firstProductImg = req.files['avatar'][0];
-        
+
         // const data = req.body
         /*     const previousAvatar = data.images.prevAvatar;
             const previousGalleryImg0 = data.images.prevGallery0
             const previousGalleryImg1 = data.images.prevGallery1
             const previousGalleryImg2 = data.images.prevGallery2 */
 
-       /*  product['images'] = {} */
+        /*  product['images'] = {} */
 
         product['images']['portada'] = locationName + firstProductImg.filename;
-    } 
-    
+    }
+
     if (files.gallery !== undefined) {
 
         const productImgGallery = req.files['gallery'];
