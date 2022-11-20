@@ -4,13 +4,13 @@
             <div class="card-cart-preview__image-container">
                 <img src="{{this.images.portada}}" alt="Producto" class="card-cart-preview__image" />
             </div>
-           {{!--  <input type="hidden" name="ids" id="ids" class="ids" value="{{this.id}}"/> --}}
+            {{!--  <input type="hidden" name="ids" id="ids" class="ids" value="{{this.id}}"/> --}}
             <input type="hidden" name="stocks" id="stocks" class="stocks" value="{{this.stock}}" />
             <div class="card-cart-preview__content">
                 <p class="card-cart-preview__description">{{this.productName}}</p>
                 <div class="qty-selector-container">
                     <i class="fa fa-minus" aria-hidden="true"></i>
-                    <input type="text" class="qty-selector-container__qty" value="${cart[i].qty}" readonly />
+                    <input type="text" class="qty-selector-container__qty" value="{{this.qty}}" readonly />
                     <i class="fa fa-plus" aria-hidden="true"></i>
                 </div>
             </div>

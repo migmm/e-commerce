@@ -387,7 +387,17 @@ class ModuleCart {
     static async addItemToCart(id) {
         const products = await productController.getProducts();
         const product = products.find(product => product.id == id)
+        const productToRemoveId = this.cart.findIndex(product => product.id == id)
+        if (productToRemoveId >=0) {
+            ++this.cart[productToRemoveId].qty;
+            console.log(this.cart)
+            await ModuleCart.renderCardsCartPreview(this.cart);
+            return;
+        }
+
         this.cart.push(product)
+        this.cart[this.cart.length -1].qty = "1";
+
         await ModuleCart.renderCardsCartPreview(this.cart);
     }
 
