@@ -76,6 +76,13 @@ class ModuleCart {
                 return;
             }
 
+            if (e.target.classList.value === 'fa fa-trash-o') {
+                e.preventDefault();
+                let id = e.target.getAttribute('data-id');
+                ModuleCart.removeItemOfCart(id)
+                return;
+            }
+
             // You are about to enter to the sibling zone...
             // Click on button card_linK
             /* 
@@ -375,17 +382,19 @@ class ModuleCart {
                 await cartService.updateCart(savedCart, userID);
             } */
         });
-
     }
 
     static async addItemToCart(id) {
         const products = await productController.getProducts();
         const product = products.find(product => product.id == id)
-        console.log(product)
         this.cart.push(product)
-        console.log(this.cart)
         await ModuleCart.renderCardsCartPreview(this.cart);
-        
+    }
+
+    static async removeItemOfCart(id) {
+        const productToRemoveId = this.cart.findIndex(product => product.id == id)
+        this.cart.splice(productToRemoveId, 1)
+        await ModuleCart.renderCardsCartPreview(this.cart);
     }
 
     static async init() {
