@@ -26,11 +26,8 @@ class ModuleCart {
 
         const backgroundDark = document.querySelector('.background-dark');
         const cartPreview = document.querySelector('.cart-modal');
-        const userLogin = document.querySelector('.login-button-menu')
-        const qtySelector = document.querySelector('.card__item-qty-selector')
-        let cart = [];
         let isCartPreviewOpen = false;
-        let idLoaded;
+
 
         function toggleCart() {
             backgroundDark.classList.toggle('background-dark--hidden');
@@ -388,31 +385,44 @@ class ModuleCart {
         const products = await productController.getProducts();
         const product = products.find(product => product.id == id)
         const productToRemoveId = this.cart.findIndex(product => product.id == id)
-        const badgeQtyCounter = document.getElementsByClassName('main-header__wrapper__cart-button-container__qty-cart')[0];
+        //let badgeQtyCounter = document.getElementsByClassName('main-header__wrapper__cart-button-container__qty-cart')[0];
 
         if (productToRemoveId >=0) {
             ++this.cart[productToRemoveId].qty;
-            ++badgeQtyCounter.innerHTML;
+            ///++badgeQtyCounter.innerHTML;
             await ModuleCart.renderCardsCartPreview(this.cart);
+            ModuleCart.updateCart();
             return;
         }
 
         this.cart.push(product)
 
-        if (badgeQtyCounter.innerHTML === 0) {
+    /*     if (badgeQtyCounter.innerHTML === 0) {
             badgeQtyCounter.innerHTML = 1;
         } else {
             ++badgeQtyCounter.innerHTML;
-        }
+        } */
 
         this.cart[this.cart.length -1].qty = 1;
+        
         await ModuleCart.renderCardsCartPreview(this.cart);
+        ModuleCart.updateCart();
     }
 
     static async removeItemOfCart(id) {
-        const productToRemoveId = this.cart.findIndex(product => product.id == id)
-        this.cart.splice(productToRemoveId, 1)
+        const productToRemoveId = this.cart.findIndex(product => product.id == id);
+        this.cart.splice(productToRemoveId, 1);
         await ModuleCart.renderCardsCartPreview(this.cart);
+        ModuleCart.updateCart() ;
+    }
+
+    static updateCart () {
+        let badgeQtyCounter = document.getElementsByClassName('main-header__wrapper__cart-button-container__qty-cart')[0];
+        badgeQtyCounter.innerHTML = parseInt (0);
+        console.log(typeof(badgeQtyCounter.innerHTML));
+        for (let i =0 ; i <= this.cart.length -1 ; ++i) {
+            badgeQtyCounter.innerHTML = parseInt(badgeQtyCounter.innerHTML) + parseInt (this.cart[i].qty);
+        }
     }
 
     static async init() {
