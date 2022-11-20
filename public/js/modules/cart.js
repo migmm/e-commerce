@@ -388,16 +388,24 @@ class ModuleCart {
         const products = await productController.getProducts();
         const product = products.find(product => product.id == id)
         const productToRemoveId = this.cart.findIndex(product => product.id == id)
+        const badgeQtyCounter = document.getElementsByClassName('main-header__wrapper__cart-button-container__qty-cart')[0];
+
         if (productToRemoveId >=0) {
             ++this.cart[productToRemoveId].qty;
-            console.log(this.cart)
+            ++badgeQtyCounter.innerHTML;
             await ModuleCart.renderCardsCartPreview(this.cart);
             return;
         }
 
         this.cart.push(product)
-        this.cart[this.cart.length -1].qty = "1";
 
+        if (badgeQtyCounter.innerHTML === 0) {
+            badgeQtyCounter.innerHTML = 1;
+        } else {
+            ++badgeQtyCounter.innerHTML;
+        }
+
+        this.cart[this.cart.length -1].qty = 1;
         await ModuleCart.renderCardsCartPreview(this.cart);
     }
 
