@@ -3,9 +3,158 @@ console.log('🆗: Módulo PageContacto cargado.');
 
 class PageContacto {
 
+    
+    static form
+    static fields
+
+    static validators = {
+        /*  productName: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{4,30}$/,
+        price: /^[0-9,]{1,30}$/,
+        discountPercent: /^[0-9,]{1,30}$/,
+        vendor: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,40}$/,
+        stock: /^-?[0-9]{1,30}$/,
+        category: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,50}$/,
+        shortDescription: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,80}$/,
+        longDescription: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,2000}$/,
+        freeShip: /^(?:tru|fals)e$/,
+        ageFrom: /^[0-9]{1,3}$/,
+        ageTo: /^[0-9]{1,3}$/,
+        ageSelect: /^[0-1]{1,2}$/,
+        addedDate: /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/,
+        lastSell: /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/,
+        avatar: /^.+\.(jpe?g|gif|png)$/i, */
+        //gallery: /[^]*/,
+        //colors: /^\s*([a-zA-Z0-9ÁáÉéÍíÓóÚúÑñ,.-_]+\s*){1,3}$/,
+        name: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9 .,\"\'\s\/_-]{4,30}$/,
+        phoneNumber: /^[0-9]*$/, //only numbers by now
+        email: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+        message: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,3000}$/,
+    };
+
+    static emptyForm() {
+        PageContacto.fields.forEach(field => field.value = '');
+    }
+
+/*     static completeForm(product) {
+        PageContacto.fields.forEach(field => {
+            field.value = product[field.name];
+        });
+    } */
+
+    static validate(value, validator) {
+        return validator.test(value);
+    }
+
+    static validateForm() {
+        let allValidated = true;
+        const formToSend = {};
+        console.log('\n\n');
+
+        for (const field of PageContacto.fields) {
+            const validated = PageContacto.validate(field.value, PageContacto.validators[field.name]);
+            console.log(field.name, validated);
+
+            let errorField = document.getElementsByName(field.name)[0];
+            let ancest = errorField.closest(".input-group__form-group");
+            let spanElement = ancest.querySelector('span:last-child')
+
+            if (!validated) {
+
+                errorField.classList.remove("input-group__input--ok");
+                errorField.classList.add("input-group__input--error");
+                spanElement.style.visibility = 'visible';
+
+                allValidated = false;
+                break;
+
+            } else {
+
+                formToSend[field.name] = field.value;
+
+                errorField.classList.remove("input-group__input--error");
+                errorField.classList.add("input-group__input--ok");
+                spanElement.style.visibility = 'hidden';
+            }
+        }
+
+        console.log('allValidated:', allValidated);
+        if (!allValidated) {
+            return false;
+        }
+        return formToSend;
+    }
+
+    /*  static async saveProduct(product) {
+        const savedProduct = await productController.saveProduct(product);
+        const products = await productController.getProducts();
+        console.log(`Ahora hay ${products.length} productos`);
+        // PageContacto.renderTemplateTable(products);
+        return savedProduct;
+    }
+ */
+
+    /* static async updateProduct(product) {
+        const updatedProduct = await productController.updateProduct(product.id, product);
+        const products = await productController.getProducts();
+        console.log(`Ahora hay ${products.length} productos`);
+        PageContacto.renderTemplateTable(products);
+        return updatedProduct;
+    }
+ */
+
+    static async addFormEvents() {
+
+        PageContacto.form.addEventListener('submit', async e => {
+            e.preventDefault();
+
+          /*   document.getElementById('addedDate').value = new Date().toISOString();
+            document.getElementById('lastSell').value = new Date('1900-01-01').toISOString();
+
+            let freeShip = document.getElementById('freeShip');
+            freeShip.value = false
+            if (freeShip.checked) {
+                freeShip.value = 'true';
+            }
+
+            let ageYear = document.getElementById('ageYear');
+            let ageMonth = document.getElementById('ageMonth');
+            let ageSelect = document.getElementById('ageSelect');
+
+            ageSelect.value = null
+
+            if (ageYear.checked) {
+                ageSelect.value = '1';
+            }
+            if (ageMonth.checked) {
+                ageSelect.value = '0';
+            } */
+
+            const formToSend = PageContacto.validateForm();
+
+            //Bypass to get the files too
+            /*   let dataProducts = new FormData(document.getElementById("form-add-products"))
+            console.log(dataProducts)
+            const colorsString = dataProducts.get('colors');
+            dataProducts.delete('colors');
+            dataProducts.delete('ageSelects');
+            var colorsSplit = colorsString.split(',');
+            colorsSplit.forEach((item) => dataProducts.append("colors[]", item)) */
+
+
+            if (formToSend) {
+             /*    const savedProduct = await PageContacto.saveProduct(dataProducts); */
+                console.log('savedProduct:', savedProduct);
+                PageContacto.emptyForm();
+            }
+        });
+    }
+
     static async init () {
         console.log('PageContacto.init()');
         document.getElementById("name").focus();
+        PageContacto.form = document.getElementById('form-contact');
+        PageContacto.fields = PageContacto.form.querySelectorAll('textarea, input');
+        PageContacto.addFormEvents();
         //goToTopAndCloseMenu ();
     }
 }
