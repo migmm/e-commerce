@@ -389,6 +389,7 @@ class ModuleCart {
         if (productToRemoveId >=0) {
             ++this.cart[productToRemoveId].qty;
             await ModuleCart.renderCardsCartPreview(this.cart);
+            localStorage.setItem('cart', JSON.stringify(this.cart));
             ModuleCart.updateCart();
             return;
         }
@@ -396,6 +397,7 @@ class ModuleCart {
         this.cart.push(product);
         this.cart[this.cart.length -1].qty = 1;
         await ModuleCart.renderCardsCartPreview(this.cart);
+        localStorage.setItem('cart', JSON.stringify(this.cart));
         ModuleCart.updateCart();
     }
 
@@ -403,7 +405,8 @@ class ModuleCart {
         const productToRemoveId = this.cart.findIndex(product => product.id == id);
         this.cart.splice(productToRemoveId, 1);
         await ModuleCart.renderCardsCartPreview(this.cart);
-        ModuleCart.updateCart() ;
+        localStorage.setItem('cart', JSON.stringify(this.cart));
+        ModuleCart.updateCart();
     }
 
     static updateCart () {
@@ -417,8 +420,9 @@ class ModuleCart {
 
     static async init() {
         console.log('ModuleCart.init()');
+        this.cart = JSON.parse(localStorage.getItem('cart')) || [];
         await ModuleCart.renderCardsCartPreview(this.cart);
-        //loadCart();
+        ModuleCart.updateCart ()
     }
 }
 
