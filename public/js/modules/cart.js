@@ -76,7 +76,7 @@ class ModuleCart {
             if (e.target.classList.value === 'fa fa-trash-o') {
                 e.preventDefault();
                 let id = e.target.getAttribute('data-id');
-                ModuleCart.removeItemOfCart(id)
+                ModuleCart.removeItemFromCart(id)
                 return;
             }
 
@@ -399,7 +399,7 @@ class ModuleCart {
         ModuleCart.updateCart();
     }
 
-    static async removeItemOfCart(id) {
+    static async removeItemFromCart(id) {
         const productToRemoveId = this.cart.findIndex(product => product.id == id);
         this.cart.splice(productToRemoveId, 1);
         await ModuleCart.renderCardsCartPreview(this.cart);
