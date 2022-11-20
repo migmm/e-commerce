@@ -385,26 +385,16 @@ class ModuleCart {
         const products = await productController.getProducts();
         const product = products.find(product => product.id == id)
         const productToRemoveId = this.cart.findIndex(product => product.id == id)
-        //let badgeQtyCounter = document.getElementsByClassName('main-header__wrapper__cart-button-container__qty-cart')[0];
 
         if (productToRemoveId >=0) {
             ++this.cart[productToRemoveId].qty;
-            ///++badgeQtyCounter.innerHTML;
             await ModuleCart.renderCardsCartPreview(this.cart);
             ModuleCart.updateCart();
             return;
         }
 
-        this.cart.push(product)
-
-    /*     if (badgeQtyCounter.innerHTML === 0) {
-            badgeQtyCounter.innerHTML = 1;
-        } else {
-            ++badgeQtyCounter.innerHTML;
-        } */
-
+        this.cart.push(product);
         this.cart[this.cart.length -1].qty = 1;
-        
         await ModuleCart.renderCardsCartPreview(this.cart);
         ModuleCart.updateCart();
     }
@@ -418,10 +408,10 @@ class ModuleCart {
 
     static updateCart () {
         let badgeQtyCounter = document.getElementsByClassName('main-header__wrapper__cart-button-container__qty-cart')[0];
-        badgeQtyCounter.innerHTML = parseInt (0);
+        badgeQtyCounter.innerHTML = 0;
         console.log(typeof(badgeQtyCounter.innerHTML));
         for (let i =0 ; i <= this.cart.length -1 ; ++i) {
-            badgeQtyCounter.innerHTML = parseInt(badgeQtyCounter.innerHTML) + parseInt (this.cart[i].qty);
+            badgeQtyCounter.innerHTML = parseInt(badgeQtyCounter.innerHTML) + parseInt(this.cart[i].qty);
         }
     }
 
