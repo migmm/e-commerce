@@ -13,7 +13,7 @@ class ModuleCart {
         const html = template({ products });
         document.querySelector('.cart-modal__products').innerHTML = html;
     }
-    
+
     static cartFunctions() {
 
         /////////////////////////////////////////
@@ -386,7 +386,7 @@ class ModuleCart {
         const product = products.find(product => product.id == id)
         const productToRemoveId = this.cart.findIndex(product => product.id == id)
 
-        if (productToRemoveId >=0) {
+        if (productToRemoveId >= 0) {
             ++this.cart[productToRemoveId].qty;
             await ModuleCart.renderCardsCartPreview(this.cart);
             localStorage.setItem('cart', JSON.stringify(this.cart));
@@ -395,7 +395,7 @@ class ModuleCart {
         }
 
         this.cart.push(product);
-        this.cart[this.cart.length -1].qty = 1;
+        this.cart[this.cart.length - 1].qty = 1;
         await ModuleCart.renderCardsCartPreview(this.cart);
         localStorage.setItem('cart', JSON.stringify(this.cart));
         ModuleCart.updateCart();
@@ -409,12 +409,12 @@ class ModuleCart {
         ModuleCart.updateCart();
     }
 
-    static updateCart () {
+    static async updateCart() {
         let badgeQtyCounter = document.getElementsByClassName('main-header__wrapper__cart-button-container__qty-cart')[0];
         badgeQtyCounter.innerHTML = 0;
-        
-        console.log(typeof(badgeQtyCounter.innerHTML));
-        for (let i =0 ; i <= this.cart.length -1 ; ++i) {
+
+        console.log(typeof (badgeQtyCounter.innerHTML));
+        for (let i = 0; i <= this.cart.length - 1; ++i) {
             badgeQtyCounter.innerHTML = parseInt(badgeQtyCounter.innerHTML) + parseInt(this.cart[i].qty);
         }
 
@@ -424,13 +424,34 @@ class ModuleCart {
         } else {
             badgeQtyCounter.classList.remove("visible");
         }
+
+        const cartLoaded = await cartService.loadCart();
+        console.log('cart guardado en mongo', cartLoaded);
+        let cartActual = this.cart;
+        console.log('cart actual', cartActual);
+
+        const loggedIn = true;
+        const user = 'arthemis'; // johnse - alfredoro - carlos23
+        let savedCart = {};
+
+        if (loggedIn) {
+
+            var index = cartLoaded.findIndex(item => item.userID === user);
+            console.log(index);
+            console.log(cartLoaded[index].id);
+            let userID = cartLoaded[index].id;
+
+            savedCart.userID = user;
+            savedCart.cartContent = this.cart;
+            await cartService.updateCart(savedCart, userID);
+        }
     }
 
     static async init() {
         console.log('ModuleCart.init()');
         this.cart = JSON.parse(localStorage.getItem('cart')) || [];
         await ModuleCart.renderCardsCartPreview(this.cart);
-        ModuleCart.updateCart ()
+        ModuleCart.updateCart();
     }
 }
 
