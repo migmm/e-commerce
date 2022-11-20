@@ -41,7 +41,7 @@ class PageInicio {
         console.log(`Se encontraron ${products.length} productos`);
         PageInicio.carousel()
         await PageInicio.renderTemplateCards(products);
-        await cartController.renderCardsCartPreview(products)
+        await cartController.init()
 
     }
 }

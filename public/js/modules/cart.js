@@ -1,10 +1,11 @@
 import cartService from '../services/cart.js'
+import productController from '/js/controllers/product.js';
 
 console.log('🆗: Módulo ModuleCart cargado.');
 
 class ModuleCart {
 
-    cart = []
+    static cart = [];
 
     static async renderCardsCartPreview(products) {
         const hbsFile = await fetch('templates/card-cart-preview.hbs').then(r => r.text());
@@ -65,6 +66,13 @@ class ModuleCart {
             if (e.target.classList.value === 'fa fa-times-circle-o fa-2x') {
                 toggleCart();
                 isCartPreviewOpen = 0;
+                return;
+            }
+
+            if (e.target.classList.value === 'card__link') {
+                e.preventDefault();
+                let id = e.target.getAttribute("data-id");
+                ModuleCart.addItemToCart(id);
                 return;
             }
 
@@ -370,9 +378,19 @@ class ModuleCart {
 
     }
 
+    static async addItemToCart(id) {
+        const products = await productController.getProducts();
+        const product = products.find(product => product.id == id)
+        console.log(product)
+        this.cart.push(product)
+        console.log(this.cart)
+        await ModuleCart.renderCardsCartPreview(this.cart);
+        
+    }
+
     static async init() {
         console.log('ModuleCart.init()');
-       // await ModuleCart.renderCardsCartPreview(products);
+        await ModuleCart.renderCardsCartPreview(this.cart);
         //loadCart();
     }
 }
