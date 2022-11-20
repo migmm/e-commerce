@@ -163,6 +163,7 @@
             order: 3;
 
             &__qty-cart {
+                display: none;
                 background-color: color.$red;
                 // width: 20px;
                 height: 20px;
@@ -227,3 +228,7 @@
 .hidden {
     display: none;
 }
+
+.visible {
+    display: block;
+}  

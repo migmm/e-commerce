@@ -412,9 +412,17 @@ class ModuleCart {
     static updateCart () {
         let badgeQtyCounter = document.getElementsByClassName('main-header__wrapper__cart-button-container__qty-cart')[0];
         badgeQtyCounter.innerHTML = 0;
+        
         console.log(typeof(badgeQtyCounter.innerHTML));
         for (let i =0 ; i <= this.cart.length -1 ; ++i) {
             badgeQtyCounter.innerHTML = parseInt(badgeQtyCounter.innerHTML) + parseInt(this.cart[i].qty);
+        }
+
+        if (badgeQtyCounter.innerHTML > '0') {
+            badgeQtyCounter.classList.add("visible");
+
+        } else {
+            badgeQtyCounter.classList.remove("visible");
         }
     }
 

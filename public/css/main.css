@@ -531,6 +531,7 @@ body {
   order: 3;
 }
 .main-header__wrapper__cart-button-container__qty-cart {
+  display: none;
   background-color: #be0000;
   height: 20px;
   border-radius: 50%;
@@ -585,6 +586,10 @@ body {
 
 .hidden {
   display: none;
+}
+
+.visible {
+  display: block;
 }
 
 .main-nav__list {
