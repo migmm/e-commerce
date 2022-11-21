@@ -12,12 +12,21 @@ class ToastComponent  {
             alertBox.appendChild(alertMsg);
 
             toastNotifications.insertBefore(alertBox, toastNotifications.childNodes[0]);
-            setTimeout(function () {
-                toastNotifications.childNodes[0].classList.add("slide-out")
-            }, 2600);
+
+          /*   if (toastNotifications.childElementCount > 0 ) {
+                console.log("hay mas de uno")
+                toastNotifications.childNodes[1].classList.add("slide-out")
+                //toastNotifications.removeChild(toastNotifications.lastChild);
+            } */
+            toastNotifications.childNodes[1].classList.add("slide-out")
 
             setTimeout(function () {
                 toastNotifications.removeChild(toastNotifications.lastChild);
+                
+                setTimeout(function () {
+                    toastNotifications.removeChild(toastNotifications.lastChild);
+                }, 2900);
+                
             }, 2900);
         }
     }
