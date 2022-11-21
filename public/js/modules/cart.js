@@ -1,5 +1,6 @@
 import cartService from '../services/cart.js'
 import productController from '/js/controllers/product.js';
+import toastComponent from '/js/modules/toast.js'
 
 console.log('🆗: Módulo ModuleCart cargado.');
 
@@ -84,6 +85,7 @@ class ModuleCart {
             ++this.cart[productToRemoveId].qty;
             await ModuleCart.renderCardsCartPreview(this.cart);
             localStorage.setItem('cart', JSON.stringify(this.cart));
+            toastComponent.toastNotification("Producto agregado al carrito!");
             ModuleCart.updateCart();
             return;
         }
@@ -92,6 +94,7 @@ class ModuleCart {
         this.cart[this.cart.length - 1].qty = 1;
         await ModuleCart.renderCardsCartPreview(this.cart);
         localStorage.setItem('cart', JSON.stringify(this.cart));
+        toastComponent.toastNotification("Producto agregado al carrito!");
         ModuleCart.updateCart();
     }
 

@@ -33,6 +33,7 @@ class PageInicio {
             x = false // Change image every 2 seconds
         }
     }
+    
     static async init() {
         console.log('PageInicio.init()');
         //goToTopAndCloseMenu ();

@@ -133,7 +133,7 @@ class Main {
         await this.loadTemplates();
         this.commonEvents();
         ModuleCart.cartFunctions();
-       // ModuleCart.init();
+        // ModuleCart.init();
     }
 }
 
