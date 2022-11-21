@@ -703,7 +703,6 @@ body {
 }
 @media (min-width: 768px) {
   .main-content__wrapper .promo-wall__img:nth-child(6) {
-    width: 500px;
     aspect-ratio: 1/1;
   }
 }
