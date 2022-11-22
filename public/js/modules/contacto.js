@@ -1,3 +1,4 @@
+import toastComponent from '/js/modules/toast.js';
 
 console.log('🆗: Módulo PageContacto cargado.');
 
@@ -79,6 +80,7 @@ class PageContacto {
 
         console.log('allValidated:', allValidated);
         if (!allValidated) {
+            toastComponent.toastNotification("Error! verifique los campos marcados!");
             return false;
         }
         return formToSend;

@@ -1,4 +1,5 @@
 import productController from '/js/controllers/product.js';
+import toastComponent from '/js/modules/toast.js';
 
 console.log('🆗: Módulo PageAlta cargado.');
 
@@ -85,6 +86,7 @@ class PageAlta {
 
         console.log('allValidated:', allValidated);
         if (!allValidated) {
+            toastComponent.toastNotification("Error! verifique los campos marcados!");
             return false;
         }
         return productToSave;

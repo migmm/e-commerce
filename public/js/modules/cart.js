@@ -1,6 +1,6 @@
-import cartService from '../services/cart.js'
+import cartService from '../services/cart.js';
 import productController from '/js/controllers/product.js';
-import toastComponent from '/js/modules/toast.js'
+import toastComponent from '/js/modules/toast.js';
 
 console.log('🆗: Módulo ModuleCart cargado.');
 
