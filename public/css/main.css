@@ -1617,9 +1617,10 @@ body {
   width: 300px;
 }
 #toast-notification .alert-msg {
-  background: #b6ffba;
+  background: #000;
+  color: #fff;
+  text-align: center;
   bottom: 25px;
-  box-shadow: 5px 5px 10px hsla(0deg, 0%, 0%, 0.3);
   left: 25px;
   padding: 15px;
   border-radius: 10px;

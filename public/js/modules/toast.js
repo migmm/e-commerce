@@ -13,20 +13,14 @@ class ToastComponent  {
 
             toastNotifications.insertBefore(alertBox, toastNotifications.childNodes[0]);
 
-          /*   if (toastNotifications.childElementCount > 0 ) {
+            if (toastNotifications.childElementCount > 1 ) {
                 console.log("hay mas de uno")
                 toastNotifications.childNodes[1].classList.add("slide-out")
-                //toastNotifications.removeChild(toastNotifications.lastChild);
-            } */
-            toastNotifications.childNodes[1].classList.add("slide-out")
+            } 
 
             setTimeout(function () {
                 toastNotifications.removeChild(toastNotifications.lastChild);
-                
-                setTimeout(function () {
-                    toastNotifications.removeChild(toastNotifications.lastChild);
-                }, 2900);
-                
+
             }, 2900);
         }
     }
