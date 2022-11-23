@@ -58,6 +58,13 @@ class ModuleCart {
                 return;
             }
 
+              // Click on "Seguir comprando" button to close cart preview
+            if (e.target.classList.value === 'cart-modal__footer__link-keep') {
+                toggleCart();
+                isCartPreviewOpen = 0;
+                return;
+            }
+
             // Click on "Agregar al carrito"
             if (e.target.classList.value === 'card__link') {
                 e.preventDefault();
