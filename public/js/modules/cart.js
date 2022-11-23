@@ -103,6 +103,7 @@ class ModuleCart {
         this.cart.splice(productToRemoveId, 1);
         await ModuleCart.renderCardsCartPreview(this.cart);
         localStorage.setItem('cart', JSON.stringify(this.cart));
+        toastComponent.toastNotification("Producto eliminado del carrito!");
         ModuleCart.updateCart();
     }
 
