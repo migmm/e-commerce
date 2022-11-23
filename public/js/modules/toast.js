@@ -1,11 +1,9 @@
 class ToastComponent  {
 
     toastNotification(msg) {
-
         let toastNotifications = document.getElementById("toast-notification");
 
         if (toastNotifications.childElementCount < 2) {
-
             let alertBox = document.createElement("div");
             alertBox.classList.add("alert-msg", "slide-in");
             let alertMsg = document.createTextNode(msg);
@@ -20,14 +18,14 @@ class ToastComponent  {
 
             setTimeout(function () {
                 toastNotifications.removeChild(toastNotifications.lastChild);
-
             }, 2900);
         }
     }
 
     static async init () {
-        console.log('Modulefgdgdggf.init()');
+        console.log('Module Toast.init()');
     }
 }
+
 const toastComponent = new ToastComponent();
 export default toastComponent;

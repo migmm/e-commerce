@@ -51,7 +51,6 @@ class PageAlta {
         return validator.test(value);
     }
 
-
     static validateForm() {
         let allValidated = true;
         const productToSave = {};
@@ -66,7 +65,6 @@ class PageAlta {
             let spanElement = ancest.querySelector('span:last-child')
 
             if (!validated) {
-
                 errorField.classList.remove("input-group__input--ok");
                 errorField.classList.add("input-group__input--error");
                 spanElement.style.visibility = 'visible';
@@ -75,7 +73,6 @@ class PageAlta {
                 break;
 
             } else {
-
                 productToSave[field.name] = field.value;
 
                 errorField.classList.remove("input-group__input--error");
@@ -146,7 +143,6 @@ class PageAlta {
             var colorsSplit = colorsString.split(',');
             colorsSplit.forEach((item) => dataProducts.append("colors[]", item))
 
-
             if (productToSave) {
                 const savedProduct = await PageAlta.saveProduct(dataProducts);
                 console.log('savedProduct:', savedProduct);
@@ -158,15 +154,12 @@ class PageAlta {
     static async init() {
         console.log('PageAlta.init()');
         PageAlta.form = document.getElementById('form-add-products');
-        // PageAlta.fields = PageAlta.form.querySelectorAll('input, textarea');
         PageAlta.fields = PageAlta.form.querySelectorAll(`textarea, input:not([type='radio']`);
         PageAlta.addFormEvents();
         document.getElementById('productName').focus();
         console.log(PageAlta.fields)
-
         //goToTopAndCloseMenu ();
     }
-
 }
 
 export default PageAlta;
