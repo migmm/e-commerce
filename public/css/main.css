@@ -1197,6 +1197,13 @@ body {
   color: #ff0000;
   font-size: 0.8em;
 }
+.input-group__error-form {
+  display: block;
+  visibility: hidden;
+  margin: 0.1em 1em 1em 1em;
+  color: #ff0000;
+  font-size: 1em;
+}
 .input-group__input--error {
   border: solid 1px #ff0000;
   background-color: #ffa4a4;

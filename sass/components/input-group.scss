@@ -40,6 +40,14 @@
         font-size: .8em;
     }
 
+    &__error-form {
+        display: block;
+        visibility: hidden;
+        margin: .1em 1em 1em 1em;
+        color: color.$lightred;
+        font-size: 1em;
+    }
+
     // Errors on form input 
     &__input--error {
         border: solid 1px color.$lightred;

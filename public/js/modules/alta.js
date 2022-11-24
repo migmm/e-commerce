@@ -55,6 +55,7 @@ class PageAlta {
         let allValidated = true;
         const productToSave = {};
         console.log('\n\n');
+        const msgGlobalError = document.getElementsByClassName('input-group__error-form')[0];
 
         for (const field of PageAlta.fields) {
             const validated = PageAlta.validate(field.value, PageAlta.validators[field.name]);
@@ -82,8 +83,9 @@ class PageAlta {
         }
 
         console.log('allValidated:', allValidated);
+
         if (!allValidated) {
-            toastComponent.toastNotification("Error! verifique los campos marcados!");
+            msgGlobalError.classList.add("input-group__error--show");
             return false;
         }
         return productToSave;

@@ -26,6 +26,7 @@ class PageContacto {
         let allValidated = true;
         const formToSend = {};
         console.log('\n\n');
+        const msgGlobalError = document.getElementsByClassName('input-group__error-form')[0];
 
         for (const field of PageContacto.fields) {
             const validated = PageContacto.validate(field.value, PageContacto.validators[field.name]);
@@ -54,7 +55,7 @@ class PageContacto {
 
         console.log('allValidated:', allValidated);
         if (!allValidated) {
-            toastComponent.toastNotification("Error! verifique los campos marcados!");
+            msgGlobalError.classList.add("input-group__error--show");
             return false;
         }
         return formToSend;
