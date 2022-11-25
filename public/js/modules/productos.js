@@ -3,7 +3,9 @@ import cartController from '/js/modules/cart.js';
 
 console.log('🆗: Módulo PageProductos cargado.');
 
-class PageProductos  {
+class PageProductos {
+
+    static products = [];
 
     static async renderTemplateCards(products) {
         const hbsFile = await fetch('templates/inicio.hbs').then(r => r.text());
@@ -12,10 +14,42 @@ class PageProductos  {
         document.querySelector('.cards-container').innerHTML = html;
     }
 
-    static async init () {
-        const products = await productController.getProducts();
-        console.log(`Se encontraron ${products.length} productos`);
-        await PageProductos.renderTemplateCards(products);
+    static async optionsFunctions() {
+
+        document.addEventListener('click', e => {
+            e.preventDefault();
+
+            if (e.target.tagName === 'SPAN') {
+                console.log(e.target.innerHTML)
+
+                var results = [];
+                var toSearch = e.target.innerHTML;
+
+                for (var i = 0; i < this.products.length; ++i) {
+                    for (let key in this.products[i]) {
+                        if (this.products[i][key].toString().indexOf(toSearch) != -1) {
+                            results.push(this.products[i]);
+                        }
+                    }
+                }
+
+                console.log(results)
+                PageProductos.renderTemplateCards(results);
+                return;
+            }
+
+            if (e.target.classList.value === 'background-dark') {
+
+                return;
+            }
+        });
+    }
+
+    static async init() {
+        this.products = await productController.getProducts();
+        console.log(`Se encontraron ${this.products} productos`);
+        PageProductos.optionsFunctions()
+        await PageProductos.renderTemplateCards(this.products);
         await cartController.init()
         console.log('PageProductos .init()');
         //goToTopAndCloseMenu ();
