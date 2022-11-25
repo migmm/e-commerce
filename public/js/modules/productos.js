@@ -20,7 +20,6 @@ class PageProductos {
             e.preventDefault();
 
             if (e.target.tagName === 'SPAN') {
-                console.log(e.target.innerHTML)
 
                 var results = [];
                 var toSearch = e.target.innerHTML;
@@ -33,8 +32,14 @@ class PageProductos {
                     }
                 }
 
-                console.log(results)
-                PageProductos.renderTemplateCards(results);
+                // Remove duplicated
+                let result = results.filter(
+                    (person, index) => index === results.findIndex(
+                        other => person.id === other.id
+                            && person.productName === other.productName
+                    ));
+
+                PageProductos.renderTemplateCards(result);
                 return;
             }
 
@@ -52,7 +57,6 @@ class PageProductos {
                     }
                 }
 
-                console.log(results)
                 PageProductos.renderTemplateCards(results);
                 return;
             }
