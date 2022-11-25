@@ -27,7 +27,7 @@ class PageProductos {
 
                 for (var i = 0; i < this.products.length; ++i) {
                     for (let key in this.products[i]) {
-                        if (this.products[i][key].toString().indexOf(toSearch) != -1) {
+                        if (this.products[i][key].toString().toLowerCase().indexOf(toSearch.toLowerCase()) != -1) {
                             results.push(this.products[i]);
                         }
                     }
@@ -38,10 +38,30 @@ class PageProductos {
                 return;
             }
 
-            if (e.target.classList.value === 'background-dark') {
+            if (e.target.closest('aside') && e.target.tagName === 'A') {
+                const innerOfSelected = e.target.innerHTML
+                const selectedOption = innerOfSelected.split("/");
+                var results = [];
+                var toSearch = selectedOption.toString();
 
+                for (var i = 0; i < this.products.length; ++i) {
+                    for (let key in this.products[i]) {
+                        if (this.products[i][key].toString().toLowerCase().indexOf(toSearch.toLowerCase()) != -1) {
+                            results.push(this.products[i]);
+                        }
+                    }
+                }
+
+                console.log(results)
+                PageProductos.renderTemplateCards(results);
                 return;
             }
+
+            /*             
+            if (e.target.classList.value === 'background-dark') {
+            
+                            return;
+                        } */
         });
     }
 
