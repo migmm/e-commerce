@@ -17,10 +17,10 @@ class PageProductos {
     static async optionsFunctions() {
 
         document.addEventListener('click', e => {
-            e.preventDefault();
+            
 
             if (e.target.tagName === 'SPAN') {
-
+                e.preventDefault();
                 var results = [];
                 var toSearch = e.target.innerHTML;
 
@@ -44,6 +44,7 @@ class PageProductos {
             }
 
             if (e.target.closest('aside') && e.target.tagName === 'A') {
+                e.preventDefault();
                 const innerOfSelected = e.target.innerHTML
                 const selectedOption = innerOfSelected.split("/");
                 var results = [];
