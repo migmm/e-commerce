@@ -31,35 +31,35 @@ class PageModificar {
         colors: /^\s*([a-zA-Z0-9ÁáÉéÍíÓóÚúÑñ,.-_]+\s*){1,3}$/,
     };
 
-        static emptyForm() {
-            PageModificar.fields.forEach(field =>field.value = '');
-        }
+    static emptyForm() {
+        PageModificar.fields.forEach(field => field.value = '');
+    }
 
-        static completeForm(product) {
-            PageModificar.fields.forEach(field => {
-                if (field.name === 'freeShip') {
-                    if (product[field.name] === 'true') {
-                        document.getElementById("freeShip").checked = true;
-                    }
+    static completeForm(product) {
+        PageModificar.fields.forEach(field => {
+            if (field.name === 'freeShip') {
+                if (product[field.name] === 'true') {
+                    document.getElementById("freeShip").checked = true;
                 }
+            }
 
-                if (field.name === 'ageSelect') {
-                    if (product[field.name] === '1') {
-                        document.getElementById("ageYear").checked = true;
+            if (field.name === 'ageSelect') {
+                if (product[field.name] === '1') {
+                    document.getElementById("ageYear").checked = true;
 
-                    } else {
-                        document.getElementById("ageMonth").checked = true;
-                    }
+                } else {
+                    document.getElementById("ageMonth").checked = true;
                 }
-                    field.value = product[field.name];
+            }
+            field.value = product[field.name];
 
-                console.log(product[field.name])
-            });
-        }
+            console.log(product[field.name])
+        });
+    }
 
-        static validate(value, validator) {
-            return validator.test(value);
-        }
+    static validate(value, validator) {
+        return validator.test(value);
+    }
 
     static validateForm() {
         let allValidated = true;
@@ -69,7 +69,7 @@ class PageModificar {
         for (const field of PageModificar.fields) {
             const validated = PageModificar.validate(field.value, PageModificar.validators[field.name]);
             console.log(field.name, validated);
-            
+
             let errorField = document.getElementsByName(field.name)[0];
             let ancest = errorField.closest(".input-group__form-group");
             let spanElement = ancest.querySelector('span:last-child')
@@ -108,7 +108,7 @@ class PageModificar {
     }
 
     static async updateProduct(product) {
-        const updatedProduct = await productController.updateProduct(product.id, product);
+        const updatedProduct = await productController.updateProduct(product.get('id'), product);
         const products = await productController.getProducts();
         console.log(`Ahora hay ${products.length} productos`);
         PageModificar.renderTemplateTable(products);
@@ -121,48 +121,44 @@ class PageModificar {
 
             e.preventDefault();
 
-            const productToSave = PageModificar.validateForm();
-            if (productToSave) {
-                const updatedProduct = await PageModificar.updateProduct(productToSave);
-                console.log('updatedProduct:', updatedProduct);
-            }
-            PageModificar.emptyForm();
-        });
-
-        this.btnUpdate.addEventListener('click', async e => {
-            const productToSave = PageModificar.validateForm();
-
-            if (productToSave) {
-                const updatedProduct = await PageModificar.updateProduct(productToSave);
-                console.log('updatedProduct:', updatedProduct);
-            }
-
-            let ageYear = document.getElementById('ageYear');
-            let ageMonth = document.getElementById('ageMonth');
-            let ageSelect = document.getElementById('ageSelect');
-
-            ageSelect.value = null
-
-            if (ageYear.checked) {
-                ageSelect.value = '1';
-            } 
-
-            if (ageMonth.checked) {
-                ageSelect.value = '0';
-            } 
-
             let freeShip = document.getElementById('freeShip');
             freeShip.value = false
             if (freeShip.checked) {
                 freeShip.value = 'true';
             }
 
-            PageModificar.emptyForm();
+            let ageYear = document.getElementById('ageYear');
+            let ageMonth = document.getElementById('ageMonth');
+            let ageSelect = document.getElementById('ageSelect');
+
+            ageSelect.value = 0
+
+            if (ageYear.checked) {
+                ageSelect.value = 1;
+            }
+            
+            const productToSave = PageModificar.validateForm();
+            //Bypass to get the files too
+            let dataProducts = new FormData(document.getElementById("form-add-products"))
+            console.log(dataProducts)
+            const colorsString = dataProducts.get('colors');
+            dataProducts.delete('colors');
+            dataProducts.delete('ageSelects');
+            dataProducts.delete('ageSelect');
+            dataProducts.append("ageSelect", ageSelect.value)
+            var colorsSplit = colorsString.split(',');
+            colorsSplit.forEach((item) => dataProducts.append("colors[]", item))
+
+            if (productToSave) {
+                const savedProduct = await PageModificar.updateProduct(dataProducts);
+                console.log('savedProduct:', savedProduct);
+                PageModificar.emptyForm();
+            }
         });
 
         this.btnCancel.addEventListener('click', async e => {
             let formModifica = document.getElementsByClassName('product-update-wrapper')[0]
-                formModifica.classList.remove('product-update-wrapper--on')
+            formModifica.classList.remove('product-update-wrapper--on')
             PageModificar.emptyForm();
         });
     }
@@ -199,7 +195,7 @@ class PageModificar {
             const discountPercent = row.querySelector('.cell-discount-percent').innerHTML;
             const vendor = row.querySelector('.cell-vendor').innerHTML;
             const stock = row.querySelector('.table-content__cell-stock').innerHTML;
-            const category = row.querySelector('.cell-category').innerHTML 
+            const category = row.querySelector('.cell-category').innerHTML
             const shortDescription = row.querySelector('.table-content__cell-description').innerHTML;
             const longDescription = row.querySelector('.cell-long-description').innerHTML;
             const freeShip = row.querySelector('.cell-free-ship').innerHTML;
@@ -244,7 +240,8 @@ class PageModificar {
                 window.scrollTo(0, top);
 
                 PageModificar.fields.forEach(function (field) {
-                    field.classList.remove('input-group__input--ok');}
+                    field.classList.remove('input-group__input--ok');
+                }
                 );
 
                 return;

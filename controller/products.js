@@ -72,32 +72,41 @@ const putProduct = async (req, res) => {
     const product = req.body;
     const files = req.files;
     const locationName = PRODUCT_IMG_UPLOAD_LOCATION.STORAGE_LOCATION.substring(9);
+    try {
+        if (files.avatar !== undefined) {
 
-    if (files.avatar !== undefined) {
+            const firstProductImg = req.files['avatar'][0];
 
-        const firstProductImg = req.files['avatar'][0];
+            // const data = req.body
+            /*     const previousAvatar = data.images.prevAvatar;
+                const previousGalleryImg0 = data.images.prevGallery0
+                const previousGalleryImg1 = data.images.prevGallery1
+                const previousGalleryImg2 = data.images.prevGallery2 */
 
-        // const data = req.body
-        /*     const previousAvatar = data.images.prevAvatar;
-            const previousGalleryImg0 = data.images.prevGallery0
-            const previousGalleryImg1 = data.images.prevGallery1
-            const previousGalleryImg2 = data.images.prevGallery2 */
+            /*  product['images'] = {} */
 
-        /*  product['images'] = {} */
-
-        product['images']['portada'] = locationName + firstProductImg.filename;
+            product['images']['portada'] = locationName + firstProductImg.filename;
+        }
     }
+    catch { 
+        console.log("No se actualizó imágen de portada.")
+    }
+    
+    try {
+        if (files.gallery !== undefined) {
 
-    if (files.gallery !== undefined) {
-
-        const productImgGallery = req.files['gallery'];
-        for (let i = 0; i <= productImgGallery.length; ++i) {
-            if (productImgGallery[i] !== undefined) {
-                product['images'][`${'galeria' + [i]}`] = locationName + productImgGallery[i].filename;
+            const productImgGallery = req.files['gallery'];
+            for (let i = 0; i <= productImgGallery.length; ++i) {
+                if (productImgGallery[i] !== undefined) {
+                    product['images'][`${'galeria' + [i]}`] = locationName + productImgGallery[i].filename;
+                }
             }
         }
     }
 
+    catch { 
+        console.log("No se actualizaron imágnes de galería.")
+    }
     /*  else {
         res.status(415).send('<h1>Se produjo un error.</h1>');
     } */

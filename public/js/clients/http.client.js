@@ -40,7 +40,7 @@ class Http {
     /* PUT */
     //As POST, this is adapted to work with
     // TODO: put all in a controller 
-    async put(url, id, dato) {
+    /* async put(url, id, dato) {
     
         console.log("datazoooooooooooooooooooooooooo", dato);
         let colorsString = dato.colors;
@@ -57,10 +57,22 @@ class Http {
         } catch (error) {
             console.error('ERROR PUT', error);
         }
+    } */
+
+    async put(url, id, data) {
+        try {
+            return await fetch(url + id, {
+                method: 'put',
+                body: data, // JSON.stringify(data),
+                // headers: { 'content-type': 'application/json' }
+            }).then(r => r.json());
+        } catch (error) {
+            console.error('ERROR POST', error);
+        }
     }
 
     //For normal use
-    async putc(url, id, dato) {
+/*     async putc(url, id, dato) {
 
         try {
             return await fetch(url + id, {
@@ -71,7 +83,7 @@ class Http {
         } catch (error) {
             console.error('ERROR PUT', error);
         }
-    }
+    } */
 
 
     /* DELETE */
