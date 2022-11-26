@@ -122,7 +122,8 @@ class PageModificar {
             e.preventDefault();
 
             let freeShip = document.getElementById('freeShip');
-            freeShip.value = false
+            freeShip.value = false;
+
             if (freeShip.checked) {
                 freeShip.value = 'true';
             }
@@ -131,7 +132,7 @@ class PageModificar {
             let ageMonth = document.getElementById('ageMonth');
             let ageSelect = document.getElementById('ageSelect');
 
-            ageSelect.value = 0
+            ageSelect.value = 0;
 
             if (ageYear.checked) {
                 ageSelect.value = 1;
@@ -139,15 +140,15 @@ class PageModificar {
             
             const productToSave = PageModificar.validateForm();
             //Bypass to get the files too
-            let dataProducts = new FormData(document.getElementById("form-add-products"))
-            console.log(dataProducts)
+            let dataProducts = new FormData(document.getElementById("form-add-products"));
+
             const colorsString = dataProducts.get('colors');
             dataProducts.delete('colors');
             dataProducts.delete('ageSelects');
             dataProducts.delete('ageSelect');
             dataProducts.append("ageSelect", ageSelect.value)
             var colorsSplit = colorsString.split(',');
-            colorsSplit.forEach((item) => dataProducts.append("colors[]", item))
+            colorsSplit.forEach((item) => dataProducts.append("colors[]", item));
 
             if (productToSave) {
                 const savedProduct = await PageModificar.updateProduct(dataProducts);
@@ -157,8 +158,8 @@ class PageModificar {
         });
 
         this.btnCancel.addEventListener('click', async e => {
-            let formModifica = document.getElementsByClassName('product-update-wrapper')[0]
-            formModifica.classList.remove('product-update-wrapper--on')
+            let formModifica = document.getElementsByClassName('product-update-wrapper')[0];
+            formModifica.classList.remove('product-update-wrapper--on');
             PageModificar.emptyForm();
         });
     }
@@ -233,8 +234,8 @@ class PageModificar {
 
             if (e.target.classList.contains('btn-edit')) {
                 editProduct(e);
-                let formModifica = document.getElementsByClassName('product-update-wrapper')[0]
-                formModifica.classList.add('product-update-wrapper--on')
+                let formModifica = document.getElementsByClassName('product-update-wrapper')[0];
+                formModifica.classList.add('product-update-wrapper--on');
 
                 let top = document.getElementById('form-modifica').offsetTop - 100;
                 window.scrollTo(0, top);
@@ -259,7 +260,7 @@ class PageModificar {
         PageModificar.fields = PageModificar.form.querySelectorAll(`textarea, input:not([type='file']`);
         PageModificar.btnUpdate = PageModificar.form.querySelector('#btn-update');
         PageModificar.btnCancel = PageModificar.form.querySelector('#btn-cancel');
-        console.log(PageModificar.fields)
+        console.log(PageModificar.fields);
 
         PageModificar.addFormEvents();
 
