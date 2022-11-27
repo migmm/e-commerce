@@ -19,7 +19,7 @@ class ModuleCart {
 
         const backgroundDark = document.querySelector('.background-dark');
         const cartPreview = document.querySelector('.cart-modal');
-        let isCartPreviewOpen = false;
+        let isCartPreviewOpen = 0;
 
 
         function toggleCart() {
@@ -58,7 +58,7 @@ class ModuleCart {
                 return;
             }
 
-              // Click on "Seguir comprando" button to close cart preview
+            // Click on "Seguir comprando" button to close cart preview
             if (e.target.classList.value === 'cart-modal__footer__link-keep') {
                 toggleCart();
                 isCartPreviewOpen = 0;
@@ -78,6 +78,45 @@ class ModuleCart {
                 e.preventDefault();
                 let id = e.target.getAttribute('data-id');
                 ModuleCart.removeItemFromCart(id)
+                return;
+            }
+
+            // Click on plus icon to increase product quantity in cart to the maximum stock
+            if (e.target.classList.value === 'fa fa-plus') {
+                
+                let btnPlus = e.target.previousElementSibling.value;
+                const maxStock= parseInt(e.target.parentNode.parentNode.previousElementSibling.value);
+                const id = e.target.parentNode.parentNode.nextElementSibling.nextElementSibling.getAttribute("data-id");
+                btnPlus = parseInt(btnPlus);
+
+                if (btnPlus >= maxStock) {
+                    e.target.classList.add('plus-and-minus-deactivated');
+                    return;
+                } else {
+                    e.target.classList.remove('plus-and-minus-deactivated');
+                }
+
+                btnPlus++;
+                this.addItemToCart(id);
+                return;
+            }
+
+            // Click on minus icon to decrease product quantity in cart to the minimum stock
+            if (e.target.classList.value === 'fa fa-minus') {
+
+                let btnMinus = e.target.nextElementSibling.value;
+                const id = e.target.parentNode.parentNode.nextElementSibling.nextElementSibling.getAttribute("data-id");
+                btnMinus = parseInt(btnMinus);
+
+                if (btnMinus <= 1) {
+                    e.target.classList.add('plus-and-minus-deactivated');
+                    return;
+                } else {
+                    e.target.classList.remove('plus-and-minus-deactivated');
+                }
+                
+                btnMinus--;
+                this.removeItemFromCart(id, 1);
                 return;
             }
         });
@@ -105,8 +144,19 @@ class ModuleCart {
         ModuleCart.updateCart();
     }
 
-    static async removeItemFromCart(id) {
-        const productToRemoveId = this.cart.findIndex(product => product.id == id);
+    static async removeItemFromCart(id, qty) {
+
+        const productToRemoveId = this.cart.findIndex(product => product.id == id)
+
+        if (qty === 1) {
+            --this.cart[productToRemoveId].qty;
+            await ModuleCart.renderCardsCartPreview(this.cart);
+            localStorage.setItem('cart', JSON.stringify(this.cart));
+            toastComponent.toastNotification("Producto agregado al carrito!");
+            ModuleCart.updateCart();
+            return;
+        }
+        //const productToRemoveId = this.cart.findIndex(product => product.id == id);
         this.cart.splice(productToRemoveId, 1);
         await ModuleCart.renderCardsCartPreview(this.cart);
         localStorage.setItem('cart', JSON.stringify(this.cart));
@@ -118,7 +168,6 @@ class ModuleCart {
         let badgeQtyCounter = document.getElementsByClassName('main-header__wrapper__cart-button-container__qty-cart')[0];
         badgeQtyCounter.innerHTML = 0;
 
-        console.log(typeof (badgeQtyCounter.innerHTML));
         for (let i = 0; i <= this.cart.length - 1; ++i) {
             badgeQtyCounter.innerHTML = parseInt(badgeQtyCounter.innerHTML) + parseInt(this.cart[i].qty);
         }
@@ -131,9 +180,6 @@ class ModuleCart {
         }
 
         const cartLoaded = await cartService.loadCart();
-        console.log('cart guardado en mongo', cartLoaded);
-        let cartActual = this.cart;
-        console.log('cart actual', cartActual);
 
         const loggedIn = true;
         const user = 'arthemis'; // johnse - alfredoro - carlos23
@@ -142,8 +188,6 @@ class ModuleCart {
         if (loggedIn) {
 
             var index = cartLoaded.findIndex(item => item.userID === user);
-            console.log(index);
-            console.log(cartLoaded[index].id);
             const userID = cartLoaded[index].id;
             savedCart.userID = user;
             savedCart.cartContent = this.cart;
