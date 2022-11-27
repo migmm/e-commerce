@@ -14,13 +14,13 @@ class ProductService {
         return products;
     }
 
-    async saveProduct(product) {
-        const savedProduct = await http.post(this.URL_PRODUCTOS, product);
+    async saveProduct(product, mode) {
+        const savedProduct = await http.post(this.URL_PRODUCTOS, product, mode);
         return savedProduct;
     }
 
-    async updateProduct(id, product) {
-        const updatedProduct = await http.put(this.URL_PRODUCTOS, id, product);
+    async updateProduct(id, product, mode) {
+        const updatedProduct = await http.put(this.URL_PRODUCTOS, id, product, mode);
         return updatedProduct;
     }
 

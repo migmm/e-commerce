@@ -14,15 +14,15 @@ class ProductController {
         return products;
     }
     
-    async saveProduct(product) {
+    async saveProduct(product, mode) {
         // console.log('saveProduct:', product);
-        const savedProduct = await productService.saveProduct(product);
+        const savedProduct = await productService.saveProduct(product, mode);
         return savedProduct;
     }
 
-    async updateProduct(id, product) {
+    async updateProduct(id, product, mode) {
         // console.log('updateProduct:', id, product);
-        const updatedProduct = await productService.updateProduct(id, product);
+        const updatedProduct = await productService.updateProduct(id, product, mode);
         return updatedProduct;
     }
 

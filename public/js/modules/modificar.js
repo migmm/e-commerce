@@ -108,7 +108,8 @@ class PageModificar {
     }
 
     static async updateProduct(product) {
-        const updatedProduct = await productController.updateProduct(product.get('id'), product);
+        const mode = 'formdata';
+        const updatedProduct = await productController.updateProduct(product.get('id'), product, mode);
         const products = await productController.getProducts();
         console.log(`Ahora hay ${products.length} productos`);
         PageModificar.renderTemplateTable(products);
@@ -137,7 +138,7 @@ class PageModificar {
             if (ageYear.checked) {
                 ageSelect.value = 1;
             }
-            
+
             const productToSave = PageModificar.validateForm();
             //Bypass to get the files too
             let dataProducts = new FormData(document.getElementById("form-add-products"));

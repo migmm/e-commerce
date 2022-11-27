@@ -92,7 +92,8 @@ class PageAlta {
     }
 
     static async saveProduct(product) {
-        const savedProduct = await productController.saveProduct(product);
+        const mode = 'formdata'
+        const savedProduct = await productController.saveProduct(product, mode);
         const products = await productController.getProducts();
         console.log(`Ahora hay ${products.length} productos`);
         // PageAlta.renderTemplateTable(products);
