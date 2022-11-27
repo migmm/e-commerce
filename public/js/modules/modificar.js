@@ -1,4 +1,3 @@
-
 import productController from '/js/controllers/product.js';
 
 console.log('🆗: Módulo PageModificar cargado.');
@@ -24,8 +23,6 @@ class PageModificar {
         ageFrom: /^[0-9]{1,3}$/,
         ageTo: /^[0-9]{1,3}$/,
         ageSelect: /^[0-1]{1,2}$/,
-        //addedDate: /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/,
-        //lastSell: /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/,
         avatar: /^.+\.(jpe?g|gif|png)$/i,
         gallery: /[^]*/,
         colors: /^\s*([a-zA-Z0-9ÁáÉéÍíÓóÚúÑñ,.-_]+\s*){1,3}$/,
@@ -99,14 +96,6 @@ class PageModificar {
         return productToSave;
     }
 
-    static async saveProduct(product) {
-        const savedProduct = await productController.saveProduct(product);
-        const products = await productController.getProducts();
-        console.log(`Ahora hay ${products.length} productos`);
-        // PageModificar.renderTemplateTable(products);
-        return savedProduct;
-    }
-
     static async updateProduct(product) {
         const mode = 'formdata';
         const updatedProduct = await productController.updateProduct(product.get('id'), product, mode);
@@ -130,7 +119,6 @@ class PageModificar {
             }
 
             let ageYear = document.getElementById('ageYear');
-            let ageMonth = document.getElementById('ageMonth');
             let ageSelect = document.getElementById('ageSelect');
 
             ageSelect.value = 0;
@@ -140,6 +128,7 @@ class PageModificar {
             }
 
             const productToSave = PageModificar.validateForm();
+            
             //Bypass to get the files too
             let dataProducts = new FormData(document.getElementById("form-add-products"));
 

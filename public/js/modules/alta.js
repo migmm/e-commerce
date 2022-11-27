@@ -100,14 +100,6 @@ class PageAlta {
         return savedProduct;
     }
 
-    static async updateProduct(product) {
-        const updatedProduct = await productController.updateProduct(product.id, product);
-        const products = await productController.getProducts();
-        console.log(`Ahora hay ${products.length} productos`);
-        PageAlta.renderTemplateTable(products);
-        return updatedProduct;
-    }
-
     static async addFormEvents() {
 
         PageAlta.form.addEventListener('submit', async e => {
