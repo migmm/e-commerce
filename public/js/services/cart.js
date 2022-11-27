@@ -1,23 +1,24 @@
 import http from '../clients/http.client.js'
 
 class CartService {
-    CART_URL = '/api/cart/'
+    CART_URL = '/api/cart/';
+    mode = 'json';
 
-    async saveCart(cart) {
-        let savedCart = await http.postc(this.CART_URL, cart)
+    async saveCart(cart, mode) {
+        let savedCart = await http.post(this.CART_URL, cart, mode);
         return savedCart;
     }
 
     async loadCart() {
-        let loadedCart = await http.get(this.CART_URL)
+        let loadedCart = await http.get(this.CART_URL);
         return loadedCart;
     }
 
-    async updateCart(cart, id) {
-        let updatedCart = await http.putc(this.CART_URL, id, cart)
+    async updateCart(cart, id, mode) {
+        let updatedCart = await http.put(this.CART_URL, id, cart, mode);
         return updatedCart;
     }
 }
 
-const cartService = new CartService()
+const cartService = new CartService();
 export default cartService;

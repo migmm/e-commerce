@@ -13,7 +13,7 @@ class ProductController {
         const products = await productService.getProducts();
         return products;
     }
-    
+
     async saveProduct(product, mode) {
         // console.log('saveProduct:', product);
         const savedProduct = await productService.saveProduct(product, mode);
