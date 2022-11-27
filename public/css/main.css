@@ -1687,6 +1687,10 @@ html {
   gap: 1em;
 }
 
+.active {
+  cursor: grab;
+}
+
 .main-content__wrapper__contact {
   display: flex;
   flex-direction: column;

@@ -16,3 +16,7 @@ html {
     overflow-x: scroll;
     gap: 1em;
 }
+
+.active {
+    cursor: grab;
+}

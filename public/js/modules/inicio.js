@@ -33,7 +33,48 @@ class PageInicio {
             x = false // Change image every 2 seconds
         }
     }
-    
+
+    static cardSlider() {
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        const slider = document.querySelector('.cards-container');
+        
+        const end = () => {
+            isDown = false;
+            slider.classList.remove('active');
+        }
+
+        const start = (e) => {
+            isDown = true;
+            slider.classList.add('active');
+            startX = e.pageX || e.touches[0].pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        }
+
+        const move = (e) => {
+            if (!isDown) return;
+
+            e.preventDefault();
+            const x = e.pageX || e.touches[0].pageX - slider.offsetLeft;
+            const dist = (x - startX);
+            slider.scrollLeft = scrollLeft - dist;
+        }
+
+        (() => {
+            slider.addEventListener('mousedown', start);
+            slider.addEventListener('touchstart', start);
+
+            slider.addEventListener('mousemove', move);
+            slider.addEventListener('touchmove', move);
+
+            slider.addEventListener('mouseleave', end);
+            slider.addEventListener('mouseup', end);
+            slider.addEventListener('touchend', end);
+        })();
+
+    }
+
     static async init() {
         console.log('PageInicio.init()');
         //goToTopAndCloseMenu ();
@@ -41,6 +82,7 @@ class PageInicio {
         const products = await productController.getProducts();
         console.log(`Se encontraron ${products.length} productos`);
         PageInicio.carousel()
+        PageInicio.cardSlider()
         await PageInicio.renderTemplateCards(products);
         await cartController.init()
 
