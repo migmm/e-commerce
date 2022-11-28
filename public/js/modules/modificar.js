@@ -8,6 +8,7 @@ class PageModificar {
     static fields
     static btnUpdate
     static btnCancel
+    products = [];
 
     static validators = {
         id: /^[\da-f]{24}$/,
@@ -161,6 +162,15 @@ class PageModificar {
         document.querySelector('.products-table-container').innerHTML = html;
     }
 
+    static async productView(product) {
+        const hbsFile = await fetch('templates/product-full-view.hbs').then(r => r.text());
+        const template = Handlebars.compile(hbsFile);
+        const html = template({ product });
+        document.querySelector('.full-product-view').innerHTML = html;
+        let productFullView = document.querySelector('.product-full-view');
+        productFullView.classList.add('product-update-wrapper--on');
+    }
+
     static async addTableEvents() {
         const deleteProduct = async (e) => {
             if (!confirm('¿Estás seguro de querer eliminar el producto?')) {
@@ -239,6 +249,14 @@ class PageModificar {
             }
 
             if (e.target.classList.contains('btn-view')) {
+
+                const row = e.target.closest('tr');
+                const id = row.dataset.id;
+                var productIndex = this.products.findIndex(item => item.id === id);
+                let product = this.products[productIndex]
+        
+                PageModificar.productView(product);
+
                 return;
             }
         });
@@ -254,10 +272,10 @@ class PageModificar {
 
         PageModificar.addFormEvents();
 
-        const products = await productController.getProducts();
-        console.log(`Se encontraron ${products.length} productos`);
+        this.products = await productController.getProducts();
+        console.log(`Se encontraron ${this.products.length} productos`);
 
-        await PageModificar.renderTemplateTable(products);
+        await PageModificar.renderTemplateTable(this.products);
         PageModificar.addTableEvents();
 
     }
