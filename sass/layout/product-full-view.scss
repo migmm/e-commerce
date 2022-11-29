@@ -1,13 +1,24 @@
 @use '../abstracts/variables' as color;
 @use '../abstracts/mixins' as mixin;
 
+.full-product-view {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: color.$blacktransparent;
+}
+
+
 .product-full-view {
     border: solid 1px color.$red;
     background-color: color.$white;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    position:fixed;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -64,7 +75,7 @@
                 & img {
                     height: 100%;
                     position: absolute;
-                   /*  left: 50%;
+                    /*  left: 50%;
                     transform: translateX(-50%); */
                     border: solid 3px color.$red;
                 }
@@ -101,7 +112,7 @@
         align-items: center;
     }
 
-    &__discount { 
+    &__discount {
         background-color: color.$yellow;
         padding: .5em;
         border-radius: 1em;

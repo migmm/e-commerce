@@ -831,6 +831,16 @@ body {
   color: #4e4e4e;
 }
 
+.full-product-view {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: hsla(0deg, 0%, 0%, 0.8);
+}
+
 .product-full-view {
   border: solid 1px #be0000;
   background-color: #fff;
@@ -885,7 +895,7 @@ body {
   height: 100%;
   position: absolute;
   /*  left: 50%;
-   transform: translateX(-50%); */
+  transform: translateX(-50%); */
   border: solid 3px #be0000;
 }
 .product-full-view__detail {
@@ -1949,6 +1959,10 @@ input[type=number] {
 
 .product-full-view--on {
   display: flex;
+}
+
+.product-full-view-bg--on {
+  display: block;
 }
 
 /*# sourceMappingURL=main.css.map */

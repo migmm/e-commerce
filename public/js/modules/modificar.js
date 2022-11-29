@@ -8,6 +8,8 @@ class PageModificar {
     static fields
     static btnUpdate
     static btnCancel
+    static productFullView
+    static productFullViewBg
     products = [];
 
     static validators = {
@@ -129,7 +131,7 @@ class PageModificar {
             }
 
             const productToSave = PageModificar.validateForm();
-            
+
             //Bypass to get the files too
             let dataProducts = new FormData(document.getElementById("form-add-products"));
 
@@ -167,8 +169,36 @@ class PageModificar {
         const template = Handlebars.compile(hbsFile);
         const html = template({ product });
         document.querySelector('.full-product-view').innerHTML = html;
-        let productFullView = document.querySelector('.product-full-view');
-        productFullView.classList.add('product-full-view--on');
+        PageModificar.productFullView = document.querySelector('.product-full-view');
+        PageModificar.productFullViewBg = document.querySelector('.full-product-view');
+        PageModificar.productFullView.classList.add('product-full-view--on');
+        PageModificar.productFullViewBg.classList.add('product-full-view-bg--on');
+    }
+
+    static keyEvents() {
+        document.addEventListener('click', e => {
+
+            // Click on background dark and product view is closed
+            if (e.target.classList.value === 'full-product-view product-full-view-bg--on') {
+                PageModificar.productFullView.classList.remove('product-full-view--on');
+                PageModificar.productFullViewBg.classList.remove('product-full-view-bg--on');
+                return;
+            }
+
+            /* 
+            // Click on X to close product view
+            if (e.target.classList.value === '') {
+                return;
+             */
+
+        });
+
+        document.addEventListener('keydown', e => {
+            if (e.key == 'Escape') {
+                PageModificar.productFullView.classList.remove('product-full-view--on');
+                PageModificar.productFullViewBg.classList.remove('product-full-view-bg--on');
+            }
+        });
     }
 
     static async addTableEvents() {
@@ -254,7 +284,7 @@ class PageModificar {
                 const id = row.dataset.id;
                 var productIndex = this.products.findIndex(item => item.id === id);
                 let product = this.products[productIndex]
-        
+
                 PageModificar.productView(product);
 
                 return;
@@ -271,7 +301,7 @@ class PageModificar {
         console.log(PageModificar.fields);
 
         PageModificar.addFormEvents();
-
+        PageModificar.keyEvents();
         this.products = await productController.getProducts();
         console.log(`Se encontraron ${this.products.length} productos`);
 
