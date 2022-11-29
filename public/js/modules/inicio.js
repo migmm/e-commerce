@@ -47,6 +47,9 @@ class PageInicio {
             slider0.classList.remove('active');
             slider1.classList.remove('active');
             slider2.classList.remove('active');
+            slider0.classList.remove('grab');
+            slider1.classList.remove('grab');
+            slider2.classList.remove('grab');
         }
 
         const start = (e) => {
@@ -68,15 +71,18 @@ class PageInicio {
         const move = (e) => {
             if (!isDown) return;
 
+            slider0.classList.add('grab');
             e.preventDefault();
             const x0 = e.pageX || e.touches[0].pageX - slider0.offsetLeft;
             const dist0 = (x0 - startX);
             slider0.scrollLeft = scrollLeft - dist0;
 
+            slider1.classList.add('grab');
             const x1 = e.pageX || e.touches[0].pageX - slider1.offsetLeft;
             const dist1 = (x1 - startX);
             slider1.scrollLeft = scrollLeft - dist1;
 
+            slider2.classList.add('grab');
             const x2 = e.pageX || e.touches[0].pageX - slider2.offsetLeft;
             const dist2 = (x2 - startX);
             slider2.scrollLeft = scrollLeft - dist2;

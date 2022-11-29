@@ -1692,6 +1692,10 @@ html {
   cursor: grab;
 }
 
+.grab {
+  cursor: grabbing;
+}
+
 .main-content__wrapper__contact {
   display: flex;
   flex-direction: column;
