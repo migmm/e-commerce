@@ -119,6 +119,15 @@ class ModuleCart {
                 this.removeItemFromCart(id, 1);
                 return;
             }
+
+            document.addEventListener('keydown', e => {
+                if (e.key == 'Escape') {
+                    if (isCartPreviewOpen) {
+                        toggleCart();
+                        isCartPreviewOpen = 0;
+                    }
+                }
+            });
         });
     }
 
