@@ -195,8 +195,10 @@ class PageModificar {
 
         document.addEventListener('keydown', e => {
             if (e.key == 'Escape') {
-                PageModificar.productFullView.classList.remove('product-full-view--on');
-                PageModificar.productFullViewBg.classList.remove('product-full-view-bg--on');
+                if ( PageModificar.productFullViewBg) {
+                    PageModificar.productFullView.classList.remove('product-full-view--on');
+                    PageModificar.productFullViewBg.classList.remove('product-full-view-bg--on');
+                }
             }
         });
     }
