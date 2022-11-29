@@ -836,7 +836,8 @@ body {
   background-color: #fff;
   display: flex;
   flex-direction: row;
-  position: absolute;
+  flex-wrap: nowrap;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -1940,6 +1941,10 @@ input[type=number] {
 
 .product-update-wrapper--on {
   display: block;
+}
+
+.product-full-view--on {
+  display: flex;
 }
 
 /*# sourceMappingURL=main.css.map */

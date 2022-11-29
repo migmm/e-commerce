@@ -6,7 +6,8 @@
     background-color: color.$white;
     display: flex;
     flex-direction: row;
-    position:absolute;
+    flex-wrap: nowrap;
+    position:fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

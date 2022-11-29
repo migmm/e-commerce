@@ -168,7 +168,7 @@ class PageModificar {
         const html = template({ product });
         document.querySelector('.full-product-view').innerHTML = html;
         let productFullView = document.querySelector('.product-full-view');
-        productFullView.classList.add('product-update-wrapper--on');
+        productFullView.classList.add('product-full-view--on');
     }
 
     static async addTableEvents() {
