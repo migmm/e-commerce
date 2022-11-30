@@ -49,6 +49,26 @@ In Backend I used:
 - Layer architecture to improve scalability and fast learning
 
 
+### API ROUTES
+
+##### Method GET
+api/products/ ---> Gets All Products
+
+api/products/:id ---> Get one product from ID
+
+##### Method POST
+
+api/products/ ---> Add new product (using form-data)
+
+##### Method PUT
+
+api/products/:id ---> Modify one product from ID (using form-data)
+
+##### Method DELETE
+
+api/products/:id ---> Delete one product from ID
+
+
 ### Installation
 
 bash

@@ -47,6 +47,26 @@ Para el backend se utilizó:
 - Arquitectura en capas para una mejor escalabilidad y comprensión
 
 
+### Rutas API
+
+##### Metodo GET
+api/products/ ---> Recibe todos los productos
+
+api/products/:id ---> Recibe un producto a partir de su ID
+
+##### Metodo POST
+
+api/products/ ---> Agrega un nuevo producto (usa form-data)
+
+##### Metodo PUT
+
+api/products/:id ---> Mmodifica un producto a partir de su ID (usa form-data)
+
+##### Metodo DELETE
+
+api/products/:id ---> Borra un producto a partir de su ID
+
+
 ### Instalación
 ```bash
 npm install
