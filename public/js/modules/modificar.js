@@ -190,7 +190,15 @@ class PageModificar {
                 PageModificar.productFullView.classList.remove('product-full-view--on');
                 PageModificar.productFullViewBg.classList.remove('product-full-view-bg--on');
                 return;
-            }  
+            }
+            
+            // Click on image thumbnail to see full image
+            if (e.target.parentNode.classList.value === 'img-select__img-container') {
+                let bigImg = document.getElementsByClassName('img-display__img-big')[0];
+                bigImg.src = e.target.src;
+                return;
+            } 
+            
         });
 
         document.addEventListener('keydown', e => {

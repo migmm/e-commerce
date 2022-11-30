@@ -9,13 +9,19 @@
                             <img class="img-select__avatar" src="{{this.images.portada}}" alt="Product image" />
                         </div>
                         <div class="img-select__img-container">
-                            {{!  <img src="../img/products/61+cejJWJkL._cpt_.jpg" alt="Product image"> }}
+                            {{#if this.images.galeria0}}
+                            <img src="{{this.images.galeria0}}" alt="Product image">
+                            {{/if}}
                         </div>
                         <div class="img-select__img-container">
-                            {{!  <img src="../img/products/61Bl1tNZ1HL._cpt_.jpg" alt="Product image"> }}
+                            {{#if this.images.galeria1}}
+                            <img src="{{this.images.galeria1}}" alt="Product image">
+                            {{/if}}
                         </div>
                         <div class="img-select__img-container">
-                            {{!   <img src="../img/products/61ItCf+eWCL._cpt_.jpg" alt="Product image"> }}
+                            {{#if this.images.galeria2}}
+                            <img src="{{this.images.galeria2}}" alt="Product image">
+                            {{/if}}
                         </div>
                     </div>
                     <div class="img-display">
