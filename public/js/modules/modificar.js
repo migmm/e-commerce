@@ -185,12 +185,12 @@ class PageModificar {
                 return;
             }
 
-            /* 
             // Click on X to close product view
-            if (e.target.classList.value === '') {
+            if (e.target.classList.value === 'fa fa-times fa-2x') {
+                PageModificar.productFullView.classList.remove('product-full-view--on');
+                PageModificar.productFullViewBg.classList.remove('product-full-view-bg--on');
                 return;
-             */
-
+            }  
         });
 
         document.addEventListener('keydown', e => {

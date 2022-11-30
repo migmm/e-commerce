@@ -23,6 +23,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 70%;
+    border-radius: 10px;
 
     &__row {
         //border: solid 3px color.$yellow;
@@ -190,5 +191,22 @@
     &__stock {
         display: block;
         margin: .7em .7em .7em 0;
+    }
+
+    &__close-view {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+    }
+
+    @media (hover: hover) {
+
+        &__close-view:hover {
+            color: color.$darkblue;
+        }
+    }
+
+    &__close-view:active {
+        color: color.$cyan;
     }
 }

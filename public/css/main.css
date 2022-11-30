@@ -852,6 +852,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 70%;
+  border-radius: 10px;
 }
 .product-full-view__row {
   background-color: #be0000;
@@ -987,6 +988,19 @@ body {
 .product-full-view__stock {
   display: block;
   margin: 0.7em 0.7em 0.7em 0;
+}
+.product-full-view__close-view {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+@media (hover: hover) {
+  .product-full-view__close-view:hover {
+    color: #004173;
+  }
+}
+.product-full-view__close-view:active {
+  color: #00b2eb;
 }
 
 .table-products {
