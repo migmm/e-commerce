@@ -11,6 +11,14 @@
             &__th {
                 padding: 1em;
             }
+
+            &__hide-on-responsive {
+                display: none;
+
+                @media (min-width: 650px) {
+                    display: table-cell;
+                }
+            }
         }
     }
 
@@ -71,6 +79,14 @@
             &__btn-delete:active {
                 color: color.$lightred;
                 cursor: pointer;
+            }
+
+            &__hide-on-responsive {
+                display: none;
+
+                @media (min-width: 650px) {
+                    display: table-cell;
+                }
             }
         }
 

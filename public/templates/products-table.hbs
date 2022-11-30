@@ -4,9 +4,9 @@
             <tr class="table-head">
                 <th class="table-head__th" scope="column">Imagen</th>
                 <th class="table-head__th" scope="column">Nombre</th>
-                <th class="table-head__th" scope="column">Descripción</th>
-                <th class="table-head__th" scope="column">Stock</th>
-                <th class="table-head__th" scope="column">Precio</th>
+                <th class="table-head__th table-head__hide-on-responsive" scope="column">Descripción</th>
+                <th class="table-head__th table-head__hide-on-responsive" scope="column">Stock</th>
+                <th class="table-head__th table-head__hide-on-responsive" scope="column">Precio</th>
                 <th class="table-head__th" scope="column">Acciones</th>
             </tr>
         </thead>
@@ -19,9 +19,9 @@
                     <td class="table-content__cell-image-container"><img class="table-content__image" src="{{this.images.portada}}" alt="Foto de producto"/></td>
 
                     <td class="table-content__cell-name">{{this.productName}}</td>
-                    <td class="table-content__cell-description">{{this.shortDescription}}</td>
-                    <td class="table-content__cell-stock">{{this.stock}}</td>
-                    <td class="table-content__cell-price-container">$<span class="table-content__cell-price">{{this.price}}</span></td>
+                    <td class="table-content__cell-description table-content__hide-on-responsive">{{this.shortDescription}}</td>
+                    <td class="table-content__cell-stock table-content__hide-on-responsive">{{this.stock}}</td>
+                    <td class="table-content__cell-price-container table-content__hide-on-responsive">$<span class="table-content__cell-price">{{this.price}}</span></td>
 
                     <td class="cell-img-galeria1 cell-hide" data-galeria0=""></td>
                     <td class="cell-img-galeria2 cell-hide" data-galeria1=""></td>
