@@ -144,6 +144,20 @@ class PageAlta {
                 PageAlta.emptyForm();
             }
         });
+
+        const inputMultipleFiles = document.querySelector('.file-gallery');
+        inputMultipleFiles.addEventListener('change', (e) => {
+            const files = inputMultipleFiles.files;
+
+            if (files.length > 3) {
+                let ancest = inputMultipleFiles.closest(".input-group__form-group");
+                let spanElement = ancest.querySelector('span:last-child')
+                spanElement.style.visibility = 'visible';
+                inputMultipleFiles.value = ''
+                return;
+            }
+            spanElement.style.visibility = 'hidden';
+        });
     }
 
     static async init() {
