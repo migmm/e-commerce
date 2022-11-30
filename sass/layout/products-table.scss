@@ -4,10 +4,12 @@
     width: 100%;
 
     &__thead {
-        background-color: color.$lightgrey;
+        
+        color: color.$white;
+        background-color: color.$darkblue;
 
         & .table-head {
-
+            
             &__th {
                 padding: 1em;
             }
@@ -93,7 +95,8 @@
     }
 
     &__tfoot {
-        background-color: rgb(151, 151, 151);
+        color: color.$white;
+        background-color: color.$darkblue;
 
         & .table-foot {
 

@@ -1007,7 +1007,8 @@ body {
   width: 100%;
 }
 .table-products__thead {
-  background-color: #cecdcd;
+  color: #fff;
+  background-color: #004173;
 }
 .table-products__thead .table-head__th {
   padding: 1em;
@@ -1065,7 +1066,8 @@ body {
   }
 }
 .table-products__tfoot {
-  background-color: rgb(151, 151, 151);
+  color: #fff;
+  background-color: #004173;
 }
 .table-products__tfoot .table-foot__content {
   padding: 0.5em;
