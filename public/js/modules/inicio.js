@@ -125,23 +125,25 @@ class PageInicio {
     }
 
     static arrowSlider() {
-        const slider0 = document.querySelectorAll('.cards-container')[0];
-        const arrowRight = document.querySelector('.arrows__next');
-        const arrowLeft = document.querySelector('.arrows__prev');
 
-        arrowRight.addEventListener("click", function (event) {
-            event.preventDefault();
-            slider0.classList.add('scroll-smooth');
-            slider0.scrollLeft += 290;
-            slider0.classList.remove('scroll-smooth');
-        });
+        document.addEventListener('click', e => { 
 
-        arrowLeft.addEventListener("click", function (event) {
-            event.preventDefault();
-            slider0.classList.add('scroll-smooth');
-            slider0.scrollLeft -= 290;
-            slider0.classList.remove('scroll-smooth');
-        });
+            if (e.target.classList.value === 'fa fa-chevron-circle-left fa-5x') {
+                const slider = e.target.parentNode.previousElementSibling;
+                slider.classList.add('scroll-smooth');
+                slider.scrollLeft += -290;
+                slider.classList.remove('scroll-smooth');
+                return;
+            }
+
+            if (e.target.classList.value === 'fa fa-chevron-circle-right fa-5x') {
+                const slider = e.target.parentNode.previousElementSibling.previousElementSibling;
+                slider.classList.add('scroll-smooth');
+                slider.scrollLeft += 290;
+                slider.classList.remove('scroll-smooth');
+                return; 
+            }
+        })
 
     }
 

@@ -1249,6 +1249,8 @@ body {
   top: 42%;
   left: 10px;
   cursor: pointer;
+  background-color: #fff;
+  border-radius: 50%;
 }
 .section-cards .arrows__next {
   width: 4em;
@@ -1264,6 +1266,8 @@ body {
   top: 42%;
   right: 10px;
   cursor: pointer;
+  background-color: #fff;
+  border-radius: 50%;
 }
 @media (hover: hover) {
   .section-cards .arrows__prev:hover, .section-cards .arrows__next:hover {
