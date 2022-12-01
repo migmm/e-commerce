@@ -13,7 +13,7 @@ html {
     padding: 1em;
     display: flex;
     flex-wrap: nowrap;
-    overflow-x: scroll;
+    overflow-x: hidden;
     gap: 1em;
 }
 
@@ -23,4 +23,8 @@ html {
 
 .grab {
     cursor: grabbing;
+}
+
+.scroll-smooth {
+    scroll-behavior: smooth; 
 }

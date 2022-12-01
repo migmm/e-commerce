@@ -41,7 +41,7 @@ class PageInicio {
         const slider0 = document.querySelectorAll('.cards-container')[0];
         const slider1 = document.querySelectorAll('.cards-container')[1];
         const slider2 = document.querySelectorAll('.cards-container')[2];
-        
+
         const end = () => {
             isDown = false;
             slider0.classList.remove('active');
@@ -124,10 +124,31 @@ class PageInicio {
 
     }
 
+    static arrowSlider() {
+        const slider0 = document.querySelectorAll('.cards-container')[0];
+        const arrowRight = document.querySelector('.arrows__next');
+        const arrowLeft = document.querySelector('.arrows__prev');
+
+        arrowRight.addEventListener("click", function (event) {
+            event.preventDefault();
+            slider0.classList.add('scroll-smooth');
+            slider0.scrollLeft += 290;
+            slider0.classList.remove('scroll-smooth');
+        });
+
+        arrowLeft.addEventListener("click", function (event) {
+            event.preventDefault();
+            slider0.classList.add('scroll-smooth');
+            slider0.scrollLeft -= 290;
+            slider0.classList.remove('scroll-smooth');
+        });
+
+    }
+
     static async init() {
         console.log('PageInicio.init()');
         //goToTopAndCloseMenu ();
-
+        PageInicio.arrowSlider()
         const products = await productController.getProducts();
         console.log(`Se encontraron ${products.length} productos`);
         PageInicio.carousel()

@@ -153,10 +153,10 @@
     .arrows {
 
         &__prev {
-            width: 8em;
+            width: 4em;
             height: 76%;
             color: color.$darkblue;
-            background-color: rgba(255, 255, 255, 0.603);
+            background-color: rgba(255, 255, 255, 0);
             position: absolute;
             bottom: 15px;
             left: 0;
@@ -164,16 +164,16 @@
             & .fa-chevron-circle-left {
                 position: absolute;
                 top: 42%;
-                left: 30px;
-
+                left: 10px;
+                cursor: pointer;
             }
         }
 
         &__next {
-            width: 8em;
+            width: 4em;
             height: 76%;
             color: color.$darkblue;
-            background-color: rgba(255, 255, 255, 0.712);
+            background-color:  rgba(255, 255, 255, 0);
             position: absolute;
             bottom: 15px;
             right: 0;
@@ -181,7 +181,8 @@
             & .fa-chevron-circle-right {
                 position: absolute;
                 top: 42%;
-                right: 30px;
+                right: 10px;
+                cursor: pointer;
             }
         }
 
@@ -193,7 +194,6 @@
             }
         }
     }
-
 }
 
 .hide-elements {
