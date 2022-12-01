@@ -141,6 +141,7 @@
     color: color.$violet;
 }
 
+
 .section-cards {
     max-width: 1600px;
     position: relative;
@@ -150,47 +151,63 @@
         padding-top: 2em;
     }
 
+    /* Separated block in order to make dissapear first */
     .arrows {
-
         &__prev {
-            width: 4em;
-            height: 76%;
-            color: color.$darkblue;
-            background-color: rgba(255, 255, 255, 0);
-            position: absolute;
-            bottom: 15px;
-            left: 0;
-
             & .fa-chevron-circle-left {
-                position: absolute;
-                top: 42%;
-                left: 10px;
-                cursor: pointer;
-                background-color: color.$white;
-                border-radius: 50%;
+                display: none;
             }
         }
-
         &__next {
-            width: 4em;
-            height: 76%;
-            color: color.$darkblue;
-            background-color:  rgba(255, 255, 255, 0);
-            position: absolute;
-            bottom: 15px;
-            right: 0;
-
             & .fa-chevron-circle-right {
-                position: absolute;
-                top: 42%;
-                right: 10px;
-                cursor: pointer;
-                background-color: color.$white;
-                border-radius: 50%;
+                display: none;
             }
         }
+    }
 
-        @media (hover: hover) {
+    /* Then the complete media query to show the arrows */
+    @media (hover: hover) {
+        .arrows {
+
+            &__prev {
+                width: 4em;
+                height: 76%;
+                color: color.$darkblue;
+                background-color: rgba(255, 255, 255, 0);
+                position: absolute;
+                bottom: 15px;
+                left: 0;
+
+                & .fa-chevron-circle-left {
+                    position: absolute;
+                    display: block;
+                    top: 42%;
+                    left: 10px;
+                    cursor: pointer;
+                    background-color: color.$white;
+                    border-radius: 50%;
+                }
+            }
+
+            &__next {
+                width: 4em;
+                height: 76%;
+                color: color.$darkblue;
+                background-color: rgba(255, 255, 255, 0);
+                position: absolute;
+                bottom: 15px;
+                right: 0;
+
+                & .fa-chevron-circle-right {
+                    position: absolute;
+                    display: block;
+                    top: 42%;
+                    right: 10px;
+                    cursor: pointer;
+                    background-color: color.$white;
+                    border-radius: 50%;
+                }
+            }
 
             &__prev:hover,
             &__next:hover {

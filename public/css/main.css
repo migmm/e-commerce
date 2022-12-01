@@ -1230,46 +1230,56 @@ body {
 .section-cards {
   max-width: 1600px;
   position: relative;
+  /* Separated block in order to make dissapear first */
+  /* Then the complete media query to show the arrows */
 }
 .section-cards__header {
   text-align: center;
   padding-top: 2em;
 }
-.section-cards .arrows__prev {
-  width: 4em;
-  height: 76%;
-  color: #004173;
-  background-color: rgba(255, 255, 255, 0);
-  position: absolute;
-  bottom: 15px;
-  left: 0;
-}
 .section-cards .arrows__prev .fa-chevron-circle-left {
-  position: absolute;
-  top: 42%;
-  left: 10px;
-  cursor: pointer;
-  background-color: #fff;
-  border-radius: 50%;
-}
-.section-cards .arrows__next {
-  width: 4em;
-  height: 76%;
-  color: #004173;
-  background-color: rgba(255, 255, 255, 0);
-  position: absolute;
-  bottom: 15px;
-  right: 0;
+  display: none;
 }
 .section-cards .arrows__next .fa-chevron-circle-right {
-  position: absolute;
-  top: 42%;
-  right: 10px;
-  cursor: pointer;
-  background-color: #fff;
-  border-radius: 50%;
+  display: none;
 }
 @media (hover: hover) {
+  .section-cards .arrows__prev {
+    width: 4em;
+    height: 76%;
+    color: #004173;
+    background-color: rgba(255, 255, 255, 0);
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+  }
+  .section-cards .arrows__prev .fa-chevron-circle-left {
+    position: absolute;
+    display: block;
+    top: 42%;
+    left: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 50%;
+  }
+  .section-cards .arrows__next {
+    width: 4em;
+    height: 76%;
+    color: #004173;
+    background-color: rgba(255, 255, 255, 0);
+    position: absolute;
+    bottom: 15px;
+    right: 0;
+  }
+  .section-cards .arrows__next .fa-chevron-circle-right {
+    position: absolute;
+    display: block;
+    top: 42%;
+    right: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 50%;
+  }
   .section-cards .arrows__prev:hover, .section-cards .arrows__next:hover {
     color: #00b2eb;
   }
