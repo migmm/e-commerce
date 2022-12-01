@@ -51,7 +51,7 @@
         width: 10em;
         transform: translateX(-50%);
         @include mixin.red-button;
-        
+
     }
 
     @media (hover: hover) {
@@ -131,7 +131,7 @@
 }
 
 @media (hover: hover) {
-    
+
     .fa-heart-o:hover {
         color: color.$lightred;
     }
@@ -143,11 +143,57 @@
 
 .section-cards {
     max-width: 1600px;
+    position: relative;
 
     &__header {
         text-align: center;
         padding-top: 2em;
     }
+
+    .arrows {
+
+        &__prev {
+            width: 8em;
+            height: 76%;
+            color: color.$darkblue;
+            background-color: rgba(255, 255, 255, 0.603);
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+
+            & .fa-chevron-circle-left {
+                position: absolute;
+                top: 42%;
+                left: 30px;
+
+            }
+        }
+
+        &__next {
+            width: 8em;
+            height: 76%;
+            color: color.$darkblue;
+            background-color: rgba(255, 255, 255, 0.712);
+            position: absolute;
+            bottom: 15px;
+            right: 0;
+
+            & .fa-chevron-circle-right {
+                position: absolute;
+                top: 42%;
+                right: 30px;
+            }
+        }
+
+        @media (hover: hover) {
+
+            &__prev:hover,
+            &__next:hover {
+                color: color.$cyan;
+            }
+        }
+    }
+
 }
 
 .hide-elements {
