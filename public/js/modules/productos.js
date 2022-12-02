@@ -70,14 +70,22 @@ class PageProductos {
         });
     }
 
+    static goToTopOnLoad() {
+        const htmlTag = document.getElementsByTagName('html')[0];
+        htmlTag.classList.remove('scroll-smooth');
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+        htmlTag.classList.add('scroll-smooth');
+    }
+
     static async init() {
+        console.log('PageProductos .init()');
+        PageProductos.goToTopOnLoad();
         this.products = await productController.getProducts();
         console.log(`Se encontraron ${this.products} productos`);
-        PageProductos.optionsFunctions()
+        PageProductos.optionsFunctions();
         await PageProductos.renderTemplateCards(this.products);
-        await cartController.init()
-        console.log('PageProductos .init()');
-        //goToTopAndCloseMenu ();
+        await cartController.init();
     }
 }
 

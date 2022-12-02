@@ -76,13 +76,21 @@ class PageContacto {
         });
     }
 
+    static goToTopOnLoad() {
+        const htmlTag = document.getElementsByTagName('html')[0];
+        htmlTag.classList.remove('scroll-smooth');
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+        htmlTag.classList.add('scroll-smooth');
+    }
+
     static async init () {
         console.log('PageContacto.init()');
+        PageContacto.goToTopOnLoad();
         document.getElementById("name").focus();
         PageContacto.form = document.getElementById('form-contact');
         PageContacto.fields = PageContacto.form.querySelectorAll('textarea, input');
         PageContacto.addFormEvents();
-        //goToTopAndCloseMenu ();
     }
 }
 

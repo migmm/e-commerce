@@ -302,8 +302,17 @@ class PageModificar {
         });
     }
 
+    static goToTopOnLoad() {
+        const htmlTag = document.getElementsByTagName('html')[0];
+        htmlTag.classList.remove('scroll-smooth');
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+        htmlTag.classList.add('scroll-smooth');
+    }
+
     static async init() {
         console.log('PageModificar.init()');
+        PageModificar.goToTopOnLoad();
         PageModificar.form = document.getElementById('form-add-products');
         PageModificar.fields = PageModificar.form.querySelectorAll(`textarea, input:not([type='file']`);
         PageModificar.btnUpdate = PageModificar.form.querySelector('#btn-update');
@@ -317,7 +326,6 @@ class PageModificar {
 
         await PageModificar.renderTemplateTable(this.products);
         PageModificar.addTableEvents();
-
     }
 }
 

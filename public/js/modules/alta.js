@@ -160,14 +160,22 @@ class PageAlta {
         });
     }
 
+    static goToTopOnLoad() {
+        const htmlTag = document.getElementsByTagName('html')[0];
+        htmlTag.classList.remove('scroll-smooth');
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+        htmlTag.classList.add('scroll-smooth');
+    }
+
     static async init() {
         console.log('PageAlta.init()');
+        PageAlta.goToTopOnLoad();
         PageAlta.form = document.getElementById('form-add-products');
         PageAlta.fields = PageAlta.form.querySelectorAll(`textarea, input:not([type='radio']`);
         PageAlta.addFormEvents();
         document.getElementById('productName').focus();
-        console.log(PageAlta.fields)
-        //goToTopAndCloseMenu ();
+        console.log(PageAlta.fields);
     }
 }
 
