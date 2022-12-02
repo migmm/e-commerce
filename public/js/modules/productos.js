@@ -11,7 +11,7 @@ class PageProductos {
         const hbsFile = await fetch('templates/inicio.hbs').then(r => r.text());
         const template = Handlebars.compile(hbsFile);
         const html = template({ products });
-        document.querySelector('.cards-container').innerHTML = html;
+        document.querySelector('.section-cards__cards-container').innerHTML = html;
     }
 
     static async optionsFunctions() {

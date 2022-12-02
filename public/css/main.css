@@ -2039,14 +2039,24 @@ input[type=number] {
 .section-all-products .section-options ul li a:hover {
   color: #00b2eb;
 }
+.section-all-products .section-options h4:nth-child(1), .section-all-products .section-options select:nth-child(1), .section-all-products .section-options :nth-child(9), .section-all-products .section-options :nth-child(10), .section-all-products .section-options :nth-child(11), .section-all-products .section-options :nth-child(12) {
+  visibility: hidden;
+}
 .section-all-products .section-products {
   width: 100%;
 }
-.section-all-products .section-products .section-cards .section-cards__header .section-qty form {
+.section-all-products .section-products .section-cards__header .section-qty form {
   text-align: right;
 }
-.section-all-products .section-products .section-cards .section-cards__header .section-qty form select {
+.section-all-products .section-products .section-cards__header .section-qty form select {
   font-size: 0.9em;
+  visibility: hidden;
+}
+.section-all-products .section-products .section-cards__cards-container {
+  padding: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
 }
 .section-all-products .section-products .section-tags {
   margin: 2em 0;
