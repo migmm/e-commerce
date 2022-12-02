@@ -289,14 +289,14 @@ class PageModificar {
             }
 
             if (e.target.classList.contains('btn-view')) {
-
+                /* 
                 const row = e.target.closest('tr');
                 const id = row.dataset.id;
                 var productIndex = this.products.findIndex(item => item.id === id);
                 let product = this.products[productIndex]
 
-                PageModificar.productView(product);
-
+                PageModificar.productView(product); 
+                */
                 return;
             }
         });

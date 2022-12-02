@@ -859,7 +859,7 @@ body {
   border-radius: 10px;
   z-index: 1000;
 }
-@media (min-width: 650px) {
+@media (min-width: 1070px) {
   .product-full-view {
     flex-direction: row;
     flex-wrap: nowrap;
@@ -938,6 +938,7 @@ body {
 }
 .product-full-view__brand {
   color: #004173;
+  width: 100%;
 }
 .product-full-view__heading {
   font-weight: 800;

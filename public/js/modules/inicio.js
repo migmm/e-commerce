@@ -78,12 +78,12 @@ class PageInicio {
             slider0.scrollLeft = scrollLeft - dist0;
 
             slider1.classList.add('grab');
-            const x1 = e.pageX || e.touches[0].pageX - slider1.offsetLeft;
+            const x1 = e.pageX || e.touches[1].pageX - slider1.offsetLeft;
             const dist1 = (x1 - startX);
             slider1.scrollLeft = scrollLeft - dist1;
 
             slider2.classList.add('grab');
-            const x2 = e.pageX || e.touches[0].pageX - slider2.offsetLeft;
+            const x2 = e.pageX || e.touches[2].pageX - slider2.offsetLeft;
             const dist2 = (x2 - startX);
             slider2.scrollLeft = scrollLeft - dist2;
         }
@@ -121,7 +121,6 @@ class PageInicio {
             slider2.addEventListener('mouseup', end);
             slider2.addEventListener('touchend', end);
         })();
-
     }
 
     static arrowSlider() {

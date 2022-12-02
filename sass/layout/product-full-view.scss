@@ -29,7 +29,7 @@
     border-radius: 10px;
     z-index: 1000;
 
-    @media (min-width: 650px) {
+    @media (min-width: 1070px) {
         flex-direction: row;
         flex-wrap: nowrap;
         width: 70%;
@@ -123,6 +123,7 @@
 
     &__brand {
         color: color.$darkblue;
+        width: 100%;
     }
 
     &__heading {
