@@ -143,12 +143,17 @@ class PageInicio {
                 return; 
             }
         })
+    }
 
+    static goToTopOnLoad() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
     }
 
     static async init() {
         console.log('PageInicio.init()');
         //goToTopAndCloseMenu ();
+        PageInicio.goToTopOnLoad()
         PageInicio.arrowSlider()
         const products = await productController.getProducts();
         console.log(`Se encontraron ${products.length} productos`);
@@ -156,7 +161,6 @@ class PageInicio {
         PageInicio.cardSlider()
         await PageInicio.renderTemplateCards(products);
         await cartController.init()
-
     }
 }
 
