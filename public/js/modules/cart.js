@@ -1,19 +1,13 @@
 import cartService from '../services/cart.js';
 import productController from '/js/controllers/product.js';
 import toastComponent from '/js/modules/toast.js';
+import render from '/js/utils/render.js';
 
 console.log('🆗: Módulo ModuleCart cargado.');
 
 class ModuleCart {
 
     static cart = [];
-
-    static async renderCardsCartPreview(products) {
-        const hbsFile = await fetch('templates/card-cart-preview.hbs').then(r => r.text());
-        const template = Handlebars.compile(hbsFile);
-        const html = template({ products });
-        document.querySelector('.cart-modal__products').innerHTML = html;
-    }
 
     static cartFunctions() {
 
@@ -138,7 +132,7 @@ class ModuleCart {
 
         if (productToRemoveId >= 0) {
             ++this.cart[productToRemoveId].qty;
-            await ModuleCart.renderCardsCartPreview(this.cart);
+            await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.cart-modal__products')
             localStorage.setItem('cart', JSON.stringify(this.cart));
             toastComponent.toastNotification("Producto agregado al carrito!");
             ModuleCart.updateCart();
@@ -147,7 +141,7 @@ class ModuleCart {
 
         this.cart.push(product);
         this.cart[this.cart.length - 1].qty = 1;
-        await ModuleCart.renderCardsCartPreview(this.cart);
+        await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.cart-modal__products')
         localStorage.setItem('cart', JSON.stringify(this.cart));
         toastComponent.toastNotification("Producto agregado al carrito!");
         ModuleCart.updateCart();
@@ -159,15 +153,15 @@ class ModuleCart {
 
         if (qty === 1) {
             --this.cart[productToRemoveId].qty;
-            await ModuleCart.renderCardsCartPreview(this.cart);
+            await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.cart-modal__products')
             localStorage.setItem('cart', JSON.stringify(this.cart));
             toastComponent.toastNotification("Producto agregado al carrito!");
             ModuleCart.updateCart();
             return;
         }
-        //const productToRemoveId = this.cart.findIndex(product => product.id == id);
+
         this.cart.splice(productToRemoveId, 1);
-        await ModuleCart.renderCardsCartPreview(this.cart);
+        await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.cart-modal__products')
         localStorage.setItem('cart', JSON.stringify(this.cart));
         toastComponent.toastNotification("Producto eliminado del carrito!");
         ModuleCart.updateCart();
@@ -191,7 +185,7 @@ class ModuleCart {
         const cartLoaded = await cartService.loadCart();
 
         const loggedIn = true;
-        const user = 'arthemis'; // johnse - alfredoro - carlos23
+        const user = 'arthemis';
         let savedCart = {};
 
         if (loggedIn) {
@@ -207,7 +201,7 @@ class ModuleCart {
     static async init() {
         console.log('ModuleCart.init()');
         this.cart = JSON.parse(localStorage.getItem('cart')) || [];
-        await ModuleCart.renderCardsCartPreview(this.cart);
+        await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.cart-modal__products')
         ModuleCart.updateCart();
     }
 }
