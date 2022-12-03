@@ -1,5 +1,6 @@
 import productController from '/js/controllers/product.js';
 import cartController from '/js/modules/cart.js';
+import render from '/js/utils/render.js';
 
 console.log('🆗: Módulo PageProductos cargado.');
 
@@ -7,17 +8,9 @@ class PageProductos {
 
     static products = [];
 
-    static async renderTemplateCards(products) {
-        const hbsFile = await fetch('templates/inicio.hbs').then(r => r.text());
-        const template = Handlebars.compile(hbsFile);
-        const html = template({ products });
-        document.querySelector('.section-cards__cards-container').innerHTML = html;
-    }
-
     static async optionsFunctions() {
 
         document.addEventListener('click', e => {
-            
 
             if (e.target.tagName === 'SPAN') {
                 e.preventDefault();
@@ -57,8 +50,8 @@ class PageProductos {
                         }
                     }
                 }
-
-                PageProductos.renderTemplateCards(results);
+                
+                render.renderTemplateCards(results, 'templates/inicio.hbs', '.section-cards__cards-container')
                 return;
             }
 
@@ -84,7 +77,7 @@ class PageProductos {
         this.products = await productController.getProducts();
         console.log(`Se encontraron ${this.products} productos`);
         PageProductos.optionsFunctions();
-        await PageProductos.renderTemplateCards(this.products);
+        await render.renderTemplateCards(this.products, 'templates/inicio.hbs', '.section-cards__cards-container')
         await cartController.init();
     }
 }
