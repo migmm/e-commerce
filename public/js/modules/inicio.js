@@ -1,19 +1,11 @@
 
 import productController from '/js/controllers/product.js';
 import cartController from '/js/modules/cart.js';
+import render from '/js/utils/render.js';
 
 console.log('🆗: Módulo PageInicio cargado.');
 
 class PageInicio {
-
-    static async renderTemplateCards(products) {
-        const hbsFile = await fetch('templates/inicio.hbs').then(r => r.text());
-        const template = Handlebars.compile(hbsFile);
-        const html = template({ products });
-        document.querySelector('.cards-container').innerHTML = html;
-        document.querySelector('.most-selled').innerHTML = html;
-        document.querySelector('.latest-viewed').innerHTML = html;
-    }
 
     static carousel() {
         var slideIndex = 0;
@@ -161,7 +153,11 @@ class PageInicio {
         console.log(`Se encontraron ${products.length} productos`);
         PageInicio.carousel();
         PageInicio.cardSlider();
-        await PageInicio.renderTemplateCards(products);
+
+        await render.renderTemplateCards(products, 'templates/inicio.hbs', '.cards-container')
+        await render.renderTemplateCards(products, 'templates/inicio.hbs', '.most-selled')
+        await render.renderTemplateCards(products, 'templates/inicio.hbs', '.latest-viewed')
+
         await cartController.init();
     }
 }
