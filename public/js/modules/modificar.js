@@ -1,4 +1,5 @@
 import productController from '/js/controllers/product.js';
+import render from '/js/utils/render.js';
 
 console.log('🆗: Módulo PageModificar cargado.');
 
@@ -104,7 +105,7 @@ class PageModificar {
         const updatedProduct = await productController.updateProduct(product.get('id'), product, mode);
         const products = await productController.getProducts();
         console.log(`Ahora hay ${products.length} productos`);
-        PageModificar.renderTemplateTable(products);
+        await render.renderTemplateCards(products, 'templates/products-table.hbs', '.products-table-container')
         return updatedProduct;
     }
 
@@ -157,13 +158,6 @@ class PageModificar {
         });
     }
 
-    static async renderTemplateTable(products) {
-        const hbsFile = await fetch('templates/products-table.hbs').then(r => r.text());
-        const template = Handlebars.compile(hbsFile);
-        const html = template({ products });
-        document.querySelector('.products-table-container').innerHTML = html;
-    }
-
     static async productView(product) {
         const hbsFile = await fetch('templates/product-full-view.hbs').then(r => r.text());
         const template = Handlebars.compile(hbsFile);
@@ -191,19 +185,18 @@ class PageModificar {
                 PageModificar.productFullViewBg.classList.remove('product-full-view-bg--on');
                 return;
             }
-            
+
             // Click on image thumbnail to see full image
             if (e.target.parentNode.classList.value === 'img-select__img-container') {
                 let bigImg = document.getElementsByClassName('img-display__img-big')[0];
                 bigImg.src = e.target.src;
                 return;
-            } 
-            
+            }
         });
 
         document.addEventListener('keydown', e => {
             if (e.key == 'Escape') {
-                if ( PageModificar.productFullViewBg) {
+                if (PageModificar.productFullViewBg) {
                     PageModificar.productFullView.classList.remove('product-full-view--on');
                     PageModificar.productFullViewBg.classList.remove('product-full-view-bg--on');
                 }
@@ -223,7 +216,7 @@ class PageModificar {
 
             const products = await productController.getProducts();
             console.log(`Aún quedan ${products.length} productos`);
-            PageModificar.renderTemplateTable(products);
+            await render.renderTemplateCards(products, 'templates/products-table.hbs', '.products-table-container')
         };
 
         const editProduct = async e => {
@@ -282,8 +275,7 @@ class PageModificar {
 
                 PageModificar.fields.forEach(function (field) {
                     field.classList.remove('input-group__input--ok');
-                }
-                );
+                });
 
                 return;
             }
@@ -324,7 +316,7 @@ class PageModificar {
         this.products = await productController.getProducts();
         console.log(`Se encontraron ${this.products.length} productos`);
 
-        await PageModificar.renderTemplateTable(this.products);
+        await render.renderTemplateCards(this.products, 'templates/products-table.hbs', '.products-table-container')
         PageModificar.addTableEvents();
     }
 }
