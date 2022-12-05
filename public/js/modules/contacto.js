@@ -1,4 +1,4 @@
-import toastComponent from '/js/modules/toast.js';
+import cartController from '/js/modules/cart.js';
 
 console.log('🆗: Módulo PageContacto cargado.');
 
@@ -91,6 +91,7 @@ class PageContacto {
         PageContacto.form = document.getElementById('form-contact');
         PageContacto.fields = PageContacto.form.querySelectorAll('textarea, input');
         PageContacto.addFormEvents();
+        await cartController.init();
     }
 }
 

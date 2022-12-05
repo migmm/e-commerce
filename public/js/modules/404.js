@@ -1,3 +1,5 @@
+import cartController from '/js/modules/cart.js';
+
 console.log('🆗: Módulo Page404 cargado.');
 
 class Page404 {
@@ -13,6 +15,7 @@ class Page404 {
     static async init () {
         console.log('Page404.init()');
         Page404.goToTopOnLoad();
+        await cartController.init();
     }
 }
 

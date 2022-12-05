@@ -1,3 +1,4 @@
+import cartController from '/js/modules/cart.js';
 
 console.log('🆗: Módulo PageNosotros cargado.');
 
@@ -14,6 +15,7 @@ class PageNosotros  {
     static async init () {
         console.log('PageNosotros .init()');
         PageNosotros.goToTopOnLoad();
+        await cartController.init();
     }
 }
 

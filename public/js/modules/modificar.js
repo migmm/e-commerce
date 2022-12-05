@@ -1,5 +1,6 @@
 import productController from '/js/controllers/product.js';
 import render from '/js/utils/render.js';
+import cartController from '/js/modules/cart.js';
 
 console.log('🆗: Módulo PageModificar cargado.');
 
@@ -318,6 +319,7 @@ class PageModificar {
 
         await render.renderTemplateCards(this.products, 'templates/products-table.hbs', '.products-table-container')
         PageModificar.addTableEvents();
+        await cartController.init();
     }
 }
 

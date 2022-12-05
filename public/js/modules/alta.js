@@ -1,4 +1,6 @@
 import productController from '/js/controllers/product.js';
+import cartController from '/js/modules/cart.js';
+
 
 console.log('🆗: Módulo PageAlta cargado.');
 
@@ -187,6 +189,7 @@ class PageAlta {
         PageAlta.addFormEvents();
         document.getElementById('productName').focus();
         console.log(PageAlta.fields);
+        await cartController.init();
     }
 }
 
