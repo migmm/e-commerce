@@ -1,4 +1,4 @@
-
+{{#if this}}
     {{#each this}}
         <div class="product-full-page">
             <div class="product-full-page__row">
@@ -61,3 +61,6 @@
             </div>
         </div>
     {{/each}}
+{{else}}
+    <h2>Error al visualizar el producto.</h2>
+{{/if}}

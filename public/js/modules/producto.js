@@ -83,7 +83,7 @@ class PageProducto {
         this.products = await productController.getProducts();
         console.log(`Se encontraron ${this.products.length} productos`);
         PageProducto.optionsFunctions();
-        const product = this.products[1]
+        const product = await productController.getProduct('63423cccac4d4479a9f1730f');
         console.log(product)
 
         await cartController.init();
@@ -95,6 +95,7 @@ class PageProducto {
         const productFullView = document.querySelector('.full-product-view');
         productFullView.classList.add('product-full-view--on'); 
  */
+
     }
 }
 
