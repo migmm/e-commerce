@@ -37,8 +37,16 @@ class PageAlta {
     };
 
     static emptyForm() {
-        PageAlta.fields.forEach(field => field.value = '');
-        
+        const msgGlobalError = document.getElementsByClassName('input-group__error-form')[0];
+        const msgGlobalOK = document.getElementsByClassName('input-group__ok-form')[0];
+        PageAlta.fields.forEach(field => {
+            field.value = ''
+            setTimeout(function () {
+                field.classList.remove('input-group__input--ok');
+                msgGlobalOK.classList.remove( 'input-group__ok-form--show');
+                msgGlobalError.classList.remove('input-group__error--show');
+            }, 3000);
+        });
     }
 
     static completeForm(product) {
@@ -56,18 +64,19 @@ class PageAlta {
         const productToSave = {};
         console.log('\n\n');
         const msgGlobalError = document.getElementsByClassName('input-group__error-form')[0];
+        const msgGlobalOK = document.getElementsByClassName('input-group__ok-form')[0];
 
         for (const field of PageAlta.fields) {
             const validated = PageAlta.validate(field.value, PageAlta.validators[field.name]);
             console.log(field.name, validated);
 
             let errorField = document.getElementsByName(field.name)[0];
-            let ancest = errorField.closest(".input-group__form-group");
-            let spanElement = ancest.querySelector('span:last-child')
+            let ancest = errorField.closest('.input-group__form-group');
+            let spanElement = ancest.querySelector('span:last-child');
 
             if (!validated) {
-                errorField.classList.remove("input-group__input--ok");
-                errorField.classList.add("input-group__input--error");
+                errorField.classList.remove('input-group__input--ok');
+                errorField.classList.add('input-group__input--error');
                 spanElement.style.visibility = 'visible';
 
                 allValidated = false;
@@ -76,8 +85,8 @@ class PageAlta {
             } else {
                 productToSave[field.name] = field.value;
 
-                errorField.classList.remove("input-group__input--error");
-                errorField.classList.add("input-group__input--ok");
+                errorField.classList.remove('input-group__input--error');
+                errorField.classList.add('input-group__input--ok');
                 spanElement.style.visibility = 'hidden';
             }
         }
@@ -85,16 +94,16 @@ class PageAlta {
         console.log('allValidated:', allValidated);
 
         if (!allValidated) {
-            msgGlobalError.classList.add("input-group__error--show");
+            msgGlobalError.classList.add('input-group__error--show');
             return false;
         }
-        msgGlobalError.classList.remove("input-group__error--show");
-        msgGlobalError.classList.add("input-group__ok-form--show");
+        msgGlobalError.classList.remove('input-group__error--show');
+        msgGlobalOK.classList.add('input-group__ok-form--show');
         return productToSave;
     }
 
     static async saveProduct(product) {
-        const mode = 'formdata'
+        const mode = 'formdata';
         const savedProduct = await productController.saveProduct(product, mode);
         const products = await productController.getProducts();
         console.log(`Ahora hay ${products.length} productos`);
@@ -111,7 +120,7 @@ class PageAlta {
             document.getElementById('lastSell').value = new Date('1900-01-01').toISOString();
 
             let freeShip = document.getElementById('freeShip');
-            freeShip.value = false
+            freeShip.value = false;
             if (freeShip.checked) {
                 freeShip.value = 'true';
             }
@@ -120,7 +129,7 @@ class PageAlta {
             let ageMonth = document.getElementById('ageMonth');
             let ageSelect = document.getElementById('ageSelect');
 
-            ageSelect.value = null
+            ageSelect.value = null;
 
             if (ageYear.checked) {
                 ageSelect.value = '1';
@@ -132,13 +141,13 @@ class PageAlta {
             const productToSave = PageAlta.validateForm();
 
             //Bypass to get the files too
-            let dataProducts = new FormData(document.getElementById("form-add-products"))
-            console.log(dataProducts)
+            let dataProducts = new FormData(document.getElementById('form-add-products'));
+            console.log(dataProducts);
             const colorsString = dataProducts.get('colors');
             dataProducts.delete('colors');
             dataProducts.delete('ageSelects');
             var colorsSplit = colorsString.split(',');
-            colorsSplit.forEach((item) => dataProducts.append("colors[]", item))
+            colorsSplit.forEach((item) => dataProducts.append('colors[]', item))
 
             if (productToSave) {
                 const savedProduct = await PageAlta.saveProduct(dataProducts);
@@ -152,10 +161,10 @@ class PageAlta {
             const files = inputMultipleFiles.files;
 
             if (files.length > 3) {
-                let ancest = inputMultipleFiles.closest(".input-group__form-group");
+                let ancest = inputMultipleFiles.closest('.input-group__form-group');
                 let spanElement = ancest.querySelector('span:last-child')
                 spanElement.style.visibility = 'visible';
-                inputMultipleFiles.value = ''
+                inputMultipleFiles.value = '';
                 return;
             }
             spanElement.style.visibility = 'hidden';
