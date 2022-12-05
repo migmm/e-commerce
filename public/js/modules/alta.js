@@ -38,6 +38,7 @@ class PageAlta {
 
     static emptyForm() {
         PageAlta.fields.forEach(field => field.value = '');
+        
     }
 
     static completeForm(product) {
@@ -87,6 +88,8 @@ class PageAlta {
             msgGlobalError.classList.add("input-group__error--show");
             return false;
         }
+        msgGlobalError.classList.remove("input-group__error--show");
+        msgGlobalError.classList.add("input-group__ok-form--show");
         return productToSave;
     }
 

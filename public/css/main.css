@@ -1339,7 +1339,17 @@ body {
   border: solid 1px #1fad53;
   background-color: #b6ffba;
 }
+.input-group__ok-form {
+  display: block;
+  visibility: hidden;
+  margin: 0.1em 1em 1em 1em;
+  color: #1fad53;
+  font-size: 1em;
+}
 .input-group__error--show {
+  visibility: visible;
+}
+.input-group__ok-form--show {
   visibility: visible;
 }
 .input-group__textarea {

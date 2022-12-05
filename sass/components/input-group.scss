@@ -59,7 +59,19 @@
         background-color: #b6ffba;
     }
 
+    &__ok-form {
+        display: block;
+        visibility: hidden;
+        margin: .1em 1em 1em 1em;
+        color: color.$green;
+        font-size: 1em;
+    }
+
     &__error--show {
+        visibility: visible;
+    }
+
+    &__ok-form--show {
         visibility: visible;
     }
 
