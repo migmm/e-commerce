@@ -1515,20 +1515,31 @@ body {
   z-index: 201;
   padding: 0.5em;
 }
-.cart-modal .fa-times-circle-o {
+.cart-modal__close-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 30px;
   right: 20px;
   width: 25px;
   height: 25px;
+}
+.cart-modal__close-icon-container .fa-times-circle-o {
   color: #000;
   border: none;
   cursor: pointer;
+  transition: 100ms ease all;
 }
 @media (hover: hover) {
-  .cart-modal .fa-times-circle-o:hover {
+  .cart-modal__close-icon-container .fa-times-circle-o:hover {
     color: #004173;
+    transform: rotate(-45deg);
+    transition: 100ms ease all;
   }
+}
+.cart-modal__close-icon-container .fa-times-circle-o:active {
+  color: #00b2eb;
 }
 .cart-modal .fa-times-circle-o:active {
   color: #00b2eb;

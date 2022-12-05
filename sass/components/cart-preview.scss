@@ -40,22 +40,36 @@
     z-index: 201;
     padding: .5em;
 
-    & .fa-times-circle-o {
+    &__close-icon-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: absolute;
         top: 30px;
         right: 20px;
         width: 25px;
         height: 25px;
-        color: color.$black;
-        border: none;
-        cursor: pointer;
-    }
 
-    @media (hover: hover) {
-
-        & .fa-times-circle-o:hover {
-            color: color.$darkblue;
+        & .fa-times-circle-o {
+            color: color.$black;
+            border: none;
+            cursor: pointer;
+            transition: 100ms ease all;
         }
+
+        @media (hover: hover) {
+
+            & .fa-times-circle-o:hover {
+                color: color.$darkblue;
+                transform: rotate(-45deg);
+                transition: 100ms ease all;
+            }
+        }
+
+        & .fa-times-circle-o:active {
+            color: color.$cyan;
+        }
+
     }
 
     & .fa-times-circle-o:active {
