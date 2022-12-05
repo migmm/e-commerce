@@ -1,5 +1,4 @@
 import productController from '/js/controllers/product.js';
-import toastComponent from '/js/modules/toast.js';
 
 console.log('🆗: Módulo PageAlta cargado.');
 
