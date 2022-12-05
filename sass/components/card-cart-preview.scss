@@ -128,6 +128,35 @@
                 margin-bottom: 5px;
                 cursor: pointer;
             }
+
+            @media (hover: hover) {
+                & .fa-trash-o:hover {
+                    color: color.$darkblue;
+                }
+            }
+
+            & .fa-trash-o:active {
+                color: color.$cyan;
+            }
+
+            & .fa-trash-o {
+                display: block;
+                padding-right: .5em;
+                margin-bottom: 5px;
+                cursor: pointer;
+            }
+
+            @media (hover: hover) {
+                & .fa-trash-o:hover {
+                    color: color.$darkblue;
+                    transform: rotate(10deg);
+                    transition: 500ms ease all;
+                }
+            }
+
+            & .fa-trash-o:active {
+                color: color.$cyan;
+            }
         }
     }
 }

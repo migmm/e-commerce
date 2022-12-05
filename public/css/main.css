@@ -1728,6 +1728,30 @@ body {
   margin-bottom: 5px;
   cursor: pointer;
 }
+@media (hover: hover) {
+  .cart-modal__products .card-cart-preview .fa-trash-o:hover {
+    color: #004173;
+  }
+}
+.cart-modal__products .card-cart-preview .fa-trash-o:active {
+  color: #00b2eb;
+}
+.cart-modal__products .card-cart-preview .fa-trash-o {
+  display: block;
+  padding-right: 0.5em;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .cart-modal__products .card-cart-preview .fa-trash-o:hover {
+    color: #004173;
+    transform: rotate(10deg);
+    transition: 500ms ease all;
+  }
+}
+.cart-modal__products .card-cart-preview .fa-trash-o:active {
+  color: #00b2eb;
+}
 
 .separation-full-width {
   width: 100%;
