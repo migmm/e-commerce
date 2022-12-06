@@ -4,14 +4,6 @@ import cartController from '/js/modules/cart.js';
 
 console.log('🆗: Módulo PageAlta cargado.');
 
-const imgSelect = document.querySelectorAll('.img-select__img-container');
-imgSelect.forEach(function (image) {
-    image.addEventListener('click', (e) => {
-        e.preventDefault();
-        const bigImg = document.querySelector('.img-display__img-big');
-        bigImg.src = e.target.src;
-    })
-})
 
 class PageAlta {
 
