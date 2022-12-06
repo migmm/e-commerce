@@ -51,12 +51,6 @@ class PageAlta {
         });
     }
 
-    static completeForm(product) {
-        PageAlta.fields.forEach(field => {
-            field.value = product[field.name];
-        });
-    }
-
     static validate(value, validator) {
         return validator.test(value);
     }
@@ -128,16 +122,12 @@ class PageAlta {
             }
 
             let ageYear = document.getElementById('ageYear');
-            let ageMonth = document.getElementById('ageMonth');
             let ageSelect = document.getElementById('ageSelect');
 
-            ageSelect.value = null;
+            ageSelect.value = 0;
 
             if (ageYear.checked) {
                 ageSelect.value = '1';
-            }
-            if (ageMonth.checked) {
-                ageSelect.value = '0';
             }
 
             const productToSave = PageAlta.validateForm();
