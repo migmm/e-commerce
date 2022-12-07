@@ -1,6 +1,7 @@
 import productController from '/js/controllers/product.js';
 import render from '/js/utils/render.js';
 import cartController from '/js/modules/cart.js';
+import Validations from '../utils/validation.js';
 
 console.log('🆗: Módulo PageModificar cargado.');
 
@@ -13,25 +14,6 @@ class PageModificar {
     static productFullView
     static productFullViewBg
     products = [];
-
-    static validators = {
-        id: /^[\da-f]{24}$/,
-        productName: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{4,30}$/,
-        price: /^[0-9,]{1,30}$/,
-        discountPercent: /^[0-9,]{1,30}$/,
-        vendor: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,40}$/,
-        stock: /^-?[0-9]{1,30}$/,
-        category: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,50}$/,
-        shortDescription: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,80}$/,
-        longDescription: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,2000}$/,
-        freeShip: /^(?:tru|fals)e$/,
-        ageFrom: /^[0-9]{1,3}$/,
-        ageTo: /^[0-9]{1,3}$/,
-        ageSelect: /^[0-1]{1,2}$/,
-        avatar: /^.+\.(jpe?g|gif|png)$/i,
-        gallery: /[^]*/,
-        colors: /^\s*([a-zA-Z0-9ÁáÉéÍíÓóÚúÑñ,.-_]+\s*){1,3}$/,
-    };
 
     static emptyForm() {
         PageModificar.fields.forEach(field => field.value = '');
@@ -54,51 +36,8 @@ class PageModificar {
                 }
             }
             field.value = product[field.name];
-
             console.log(product[field.name])
         });
-    }
-
-    static validate(value, validator) {
-        return validator.test(value);
-    }
-
-    static validateForm() {
-        let allValidated = true;
-        const productToSave = {};
-        console.log('\n\n');
-
-        for (const field of PageModificar.fields) {
-            const validated = PageModificar.validate(field.value, PageModificar.validators[field.name]);
-            console.log(field.name, validated);
-
-            let errorField = document.getElementsByName(field.name)[0];
-            let ancest = errorField.closest(".input-group__form-group");
-            let spanElement = ancest.querySelector('span:last-child')
-
-            if (!validated) {
-
-                errorField.classList.remove("input-group__input--ok");
-                errorField.classList.add("input-group__input--error");
-                spanElement.style.visibility = 'visible';
-
-                allValidated = false;
-                break;
-
-            } else {
-                productToSave[field.name] = field.value;
-
-                errorField.classList.remove("input-group__input--error");
-                errorField.classList.add("input-group__input--ok");
-                spanElement.style.visibility = 'hidden';
-            }
-        }
-
-        console.log('allValidated:', allValidated);
-        if (!allValidated) {
-            return false;
-        }
-        return productToSave;
     }
 
     static async updateProduct(product) {
@@ -132,7 +71,8 @@ class PageModificar {
                 ageSelect.value = 1;
             }
 
-            const productToSave = PageModificar.validateForm();
+            //const productToSave = PageModificar.validateForm();
+            const productToSave = Validations.validateForm(PageModificar.fields);
 
             //Bypass to get the files too
             let dataProducts = new FormData(document.getElementById("form-add-products"));

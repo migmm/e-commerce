@@ -3,6 +3,7 @@ console.log('🆗: Módulo Validations cargado.');
 class Validations {
 
     static validators = {
+        id: /[A-Za-z0-9]?/,
         productName: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{4,30}$/,
         price: /^[0-9,]{1,30}$/,
         discountPercent: /^[0-9,]{1,30}$/,
@@ -15,15 +16,19 @@ class Validations {
         ageFrom: /^[0-9]{1,3}$/,
         ageTo: /^[0-9]{1,3}$/,
         ageSelect: /^[0-1]{1,2}$/,
-        addedDate: /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/,
-        lastSell: /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/,
+        addedDate: /(^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$)?/,
+        lastSell: /(^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$)?/,
         avatar: /^.+\.(jpe?g|gif|png)$/i,
         gallery: /[^]*/,
         colors: /^\s*([a-zA-Z0-9ÁáÉéÍíÓóÚúÑñ,.-_]+\s*){1,3}$/,
     };
 
     static validate(value, validator) {
-        return validator.test(value);
+
+        
+            console.log(value, validator)
+            return validator.test(value);
+        
     }
 
     static validateForm(fields) {
