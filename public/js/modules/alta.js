@@ -15,12 +15,12 @@ class PageAlta {
         const msgGlobalOK = document.getElementsByClassName('input-group__ok-form')[0];
         PageAlta.fields.forEach(field => {
             field.value = ''
-            setTimeout(function () {
-                field.classList.remove('input-group__input--ok');
-                msgGlobalOK.classList.remove( 'input-group__ok-form--show');
-                msgGlobalError.classList.remove('input-group__error--show');
-            }, 3000);
+            field.classList.remove('input-group__input--ok');
         });
+        setTimeout(function () {
+            msgGlobalOK.classList.remove( 'input-group__ok-form--show');
+            msgGlobalError.classList.remove('input-group__error--show');
+        }, 5000);
     }
     
     static async saveProduct(product) {
