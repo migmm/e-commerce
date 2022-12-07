@@ -22,9 +22,7 @@ class PageAlta {
             }, 3000);
         });
     }
-
     
-
     static async saveProduct(product) {
         const mode = 'formdata';
         const savedProduct = await productController.saveProduct(product, mode);
