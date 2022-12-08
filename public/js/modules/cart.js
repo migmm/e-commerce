@@ -155,7 +155,7 @@ class ModuleCart {
             --this.cart[productToRemoveId].qty;
             await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.cart-modal__products')
             localStorage.setItem('cart', JSON.stringify(this.cart));
-            toastComponent.toastNotification("Producto agregado al carrito!");
+            toastComponent.toastNotification("Producto eliminado del carrito!");
             ModuleCart.updateCart();
             return;
         }
