@@ -2,6 +2,7 @@ import productController from '/js/controllers/product.js';
 import render from '/js/utils/render.js';
 import cartController from '/js/modules/cart.js';
 import Validations from '../utils/validation.js';
+import Form from '../utils/form.js';
 
 console.log('🆗: Módulo PageModificar cargado.');
 
@@ -15,18 +16,6 @@ class PageModificar {
     static productFullViewBg
     products = [];
 
-    static emptyForm() {
-        const msgGlobalError = document.getElementsByClassName('input-group__error-form')[0];
-        const msgGlobalOK = document.getElementsByClassName('input-group__ok-form')[0];
-        PageModificar.fields.forEach(field => {
-            field.value = ''
-            field.classList.remove('input-group__input--ok');
-        });
-        setTimeout(function () {
-            msgGlobalOK.classList.remove( 'input-group__ok-form--show');
-            msgGlobalError.classList.remove('input-group__error--show');
-        }, 5000);
-    }
 
     static completeForm(product) {
         PageModificar.fields.forEach(field => {
@@ -97,7 +86,7 @@ class PageModificar {
             if (productToSave) {
                 const savedProduct = await PageModificar.updateProduct(dataProducts);
                 console.log('savedProduct:', savedProduct);
-                PageModificar.emptyForm();
+                Form.emptyForm(this.fields);
             }
         });
 

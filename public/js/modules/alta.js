@@ -1,6 +1,7 @@
 import productController from '/js/controllers/product.js';
 import cartController from '/js/modules/cart.js';
 import Validations from '../utils/validation.js';
+import Form from '../utils/form.js';
 
 console.log('🆗: Módulo PageAlta cargado.');
 
@@ -10,18 +11,7 @@ class PageAlta {
     static form
     static fields
 
-    static emptyForm() {
-        const msgGlobalError = document.getElementsByClassName('input-group__error-form')[0];
-        const msgGlobalOK = document.getElementsByClassName('input-group__ok-form')[0];
-        PageAlta.fields.forEach(field => {
-            field.value = ''
-            field.classList.remove('input-group__input--ok');
-        });
-        setTimeout(function () {
-            msgGlobalOK.classList.remove( 'input-group__ok-form--show');
-            msgGlobalError.classList.remove('input-group__error--show');
-        }, 5000);
-    }
+    
     
     static async saveProduct(product) {
         const mode = 'formdata';
@@ -69,7 +59,7 @@ class PageAlta {
             if (productToSave) {
                 const savedProduct = await PageAlta.saveProduct(dataProducts);
                 console.log('savedProduct:', savedProduct);
-                PageAlta.emptyForm();
+                Form.emptyForm(this.fields);
             }
         });
 
