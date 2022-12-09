@@ -609,6 +609,9 @@ body {
 .main-nav__item {
   text-align: center;
 }
+.main-nav__item:nth-child(6), .main-nav__item:nth-child(7), .main-nav__item:nth-child(8) {
+  display: none;
+}
 .main-nav__link {
   display: block;
   width: 100%;

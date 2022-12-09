@@ -20,6 +20,12 @@
         text-align: center;
     }
 
+    &__item:nth-child(6),
+    &__item:nth-child(7),
+    &__item:nth-child(8) {
+        display: none;
+    }
+
     &__link {
         display: block;
         width: 100%;
@@ -33,7 +39,7 @@
         color: color.$lightblue;
     }
 
-    &__link:hover{
+    &__link:hover {
 
         @media (min-width: 768px) {
             color: color.$darkblue;
