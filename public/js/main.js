@@ -1,16 +1,27 @@
 import ModuleCart from './modules/cart.js'
 class Main {
 
+    static links
+
     async ajax(url, method = 'get') {
         return await fetch(url, { method: method }).then(r => r.text());
     }
 
     getIdFromHash() {
-        let id = location.hash.slice(1);
-        if (id[0] === '/') {
-            id = id.slice(1);
+
+        let hashFromURL = location.hash.slice(1);
+        let id = 404;
+        if (hashFromURL[0] === '/') {
+            hashFromURL = hashFromURL.slice(1);
         }
-        return id || 'inicio';
+
+        for (let i = 0; i < this.links.length; ++i) {
+            if (this.links[i].getAttribute('href') === `#/${hashFromURL}`) {
+                id = hashFromURL
+                break
+            }
+        }
+        return id;
     }
 
     getViewUrlFromId(id) {
@@ -22,10 +33,10 @@ class Main {
     }
 
     setActiveLink(id) {
-        const links = document.querySelectorAll('.main-nav__link');
+
         let closeMenu = document.getElementById('main-nav-toggle');
 
-        links.forEach(link => {
+        this.links.forEach(link => {
             if (link.getAttribute('href') === `#/${id}`) {
                 link.classList.add('main-nav__link--active');
                 link.ariaCurrent = 'page';
@@ -52,8 +63,8 @@ class Main {
     }
 
     async loadTemplate() {
+        this.links = document.querySelectorAll('.main-nav__link');
         const id = this.getIdFromHash();
-
         const viewUrl = this.getViewUrlFromId(id);
         const viewContent = await this.ajax(viewUrl);
         document.querySelector('main').innerHTML = viewContent;
