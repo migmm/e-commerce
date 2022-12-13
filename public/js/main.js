@@ -7,9 +7,8 @@ class Main {
         return await fetch(url, { method: method }).then(r => r.text());
     }
 
-    getIdFromHash(type) {
+    getIdFromHash() {
 
-   
         // Remove #
         let hashFromURL = location.hash.slice(1);
         let id = 404;
@@ -28,7 +27,7 @@ class Main {
 
         hashFromURL = hashFromURL.split('/');
 
-        if (hashFromURL.length > type) {
+        if (hashFromURL.length > 2) {
             return 404
         }
 
@@ -83,7 +82,7 @@ class Main {
 
     async loadTemplate() {
         this.links = document.querySelectorAll('.main-nav__link');
-        const id = this.getIdFromHash(2);
+        const id = this.getIdFromHash();
         const viewUrl = this.getViewUrlFromId(id);
         const viewContent = await this.ajax(viewUrl);
         document.querySelector('main').innerHTML = viewContent;
