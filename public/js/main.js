@@ -7,18 +7,37 @@ class Main {
         return await fetch(url, { method: method }).then(r => r.text());
     }
 
-    getIdFromHash() {
+    getIdFromHash(type) {
 
+   
+        // Remove #
         let hashFromURL = location.hash.slice(1);
         let id = 404;
-        if (hashFromURL[0] === '/') {
-            hashFromURL = hashFromURL.slice(1);
+
+        // Check if / exist at beginning, if exist remove
+        if (!hashFromURL[0] === '/') {
+            return 404
         }
+
+        hashFromURL = hashFromURL.slice(1);
+
+        // Check if / exist at the end of first value, if exist remove 
+        if (hashFromURL[hashFromURL.length - 1] === '/') {
+            hashFromURL = hashFromURL.slice(0, 6);
+        }
+
+        hashFromURL = hashFromURL.split('/');
+
+        if (hashFromURL.length > type) {
+            return 404
+        }
+
+        hashFromURL = hashFromURL[0] || 'inicio';
 
         for (let i = 0; i < this.links.length; ++i) {
             if (this.links[i].getAttribute('href') === `#/${hashFromURL}`) {
-                id = hashFromURL
-                break
+                id = hashFromURL;
+                break;
             }
         }
         return id;
@@ -64,7 +83,7 @@ class Main {
 
     async loadTemplate() {
         this.links = document.querySelectorAll('.main-nav__link');
-        const id = this.getIdFromHash();
+        const id = this.getIdFromHash(2);
         const viewUrl = this.getViewUrlFromId(id);
         const viewContent = await this.ajax(viewUrl);
         document.querySelector('main').innerHTML = viewContent;
