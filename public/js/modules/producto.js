@@ -8,6 +8,35 @@ class PageProducto {
 
     static products = [];
 
+    static getIdFromHash(route) {
+
+        // Remove #
+        let hashFromURL = location.hash.slice(1);
+        console.log(hashFromURL)
+
+        // Check if / exist at beginning, if exist remove
+        if (hashFromURL[0] === '/') {
+            hashFromURL = hashFromURL.slice(1);
+        }
+
+        console.log(hashFromURL)
+        hashFromURL = hashFromURL.split('/');
+        console.log(hashFromURL)
+
+        if (route === 1) {
+
+            hashFromURL = '#/' + hashFromURL[0]
+            console.log(hashFromURL)
+            window.location.hash = hashFromURL;
+            return;
+        }
+
+        
+        hashFromURL = hashFromURL[1];
+        console.log("sep",hashFromURL)
+        return hashFromURL;
+    }
+
     static async optionsFunctions() {
 
         document.addEventListener('click', e => {
@@ -49,7 +78,7 @@ class PageProducto {
 
             // Click on minus icon to decrease product quantity in cart to the minimum stock
             if (e.target.classList.value === 'fa fa-minus full-page-view') {
-                
+
                 let inputStock = document.getElementsByClassName('product-full-page__qty')[0];
                 const maxStock = parseInt(document.querySelector('product-full-page__stock-value'));
                 let inputStockValue = parseInt(inputStock.value)
@@ -79,11 +108,12 @@ class PageProducto {
 
     static async init() {
         console.log('PageProducto .init()');
+        const productoo = PageProducto.getIdFromHash(2)
         PageProducto.goToTopOnLoad();
         this.products = await productController.getProducts();
         console.log(`Se encontraron ${this.products.length} productos`);
         PageProducto.optionsFunctions();
-        const product = await productController.getProduct('63423cccac4d4479a9f1730f');
+        const product = await productController.getProduct(productoo);
         console.log(product)
 
         await cartController.init();
