@@ -1111,7 +1111,6 @@ body {
 
 .card {
   width: 270px;
-  flex-grow: 1;
   border: 1px solid #cecdcd;
   border-radius: 8px;
   transition: all 0.2s;
