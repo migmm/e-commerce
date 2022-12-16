@@ -159,6 +159,10 @@ class Main {
         Handlebars.registerHelper('discount', function (price, discount) {
             return price - ((price * discount) / 100);
         });
+
+        Handlebars.registerHelper('finalPrice', function (price, discount, qty) {
+            return (price - ((price * discount) / 100)) * qty;
+        });
     }
 
     async start() {

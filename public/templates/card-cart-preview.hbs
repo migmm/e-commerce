@@ -17,8 +17,8 @@
             <div class="card-cart-preview__price">
                 <span class="card-cart-preview__price__price-currency">Precio: $<span class="card-cart-preview__price__price-value">{{discount this.price this.discountPercent}}</span>
                 </span>
-                <span class="card-cart-preview__price__sub-price-currency">Subtotal: $<span class="card-cart-preview__price__price-value"
-                    >{{discount this.price this.discountPercent}}</span>
+                <span class="card-cart-preview__price__sub-price-currency">Subtotal: $<span class="card-cart-preview__price__price-subtotal"
+                    >{{finalPrice this.price this.discountPercent this.qty}}</span>
                 </span>
             </div>
             <i class="fa fa-trash-o" aria-hidden="true" data-id="{{this.id}}"></i>

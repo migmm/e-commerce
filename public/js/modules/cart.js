@@ -169,7 +169,15 @@ class ModuleCart {
 
     static async updateCart() {
         let badgeQtyCounter = document.getElementsByClassName('main-header__wrapper__cart-button-container__qty-cart')[0];
+        let partialPrice = document.getElementsByClassName('card-cart-preview__price__price-subtotal');
+        let cartTotal = document.getElementsByClassName('cart-total');
+
         badgeQtyCounter.innerHTML = 0;
+        cartTotal[0].innerHTML = 0;
+
+        for (let i = 0; i <= partialPrice.length -1; ++i) {
+            cartTotal[0].innerHTML = parseInt(cartTotal[0].innerHTML) + parseInt(partialPrice[i].innerHTML)
+        }
 
         for (let i = 0; i <= this.cart.length - 1; ++i) {
             badgeQtyCounter.innerHTML = parseInt(badgeQtyCounter.innerHTML) + parseInt(this.cart[i].qty);
