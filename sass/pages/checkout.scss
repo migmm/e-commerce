@@ -4,6 +4,7 @@
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
+        overflow: hidden;
 
         &__pay {
             height: 500px;
@@ -15,9 +16,36 @@
             height: 500px;
             width: 50%;
             border: 1px solid rgb(0, 89, 255);
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
             padding: 2em;
         }
 
-    }
+        &__products {
+            flex-grow: 1;
+            width: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
 
+        &__total-container {
+            border-top: 1px solid grey;
+            margin-top: .2em;
+            padding-top: 1em;
+        }
+
+        &__total-label {
+            font-size: 1.5em;
+        }
+
+        &__total {
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        &__total::before {
+            content: '$';
+        }
+    }
 }

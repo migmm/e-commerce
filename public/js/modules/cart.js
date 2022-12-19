@@ -132,6 +132,9 @@ class ModuleCart {
 
         if (productToRemoveId >= 0) {
             ++this.cart[productToRemoveId].qty;
+            if (document.getElementsByClassName('checkout__products')[0]) {
+                await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.checkout__products')
+            }
             await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.cart-modal__products')
             localStorage.setItem('cart', JSON.stringify(this.cart));
             toastComponent.toastNotification("Producto agregado al carrito!");
@@ -141,6 +144,9 @@ class ModuleCart {
 
         this.cart.push(product);
         this.cart[this.cart.length - 1].qty = 1;
+        if (document.getElementsByClassName('checkout__products')[0]) {
+            await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.checkout__products')
+        }
         await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.cart-modal__products')
         localStorage.setItem('cart', JSON.stringify(this.cart));
         toastComponent.toastNotification("Producto agregado al carrito!");
@@ -153,6 +159,10 @@ class ModuleCart {
 
         if (qty === 1) {
             --this.cart[productToRemoveId].qty;
+            if (document.getElementsByClassName('checkout__products')[0]) {
+                await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.checkout__products')
+            }
+
             await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.cart-modal__products')
             localStorage.setItem('cart', JSON.stringify(this.cart));
             toastComponent.toastNotification("Producto eliminado del carrito!");
@@ -161,6 +171,9 @@ class ModuleCart {
         }
 
         this.cart.splice(productToRemoveId, 1);
+        if (document.getElementsByClassName('checkout__products')[0]) {
+            await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.checkout__products')
+        }
         await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.cart-modal__products')
         localStorage.setItem('cart', JSON.stringify(this.cart));
         toastComponent.toastNotification("Producto eliminado del carrito!");

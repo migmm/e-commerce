@@ -8,6 +8,8 @@ console.log('🆗: Módulo Checkout cargado.');
 
 class Checkout {
 
+    static cart = [];
+
     static goToTopOnLoad() {
         const htmlTag = document.getElementsByTagName('html')[0];
         htmlTag.classList.remove('scroll-smooth');
