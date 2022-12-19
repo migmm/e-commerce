@@ -2325,6 +2325,10 @@ input[type=number] {
   flex-wrap: nowrap;
   overflow: hidden;
 }
+.main-content .checkout__title {
+  border-bottom: solid 1px grey;
+  padding-bottom: 0.2em;
+}
 .main-content .checkout__pay {
   height: 500px;
   width: 50%;
@@ -2333,11 +2337,13 @@ input[type=number] {
 .main-content .checkout__cart {
   height: 500px;
   width: 50%;
-  border: 1px solid rgb(0, 89, 255);
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   padding: 2em;
+  background-color: rgb(241, 241, 241);
+  border-radius: 10px;
+  margin-left: 1em;
 }
 .main-content .checkout__products {
   flex-grow: 1;
@@ -2347,14 +2353,14 @@ input[type=number] {
 }
 .main-content .checkout__total-container {
   border-top: 1px solid grey;
-  margin-top: 0.2em;
+  margin: 1em 0;
   padding-top: 1em;
 }
 .main-content .checkout__total-label {
-  font-size: 1.5em;
+  font-size: 2em;
 }
 .main-content .checkout__total {
-  font-size: 1.5em;
+  font-size: 2em;
   font-weight: 600;
 }
 .main-content .checkout__total::before {
