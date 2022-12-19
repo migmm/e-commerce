@@ -5,6 +5,7 @@
         flex-direction: row;
         flex-wrap: nowrap;
         overflow: hidden;
+        height: 600px;
 
         &__title {
             border-bottom: solid 1px grey;
@@ -12,13 +13,13 @@
         }
 
         &__pay {
-            height: 500px;
+            height: 100%;
             width: 50%;
             border: 1px solid red;
         }
 
         &__cart {
-            height: 500px;
+            height: 100%;
             width: 50%;
             display: flex;
             flex-direction: column;
@@ -38,12 +39,15 @@
 
         &__total-container {
             border-top: 1px solid grey;
-            margin: 1em 0;
+            margin: 1.5em 0 1em 0;
             padding-top: 1em;
+            display:flex;
+            flex-direction: row;
         }
 
         &__total-label {
             font-size: 2em;
+            flex-grow: 1;
         }
 
         &__total {
