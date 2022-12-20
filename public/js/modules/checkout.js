@@ -1,7 +1,4 @@
 import cartController from '/js/modules/cart.js';
-import cartService from '../services/cart.js';
-import productController from '/js/controllers/product.js';
-import toastComponent from '/js/utils/toast.js';
 import render from '/js/utils/render.js';
 
 console.log('🆗: Módulo Checkout cargado.');
