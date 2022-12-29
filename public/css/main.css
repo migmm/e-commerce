@@ -2241,9 +2241,14 @@ input[type=number] {
 }
 .product-full-page__detail {
   padding: 1em;
-  width: 50%;
+  width: 90%;
   display: flex;
   flex-direction: column;
+}
+@media (min-width: 650px) {
+  .product-full-page__detail {
+    width: 50%;
+  }
 }
 .product-full-page__brand {
   color: #004173;

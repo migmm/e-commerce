@@ -104,7 +104,12 @@
 
     &__detail {
         padding: 1em;
-        width: 50%;
+        width: 90%;
+
+        @media (min-width: 650px) {
+            width:50%;
+        }
+
         display: flex;
         flex-direction: column;
     }
