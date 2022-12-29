@@ -2179,7 +2179,7 @@ input[type=number] {
   display: flex;
   flex-direction: column;
   border: solid 1px red;
-  justify-content: unset;
+  justify-content: flex-end;
 }
 @media (min-width: 650px) {
   .product-full-page__gallery {
@@ -2191,6 +2191,7 @@ input[type=number] {
   display: flex;
   flex-direction: row;
   order: 1;
+  justify-content: center;
 }
 @media (min-width: 650px) {
   .product-full-page__gallery .img-select {
@@ -2221,7 +2222,7 @@ input[type=number] {
   opacity: 1;
 }
 .product-full-page__gallery .img-display__img-showcase {
-  width: 300px;
+  width: 100%;
   height: 500px;
   text-align: center;
   line-height: 500px;
