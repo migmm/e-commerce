@@ -2209,10 +2209,11 @@ input[type=number] {
   opacity: 0.8;
 }
 .product-full-page__gallery .img-select__img-container img {
-  height: 95%;
+  height: 90px;
+  width: 90px;
   cursor: pointer;
-  display: block;
   object-fit: contain;
+  display: block;
   margin: 0 auto;
   position: absolute;
   left: 50%;

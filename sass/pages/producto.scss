@@ -58,10 +58,11 @@
                 opacity: 0.8;
 
                 & img {
-                    height: 95%;
+                    height: 90px;
+                    width: 90px;
                     cursor: pointer;
-                    display: block;
                     object-fit: contain;
+                    display: block;
                     margin: 0 auto;
                     position: absolute;
                     left: 50%;
@@ -83,7 +84,6 @@
                 @media (min-width: 650px) {
                     width: 500px;
                 }
-                
                 
                 height: 500px;
                 text-align: center;
