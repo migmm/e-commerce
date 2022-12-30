@@ -12,6 +12,7 @@
     border: solid 1px black;
     align-items: center;
 
+    /* 1280 */
     @media (min-width: 1070px) {
         flex-direction: row;
         flex-wrap: nowrap;
@@ -19,6 +20,8 @@
     
     &__row {
         width:100%;
+        display: flex;
+        justify-content: center;
 
         @media (min-width: 650px) {
             width:50%;
@@ -29,19 +32,21 @@
         display: flex;
         flex-direction: column;
         border: solid 1px red;
-        justify-content:flex-end;
+        justify-content: space-between;
 
         @media (min-width: 650px) {
             flex-direction: row;
-            justify-content:flex-end;
+            justify-content: flex-end;
             
         }
 
         & .img-select {
+            border: solid 1px rgb(0, 17, 255);
             display: flex;
             flex-direction: row;
             order:1;
             justify-content: center;
+            margin-right: 1em;
             @media (min-width: 650px) {
                 flex-direction: column;
                 order:0;
@@ -76,7 +81,7 @@
         }
 
         & .img-display {
-
+            border: solid 1px rgb(9, 255, 0);
             &__img-showcase {
 
                 width: 100%;
@@ -105,8 +110,17 @@
     &__detail {
         padding: 1em;
         width: 90%;
+        border: solid 3px rgb(255, 0, 242);
+        @media (min-width: 750px) {
+            width:75%;
+        }
+        @media (min-width: 1065px) {
+            padding-left: 4em;
+            width:50%;
+        }
 
-        @media (min-width: 650px) {
+        @media (min-width: 1300px) {
+            padding: 0;
             width:50%;
         }
 
