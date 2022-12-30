@@ -17,14 +17,14 @@
         flex-direction: row;
         flex-wrap: nowrap;
     }
-    
+
     &__row {
-        width:100%;
+        width: 100%;
         display: flex;
         justify-content: center;
 
         @media (min-width: 650px) {
-            width:50%;
+            width: 50%;
         }
     }
 
@@ -37,23 +37,24 @@
         @media (min-width: 650px) {
             flex-direction: row;
             justify-content: flex-end;
-            
+
         }
 
         & .img-select {
             border: solid 1px rgb(0, 17, 255);
             display: flex;
             flex-direction: row;
-            order:1;
+            order: 1;
             justify-content: center;
             margin-right: 1em;
+
             @media (min-width: 650px) {
                 flex-direction: column;
-                order:0;
+                order: 0;
             }
 
             &__img-container {
-               // border: solid 3px color.$red;
+                // border: solid 3px color.$red;
                 height: 100px;
                 width: 100px;
                 overflow: hidden;
@@ -75,13 +76,17 @@
                 }
             }
 
-            &__img-container:hover {
-                opacity: 1;
+            @media (hover: hover) {
+
+                &__img-container:hover {
+                    opacity: 1;
+                }
             }
         }
 
         & .img-display {
             border: solid 1px rgb(9, 255, 0);
+
             &__img-showcase {
 
                 width: 100%;
@@ -89,7 +94,7 @@
                 @media (min-width: 650px) {
                     width: 500px;
                 }
-                
+
                 height: 500px;
                 text-align: center;
                 line-height: 500px;
@@ -111,17 +116,19 @@
         padding: 1em;
         width: 90%;
         border: solid 3px rgb(255, 0, 242);
+
         @media (min-width: 750px) {
-            width:75%;
+            width: 75%;
         }
+
         @media (min-width: 1065px) {
             padding-left: 4em;
-            width:50%;
+            width: 50%;
         }
 
         @media (min-width: 1300px) {
             padding: 0;
-            width:50%;
+            width: 50%;
         }
 
         display: flex;
@@ -151,7 +158,8 @@
     &__price-currency {
         font-size: 2em;
         font-weight: 500;
-        margin: .4em 0;;
+        margin: .4em 0;
+        ;
     }
 
     &__price-and-discount-order {

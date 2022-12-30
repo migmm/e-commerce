@@ -2224,8 +2224,10 @@ input[type=number] {
   left: 50%;
   transform: translateX(-50%);
 }
-.product-full-page__gallery .img-select__img-container:hover {
-  opacity: 1;
+@media (hover: hover) {
+  .product-full-page__gallery .img-select__img-container:hover {
+    opacity: 1;
+  }
 }
 .product-full-page__gallery .img-display {
   border: solid 1px rgb(9, 255, 0);
