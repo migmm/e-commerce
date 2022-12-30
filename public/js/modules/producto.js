@@ -10,6 +10,8 @@ class PageProducto {
 
     static getIdFromHash(route) {
 
+        let results = [];
+
         // Remove #
         let hashFromURL = location.hash.slice(1);
         console.log(hashFromURL)
@@ -21,20 +23,29 @@ class PageProducto {
 
         console.log(hashFromURL)
         hashFromURL = hashFromURL.split('/');
-        console.log(hashFromURL)
 
         if (route === 1) {
 
             hashFromURL = '#/' + hashFromURL[0]
-            console.log(hashFromURL)
+            hashFromURL = hashFromURL.toLowerCase()
             window.location.hash = hashFromURL;
             return;
         }
 
-        
         hashFromURL = hashFromURL[1];
-        console.log("sep",hashFromURL)
-        return hashFromURL;
+        const nameCheck = hashFromURL.split('-');
+        hashFromURL = nameCheck.slice(0,-1).join(' ')        
+        let toSearch = hashFromURL
+
+        for (var i = 0; i < this.products.length; ++i) {
+            for (let productName in this.products[i]) {
+                if (this.products[i][productName].toString().toLowerCase().indexOf(toSearch.toLowerCase()) != -1) {
+                    results = this.products[i]
+                }
+            }
+        }
+
+        return results;
     }
 
     static async optionsFunctions() {
@@ -108,24 +119,13 @@ class PageProducto {
 
     static async init() {
         console.log('PageProducto .init()');
-        const productoo = PageProducto.getIdFromHash(2)
         PageProducto.goToTopOnLoad();
         this.products = await productController.getProducts();
         console.log(`Se encontraron ${this.products.length} productos`);
         PageProducto.optionsFunctions();
-        const product = await productController.getProduct(productoo);
-        console.log(product)
-
+        const productoo = PageProducto.getIdFromHash(2)
+        await render.renderTemplateCards(productoo, 'templates/producto.hbs', '.full-product-page')
         await cartController.init();
-        await render.renderTemplateCards(product, 'templates/producto.hbs', '.full-product-page')
-        /*       const hbsFile = await fetch('templates/product.hbs').then(r => r.text());
-        const template = Handlebars.compile(hbsFile);
-        const html = template({ product });
-        document.querySelector('.full-product-page').innerHTML = html;
-        const productFullView = document.querySelector('.full-product-view');
-        productFullView.classList.add('product-full-view--on'); 
- */
-
     }
 }
 
