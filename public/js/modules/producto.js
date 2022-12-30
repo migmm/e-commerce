@@ -14,14 +14,12 @@ class PageProducto {
 
         // Remove #
         let hashFromURL = location.hash.slice(1);
-        console.log(hashFromURL)
 
         // Check if / exist at beginning, if exist remove
         if (hashFromURL[0] === '/') {
             hashFromURL = hashFromURL.slice(1);
         }
 
-        console.log(hashFromURL)
         hashFromURL = hashFromURL.split('/');
 
         if (route === 1) {
@@ -38,8 +36,8 @@ class PageProducto {
         let toSearch = hashFromURL
 
         for (var i = 0; i < this.products.length; ++i) {
-            for (let productName in this.products[i]) {
-                if (this.products[i][productName].toString().toLowerCase().indexOf(toSearch.toLowerCase()) != -1) {
+            for (let urlName in this.products[i]) {
+                if (this.products[i][urlName].toString().toLowerCase().indexOf(toSearch.toLowerCase()) != -1) {
                     results = this.products[i]
                 }
             }
