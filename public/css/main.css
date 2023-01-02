@@ -411,6 +411,8 @@ body {
   max-width: 1600px;
   margin: 0 auto;
   align-items: center;
+  padding: 10px 0;
+  transition: 0.5s;
 }
 .main-header__wrapper__logo-container {
   flex-basis: 5em;
@@ -421,7 +423,10 @@ body {
   flex-grow: 3;
 }
 .main-header__wrapper__logo-container__logo {
-  height: 2em;
+  height: 2.5em;
+  animation-duration: 0.3s;
+  animation-name: lineInserted;
+  transition: height 0.3s;
 }
 @media (min-width: 1024px) {
   .main-header__wrapper__logo-container {
@@ -608,6 +613,23 @@ body {
   display: block;
 }
 
+.navbar-resize {
+  padding: unset;
+}
+
+.logo-resize {
+  height: 2em;
+}
+
+@keyframes lineInserted {
+  from {
+    height: 0;
+  }
+  to {
+    height: 2.5em;
+    /* your line height here */
+  }
+}
 .main-nav__list {
   margin: 0;
   padding: 0;

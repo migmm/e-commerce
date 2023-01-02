@@ -14,6 +14,8 @@
         max-width: 1600px; // WARNING! Check later 
         margin: 0 auto;
         align-items: center;
+        padding: 10px 0;
+        transition: .5s;
 
         &__logo-container {
             flex-basis: 5em;
@@ -24,7 +26,10 @@
             flex-grow: 3;
 
             &__logo {
-                height: 2em;
+                height: 2.5em;
+                animation-duration: 0.3s;
+                animation-name: lineInserted;
+                transition: height 0.3s;
             }
 
             @media (min-width: 1024px) {
@@ -225,10 +230,33 @@
     }
 }
 
+
+// Modifiers
+
 .hidden {
     display: none;
 }
 
 .visible {
     display: block;
-}  
+}
+
+.navbar-resize {
+    padding: unset;
+}
+
+.logo-resize {
+    height: 2em;
+}
+
+
+@keyframes lineInserted {
+    from {
+        height: 0;
+    }
+
+    to {
+        height: 2.5em;
+        /* your line height here */
+    }
+}
