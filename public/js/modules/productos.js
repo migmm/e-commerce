@@ -31,8 +31,7 @@ class PageProductos {
                         other => person.id === other.id
                             && person.productName === other.productName
                     ));
-                        console.log(result)
-                        render.renderTemplateCards(results, 'templates/inicio.hbs', '.section-cards__cards-container')
+                        render.renderTemplateCards(result, 'templates/inicio.hbs', '.section-cards__cards-container')
                 return;
             }
 
