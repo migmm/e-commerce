@@ -16,6 +16,7 @@
         align-items: center;
         padding: 10px 0;
         transition: .5s;
+        position: relative;
 
         &__logo-container {
             flex-basis: 5em;
@@ -44,8 +45,9 @@
             width: 100%;
             order: 5;
             position: absolute;
-            top: 45px;
+            top: 60px;
             background-color: color.$cyan;
+            transition:  0.4s;
 
             @media (min-width: 768px) {
                 order: 2;
@@ -59,7 +61,6 @@
                 flex-basis: 15em;
                 flex-grow: 2;
                 flex-shrink: 1;
-
                 position: relative;
                 top: 0;
             }
@@ -84,7 +85,6 @@
                 @media (max-width: 425px) {
                     display: none;
                 }
-
             }
 
             & input::placeholder {
@@ -248,6 +248,14 @@
 .logo-resize {
     height: 2em;
 }
+
+@media (max-width: 599px) {
+    .nav-bar-container-resize {
+        top: 45px;
+    }
+}
+
+
 
 @keyframes lineInserted {
     from {

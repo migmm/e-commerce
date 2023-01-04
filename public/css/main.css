@@ -413,6 +413,7 @@ body {
   align-items: center;
   padding: 10px 0;
   transition: 0.5s;
+  position: relative;
 }
 .main-header__wrapper__logo-container {
   flex-basis: 5em;
@@ -440,8 +441,9 @@ body {
   width: 100%;
   order: 5;
   position: absolute;
-  top: 45px;
+  top: 60px;
   background-color: #00b2eb;
+  transition: 0.4s;
 }
 @media (min-width: 768px) {
   .main-header__wrapper__search-form-container {
@@ -621,6 +623,11 @@ body {
   height: 2em;
 }
 
+@media (max-width: 599px) {
+  .nav-bar-container-resize {
+    top: 45px;
+  }
+}
 @keyframes lineInserted {
   from {
     height: 0;

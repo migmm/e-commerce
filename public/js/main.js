@@ -100,16 +100,20 @@ class Main {
         const goTopButton = document.getElementById('myBtn');
         const navBar = document.getElementsByClassName('main-header__wrapper')[0];
         const logo = document.getElementsByClassName('main-header__wrapper__logo-container__logo')[0];
+        const searchBarContainer = document.getElementsByClassName('main-header__wrapper__search-form-container')[0];
+        const searchBar =  document.getElementsByClassName('navbar-search-input')[0];
 
         window.onscroll = function () {
             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
                 goTopButton.style.display = 'block';
                 navBar.classList.add('navbar-resize');
                 logo.classList.add('logo-resize');
+                searchBarContainer.classList.add('nav-bar-container-resize');
             } else {
                 goTopButton.style.display = 'none';
                 navBar.classList.remove('navbar-resize');
                 logo.classList.remove('logo-resize');
+                searchBarContainer.classList.remove('nav-bar-container-resize');
             }
         };
 
