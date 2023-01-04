@@ -23,7 +23,8 @@ class PageProductos {
         hashFromURL = hashFromURL.split('/');
 
         if (route === 1) {
-            hashFromURL = '#/' + hashFromURL[0]
+
+            hashFromURL = '#/' + hashFromURL[0];
             hashFromURL = hashFromURL.toLowerCase();
             window.location.hash = hashFromURL;
             return;
@@ -36,7 +37,7 @@ class PageProductos {
         if (toSearch === undefined) {
             toSearch = this.products;
             render.renderTemplateCards(toSearch, 'templates/inicio.hbs', '.section-cards__cards-container');
-            return
+            return;
         }
 
         for (var i = 0; i < this.products.length; ++i) {
@@ -84,7 +85,7 @@ class PageProductos {
                     )
                 );
 
-                render.renderTemplateCards(result, 'templates/inicio.hbs', '.section-cards__cards-container')
+                render.renderTemplateCards(result, 'templates/inicio.hbs', '.section-cards__cards-container');
                 return;
             }
 
@@ -127,8 +128,9 @@ class PageProductos {
         console.log('PageProductos .init()');
         PageProductos.goToTopOnLoad();
         this.products = await productController.getProducts();
-        console.log(`Se encontraron ${this.products} productos`);
+        console.log(`Se encontraron ${this.products.length} productos`);
         PageProductos.optionsFunctions();
+        PageProductos.getIdFromHash();
         await cartController.init();
     }
 }
