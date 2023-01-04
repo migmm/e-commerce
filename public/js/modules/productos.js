@@ -8,6 +8,57 @@ class PageProductos {
 
     static products = [];
 
+    static async getIdFromHash(route) {
+
+        let results = [];
+
+        // Remove #
+        let hashFromURL = location.hash.slice(1);
+
+        // Check if / exist at beginning, if exist remove
+        if (hashFromURL[0] === '/') {
+            hashFromURL = hashFromURL.slice(1);
+        }
+
+        hashFromURL = hashFromURL.split('/');
+
+        if (route === 1) {
+            hashFromURL = '#/' + hashFromURL[0]
+            hashFromURL = hashFromURL.toLowerCase();
+            window.location.hash = hashFromURL;
+            return;
+        }
+
+        hashFromURL = hashFromURL[1];
+        let toSearch = hashFromURL;
+
+        // Check if the hash is only "products"
+        if (toSearch === undefined) {
+            toSearch = this.products;
+            render.renderTemplateCards(toSearch, 'templates/inicio.hbs', '.section-cards__cards-container');
+            return
+        }
+
+        for (var i = 0; i < this.products.length; ++i) {
+            for (let key in this.products[i]) {
+                if (this.products[i][key].toString().toLowerCase().indexOf(toSearch.toLowerCase()) != -1) {
+                    results.push(this.products[i]);
+                }
+            }
+        }
+
+        // Remove duplicated
+        let result = results.filter(
+            (person, index) => index === results.findIndex(
+                other => person.id === other.id
+                    && person.productName === other.productName
+            )
+        );
+
+        render.renderTemplateCards(result, 'templates/inicio.hbs', '.section-cards__cards-container');
+        return results;
+    }
+
     static async optionsFunctions() {
 
         document.addEventListener('click', e => {
@@ -30,8 +81,10 @@ class PageProductos {
                     (person, index) => index === results.findIndex(
                         other => person.id === other.id
                             && person.productName === other.productName
-                    ));
-                        render.renderTemplateCards(result, 'templates/inicio.hbs', '.section-cards__cards-container')
+                    )
+                );
+
+                render.renderTemplateCards(result, 'templates/inicio.hbs', '.section-cards__cards-container')
                 return;
             }
 
@@ -49,8 +102,8 @@ class PageProductos {
                         }
                     }
                 }
-                
-                render.renderTemplateCards(results, 'templates/inicio.hbs', '.section-cards__cards-container')
+
+                render.renderTemplateCards(results, 'templates/inicio.hbs', '.section-cards__cards-container');
                 return;
             }
 
@@ -76,7 +129,6 @@ class PageProductos {
         this.products = await productController.getProducts();
         console.log(`Se encontraron ${this.products} productos`);
         PageProductos.optionsFunctions();
-        await render.renderTemplateCards(this.products, 'templates/inicio.hbs', '.section-cards__cards-container')
         await cartController.init();
     }
 }
