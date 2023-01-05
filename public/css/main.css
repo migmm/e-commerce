@@ -506,7 +506,13 @@ body {
   color: #fff;
   cursor: pointer;
   position: relative;
+  display: none;
   order: 3;
+}
+@media (min-width: 900px) {
+  .main-header__wrapper__login-button-container {
+    display: block;
+  }
 }
 .main-header__wrapper__login-button-container__button {
   width: 2em;
@@ -653,7 +659,18 @@ body {
 .main-nav__item {
   text-align: center;
 }
-.main-nav__item:nth-child(6), .main-nav__item:nth-child(7), .main-nav__item:nth-child(8) {
+.main-nav__item:nth-child(6) {
+  border-top: 1px solid #004173;
+}
+.main-nav__item:nth-child(6), .main-nav__item:nth-child(7) {
+  order: 1;
+}
+@media (min-width: 900px) {
+  .main-nav__item:nth-child(6), .main-nav__item:nth-child(7) {
+    display: none;
+  }
+}
+.main-nav__item:nth-child(8), .main-nav__item:nth-child(9), .main-nav__item:nth-child(10) {
   display: none;
 }
 .main-nav__link {

@@ -20,9 +20,23 @@
         text-align: center;
     }
 
+    &__item:nth-child(6) {
+        border-top: 1px solid color.$darkblue;
+    }
+
     &__item:nth-child(6),
-    &__item:nth-child(7),
-    &__item:nth-child(8) {
+    &__item:nth-child(7) {
+        order: 1;
+
+        @media (min-width: 900px) {
+            display: none;
+        }
+        
+    }
+
+    &__item:nth-child(8),
+    &__item:nth-child(9),
+    &__item:nth-child(10) {
         display: none;
     }
 

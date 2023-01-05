@@ -112,7 +112,12 @@
             color: color.$white;
             cursor: pointer;
             position: relative;
+            display: none;
             order: 3;
+
+        @media (min-width: 900px) {
+            display: block;
+        }
 
             &__button {
                 width: 2em;
@@ -254,8 +259,6 @@
         top: 45px;
     }
 }
-
-
 
 @keyframes lineInserted {
     from {
