@@ -480,11 +480,6 @@ body {
     padding-left: 1em;
   }
 }
-@media (max-width: 425px) {
-  .main-header__wrapper__search-form-container input {
-    display: none;
-  }
-}
 .main-header__wrapper__search-form-container input::placeholder {
   color: #004173;
   text-align: center;
@@ -583,12 +578,6 @@ body {
   }
   .main-header__wrapper__cart-button-container :hover {
     color: #004173;
-  }
-}
-@media (max-width: 425px) {
-  .main-header__wrapper__cart-button-container {
-    margin-right: 0;
-    padding-right: 0;
   }
 }
 .main-header__wrapper__hamburger-button-container {
@@ -1453,10 +1442,16 @@ body {
 }
 
 .main-content .main-slider {
-  padding-top: 60px;
+  padding-top: 120px;
   width: 100%;
   background-color: #000;
   vertical-align: middle;
+  transition: 0.4s;
+}
+@media (min-width: 600px) {
+  .main-content .main-slider {
+    padding-top: 80px;
+  }
 }
 .main-content .main-slider img {
   width: 100%;

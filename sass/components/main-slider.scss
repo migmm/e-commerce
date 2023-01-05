@@ -3,10 +3,15 @@
 .main-content {
 
     & .main-slider {
-        padding-top: 60px;
+        padding-top: 120px;
         width: 100%;
         background-color: color.$black;
         vertical-align: middle;
+        transition: 0.4s;
+
+        @media (min-width: 600px) {
+            padding-top: 80px;
+        }
 
         & img {
             width: 100%;
