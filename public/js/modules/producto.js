@@ -32,7 +32,7 @@ class PageProducto {
 
         hashFromURL = hashFromURL[1];
         const nameCheck = hashFromURL.split('-');
-        hashFromURL = nameCheck.slice(0,-1).join(' ')        
+        hashFromURL = nameCheck.slice(0, -1).join(' ')
         let toSearch = hashFromURL
 
         for (var i = 0; i < this.products.length; ++i) {
@@ -67,40 +67,37 @@ class PageProducto {
             }
 
             // Click on plus icon to increase product quantity in cart to the maximum stock
-            if (e.target.classList.value === 'fa fa-plus full-page-view') {
+            if (e.target.classList.value === 'product-full-page__qty-button-plus') {
 
-                let inputStock = document.getElementsByClassName('product-full-page__qty')[0];
-                const maxStock = parseInt(document.querySelector('product-full-page__stock-value'));
-                let inputStockValue = parseInt(inputStock.value)
+                const inputStock = document.getElementsByClassName('product-full-page__qty')[0];
+                const buttonPlus = document.getElementsByClassName('product-full-page__qty-button-plus')[0];
+                const buttonMinus = document.getElementsByClassName('product-full-page__qty-button-minus')[0];
+                const maxStock = document.getElementsByClassName('product-full-page__stock-value')[0];
 
-                if (inputStockValue >= maxStock) {
-                    e.target.classList.add('plus-and-minus-deactivated');
-                    return;
+                inputStock.value++
+
+                if (parseInt(inputStock.value) >= parseInt(maxStock.innerHTML)) {
+                    buttonPlus.setAttribute("disabled", "");
                 } else {
-                    e.target.classList.remove('plus-and-minus-deactivated');
+                    buttonMinus.removeAttribute("disabled", "");
                 }
-
-                inputStockValue++;
-                inputStock.value = inputStockValue;
                 return;
             }
 
             // Click on minus icon to decrease product quantity in cart to the minimum stock
-            if (e.target.classList.value === 'fa fa-minus full-page-view') {
+            if (e.target.classList.value === 'product-full-page__qty-button-minus') {
 
-                let inputStock = document.getElementsByClassName('product-full-page__qty')[0];
-                const maxStock = parseInt(document.querySelector('product-full-page__stock-value'));
-                let inputStockValue = parseInt(inputStock.value)
+                const inputStock = document.getElementsByClassName('product-full-page__qty')[0];
+                const buttonPlus = document.getElementsByClassName('product-full-page__qty-button-plus')[0];
+                const buttonMinus = document.getElementsByClassName('product-full-page__qty-button-minus')[0];
 
-                if (inputStockValue <= maxStock) {
-                    e.target.classList.remove('plus-and-minus-deactivated');
-                    return;
+                inputStock.value--
+                if (inputStock.value <= '1') {
+                    buttonMinus.setAttribute("disabled", "");
                 } else {
-                    e.target.classList.add('plus-and-minus-deactivated');
+                    buttonPlus.removeAttribute("disabled", "");
                 }
 
-                inputStockValue--;
-                inputStock.value = inputStockValue;
                 return;
             }
 
@@ -117,11 +114,11 @@ class PageProducto {
 
     static async init() {
         console.log('PageProducto .init()');
-        PageProducto.goToTopOnLoad();
+        this.goToTopOnLoad();
         this.products = await productController.getProducts();
         console.log(`Se encontraron ${this.products.length} productos`);
-        PageProducto.optionsFunctions();
-        const productoo = PageProducto.getIdFromHash(2)
+        this.optionsFunctions();
+        const productoo = this.getIdFromHash(2)
         await render.renderTemplateCards(productoo, 'templates/producto.hbs', '.full-product-page')
         await cartController.init();
     }

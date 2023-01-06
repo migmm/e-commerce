@@ -2383,16 +2383,16 @@ input[type=number] {
   text-align: center;
 }
 .product-full-page__qty-button-plus, .product-full-page__qty-button-minus {
-  color: #000;
   background-color: #cecdcd;
   width: 2em;
   font-weight: 600;
   height: 2em;
-  line-height: 2em;
+  border: none;
   border-radius: 5px;
   text-align: center;
   margin: 0 0.2em;
   cursor: pointer;
+  font-size: 1.27em;
 }
 @media (hover: hover) {
   .product-full-page__qty-button-plus:hover, .product-full-page__qty-button-minus:hover {
