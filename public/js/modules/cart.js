@@ -76,40 +76,23 @@ class ModuleCart {
             }
 
             // Click on plus icon to increase product quantity in cart to the maximum stock
-            if (e.target.classList.value === 'fa fa-plus') {
-                
-                let btnPlus = e.target.previousElementSibling.value;
-                const maxStock= parseInt(e.target.parentNode.parentNode.previousElementSibling.value);
+            if (e.target.classList.value === 'qty-selector-container__btn-plus') {
+
+                const inputStock = e.target.previousElementSibling;
                 const id = e.target.parentNode.parentNode.nextElementSibling.nextElementSibling.getAttribute("data-id");
-                btnPlus = parseInt(btnPlus);
 
-                if (btnPlus >= maxStock) {
-                    e.target.classList.add('plus-and-minus-deactivated');
-                    return;
-                } else {
-                    e.target.classList.remove('plus-and-minus-deactivated');
-                }
-
-                btnPlus++;
+                inputStock.value++
                 this.addItemToCart(id);
                 return;
             }
 
             // Click on minus icon to decrease product quantity in cart to the minimum stock
-            if (e.target.classList.value === 'fa fa-minus') {
+            if (e.target.classList.value === 'qty-selector-container__btn-minus') {
 
-                let btnMinus = e.target.nextElementSibling.value;
+                const inputStock = e.target.nextElementSibling;
                 const id = e.target.parentNode.parentNode.nextElementSibling.nextElementSibling.getAttribute("data-id");
-                btnMinus = parseInt(btnMinus);
 
-                if (btnMinus <= 1) {
-                    e.target.classList.add('plus-and-minus-deactivated');
-                    return;
-                } else {
-                    e.target.classList.remove('plus-and-minus-deactivated');
-                }
-                
-                btnMinus--;
+                inputStock.value--
                 this.removeItemFromCart(id, 1);
                 return;
             }
@@ -188,7 +171,7 @@ class ModuleCart {
         badgeQtyCounter.innerHTML = 0;
         cartTotal[0].innerHTML = 0;
 
-        for (let i = 0; i <= partialPrice.length -1; ++i) {
+        for (let i = 0; i <= partialPrice.length - 1; ++i) {
             cartTotal[0].innerHTML = parseInt(cartTotal[0].innerHTML) + parseInt(partialPrice[i].innerHTML)
         }
 

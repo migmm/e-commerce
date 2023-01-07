@@ -1743,21 +1743,21 @@ body {
   width: 100px;
   text-align: center;
 }
-.card-cart-preview__content .qty-selector-container .fa-minus,
-.card-cart-preview__content .qty-selector-container .fa-plus {
-  padding: 3px;
+.card-cart-preview__content .qty-selector-container .qty-selector-container__btn-minus,
+.card-cart-preview__content .qty-selector-container .qty-selector-container__btn-plus {
+  padding: 4px;
   cursor: pointer;
   margin: 0 auto;
   background-color: #cecdcd;
   border-radius: 4px;
-}
-.card-cart-preview__content .qty-selector-container .plus-and-minus-deactivated {
-  color: #cecdcd;
+  font-weight: 600;
+  border: none;
+  width: 20px;
 }
 @media (hover: hover) {
-  .card-cart-preview__content .qty-selector-container .fa-minus:hover,
-.card-cart-preview__content .qty-selector-container .fa-plus:hover {
-    background-color: #cecdcd;
+  .card-cart-preview__content .qty-selector-container .qty-selector-container__btn-minus:hover,
+.card-cart-preview__content .qty-selector-container .qty-selector-container__btn-plus:hover {
+    background-color: #8b8b8b;
   }
 }
 .card-cart-preview__content .qty-selector-container input {

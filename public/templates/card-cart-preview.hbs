@@ -9,9 +9,9 @@
             <div class="card-cart-preview__content">
                 <p class="card-cart-preview__description">{{this.productName}}</p>
                 <div class="qty-selector-container">
-                    <i class="fa fa-minus" aria-hidden="true"></i>
+                    <button class="qty-selector-container__btn-minus" {{#compare this.qty "<=" 1}} disabled {{/compare}}>-</button>
                     <input type="text" class="qty-selector-container__qty" value="{{this.qty}}" readonly />
-                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    <button class="qty-selector-container__btn-plus" {{#compare this.qty ">=" this.stock}} disabled {{/compare}}>+</button>
                 </div>
             </div>
             <div class="card-cart-preview__price">
