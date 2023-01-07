@@ -125,13 +125,13 @@ class ModuleCart {
         });
     }
 
-    static async addItemToCart(id) {
+    static async addItemToCart(id, qty = 1) {
         const products = await productController.getProducts();
         const product = products.find(product => product.id == id)
         const productToRemoveId = this.cart.findIndex(product => product.id == id)
 
         if (productToRemoveId >= 0) {
-            ++this.cart[productToRemoveId].qty;
+            this.cart[productToRemoveId].qty = this.cart[productToRemoveId].qty + qty;
             if (document.getElementsByClassName('checkout__products')[0]) {
                 await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.checkout__products')
             }
