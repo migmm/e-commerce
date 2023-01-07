@@ -61,8 +61,10 @@ class PageProducto {
             // Click on "Agregar al carrito"
             if (e.target.classList.value === 'product-full-page__link') {
                 e.preventDefault();
+                const inputStock = document.getElementsByClassName('product-full-page__qty')[0];
+
                 let id = e.target.getAttribute("data-id");
-                cartController.addItemToCart(id);
+                cartController.addItemToCart(id, parseInt(inputStock.value));
                 return;
             }
 
