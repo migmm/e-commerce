@@ -209,6 +209,11 @@
         font-size: 1.27em;
     }
 
+    &__qty-button-plus:hover,
+    &__qty-button-minus:hover {
+        background-color: color.$grey;
+    }
+
     @media (hover: hover) {
 
         &__qty-button-plus:hover,

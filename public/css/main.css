@@ -2394,6 +2394,9 @@ input[type=number] {
   cursor: pointer;
   font-size: 1.27em;
 }
+.product-full-page__qty-button-plus:hover, .product-full-page__qty-button-minus:hover {
+  background-color: #8b8b8b;
+}
 @media (hover: hover) {
   .product-full-page__qty-button-plus:hover, .product-full-page__qty-button-minus:hover {
     background-color: #8b8b8b;
