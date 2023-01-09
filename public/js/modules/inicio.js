@@ -2,8 +2,8 @@
 import productController from '/js/controllers/product.js';
 import cartController from '/js/modules/cart.js';
 import render from '/js/utils/render.js';
+import goTopOnLoad from '../utils/goTopOnLoad.js';
 
-console.log('🆗: Módulo PageInicio cargado.');
 
 class PageInicio {
 
@@ -146,13 +146,12 @@ class PageInicio {
     }
 
     static async init() {
-        console.log('PageInicio.init()');
-        PageInicio.goToTopOnLoad();
-        PageInicio.arrowSlider();
+        goTopOnLoad.goToTopOnLoad();
+        this.arrowSlider();
         const products = await productController.getProducts();
         console.log(`Se encontraron ${products.length} productos`);
-        PageInicio.carousel();
-        PageInicio.cardSlider();
+        this.carousel();
+        this.cardSlider();
 
         await render.renderTemplateCards(products, 'templates/inicio.hbs', '.cards-container')
         await render.renderTemplateCards(products, 'templates/inicio.hbs', '.most-selled')
