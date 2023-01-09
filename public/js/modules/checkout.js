@@ -1,28 +1,19 @@
 import cartController from '/js/modules/cart.js';
 import render from '/js/utils/render.js';
+import goTopOnLoad from '../utils/goTopOnLoad.js';
 
-console.log('🆗: Módulo Checkout cargado.');
 
 class Checkout {
 
     static cart = [];
 
-    static goToTopOnLoad() {
-        const htmlTag = document.getElementsByTagName('html')[0];
-        htmlTag.classList.remove('scroll-smooth');
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-        htmlTag.classList.add('scroll-smooth');
-    }
-
     static async init () {
-        console.log('Checkout.init()');
         await cartController.init();
         this.cart = JSON.parse(localStorage.getItem('cart')) || [];
         await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.checkout__products')
         cartController.updateCart();
         this.links = document.querySelectorAll('.main-nav__link');
-        Checkout.goToTopOnLoad();
+        goTopOnLoad.goToTopOnLoad();
         
     }
 }
