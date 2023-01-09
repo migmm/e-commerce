@@ -4,7 +4,6 @@ import cartController from '/js/modules/cart.js';
 import Validations from '../utils/validation.js';
 import Form from '../utils/form.js';
 
-console.log('🆗: Módulo PageModificar cargado.');
 
 class PageModificar {
 
@@ -18,7 +17,7 @@ class PageModificar {
 
 
     static completeForm(product) {
-        PageModificar.fields.forEach(field => {
+        this.fields.forEach(field => {
             if (field.name === 'freeShip') {
                 if (product[field.name] === 'true') {
                     document.getElementById("freeShip").checked = true;
@@ -49,7 +48,7 @@ class PageModificar {
 
     static async addFormEvents() {
 
-        PageModificar.form.addEventListener('submit', async e => {
+        this.form.addEventListener('submit', async e => {
 
             e.preventDefault();
 
@@ -69,8 +68,8 @@ class PageModificar {
                 ageSelect.value = 1;
             }
 
-            //const productToSave = PageModificar.validateForm();
-            const productToSave = Validations.validateForm(PageModificar.fields);
+            //const productToSave = this.validateForm();
+            const productToSave = Validations.validateForm(this.fields);
 
             //Bypass to get the files too
             let dataProducts = new FormData(document.getElementById("form-add-products"));
@@ -84,7 +83,7 @@ class PageModificar {
             colorsSplit.forEach((item) => dataProducts.append("colors[]", item));
 
             if (productToSave) {
-                const savedProduct = await PageModificar.updateProduct(dataProducts);
+                const savedProduct = await this.updateProduct(dataProducts);
                 console.log('savedProduct:', savedProduct);
                 Form.emptyForm(this.fields);
             }
@@ -93,7 +92,7 @@ class PageModificar {
         this.btnCancel.addEventListener('click', async e => {
             let formModifica = document.getElementsByClassName('product-update-wrapper')[0];
             formModifica.classList.remove('product-update-wrapper--on');
-            PageModificar.emptyForm();
+            this.emptyForm();
         });
     }
 
@@ -102,10 +101,10 @@ class PageModificar {
         const template = Handlebars.compile(hbsFile);
         const html = template({ product });
         document.querySelector('.full-product-view').innerHTML = html;
-        PageModificar.productFullView = document.querySelector('.product-full-view');
-        PageModificar.productFullViewBg = document.querySelector('.full-product-view');
-        PageModificar.productFullView.classList.add('product-full-view--on');
-        PageModificar.productFullViewBg.classList.add('product-full-view-bg--on');
+        this.productFullView = document.querySelector('.product-full-view');
+        this.productFullViewBg = document.querySelector('.full-product-view');
+        this.productFullView.classList.add('product-full-view--on');
+        this.productFullViewBg.classList.add('product-full-view-bg--on');
     }
 
     static keyEvents() {
@@ -113,15 +112,15 @@ class PageModificar {
 
             // Click on background dark and product view is closed
             if (e.target.classList.value === 'full-product-view product-full-view-bg--on') {
-                PageModificar.productFullView.classList.remove('product-full-view--on');
-                PageModificar.productFullViewBg.classList.remove('product-full-view-bg--on');
+                this.productFullView.classList.remove('product-full-view--on');
+                this.productFullViewBg.classList.remove('product-full-view-bg--on');
                 return;
             }
 
             // Click on X to close product view
             if (e.target.classList.value === 'fa fa-times fa-2x') {
-                PageModificar.productFullView.classList.remove('product-full-view--on');
-                PageModificar.productFullViewBg.classList.remove('product-full-view-bg--on');
+                this.productFullView.classList.remove('product-full-view--on');
+                this.productFullViewBg.classList.remove('product-full-view-bg--on');
                 return;
             }
 
@@ -135,9 +134,9 @@ class PageModificar {
 
         document.addEventListener('keydown', e => {
             if (e.key == 'Escape') {
-                if (PageModificar.productFullViewBg) {
-                    PageModificar.productFullView.classList.remove('product-full-view--on');
-                    PageModificar.productFullViewBg.classList.remove('product-full-view-bg--on');
+                if (this.productFullViewBg) {
+                    this.productFullView.classList.remove('product-full-view--on');
+                    this.productFullViewBg.classList.remove('product-full-view-bg--on');
                 }
             }
         });
@@ -195,7 +194,7 @@ class PageModificar {
             productToEdit.ageSelect = ageSelect;
             productToEdit.colors = colors;
 
-            PageModificar.completeForm(productToEdit);
+            this.completeForm(productToEdit);
         };
 
         document.querySelector('.products-table-container').addEventListener('click', e => {
@@ -212,7 +211,7 @@ class PageModificar {
                 let top = document.getElementById('form-modifica').offsetTop - 100;
                 window.scrollTo(0, top);
 
-                PageModificar.fields.forEach(function (field) {
+                this.fields.forEach(function (field) {
                     field.classList.remove('input-group__input--ok');
                 });
 
@@ -226,7 +225,7 @@ class PageModificar {
                 var productIndex = this.products.findIndex(item => item.id === id);
                 let product = this.products[productIndex]
 
-                PageModificar.productView(product); 
+                this.productView(product); 
                 */
                 return;
             }
@@ -242,21 +241,20 @@ class PageModificar {
     }
 
     static async init() {
-        console.log('PageModificar.init()');
-        PageModificar.goToTopOnLoad();
-        PageModificar.form = document.getElementById('form-add-products');
-        PageModificar.fields = PageModificar.form.querySelectorAll(`textarea, input:not([type='file']`);
-        PageModificar.btnUpdate = PageModificar.form.querySelector('#btn-update');
-        PageModificar.btnCancel = PageModificar.form.querySelector('#btn-cancel');
-        console.log(PageModificar.fields);
+        this.goToTopOnLoad();
+        this.form = document.getElementById('form-add-products');
+        this.fields = this.form.querySelectorAll(`textarea, input:not([type='file']`);
+        this.btnUpdate = this.form.querySelector('#btn-update');
+        this.btnCancel = this.form.querySelector('#btn-cancel');
+        console.log(this.fields);
 
-        PageModificar.addFormEvents();
-        PageModificar.keyEvents();
+        this.addFormEvents();
+        this.keyEvents();
         this.products = await productController.getProducts();
         console.log(`Se encontraron ${this.products.length} productos`);
 
         await render.renderTemplateCards(this.products, 'templates/products-table.hbs', '.products-table-container')
-        PageModificar.addTableEvents();
+        this.addTableEvents();
         await cartController.init();
     }
 }
