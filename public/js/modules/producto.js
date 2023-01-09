@@ -1,8 +1,8 @@
 import productController from '/js/controllers/product.js';
 import cartController from '/js/modules/cart.js';
 import render from '/js/utils/render.js';
+import goTopOnLoad from '../utils/goTopOnLoad.js';
 
-console.log('🆗: Módulo PageProducto cargado.');
 
 class PageProducto {
 
@@ -106,17 +106,8 @@ class PageProducto {
         });
     }
 
-    static goToTopOnLoad() {
-        const htmlTag = document.getElementsByTagName('html')[0];
-        htmlTag.classList.remove('scroll-smooth');
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-        htmlTag.classList.add('scroll-smooth');
-    }
-
     static async init() {
-        console.log('PageProducto .init()');
-        this.goToTopOnLoad();
+        goTopOnLoad.goToTopOnLoad();
         this.products = await productController.getProducts();
         console.log(`Se encontraron ${this.products.length} productos`);
         this.optionsFunctions();
