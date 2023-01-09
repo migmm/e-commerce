@@ -3,6 +3,7 @@ import render from '/js/utils/render.js';
 import cartController from '/js/modules/cart.js';
 import Validations from '../utils/validation.js';
 import Form from '../utils/form.js';
+import goTopOnLoad from '../utils/goTopOnLoad.js';
 
 
 class PageModificar {
@@ -232,16 +233,8 @@ class PageModificar {
         });
     }
 
-    static goToTopOnLoad() {
-        const htmlTag = document.getElementsByTagName('html')[0];
-        htmlTag.classList.remove('scroll-smooth');
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-        htmlTag.classList.add('scroll-smooth');
-    }
-
     static async init() {
-        this.goToTopOnLoad();
+        goTopOnLoad.goToTopOnLoad();
         this.form = document.getElementById('form-add-products');
         this.fields = this.form.querySelectorAll(`textarea, input:not([type='file']`);
         this.btnUpdate = this.form.querySelector('#btn-update');
