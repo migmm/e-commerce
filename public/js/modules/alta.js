@@ -2,8 +2,7 @@ import productController from '/js/controllers/product.js';
 import cartController from '/js/modules/cart.js';
 import Validations from '../utils/validation.js';
 import Form from '../utils/form.js';
-
-console.log('🆗: Módulo PageAlta cargado.');
+import goTopOnLoad from '../utils/goTopOnLoad.js';
 
 
 class PageAlta {
@@ -11,14 +10,9 @@ class PageAlta {
     static form
     static fields
 
-    
-    
     static async saveProduct(product) {
         const mode = 'formdata';
         const savedProduct = await productController.saveProduct(product, mode);
-        const products = await productController.getProducts();
-        console.log(`Ahora hay ${products.length} productos`);
-        // PageAlta.renderTemplateTable(products);
         return savedProduct;
     }
 
@@ -78,22 +72,12 @@ class PageAlta {
         });
     }
 
-    static goToTopOnLoad() {
-        const htmlTag = document.getElementsByTagName('html')[0];
-        htmlTag.classList.remove('scroll-smooth');
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-        htmlTag.classList.add('scroll-smooth');
-    }
-
     static async init() {
-        console.log('PageAlta.init()');
-        PageAlta.goToTopOnLoad();
-        PageAlta.form = document.getElementById('form-add-products');
-        PageAlta.fields = PageAlta.form.querySelectorAll(`textarea, input:not([type='radio']`);
-        PageAlta.addFormEvents();
+        goTopOnLoad.goToTopOnLoad();
+        this.form = document.getElementById('form-add-products');
+        this.fields = this.form.querySelectorAll(`textarea, input:not([type='radio']`);
+        this.addFormEvents();
         document.getElementById('productName').focus();
-        console.log(PageAlta.fields);
         await cartController.init();
     }
 }
