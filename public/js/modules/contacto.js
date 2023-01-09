@@ -1,6 +1,6 @@
 import cartController from '/js/modules/cart.js';
+import goTopOnLoad from '../utils/goTopOnLoad.js';
 
-console.log('🆗: Módulo PageContacto cargado.');
 
 class PageContacto {
 
@@ -28,8 +28,8 @@ class PageContacto {
         console.log('\n\n');
         const msgGlobalError = document.getElementsByClassName('input-group__error-form')[0];
 
-        for (const field of PageContacto.fields) {
-            const validated = PageContacto.validate(field.value, PageContacto.validators[field.name]);
+        for (const field of this.fields) {
+            const validated = this.validate(field.value, this.validators[field.name]);
             console.log(field.name, validated);
 
             let errorField = document.getElementsByName(field.name)[0];
@@ -63,34 +63,26 @@ class PageContacto {
 
     static async addFormEvents() {
 
-        PageContacto.form.addEventListener('submit', async e => {
+        this.form.addEventListener('submit', async e => {
             e.preventDefault();
 
-            const formToSend = PageContacto.validateForm();
+            const formToSend = this.validateForm();
 
             if (formToSend) {
-             /*    const savedProduct = await PageContacto.saveProduct(dataProducts); */
+             /*    const savedProduct = await this.saveProduct(dataProducts); */
                 console.log('savedProduct:', savedProduct);
-                PageContacto.emptyForm();
+                this.emptyForm();
             }
         });
     }
 
-    static goToTopOnLoad() {
-        const htmlTag = document.getElementsByTagName('html')[0];
-        htmlTag.classList.remove('scroll-smooth');
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-        htmlTag.classList.add('scroll-smooth');
-    }
-
     static async init () {
-        console.log('PageContacto.init()');
-        PageContacto.goToTopOnLoad();
+
+        goTopOnLoad.goToTopOnLoad();
         document.getElementById("name").focus();
-        PageContacto.form = document.getElementById('form-contact');
-        PageContacto.fields = PageContacto.form.querySelectorAll('textarea, input');
-        PageContacto.addFormEvents();
+        this.form = document.getElementById('form-contact');
+        this.fields = this.form.querySelectorAll('textarea, input');
+        this.addFormEvents();
         await cartController.init();
     }
 }
