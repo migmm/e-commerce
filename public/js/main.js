@@ -131,11 +131,11 @@ class Main {
         searchBar.addEventListener('input',  e => {
             //e.preventDefault();
             console.log(e.target.value)
-            if (e.target.value) {
-                searchResults.classList.add('visible');
+            if (e.target.value.length == 0) {
+                searchResults.classList.remove('visible');
                 return;
             }
-            searchResults.classList.remove('visible');
+            searchResults.classList.add('visible');
         });
 
         searchBar.addEventListener('focus',  e => {
