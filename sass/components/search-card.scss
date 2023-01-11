@@ -1,0 +1,69 @@
+@use '../abstracts/variables' as color;
+
+.main-header {
+
+    &__wrapper {
+
+        &__search-results-list {
+
+            display:block;
+            width: 100vw;
+            height: 200px;
+            background-color: white;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            border: solid 1px grey;
+            z-index: 5000;
+            overflow-y: scroll;
+
+            .search-results {
+
+                &__card {
+                    display: flex;
+                    align-items: center;
+                    margin: .5em;
+                    padding: .5em;
+                    padding-bottom: 1em;
+                    border-bottom: solid 1px color.$darkgrey;
+                }
+
+                &__img-container {
+                    width: 90px;
+                    height: 90px;
+                }
+
+                &__img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
+
+                &__product-info-content {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                &__product-brand {
+                    font-size: 1em;
+                    color: color.$darkblue;
+                }
+
+                &__product-name {
+                    font-size: 1.5em;
+                    font-weight: 600;
+                }
+
+                &__product-price {
+                    font-size: 1em;
+                }
+
+                &__view-all {
+                    text-align: center;
+                    border-bottom: solid 1px color.$darkgrey;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}

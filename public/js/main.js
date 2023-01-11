@@ -101,7 +101,9 @@ class Main {
         const navBar = document.getElementsByClassName('main-header__wrapper')[0];
         const logo = document.getElementsByClassName('main-header__wrapper__logo-container__logo')[0];
         const searchBarContainer = document.getElementsByClassName('main-header__wrapper__search-form-container')[0];
-        const searchBar =  document.getElementsByClassName('navbar-search-input')[0];
+        const searchBar = document.getElementsByClassName('navbar-search-input')[0];
+        const searchResults = document.getElementsByClassName('main-header__wrapper__search-results-list')[0]
+        
 
         window.onscroll = function () {
             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -124,6 +126,21 @@ class Main {
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
             htmlTag.classList.remove('scroll-smooth');
+        });
+
+        searchBar.addEventListener('input',  e => {
+            //e.preventDefault();
+            console.log(e.target.value)
+            if (e.target.value) {
+                searchResults.classList.add('visible');
+                return;
+            }
+            searchResults.classList.remove('visible');
+        });
+
+        searchBar.addEventListener('focus',  e => {
+            //e.preventDefault();
+            console.log("cvad")
         });
 
         Handlebars.registerHelper('compare', function (lvalue, operator, rvalue, options) {
