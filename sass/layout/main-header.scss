@@ -219,25 +219,6 @@
     }
 }
 
-
-// Modifiers
-
-.hidden {
-    display: none;
-}
-
-.visible {
-    display: block;
-}
-
-.navbar-resize {
-    padding: unset;
-}
-
-.logo-resize {
-    height: 2em;
-}
-
 @media (max-width: 599px) {
     .nav-bar-container-resize {
         top: 45px;

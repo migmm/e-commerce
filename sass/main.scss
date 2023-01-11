@@ -47,3 +47,7 @@
 @use 'pages/checkout';
 
 // themes
+
+
+//file located in 'abstracts' moved to the end in order to work propertly
+@use 'abstracts/modifiers';

@@ -595,22 +595,6 @@ body {
   }
 }
 
-.hidden {
-  display: none;
-}
-
-.visible {
-  display: block;
-}
-
-.navbar-resize {
-  padding: unset;
-}
-
-.logo-resize {
-  height: 2em;
-}
-
 @media (max-width: 599px) {
   .nav-bar-container-resize {
     top: 45px;
@@ -1942,10 +1926,6 @@ body {
   font-weight: 600;
 }
 
-.visible {
-  display: block;
-}
-
 ::selection {
   color: #004173;
   background: #00b2eb;
@@ -2535,6 +2515,22 @@ input[type=number] {
 }
 .main-content .checkout__total::before {
   content: "$";
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.navbar-resize {
+  padding: unset;
+}
+
+.logo-resize {
+  height: 2em;
 }
 
 /*# sourceMappingURL=main.css.map */

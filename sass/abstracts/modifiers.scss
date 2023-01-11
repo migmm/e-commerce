@@ -1,3 +1,15 @@
+.hidden {
+    display: none;
+}
+
 .visible {
     display: block;
+}
+
+.navbar-resize {
+    padding: unset;
+}
+
+.logo-resize {
+    height: 2em;
 }
