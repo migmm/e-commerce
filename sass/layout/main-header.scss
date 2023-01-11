@@ -20,11 +20,12 @@
 
         &__logo-container {
             flex-basis: 5em;
-            margin-left: 1.5em;
+            margin-left: 2em;
             margin-right: .5em;
             margin-top: 2px;
             padding: 8px 0;
             flex-grow: 3;
+            cursor: pointer;
 
             &__logo {
                 height: 2.5em;
@@ -33,14 +34,14 @@
                 transition: height 0.3s;
             }
 
-            @media (min-width: 1024px) {
+            @media (min-width: 1200px) {
                 flex-basis: 10em;
-                cursor: pointer;
+                flex-grow: unset;
             }
         }
 
         &__search-form-container {
-            padding: 1em;
+            padding: .8em;
             flex-grow: 2;
             width: 100%;
             order: 5;
@@ -49,18 +50,12 @@
             background-color: color.$cyan;
             transition:  0.4s;
 
-            @media (min-width: 768px) {
+            @media (min-width: 1200px) {
                 order: 2;
                 flex-basis: 15em;
-                flex-grow: 2;
+                flex-grow: 5;
                 flex-shrink: 1;
-            }
-
-            @media (min-width: 600px) {
-                order: 2;
-                flex-basis: 15em;
-                flex-grow: 2;
-                flex-shrink: 1;
+                margin: 0 1em;
                 position: relative;
                 top: 0;
             }
@@ -72,13 +67,12 @@
 
             & input {
                 width: 100%;
-                padding: .3em;
+                padding: .4em;
                 border-radius: 10px;
                 border: none;
                 padding-left: 0;
 
                 @media (min-width: 600px) {
-                    width: 90%;
                     padding-left: 1em;
                 }
             }
@@ -171,7 +165,6 @@
             &__qty-cart {
                 display: none;
                 background-color: color.$red;
-                // width: 20px;
                 height: 20px;
                 border-radius: 50%;
                 font-size: 14px;
