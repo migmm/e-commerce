@@ -11,24 +11,11 @@
         background: color.$black;
         color: color.$white;
         text-align: center;
-        //border: 1px solid #ddd;
         bottom: 25px;
-        //box-shadow: 5px 5px 10px color.$shadow;
         left: 25px;
         padding: 15px;
         border-radius: 10px;
         position: fixed;
-        //z-index: 1000;
-
-    /*     &:before {
-            color: red;
-            content: "\f06a";
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 1.5em;
-            font-weight: 600;
-            margin-right: 10px;
-            vertical-align: sub;
-        } */
     }
 
     .slide-in {
@@ -36,30 +23,8 @@
         animation-duration: 0.8s;
     }
 
-    @keyframes slideIn {
-        from {
-            transform: translateX(-400px);
-        }
-
-        to {
-            transform: translateX(0);
-        }
-    }
-
     .slide-out {
         animation-name: slideOut;
         animation-duration: 0.8s;
-    }
-
-    @keyframes slideOut {
-        from {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        to {
-            transform: translateY(80px);
-            opacity: 0;
-        }
     }
 }

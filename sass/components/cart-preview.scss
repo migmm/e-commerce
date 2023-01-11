@@ -15,17 +15,6 @@
     }
 }
 
-@keyframes fadeIn {
-
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
 .cart-modal {
     display: flex;
     flex-direction: column;
@@ -164,10 +153,4 @@
     animation: opendrawer 500ms ease-in;
     animation-fill-mode: forwards;
     right: -500px;
-}
-
-@keyframes opendrawer {
-    to {
-        right: 0px;
-    }
 }
