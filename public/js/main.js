@@ -1,4 +1,6 @@
-import ModuleCart from './modules/cart.js'
+import ModuleCart from './modules/cart.js';
+import productController from './controllers/product.js';
+import render from '/js/utils/render.js';
 class Main {
 
     static links
@@ -96,6 +98,41 @@ class Main {
         window.addEventListener('hashchange', () => this.loadTemplate());
     }
 
+    // query is what you search
+    // fields is where do you want to search in the object, eg: productName
+
+    async searchProducts(query, fields) {
+
+        // if products is not filled show nothing
+
+        if (!this.products) {
+            console.log("notiene")
+            return;
+        }
+
+        let results = []
+        for (var i = 0; i < this.products.length; ++i) {
+            for (let key of fields) {
+                if (this.products[i][key].toString().toLowerCase().indexOf(query.toLowerCase()) != -1) {
+                    results.push(this.products[i]);
+                }
+            }
+        }
+
+        //console.log('resultados sin filtrar', results)
+
+        // Remove duplicated
+        let result = results.filter(
+            (person, index) => index === results.findIndex(
+                other => person.id === other.id
+                    && person.productName === other.productName
+            )
+        );
+        
+        console.log('resultados filtrados', result)
+        return result;        
+    } 
+
     commonEvents() {
         const goTopButton = document.getElementById('myBtn');
         const navBar = document.getElementsByClassName('main-header__wrapper')[0];
@@ -128,9 +165,12 @@ class Main {
             htmlTag.classList.remove('scroll-smooth');
         });
 
-        searchBar.addEventListener('input',  e => {
-            //e.preventDefault();
-            console.log(e.target.value)
+        searchBar.addEventListener('input',  async e => {
+
+            const rsrr = await this.searchProducts(e.target.value, ['productName', 'vendor'])
+            console.log("eeeeeeeeeeeeeee",rsrr)
+            await render.renderTemplateCards(rsrr, 'templates/search-results.hbs', '.main-header__wrapper__search-results-list');
+
             if (e.target.value.length == 0) {
                 searchResults.classList.remove('visible');
                 return;
@@ -138,10 +178,8 @@ class Main {
             searchResults.classList.add('visible');
         });
 
-        searchBar.addEventListener('focus',  e => {
-            //e.preventDefault();
-            console.log("cvad")
-        });
+        /* searchBar.addEventListener('focus',  e => {
+        }); */
 
         Handlebars.registerHelper('compare', function (lvalue, operator, rvalue, options) {
 
@@ -196,6 +234,7 @@ class Main {
         await this.loadTemplates();
         this.commonEvents();
         ModuleCart.cartFunctions();
+        this.products = await productController.getProducts();
         // ModuleCart.init();
     }
 }

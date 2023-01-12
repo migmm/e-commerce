@@ -1,0 +1,24 @@
+{{#if products}}
+    {{#each products}}
+
+        <a href="/#/producto/{{this.urlName}}">
+            <div class="search-results__card">
+                <div class="search-results__img-container">
+                    <img class="search-results__img" src="{{this.images.portada}}" alt="Imagen de producto encontrado" />
+                </div>
+
+                <div class="search-results__product-info-content">
+                    <span class="search-results__product-brand">{{this.vendor}}</span>
+                    <span class="search-results__product-name"> {{this.productName}}</span>
+                    <span class="search-results__product-price"><span>$ </span><span>{{discount this.price this.discountPercent}}</span></span>
+                </div>
+            </div>
+        </a>
+
+    {{/each}}
+    <div class="search-results__view-all">
+        <p>Ver todos los resultados</p>
+    </div>
+{{else}}
+    <h2>Tu búsqueda no coincide con ningún producto.</h2>
+{{/if}}
