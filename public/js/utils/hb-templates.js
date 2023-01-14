@@ -46,8 +46,17 @@ function compare(lvalue, operator, rvalue, options) {
     }
 }
 
+function listItems(from, to, context, options) {
+    var item = "";
+    for (var i = from, j = to; i < j; i++) {
+        item = item + options.fn(context[i]);
+    }
+    return item;
+}
+
 export default {
     discount,
     finalPrice,
-    compare
+    compare,
+    listItems
 }
