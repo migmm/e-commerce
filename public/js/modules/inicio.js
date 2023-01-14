@@ -145,9 +145,9 @@ class PageInicio {
         this.carousel();
         this.cardSlider();
 
-        await render.renderTemplateCards(products, 'templates/inicio.hbs', '.cards-container')
-        await render.renderTemplateCards(products, 'templates/inicio.hbs', '.most-selled')
-        await render.renderTemplateCards(products, 'templates/inicio.hbs', '.latest-viewed')
+        await render.renderTemplateCards(products, 'templates/card-row.hbs', '.cards-container')
+        await render.renderTemplateCards(products, 'templates/card-row.hbs', '.most-selled')
+        await render.renderTemplateCards(products, 'templates/card-row.hbs', '.latest-viewed')
 
         await cartController.init();
     }

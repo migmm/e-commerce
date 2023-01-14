@@ -36,7 +36,7 @@ class PageProductos {
         // Check if the hash is only "products"
         if (toSearch === undefined) {
             toSearch = this.products;
-            render.renderTemplateCards(toSearch, 'templates/inicio.hbs', '.section-cards__cards-container');
+            render.renderTemplateCards(toSearch, 'templates/card-all-products.hbs', '.section-cards__cards-container');
             return;
         }
 
@@ -56,7 +56,7 @@ class PageProductos {
             )
         );
 
-        render.renderTemplateCards(result, 'templates/inicio.hbs', '.section-cards__cards-container');
+        render.renderTemplateCards(result, 'templates/card-all-products.hbs', '.section-cards__cards-container');
         return results;
     }
 
@@ -85,7 +85,7 @@ class PageProductos {
                     )
                 );
 
-                render.renderTemplateCards(result, 'templates/inicio.hbs', '.section-cards__cards-container');
+                render.renderTemplateCards(result, 'templates/card-all-products.hbs', '.section-cards__cards-container');
                 return;
             }
 
@@ -104,7 +104,7 @@ class PageProductos {
                     }
                 }
 
-                render.renderTemplateCards(results, 'templates/inicio.hbs', '.section-cards__cards-container');
+                render.renderTemplateCards(results, 'templates/card-all-products.hbs', '.section-cards__cards-container');
                 return;
             }
 
