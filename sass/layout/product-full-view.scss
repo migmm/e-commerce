@@ -16,7 +16,6 @@
     }
 }
 
-
 .product-full-view {
     border: solid 1px color.$red;
     background-color: color.$white;
@@ -44,9 +43,7 @@
     }
 
     &__row {
-        //border: solid 3px color.$yellow;
         background-color: color.$red;
-        //width: 100%;
     }
 
     &__gallery {
@@ -107,8 +104,6 @@
                 & img {
                     height: 100%;
                     position: absolute;
-                    /*  left: 50%;
-                    transform: translateX(-50%); */
                     border: solid 3px color.$red;
                 }
             }
