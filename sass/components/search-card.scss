@@ -4,64 +4,66 @@
 
     &__wrapper {
 
-        &__search-results-list {
-
-            display:none;
+        &__search-results {
+            display: none;
             width: 100%;
-            height: 200px;
+            height: 300px;
+            overflow-y: scroll;
             background-color: white;
             position: absolute;
             top: 50px;
             left: 0;
             border: solid 1px grey;
             z-index: 5000;
-            overflow-y: scroll;
 
-            .search-results {
+            .search-results-list {
 
-                &__card {
-                    display: flex;
-                    align-items: center;
-                    margin: .5em;
-                    padding: .5em;
-                    padding-bottom: 1em;
-                    border-bottom: solid 1px color.$darkgrey;
-                }
+                .search-results {
 
-                &__img-container {
-                    width: 90px;
-                    height: 90px;
-                }
+                    &__card {
+                        display: flex;
+                        align-items: center;
+                        margin: .5em;
+                        padding: .5em;
+                        padding-bottom: 1em;
+                        border-bottom: solid 1px color.$darkgrey;
+                    }
 
-                &__img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: contain;
-                }
+                    &__img-container {
+                        width: 90px;
+                        height: 90px;
+                    }
 
-                &__product-info-content {
-                    display: flex;
-                    flex-direction: column;
-                }
+                    &__img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                    }
 
-                &__product-brand {
-                    font-size: 1em;
-                    color: color.$darkblue;
-                }
+                    &__product-info-content {
+                        display: flex;
+                        flex-direction: column;
+                    }
 
-                &__product-name {
-                    font-size: 1.5em;
-                    font-weight: 600;
-                }
+                    &__product-brand {
+                        font-size: 1em;
+                        color: color.$darkblue;
+                    }
 
-                &__product-price {
-                    font-size: 1em;
-                }
+                    &__product-name {
+                        font-size: 1.5em;
+                        font-weight: 600;
+                    }
 
-                &__view-all {
-                    text-align: center;
-                    border-bottom: solid 1px color.$darkgrey;
-                    font-weight: 600;
+                    &__product-price {
+                        font-size: 1em;
+                    }
+
+                    &__view-all {
+                        text-align: center;
+                        border-bottom: solid 1px color.$darkgrey;
+                        font-weight: 600;
+                    }
                 }
             }
         }

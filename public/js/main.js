@@ -98,15 +98,14 @@ class Main {
         window.addEventListener('hashchange', () => this.loadTemplate());
     }
 
-    // query is what you search
-    // fields is where do you want to search in the object, eg: productName
+    // query is a string and is what you search
+    // fields is an array and is where do you want to search in the object, eg: productName
 
     async searchProducts(query, fields) {
 
         // if products is not filled show nothing
 
         if (!this.products) {
-            console.log("notiene")
             return;
         }
 
@@ -119,8 +118,6 @@ class Main {
             }
         }
 
-        //console.log('resultados sin filtrar', results)
-
         // Remove duplicated
         let result = results.filter(
             (person, index) => index === results.findIndex(
@@ -128,8 +125,7 @@ class Main {
                     && person.productName === other.productName
             )
         );
-        
-        console.log('resultados filtrados', result)
+
         return result;        
     } 
 
@@ -139,8 +135,9 @@ class Main {
         const logo = document.getElementsByClassName('main-header__wrapper__logo-container__logo')[0];
         const searchBarContainer = document.getElementsByClassName('main-header__wrapper__search-form-container')[0];
         const searchBar = document.getElementsByClassName('navbar-search-input')[0];
-        const searchResults = document.getElementsByClassName('main-header__wrapper__search-results-list')[0]
-        
+        const searchResults = document.getElementsByClassName('main-header__wrapper__search-results')[0]
+        const searchLink = document.getElementsByClassName('search-results__link')[0]
+        const searchQuery = document.getElementsByClassName('search-results__result')[0]
 
         window.onscroll = function () {
             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -167,14 +164,17 @@ class Main {
 
         searchBar.addEventListener('input',  async e => {
 
-            const rsrr = await this.searchProducts(e.target.value, ['productName', 'vendor'])
-            console.log("eeeeeeeeeeeeeee",rsrr)
-            await render.renderTemplateCards(rsrr, 'templates/search-results.hbs', '.main-header__wrapper__search-results-list');
+            const productsFound = await this.searchProducts(e.target.value, ['productName', 'vendor'])
+
+            await render.renderTemplateCards(productsFound, 'templates/search-results.hbs', '.search-results-list');
 
             if (e.target.value.length == 0) {
                 searchResults.classList.remove('visible');
                 return;
             }
+            
+            searchQuery.innerHTML = e.target.value;
+            searchLink.href = `/#/productos/${e.target.value}`;
             searchResults.classList.add('visible');
         });
 

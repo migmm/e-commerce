@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="/img/favicon.png">
     <link rel="stylesheet" href="css/main.css">
-    <!--   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> -->
     <title>Juguetería Cósmica</title>
 </head>
 
@@ -16,8 +15,6 @@
     <input type="checkbox" class="main-nav-toggle" id="main-nav-toggle">
 
     <div class="items-ui">
-        <!--  FIXME: Fix this!!!
-        <input type="checkbox" class="main-nav-toggle" id="main-nav-toggle"> -->
 
         <a href="https://wa.me/541133332222" id="button-whatsapp" target="_blank">
             <span>Escribinos</span>
@@ -31,9 +28,7 @@
         </div>
 
         <div class="cart-modal">
-            <!--     <h1>Tu carrito está vacío!</h1>
-            <h2>Comprate algo!</h2>
-            <h2>¯\_(ツ)_/¯</h2> -->
+
             <h2 class="cart-modal__title">
                 TU CARRITO
             </h2>
@@ -65,49 +60,18 @@
                     <input class="navbar-search-input" type="text" placeholder="¿Qué estás buscando?">
                     <button> <i class="fa fa-search fa-lg" aria-hidden="true"></i></button>
                 </form>
-                <div class="main-header__wrapper__search-results-list">
+                <div class="main-header__wrapper__search-results">
+                    <div class="search-results-list">
+                    </div>
 
-                    <div class="search-results__card">
-                        <a href="/#/producto/{{this.urlName}}"> <div class="search-results__img-container">
-                            <img class="search-results__img" src="img/products/613dbej2gVL._hulk_.jpg" alt="Imagen de producto encontrado">
-                        </div>
-                        <div class="search-results__product-info-content">
-                            <span class="search-results__product-brand">Marvel</span>
-                            <span class="search-results__product-name"> the hulk</span>
-                            <span class="search-results__product-price"><span>$ </span><span>5000</span></span>
-                        </div></a>
+                    <div class="search-results__view-all-container">
+                        <a class="search-results__link" href="/#/productos/">
+                            <p class="search-results__view-all">Ver todos los resultados de <span
+                                    class="search-results__result"></span></p>
+                        </a>
                     </div>
-    
-                    <div class="search-results__card">
-                        <div class="search-results__img-container">
-                            <img class="search-results__img" src="img/products/613dbej2gVL._hulk_.jpg" alt="Imagen de producto encontrado">
-                        </div>
-                        <div class="search-results__product-info-content">
-                            <span class="search-results__product-brand">Marvel</span>
-                            <span class="search-results__product-name"> the hulk</span>
-                            <span class="search-results__product-price"><span>$ </span><span>5000</span></span>
-                        </div>
-                    </div>
-    
-                    <div class="search-results__card">
-                        <div class="search-results__img-container">
-                            <img class="search-results__img" src="img/products/613dbej2gVL._hulk_.jpg" alt="Imagen de producto encontrado">
-                        </div>
-                        <div class="search-results__product-info-content">
-                            <span class="search-results__product-brand">Marvel</span>
-                            <span class="search-results__product-name"> the hulk</span>
-                            <span class="search-results__product-price"><span>$ </span><span>5000</span></span>
-                        </div>
-                    </div>
-    
-                    <div class="search-results__view-all">
-                        <p>Ver todos los resultados</p>
-                    </div>
-    
                 </div>
             </div>
-
-            
 
             <div class="toast" id="toast-notification"></div>
 
