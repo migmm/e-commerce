@@ -1,6 +1,7 @@
 import ModuleCart from './modules/cart.js';
 import productController from './controllers/product.js';
 import render from '/js/utils/render.js';
+import hbsHelpers from './utils/hb-templates.js';
 class Main {
 
     static links
@@ -104,7 +105,6 @@ class Main {
     async searchProducts(query, fields) {
 
         // if products is not filled show nothing
-
         if (!this.products) {
             return;
         }
@@ -180,57 +180,13 @@ class Main {
 
         /* searchBar.addEventListener('focus',  e => {
         }); */
-
-        Handlebars.registerHelper('compare', function (lvalue, operator, rvalue, options) {
-
-            let operators, result;
-
-            if (arguments.length < 3) {
-                throw new Error("Handlerbars Helper 'compare' needs 2 parameters");
-            }
-
-            if (options === undefined) {
-                options = rvalue;
-                rvalue = operator;
-                operator = "===";
-            }
-
-            operators = {
-                '==': function (l, r) { return l == r; },
-                '===': function (l, r) { return l === r; },
-                '!=': function (l, r) { return l != r; },
-                '!==': function (l, r) { return l !== r; },
-                '<': function (l, r) { return l < r; },
-                '>': function (l, r) { return l > r; },
-                '<=': function (l, r) { return l <= r; },
-                '>=': function (l, r) { return l >= r; },
-                'typeof': function (l, r) { return typeof l == r; }
-            };
-
-            if (!operators[operator]) {
-                throw new Error("Handlerbars Helper 'compare' doesn't know the operator " + operator);
-            }
-
-            result = operators[operator](lvalue, rvalue);
-
-            if (result) {
-                return options.fn(this);
-            } else {
-                return options.inverse(this);
-            }
-
-        });
-
-        Handlebars.registerHelper('discount', function (price, discount) {
-            return price - ((price * discount) / 100);
-        });
-
-        Handlebars.registerHelper('finalPrice', function (price, discount, qty) {
-            return (price - ((price * discount) / 100)) * qty;
-        });
     }
 
     async start() {
+
+        // register ALL helpers at start
+        Handlebars.registerHelper(hbsHelpers);
+
         await this.loadTemplates();
         this.commonEvents();
         ModuleCart.cartFunctions();

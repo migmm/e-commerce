@@ -951,8 +951,6 @@ body {
 .product-full-view__gallery .img-display__img-showcase img {
   height: 100%;
   position: absolute;
-  /*  left: 50%;
-  transform: translateX(-50%); */
   border: solid 3px #be0000;
 }
 .product-full-view__detail {
