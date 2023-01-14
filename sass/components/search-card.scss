@@ -7,7 +7,7 @@
         &__search-results {
             display: none;
             width: 100%;
-            height: 300px;
+            max-height: 300px;
             overflow-y: scroll;
             background-color: white;
             position: absolute;
@@ -16,56 +16,63 @@
             border: solid 1px grey;
             z-index: 5000;
 
-            .search-results-list {
+            .search-results {
 
-                .search-results {
+                &__link {
+                    text-decoration: none;
+                    color: color.$black;
+                }
 
-                    &__card {
-                        display: flex;
-                        align-items: center;
-                        margin: .5em;
-                        padding: .5em;
-                        padding-bottom: 1em;
-                        border-bottom: solid 1px color.$darkgrey;
-                    }
+                &__view-all {
+                    text-align: center;
+                    font-weight: 600;
+                }
 
-                    &__img-container {
-                        width: 90px;
-                        height: 90px;
-                    }
+                &__card {
+                    display: flex;
+                    align-items: center;
+                    margin: .5em;
+                    padding: .5em;
+                    padding-bottom: 1em;
+                    border-bottom: solid 1px color.$lightgrey;
+                }
 
-                    &__img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: contain;
-                    }
+                &__img-container {
+                    width: 90px;
+                    height: 90px;
+                    border: solid 1px color.$lightgrey;
+                    border-radius: 10px;
+                    overflow: hidden;
+                    padding: 5px;
+                }
 
-                    &__product-info-content {
-                        display: flex;
-                        flex-direction: column;
-                    }
+                &__img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
 
-                    &__product-brand {
-                        font-size: 1em;
-                        color: color.$darkblue;
-                    }
+                &__product-info-content {
+                    display: flex;
+                    flex-direction: column;
+                    margin-left: .6em;
+                }
 
-                    &__product-name {
-                        font-size: 1.5em;
-                        font-weight: 600;
-                    }
+                &__product-brand {
+                    font-size: 1em;
+                    color: color.$darkblue;
+                }
 
-                    &__product-price {
-                        font-size: 1em;
-                    }
+                &__product-name {
+                    font-size: 1.2em;
+                    font-weight: 600;
+                }
 
-                    &__view-all {
-                        text-align: center;
-                        border-bottom: solid 1px color.$darkgrey;
-                        font-weight: 600;
-                    }
+                &__product-price {
+                    font-size: 1em;
                 }
             }
         }
     }
+
 }
