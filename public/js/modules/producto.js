@@ -114,6 +114,10 @@ class PageProducto {
         const productoo = this.getIdFromHash(2)
         await render.renderTemplateCards(productoo, 'templates/producto.hbs', '.full-product-page')
         await cartController.init();
+
+        // Close search results
+        const searchResults = document.getElementsByClassName('main-header__wrapper__search-results')[0]
+        searchResults.classList.remove('visible');
     }
 }
 

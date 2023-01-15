@@ -138,7 +138,8 @@ class Main {
         const searchResults = document.getElementsByClassName('main-header__wrapper__search-results')[0]
         const searchLink = document.getElementsByClassName('search-results__link')[0]
         const searchQuery = document.getElementsByClassName('search-results__result')[0]
-
+        const form = document.getElementsByClassName('main-header__wrapper__form')[0]
+        
         window.onscroll = function () {
             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
                 goTopButton.style.display = 'block';
@@ -162,7 +163,7 @@ class Main {
             htmlTag.classList.remove('scroll-smooth');
         });
 
-        searchBar.addEventListener('input',  async e => {
+        searchBar.addEventListener('input', async e => {
 
             const productsFound = await this.searchProducts(e.target.value, ['productName', 'vendor'])
 
@@ -177,6 +178,17 @@ class Main {
             searchLink.href = `/#/productos/${e.target.value}`;
             searchResults.classList.add('visible');
         });
+
+        form.addEventListener('submit', e =>{
+            e.preventDefault();
+
+            if (searchBar.value.length == 0) {
+                return;
+            }
+
+            window.location.href = `#/productos/${searchBar.value}`;
+            searchResults.classList.remove('visible');
+        })
 
         /* searchBar.addEventListener('focus',  e => {
         }); */

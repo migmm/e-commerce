@@ -123,6 +123,10 @@ class PageProductos {
         this.optionsFunctions();
         this.getIdFromHash();
         await cartController.init();
+        
+        // Close search results
+        const searchResults = document.getElementsByClassName('main-header__wrapper__search-results')[0]
+        searchResults.classList.remove('visible');
     }
 }
 
