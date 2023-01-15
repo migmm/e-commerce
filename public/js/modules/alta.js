@@ -32,7 +32,7 @@ class PageAlta {
             urlName.value = urlName.value.split(' ').join('-')
             console.log ("urlname" , urlName.value)
 
-
+            // Free ship value adaptation to backend
             let freeShip = document.getElementById('freeShip');
 
             freeShip.value = false;
@@ -40,6 +40,7 @@ class PageAlta {
                 freeShip.value = 'true';
             }
 
+            // Age select and year values adaptation to backend
             let ageYear = document.getElementById('ageYear');
             let ageSelect = document.getElementById('ageSelect');
 
