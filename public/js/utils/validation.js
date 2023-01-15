@@ -21,6 +21,7 @@ class Validations {
         avatar: /^.+\.(jpe?g|gif|png)$/i,
         gallery: /[^]*/,
         colors: /^\s*([a-zA-Z0-9ÁáÉéÍíÓóÚúÑñ,.-_]+\s*){1,3}$/,
+        urlName: /[^]*/,
     };
 
     static validate(value, validator) {

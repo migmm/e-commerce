@@ -26,6 +26,7 @@ class ProductValidator {
             lastSell: Joi.date(),
             images: Joi.object(), // This is indiferent, files are managed with multer
             colors: Joi.array().required(),
+            urlName: Joi.string(),
         });
 
         const { error } = productSchema.validate(product);

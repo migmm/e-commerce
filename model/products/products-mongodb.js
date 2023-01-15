@@ -22,6 +22,7 @@ const productSchema = mongoose.Schema({
     lastSell: Date,
     images: Object,
     colors: Array,
+    urlName: String,
 },
 {
     versionKey: false

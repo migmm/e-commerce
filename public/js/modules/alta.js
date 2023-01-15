@@ -3,6 +3,7 @@ import cartController from '/js/modules/cart.js';
 import Validations from '../utils/validation.js';
 import Form from '../utils/form.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
+import generateId from '../utils/generateId.js';
 
 
 class PageAlta {
@@ -24,7 +25,16 @@ class PageAlta {
             document.getElementById('addedDate').value = new Date().toISOString();
             document.getElementById('lastSell').value = new Date('1900-01-01').toISOString();
 
+            // Generate url name 
+            let urlName = document.getElementById('urlName')
+            const productName = document.getElementById('productName')
+            urlName.value = productName.value + '-' + generateId.makeid(6);
+            urlName.value = urlName.value.split(' ').join('-')
+            console.log ("urlname" , urlName.value)
+
+
             let freeShip = document.getElementById('freeShip');
+
             freeShip.value = false;
             if (freeShip.checked) {
                 freeShip.value = 'true';
