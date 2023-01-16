@@ -2430,6 +2430,7 @@ input[type=number] {
   flex-direction: row;
   flex-wrap: nowrap;
   overflow: hidden;
+  justify-content: center;
   height: 600px;
 }
 .main-content .checkout__title {
@@ -2443,7 +2444,8 @@ input[type=number] {
 }
 .main-content .checkout__cart {
   height: 100%;
-  width: 50%;
+  width: 100%;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;

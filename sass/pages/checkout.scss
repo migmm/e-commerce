@@ -5,6 +5,7 @@
         flex-direction: row;
         flex-wrap: nowrap;
         overflow: hidden;
+        justify-content: center;
         height: 600px;
 
         &__title {
@@ -20,7 +21,8 @@
 
         &__cart {
             height: 100%;
-            width: 50%;
+            width: 100%;
+            max-width: 800px;
             display: flex;
             flex-direction: column;
             flex-wrap: nowrap;
