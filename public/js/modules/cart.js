@@ -170,8 +170,13 @@ class ModuleCart {
         cartTotal[0].innerHTML = 0;
 
         for (let i = 0; i <= partialPrice.length - 1; ++i) {
-            cartTotal[0].innerHTML = parseInt(cartTotal[0].innerHTML) + parseInt(partialPrice[i].innerHTML)
+            cartTotal[0].innerHTML = parseInt(cartTotal[0].innerHTML) + parseInt(partialPrice[i].innerHTML);
         }
+
+        // Check if I am in checkout screen
+        /* if (document.getElementsByClassName('checkout__total')) {
+            document.getElementsByClassName('checkout__total')[0].innerHTML = cartTotal[0].innerHTML;
+        } */
 
         for (let i = 0; i <= this.cart.length - 1; ++i) {
             badgeQtyCounter.innerHTML = parseInt(badgeQtyCounter.innerHTML) + parseInt(this.cart[i].qty);

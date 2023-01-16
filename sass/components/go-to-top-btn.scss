@@ -21,11 +21,11 @@
 }
 
 @media (hover: hover) {
-  #myBtn:hover {
+    #myBtn:hover {
         background-color: color.$darkblue;
     }
 
-  #myBtn:hover span {
+    #myBtn:hover span {
         display: inline-block;
     }
 }
