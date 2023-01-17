@@ -145,8 +145,22 @@ class PageInicio {
         this.carousel();
         this.cardSlider();
 
+        products.sort(function compare(a, b) {
+            var dateA = new Date(a.addedDate);
+            var dateB = new Date(b.addedDate);
+            return dateB - dateA;
+        })
+        console.log(products);
         await render.renderTemplateCards(products, 'templates/card-row.hbs', '.cards-container')
+
+        products.sort(function compare(a, b) {
+            var dateA = new Date(a.lastSell);
+            var dateB = new Date(b.lastSell);
+            return dateB - dateA;
+        })
         await render.renderTemplateCards(products, 'templates/card-row.hbs', '.most-selled')
+
+
         await render.renderTemplateCards(products, 'templates/card-row.hbs', '.latest-viewed')
 
         await cartController.init();
