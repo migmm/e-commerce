@@ -1,5 +1,5 @@
 {{#if products}}
-    {{#listItems 1 10 products}}
+    {{#listItems 0 10 products}}
         {{#compare this.stock ">=" 1}}
             <div class="card">
                 <input type="hidden" name="stockh" id="stockh" class="stockh" value="{{this.stock}}" />
