@@ -4,6 +4,7 @@ import Validations from '../utils/validation.js';
 import Form from '../utils/form.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
 import generateId from '../utils/generateId.js';
+import render from '/js/utils/render.js';
 
 
 class PageAlta {
@@ -85,9 +86,15 @@ class PageAlta {
 
     static async init() {
         goTopOnLoad.goToTopOnLoad();
+
+        // Empty constant to tell render that only show form
+        const showOnly = null;
+        await render.renderTemplateCards(showOnly, 'templates/form.hbs', '.input-group')
+        
         this.form = document.getElementById('form-add-products');
         this.fields = this.form.querySelectorAll(`textarea, input:not([type='radio']`);
         this.addFormEvents();
+        
         document.getElementById('productName').focus();
         await cartController.init();
     }
