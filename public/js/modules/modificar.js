@@ -93,7 +93,7 @@ class PageModificar {
         this.btnCancel.addEventListener('click', async e => {
             let formModifica = document.getElementsByClassName('product-update-wrapper')[0];
             formModifica.classList.remove('product-update-wrapper--on');
-            this.emptyForm();
+            Form.emptyForm(this.fields);
         });
     }
 
