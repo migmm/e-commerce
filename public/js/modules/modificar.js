@@ -10,7 +10,6 @@ class PageModificar {
 
     static form
     static fields
-    static btnUpdate
     static btnCancel
     static productFullView
     static productFullViewBg
@@ -237,7 +236,6 @@ class PageModificar {
         goTopOnLoad.goToTopOnLoad();
         this.form = document.getElementById('form-add-products');
         this.fields = this.form.querySelectorAll(`textarea, input:not([type='file']`);
-        this.btnUpdate = this.form.querySelector('#btn-update');
         this.btnCancel = this.form.querySelector('#btn-cancel');
         console.log(this.fields);
 

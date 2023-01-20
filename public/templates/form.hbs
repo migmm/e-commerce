@@ -1,100 +1,98 @@
-  <form action="/api/products" autocomplete="off" method="post" id="form-add-products">
-            <div class="input-group__first-row">
-                <div class="input-group__form-group">
-                    <label class="input-group__label" for="productName">Nombre</label>
-                    <input class="input-group__input" name="productName" id="productName" type="text" placeholder="IRON MAN" autofocus>
-                    <span class="input-group__error">ERROR! EL nombre debe tener entre 5 y 30 caracteres.</span>
-                </div>
-                <div class="input-group__form-group">
-                    <label class="input-group__label" for="price">Precio</label>
-                    <input class="input-group__input" name="price" id="price" type="number">
-                    <span class="input-group__error">ERROR! Ingrese números positivos.</span>
-                </div>
-                <div class="input-group__form-group">
-                    <label class="input-group__label" for="discountPercent">Porcentaje de descuento</label>
-                    <input class="input-group__input" name="discountPercent" id="discountPercent" type="number">
-                    <span class="input-group__error">ERROR! Ingrese números positivos.</span>
-                </div>
-                <div class="input-group__form-group">
-                    <label class="input-group__label" for="stock">Stock</label>
-                    <input class="input-group__input" name="stock" id="stock" type="number">
-                    <span class="input-group__error">ERROR! Ingrese números.</span>
-                </div>
-            </div>
-            <div class="input-group__second-row">
-                <div class="input-group__form-group">
-                    <label class="input-group__label" for="vendor">Fabricante</label>
-                    <input class="input-group__input" name="vendor" id="vendor" type="text" placeholder="HASBRO">
-                    <span class="input-group__error">ERROR! El fabricante debe tener entre 5 y 40 caracteres.</span>
-                </div>
-                <div class="input-group__form-group">
-                    <label class="input-group__label" for="category">Categoría</label>
-                    <input class="input-group__input" name="category" id="category" type="text" placeholder="Juguetes, coleccionables, autos">
-                    <span class="input-group__error">ERROR! La categoría debe tener entre 5 y 50 caracteres.</span>
-                </div>
-                <div class="input-group__form-group">
-                    <label class="input-group__label" for="colors">Colores principales</label>
-                    <input class="input-group__input" name="colors" id="colors" type="text" placeholder="rojo, azul">
-                    <span class="input-group__error">ERROR! Ingrese de 1 a 3 colores separados por comas.</span>
-                </div>
-            </div>
-            <div class="input-group__third-row">
-                <div class="input-group__form-group">
-                    <label class="input-group__label" for="shortDescription">Descripción corta</label>
-                    <input class="input-group__input" name="shortDescription" id="shortDescription" type="text" placeholder="Figura de Iron Man">
-                    <span class="input-group__error">ERROR! La descripción debe tener entre 5 y 80 caracteres.</span>
-                </div>
-            </div>
-            <div class="input-group__fourth-row">
-                <div class="input-group__form-group">
-                    <label class="input-group__label" for="longDescription">Descripción larga.</label>
-                    <textarea class="input-group__textarea" name="longDescription" id="longDescription" cols="30"
-                        rows="10"></textarea>
-                    <span class="input-group__error">ERROR! La descripción debe tener entre 5 y 2000 caracteres.</span>
-                </div>
-            </div>
-            <div class="input-group__fifth-row"> 
-                <div class="input-group__form-group">
-                    <label class="input-group__label" for="ageFrom">Edad desde / hasta</label>
-                    <input class="input-group__input" name="ageFrom" id="ageFrom" type="number" placeholder="">
-                    <input class="input-group__input" name="ageTo" id="ageTo" type="number">
-                    <span class="input-group__error">ERROR! Ingrese numeros <br> de 0 a 99.</span>
-                </div>
-                <div class="input-group__form-group">
-                    <input type="radio" id="ageMonth" value="0" name="ageSelects" class="input-group__radio">
-                    <label for="ageMonth">Meses</label>
-                    <input type="radio" id="ageYear" value="1" name="ageSelects" class="input-group__radio">
-                    <label for="ageYear">Años</label>
-                    <input type="hidden" value="" name="ageSelect" id="ageSelect">
-                    <input type="hidden" value="" name="addedDate" id="addedDate">
-                    <input type="hidden" value="" name="lastSell" id="lastSell">
-                    <input type="hidden" value="" name="urlName" id="urlName">
-                    <span class="input-group__error">ERROR! Seleccione meses o años.</span>
-                </div>
-                <div class="input-group__form-group">
-                    <input type="checkbox" id="freeShip" name="freeShip" value="false" class="input-group__check">
-                    <label class="input-group__label" for="freeShip" id="label-checkbox">Envío sin cargo</label>
-                    <span class="input-group__error">¿El envío es sin cargo?</span>
-                </div>
-            </div>
-            <div class="input-group__files-row">
-                <div class="input-group__form-group">
-                    <label class="input-group__label" for="avatar">Foto de portada</label>
-                    <input type="file" id="avatar" class="file-avatar" name="avatar"
-                        accept="image/png, image/gif, image/jpeg">
-                    <span class="input-group__error">ERROR! Debe cargar una imagen.</span>
-                </div>
-                <div class="input-group__form-group">
-                    <label class="input-group__label" for="gallery">Fotos de galería (opcional, 3 máx)</label>
-                    <input type="file" multiple id="gallery" class="file-gallery" name="gallery"
-                        accept="image/png, image/gif, image/jpeg">
-                    <span class="input-group__error">ERROR! Mínimo una imagen, máximo 3.</span>
-                </div>
-            </div>
-            <div class="input-group__buttons">
-                <span class="input-group__error-form">Error! Verifique los campos marcados!</span>
-                <span class="input-group__ok-form">Producto cargado exitosamente 😁 !!</span>
-                <button type="submit">Agregar</button>
-                <button type="reset">Limpiar formulario</button>
-            </div>
-        </form>
+<form action="/api/products" autocomplete="off" method="post" id="form-add-products">
+    <div class="input-group__first-row">
+        <div class="input-group__form-group">
+            <label class="input-group__label" for="productName">Nombre</label>
+            <input class="input-group__input" name="productName" id="productName" type="text" placeholder="IRON MAN" autofocus />
+            <span class="input-group__error">ERROR! EL nombre debe tener entre 5 y 30 caracteres.</span>
+        </div>
+        <div class="input-group__form-group">
+            <label class="input-group__label" for="price">Precio</label>
+            <input class="input-group__input" name="price" id="price" type="number" />
+            <span class="input-group__error">ERROR! Ingrese números positivos.</span>
+        </div>
+        <div class="input-group__form-group">
+            <label class="input-group__label" for="discountPercent">Porcentaje de descuento</label>
+            <input class="input-group__input" name="discountPercent" id="discountPercent" type="number" />
+            <span class="input-group__error">ERROR! Ingrese números positivos.</span>
+        </div>
+        <div class="input-group__form-group">
+            <label class="input-group__label" for="stock">Stock</label>
+            <input class="input-group__input" name="stock" id="stock" type="number" />
+            <span class="input-group__error">ERROR! Ingrese números.</span>
+        </div>
+    </div>
+    <div class="input-group__second-row">
+        <div class="input-group__form-group">
+            <label class="input-group__label" for="vendor">Fabricante</label>
+            <input class="input-group__input" name="vendor" id="vendor" type="text" placeholder="HASBRO" />
+            <span class="input-group__error">ERROR! El fabricante debe tener entre 5 y 40 caracteres.</span>
+        </div>
+        <div class="input-group__form-group">
+            <label class="input-group__label" for="category">Categoría</label>
+            <input class="input-group__input" name="category" id="category" type="text" placeholder="Juguetes, coleccionables, autos" />
+            <span class="input-group__error">ERROR! La categoría debe tener entre 5 y 50 caracteres.</span>
+        </div>
+        <div class="input-group__form-group">
+            <label class="input-group__label" for="colors">Colores principales</label>
+            <input class="input-group__input" name="colors" id="colors" type="text" placeholder="rojo, azul" />
+            <span class="input-group__error">ERROR! Ingrese de 1 a 3 colores separados por comas.</span>
+        </div>
+    </div>
+    <div class="input-group__third-row">
+        <div class="input-group__form-group">
+            <label class="input-group__label" for="shortDescription">Descripción corta</label>
+            <input class="input-group__input" name="shortDescription" id="shortDescription" type="text" placeholder="Figura de Iron Man" />
+            <span class="input-group__error">ERROR! La descripción debe tener entre 5 y 80 caracteres.</span>
+        </div>
+    </div>
+    <div class="input-group__fourth-row">
+        <div class="input-group__form-group">
+            <label class="input-group__label" for="longDescription">Descripción larga.</label>
+            <textarea class="input-group__textarea" name="longDescription" id="longDescription" cols="30" rows="10"></textarea>
+            <span class="input-group__error">ERROR! La descripción debe tener entre 5 y 2000 caracteres.</span>
+        </div>
+    </div>
+
+    <div class="input-group__fifth-row">
+        <div class="input-group__form-group">
+            <label class="input-group__label" for="ageFrom">Edad desde / hasta</label>
+            <input class="input-group__input" name="ageFrom" id="ageFrom" type="number" placeholder="" />
+            <input class="input-group__input" name="ageTo" id="ageTo" type="number" />
+            <span class="input-group__error">ERROR! Ingrese numeros <br /> de 0 a 99.</span>
+        </div>
+        <div class="input-group__form-group">
+            <input type="radio" id="ageMonth" value="0" name="ageSelects" class="input-group__radio" />
+            <label for="ageMonth">Meses</label>
+            <input type="radio" id="ageYear" value="1" name="ageSelects" class="input-group__radio" />
+            <label for="ageYear">Años</label>
+            <input type="hidden" value="" name="ageSelect" id="ageSelect" />
+            <input type="hidden" value="" name="addedDate" id="addedDate" />
+            <input type="hidden" value="" name="lastSell" id="lastSell" />
+            <input type="hidden" value="" name="urlName" id="urlName" />
+            <span class="input-group__error">ERROR! Seleccione meses o años.</span>
+        </div>
+        <div class="input-group__form-group">
+            <input type="checkbox" id="freeShip" name="freeShip" value="false" class="input-group__check" />
+            <label class="input-group__label" for="freeShip" id="label-checkbox">Envío sin cargo</label>
+            <span class="input-group__error">¿El envío es sin cargo?</span>
+        </div>
+    </div>
+    <div class="input-group__files-row">
+        <div class="input-group__form-group">
+            <label class="input-group__label" for="avatar">Foto de portada</label>
+            <input type="file" id="avatar" class="file-avatar" name="avatar" accept="image/png, image/gif, image/jpeg" />
+            <span class="input-group__error">ERROR! Debe cargar una imagen.</span>
+        </div>
+        <div class="input-group__form-group">
+            <label class="input-group__label" for="gallery">Fotos de galería (opcional, 3 máx)</label>
+            <input type="file" multiple id="gallery" class="file-gallery" name="gallery" accept="image/png, image/gif, image/jpeg" />
+            <span class="input-group__error">ERROR! Mínimo una imagen, máximo 3.</span>
+        </div>
+    </div>
+    <div class="input-group__buttons">
+        <span class="input-group__error-form">Error! Verifique los campos marcados!</span>
+        <span class="input-group__ok-form">Producto cargado exitosamente 😁 !!</span>
+        <button type="submit" id="btn-update">Agregar</button>
+        <button type="reset" id="btn-cancel">Limpiar formulario</button>
+    </div>
+</form>
