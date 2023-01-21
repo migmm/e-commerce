@@ -24,33 +24,33 @@ const getProduct = async (req, res) => {
 
 
 const postProduct = async function (req, res, next) {
-
-    const product = req.body;
-    const files = req.files;
-    const locationName = PRODUCT_IMG_UPLOAD_LOCATION.STORAGE_LOCATION.substring(9);
-
-    product['images'] = {};
-
     try {
-        if (files.avatar !== 'undefined') {
+        if (req) {
+            const product = req.body;
+            const files = req.files;
+            const locationName = PRODUCT_IMG_UPLOAD_LOCATION.STORAGE_LOCATION.substring(9);
 
-            const firstProductImg = req.files['avatar'][0];
-            const productImgGallery = req.files['gallery'];
+            product['images'] = {};
 
-            product['images']['portada'] = locationName + firstProductImg.filename;
+            if (files.avatar !== 'undefined') {
 
-            if (files.gallery !== undefined) {
+                const firstProductImg = req.files['avatar'][0];
+                const productImgGallery = req.files['gallery'];
 
-                for (let i = 0; i <= productImgGallery.length; ++i) {
-                    if (productImgGallery[i] !== undefined) {
-                        product['images'][`${'galeria' + [i]}`] = locationName + productImgGallery[i].filename;
+                product['images']['portada'] = locationName + firstProductImg.filename;
+
+                if (files.gallery !== undefined) {
+
+                    for (let i = 0; i <= productImgGallery.length; ++i) {
+                        if (productImgGallery[i] !== undefined) {
+                            product['images'][`${'galeria' + [i]}`] = locationName + productImgGallery[i].filename;
+                        }
                     }
                 }
+
+                const newProduct = await api.createProduct(product);
+                res.json(newProduct);
             }
-
-            const newProduct = await api.createProduct(product);
-            res.json(newProduct);
-
             /* } else {
                 res.status(415).send('<h1>Se produjo un error.</h1>');
             } */
@@ -72,6 +72,7 @@ const putProduct = async (req, res) => {
     const product = req.body;
     const files = req.files;
     const locationName = PRODUCT_IMG_UPLOAD_LOCATION.STORAGE_LOCATION.substring(9);
+    
     try {
         if (files.avatar !== undefined) {
 
@@ -88,10 +89,10 @@ const putProduct = async (req, res) => {
             product['images']['portada'] = locationName + firstProductImg.filename;
         }
     }
-    catch { 
+    catch {
         console.log("No se actualizó imágen de portada.")
     }
-    
+
     try {
         if (files.gallery !== undefined) {
 
@@ -104,7 +105,7 @@ const putProduct = async (req, res) => {
         }
     }
 
-    catch { 
+    catch {
         console.log("No se actualizaron imágnes de galería.")
     }
     /*  else {
