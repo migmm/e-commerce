@@ -27,10 +27,10 @@ class Validations {
 
     static validate(value, validator) {
 
-        // if field is "undefined"
+        // if field is "undefined" do nothing
         // eg. radio or checkboxes that will be adapted later
         
-        if (value !== "undefined") {
+        if (value !== undefined) {
             console.log(value, validator)
             return validator.test(value);
         }
