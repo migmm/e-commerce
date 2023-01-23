@@ -2,46 +2,46 @@
     <div class="input-group__first-row">
         <div class="input-group__form-group">
             <label class="input-group__label" for="productName">Nombre</label>
-            <input class="input-group__input" name="productName" id="productName" type="text" placeholder="IRON MAN" autofocus />
+            <input class="input-group__input" name="productName" id="productName" type="text" placeholder="IRON MAN" autofocus value="" />
             <span class="input-group__error">ERROR! EL nombre debe tener entre 5 y 30 caracteres.</span>
         </div>
         <div class="input-group__form-group">
             <label class="input-group__label" for="price">Precio</label>
-            <input class="input-group__input" name="price" id="price" type="number" />
+            <input class="input-group__input" name="price" id="price" type="number" value="" />
             <span class="input-group__error">ERROR! Ingrese números positivos.</span>
         </div>
         <div class="input-group__form-group">
             <label class="input-group__label" for="discountPercent">Porcentaje de descuento</label>
-            <input class="input-group__input" name="discountPercent" id="discountPercent" type="number" />
+            <input class="input-group__input" name="discountPercent" id="discountPercent" type="number" value="" />
             <span class="input-group__error">ERROR! Ingrese números positivos.</span>
         </div>
         <div class="input-group__form-group">
             <label class="input-group__label" for="stock">Stock</label>
-            <input class="input-group__input" name="stock" id="stock" type="number" />
+            <input class="input-group__input" name="stock" id="stock" type="number" value="" />
             <span class="input-group__error">ERROR! Ingrese números.</span>
         </div>
     </div>
     <div class="input-group__second-row">
         <div class="input-group__form-group">
             <label class="input-group__label" for="vendor">Fabricante</label>
-            <input class="input-group__input" name="vendor" id="vendor" type="text" placeholder="HASBRO" />
+            <input class="input-group__input" name="vendor" id="vendor" type="text" placeholder="HASBRO" value="" />
             <span class="input-group__error">ERROR! El fabricante debe tener entre 5 y 40 caracteres.</span>
         </div>
         <div class="input-group__form-group">
             <label class="input-group__label" for="category">Categoría</label>
-            <input class="input-group__input" name="category" id="category" type="text" placeholder="Juguetes, coleccionables, autos" />
+            <input class="input-group__input" name="category" id="category" type="text" placeholder="Juguetes, coleccionables, autos" value="" />
             <span class="input-group__error">ERROR! La categoría debe tener entre 5 y 50 caracteres.</span>
         </div>
         <div class="input-group__form-group">
             <label class="input-group__label" for="colors">Colores principales</label>
-            <input class="input-group__input" name="colors" id="colors" type="text" placeholder="rojo, azul" />
+            <input class="input-group__input" name="colors" id="colors" type="text" placeholder="rojo, azul" value="{{this.colors}}" />
             <span class="input-group__error">ERROR! Ingrese de 1 a 3 colores separados por comas.</span>
         </div>
     </div>
     <div class="input-group__third-row">
         <div class="input-group__form-group">
             <label class="input-group__label" for="shortDescription">Descripción corta</label>
-            <input class="input-group__input" name="shortDescription" id="shortDescription" type="text" placeholder="Figura de Iron Man" />
+            <input class="input-group__input" name="shortDescription" id="shortDescription" type="text" placeholder="Figura de Iron Man" value="" />
             <span class="input-group__error">ERROR! La descripción debe tener entre 5 y 80 caracteres.</span>
         </div>
     </div>
@@ -56,7 +56,7 @@
     <div class="input-group__fifth-row">
         <div class="input-group__form-group">
             <label class="input-group__label" for="ageFrom">Edad desde / hasta</label>
-            <input class="input-group__input" name="ageFrom" id="ageFrom" type="number" placeholder="" />
+            <input class="input-group__input" name="ageFrom" id="ageFrom" type="number" />
             <input class="input-group__input" name="ageTo" id="ageTo" type="number" />
             <span class="input-group__error">ERROR! Ingrese numeros <br /> de 0 a 99.</span>
         </div>
@@ -69,6 +69,7 @@
             <input type="hidden" value="" name="addedDate" id="addedDate" />
             <input type="hidden" value="" name="lastSell" id="lastSell" />
             <input type="hidden" value="" name="urlName" id="urlName" />
+            <input type="hidden" value="" name="id" id="id" />
             <span class="input-group__error">ERROR! Seleccione meses o años.</span>
         </div>
         <div class="input-group__form-group">

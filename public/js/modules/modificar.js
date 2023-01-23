@@ -16,7 +16,7 @@ class PageModificar {
     products = [];
 
 
-    static completeForm(product) {
+    /* static completeForm(product) {
         this.fields.forEach(field => {
             if (field.name === 'freeShip') {
                 if (product[field.name] === 'true') {
@@ -35,7 +35,7 @@ class PageModificar {
             field.value = product[field.name];
             console.log(product[field.name])
         });
-    }
+    } */
 
     static async updateProduct(product) {
         const mode = 'formdata';
@@ -68,19 +68,17 @@ class PageModificar {
                 ageSelect.value = 1;
             }
 
+
             //const productToSave = this.validateForm();
             const productToSave = Validations.validateForm(this.fields);
 
-            //Bypass to get the files too
-            let dataProducts = new FormData(document.getElementById("form-add-products"));
-
+            let dataProducts = new FormData(document.getElementById('form-add-products'));
+            console.log(dataProducts);
             const colorsString = dataProducts.get('colors');
             dataProducts.delete('colors');
             dataProducts.delete('ageSelects');
-            dataProducts.delete('ageSelect');
-            dataProducts.append("ageSelect", ageSelect.value)
             var colorsSplit = colorsString.split(',');
-            colorsSplit.forEach((item) => dataProducts.append("colors[]", item));
+            colorsSplit.forEach((item) => dataProducts.append('colors[]', item))
 
             if (productToSave) {
                 const savedProduct = await this.updateProduct(dataProducts);
@@ -143,10 +141,13 @@ class PageModificar {
     }
 
     static async addTableEvents() {
+
         const deleteProduct = async (e) => {
+
             if (!confirm('¿Estás seguro de querer eliminar el producto?')) {
                 return;
             }
+
             const row = e.target.closest('tr');
             const id = row.dataset.id;
             const deletedProduct = await productController.deleteProduct(id);
@@ -157,54 +158,70 @@ class PageModificar {
             await render.renderTemplateCards(products, 'templates/products-table.hbs', '.products-table-container')
         };
 
-        const editProduct = async e => {
-            const row = e.target.closest('tr');
+        /*         const editProduct = async e => {
+                    const row = e.target.closest('tr');
+        
+                    const id = row.dataset.id;
+                    const productName = row.querySelector('.table-content__cell-name').innerHTML;
+                    const price = row.querySelector('.table-content__cell-price').innerHTML;
+                    const image = row.querySelector('.table-content__cell-image-container').innerHTML;
+                    const discountPercent = row.querySelector('.cell-discount-percent').innerHTML;
+                    const vendor = row.querySelector('.cell-vendor').innerHTML;
+                    const stock = row.querySelector('.table-content__cell-stock').innerHTML;
+                    const category = row.querySelector('.cell-category').innerHTML
+                    const shortDescription = row.querySelector('.table-content__cell-description').innerHTML;
+                    const longDescription = row.querySelector('.cell-long-description').innerHTML;
+                    const freeShip = row.querySelector('.cell-free-ship').innerHTML;
+                    const ageFrom = row.querySelector('.cell-age-from').innerHTML;
+                    const ageTo = row.querySelector('.cell-age-to').innerHTML;
+                    const ageSelect = row.querySelector('.cell-age-select').innerHTML;
+                    const colors = row.querySelector('.cell-colors').innerHTML;
+                    const productToEdit = {};
+        
+                    productToEdit.id = id;
+                    productToEdit.productName = productName;
+                    productToEdit.price = price;
+                    //productToEdit.image = image;
+                    productToEdit.discountPercent = discountPercent;
+                    productToEdit.vendor = vendor;
+                    productToEdit.stock = stock;
+                    productToEdit.category = category;
+                    productToEdit.price = price;
+                    productToEdit.shortDescription = shortDescription;
+                    productToEdit.longDescription = longDescription;
+                    productToEdit.freeShip = freeShip;
+                    productToEdit.ageFrom = ageFrom;
+                    productToEdit.ageTo = ageTo;
+                    productToEdit.ageSelect = ageSelect;
+                    productToEdit.colors = colors;
+        
+                    this.completeForm(productToEdit);
+                }; */
 
-            const id = row.dataset.id;
-            const productName = row.querySelector('.table-content__cell-name').innerHTML;
-            const price = row.querySelector('.table-content__cell-price').innerHTML;
-            const image = row.querySelector('.table-content__cell-image-container').innerHTML;
-            const discountPercent = row.querySelector('.cell-discount-percent').innerHTML;
-            const vendor = row.querySelector('.cell-vendor').innerHTML;
-            const stock = row.querySelector('.table-content__cell-stock').innerHTML;
-            const category = row.querySelector('.cell-category').innerHTML
-            const shortDescription = row.querySelector('.table-content__cell-description').innerHTML;
-            const longDescription = row.querySelector('.cell-long-description').innerHTML;
-            const freeShip = row.querySelector('.cell-free-ship').innerHTML;
-            const ageFrom = row.querySelector('.cell-age-from').innerHTML;
-            const ageTo = row.querySelector('.cell-age-to').innerHTML;
-            const ageSelect = row.querySelector('.cell-age-select').innerHTML;
-            const colors = row.querySelector('.cell-colors').innerHTML;
-            const productToEdit = {};
+        document.querySelector('.products-table-container').addEventListener('click', async e => {
 
-            productToEdit.id = id;
-            productToEdit.productName = productName;
-            productToEdit.price = price;
-            //productToEdit.image = image;
-            productToEdit.discountPercent = discountPercent;
-            productToEdit.vendor = vendor;
-            productToEdit.stock = stock;
-            productToEdit.category = category;
-            productToEdit.price = price;
-            productToEdit.shortDescription = shortDescription;
-            productToEdit.longDescription = longDescription;
-            productToEdit.freeShip = freeShip;
-            productToEdit.ageFrom = ageFrom;
-            productToEdit.ageTo = ageTo;
-            productToEdit.ageSelect = ageSelect;
-            productToEdit.colors = colors;
-
-            this.completeForm(productToEdit);
-        };
-
-        document.querySelector('.products-table-container').addEventListener('click', e => {
             if (e.target.classList.contains('btn-delete')) {
                 deleteProduct(e);
                 return;
             }
 
             if (e.target.classList.contains('btn-edit')) {
-                editProduct(e);
+
+                //editProduct(e);
+
+
+                const row = e.target.closest('tr');
+                const id = row.dataset.id;
+                const product = await productController.getProduct(id);
+
+                this.fields.forEach(field => {
+
+                    //Avoid this field
+                    if (field.name !== "ageSelects") {
+                        field.value = product[field.name]
+                    }
+                })
+
                 let formModifica = document.getElementsByClassName('product-update-wrapper')[0];
                 formModifica.classList.add('product-update-wrapper--on');
 
@@ -234,6 +251,12 @@ class PageModificar {
 
     static async init() {
         goTopOnLoad.goToTopOnLoad();
+
+        // Empty constant to tell render that only show form
+        const showOnly = null;
+        await render.renderTemplateCards(showOnly, 'templates/form.hbs', '.input-group')
+
+
         this.form = document.getElementById('form-add-products');
         this.fields = this.form.querySelectorAll(`textarea, input:not([type='file']`);
         this.btnCancel = this.form.querySelector('#btn-cancel');

@@ -22,14 +22,18 @@ class Validations {
         gallery: /[^]*/,
         colors: /^\s*([a-zA-Z0-9ÁáÉéÍíÓóÚúÑñ,.-_]+\s*){1,3}$/,
         urlName: /[^]*/,
+        ageSelects: /[^]*/,
     };
 
     static validate(value, validator) {
 
+        // if field is "undefined"
+        // eg. radio or checkboxes that will be adapted later
         
+        if (value !== "undefined") {
             console.log(value, validator)
             return validator.test(value);
-        
+        }
     }
 
     static validateForm(fields) {

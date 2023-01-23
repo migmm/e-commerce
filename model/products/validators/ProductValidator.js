@@ -9,7 +9,7 @@ class ProductValidator {
     
             // in case someone overrides frontend validations
             // same validations in frontend
-            id: Joi.string(),
+            id: Joi.string().min(0).allow('').allow(null),
             productName: Joi.string().min(2).max(30).pattern(new RegExp('^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-].*$')).required(),
             price: Joi.number().greater(-1).required(),
             discountPercent: Joi.number().greater(-1).required(),
