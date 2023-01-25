@@ -1,17 +1,19 @@
-class render  {
+class render {
 
-    static async renderTemplateCards(products, hbstemplate, query) {
+    static async renderTemplateCards(products, hbstemplate, query, mode = 1) {
         const hbsFile = await fetch(hbstemplate).then(r => r.text());
         const template = Handlebars.compile(hbsFile);
         const html = template({ products });
-        document.querySelector(query).innerHTML = html;
+
+        if (mode === 1) {
+            document.querySelector(query).innerHTML = html;
+            return
+        }
+
+        query.innerHTML = html;
     }
 }
-    /*    
-        static async init () {
-        console.log('PageNosotros .init()');
-        PageNosotros.goToTopOnLoad();
-    } */
+
 
 
 export default render;
