@@ -16,27 +16,6 @@ class PageModificar {
     products = [];
 
 
-    /* static completeForm(product) {
-        this.fields.forEach(field => {
-            if (field.name === 'freeShip') {
-                if (product[field.name] === 'true') {
-                    document.getElementById("freeShip").checked = true;
-                }
-            }
-
-            if (field.name === 'ageSelect') {
-                if (product[field.name] === '1') {
-                    document.getElementById("ageYear").checked = true;
-
-                } else {
-                    document.getElementById("ageMonth").checked = true;
-                }
-            }
-            field.value = product[field.name];
-            console.log(product[field.name])
-        });
-    } */
-
     static async updateProduct(product) {
         const mode = 'formdata';
         const updatedProduct = await productController.updateProduct(product.get('id'), product, mode);
@@ -69,7 +48,6 @@ class PageModificar {
             }
 
 
-            //const productToSave = this.validateForm();
             const productToSave = Validations.validateForm(this.fields);
 
             let dataProducts = new FormData(document.getElementById('form-add-products'));
@@ -208,17 +186,7 @@ class PageModificar {
                         }
                     }
                     field.value = product[field.name];
-
-
-
-
-
                 });
-
-                
-
-
-             
 
                 this.addFormEvents();
 
