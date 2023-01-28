@@ -111,10 +111,9 @@ class PageProducto {
         this.products = await productController.getProducts();
         console.log(`Se encontraron ${this.products.length} productos`);
         this.optionsFunctions();
-        const productoo = this.getIdFromHash(2)
-        await render.renderTemplateCards(productoo, 'templates/producto.hbs', '.full-product-page')
+        const product = this.getIdFromHash(2)
+        await render.renderTemplateCards(product, 'templates/producto.hbs', '.full-product-page')
         await cartController.init();
-
         // Close search results
         const searchResults = document.getElementsByClassName('main-header__wrapper__search-results')[0]
         searchResults.classList.remove('visible');
