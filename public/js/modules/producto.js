@@ -2,7 +2,7 @@ import productController from '/js/controllers/product.js';
 import cartController from '/js/modules/cart.js';
 import render from '/js/utils/render.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
-
+import find from '../utils/find.js';
 
 class PageProducto {
 
@@ -34,16 +34,9 @@ class PageProducto {
         const nameCheck = hashFromURL.split('-');
         hashFromURL = nameCheck.slice(0, -1).join(' ')
         let toSearch = hashFromURL
-
-        for (var i = 0; i < this.products.length; ++i) {
-            for (let urlName in this.products[i]) {
-                if (this.products[i][urlName].toString().toLowerCase().indexOf(toSearch.toLowerCase()) != -1) {
-                    results = this.products[i]
-                }
-            }
-        }
-
-        return results;
+        
+        const searchResult = find.find(toSearch, this.products)
+        return searchResult;
     }
 
     static async optionsFunctions() {
@@ -102,7 +95,6 @@ class PageProducto {
 
                 return;
             }
-
         });
     }
 
