@@ -2,17 +2,24 @@ class Find {
 
     static find (toSearch, products) {
         
-        let results;
+        var results = [];
 
         for (var i = 0; i < products.length; ++i) {
-            for (let urlName in products[i]) {
-                if (products[i][urlName].toString().toLowerCase().indexOf(toSearch.toLowerCase()) != -1) {
-                    results = products[i]
+            for (let key in products[i]) {
+                if (products[i][key].toString().toLowerCase().indexOf(toSearch.toLowerCase()) != -1) {
+                    results.push(products[i]);
                 }
             }
         }
 
-        return results;
+        let result = results.filter(
+            (person, index) => index === results.findIndex(
+                other => person.id === other.id
+                    && person.productName === other.productName
+            )
+        );
+
+        return result;
     }
 }
 

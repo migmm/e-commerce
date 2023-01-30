@@ -2,6 +2,7 @@ import productController from '/js/controllers/product.js';
 import cartController from '/js/modules/cart.js';
 import render from '/js/utils/render.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
+import find from '../utils/find.js';
 
 
 class PageProductos {
@@ -40,23 +41,8 @@ class PageProductos {
             return;
         }
 
-        for (var i = 0; i < this.products.length; ++i) {
-            for (let key in this.products[i]) {
-                if (this.products[i][key].toString().toLowerCase().indexOf(toSearch.toLowerCase()) != -1) {
-                    results.push(this.products[i]);
-                }
-            }
-        }
-
-        // Remove duplicated
-        let result = results.filter(
-            (person, index) => index === results.findIndex(
-                other => person.id === other.id
-                    && person.productName === other.productName
-            )
-        );
-
-        render.renderTemplateCards(result, 'templates/card-all-products.hbs', '.section-cards__cards-container');
+        const searchResult = find.find(toSearch, this.products)
+        render.renderTemplateCards(searchResult, 'templates/card-all-products.hbs', '.section-cards__cards-container');
         return results;
     }
 
@@ -69,23 +55,8 @@ class PageProductos {
                 var results = [];
                 var toSearch = e.target.innerHTML;
 
-                for (var i = 0; i < this.products.length; ++i) {
-                    for (let key in this.products[i]) {
-                        if (this.products[i][key].toString().toLowerCase().indexOf(toSearch.toLowerCase()) != -1) {
-                            results.push(this.products[i]);
-                        }
-                    }
-                }
-
-                // Remove duplicated
-                let result = results.filter(
-                    (person, index) => index === results.findIndex(
-                        other => person.id === other.id
-                            && person.productName === other.productName
-                    )
-                );
-
-                render.renderTemplateCards(result, 'templates/card-all-products.hbs', '.section-cards__cards-container');
+                const searchResult = find.find(toSearch, this.products)
+                render.renderTemplateCards(searchResult, 'templates/card-all-products.hbs', '.section-cards__cards-container');
                 return;
             }
 
@@ -96,15 +67,8 @@ class PageProductos {
                 var results = [];
                 var toSearch = selectedOption.toString();
 
-                for (var i = 0; i < this.products.length; ++i) {
-                    for (let key in this.products[i]) {
-                        if (this.products[i][key].toString().toLowerCase().indexOf(toSearch.toLowerCase()) != -1) {
-                            results.push(this.products[i]);
-                        }
-                    }
-                }
-
-                render.renderTemplateCards(results, 'templates/card-all-products.hbs', '.section-cards__cards-container');
+                const searchResult = find.find(toSearch, this.products)
+                render.renderTemplateCards(searchResult, 'templates/card-all-products.hbs', '.section-cards__cards-container');
                 return;
             }
 
