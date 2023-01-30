@@ -8,7 +8,7 @@ class PageProducto {
 
     static products = [];
 
-    static getIdFromHash(route) {
+    static async getIdFromHash(route) {
 
         let results = [];
 
@@ -35,8 +35,10 @@ class PageProducto {
         hashFromURL = nameCheck.slice(0, -1).join(' ')
         let toSearch = hashFromURL
         
-        const searchResult = find.find(toSearch, this.products)
-        return searchResult;
+        let searchResult = find.find(toSearch, this.products)
+
+        console.log (searchResult)
+        await render.renderTemplateCards(searchResult[0], 'templates/producto.hbs', '.full-product-page')
     }
 
     static async optionsFunctions() {
@@ -104,7 +106,7 @@ class PageProducto {
         console.log(`Se encontraron ${this.products.length} productos`);
         this.optionsFunctions();
         const product = this.getIdFromHash(2)
-        await render.renderTemplateCards(product, 'templates/producto.hbs', '.full-product-page')
+       // await render.renderTemplateCards(product, 'templates/producto.hbs', '.full-product-page')
         await cartController.init();
         // Close search results
         const searchResults = document.getElementsByClassName('main-header__wrapper__search-results')[0]
