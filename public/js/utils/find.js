@@ -12,12 +12,12 @@ class Find {
             }
         }
 
-/*         let result = results.filter(
+        results = results.filter(
             (person, index) => index === results.findIndex(
                 other => person.id === other.id
                     && person.productName === other.productName
             )
-        ); */
+        );
 
         return results;
     }

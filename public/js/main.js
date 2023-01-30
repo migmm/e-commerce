@@ -2,6 +2,8 @@ import ModuleCart from './modules/cart.js';
 import productController from './controllers/product.js';
 import render from '/js/utils/render.js';
 import hbsHelpers from './utils/hb-templates.js';
+import find from './utils/find.js';
+
 class Main {
 
     static links
@@ -99,36 +101,6 @@ class Main {
         window.addEventListener('hashchange', () => this.loadTemplate());
     }
 
-    // query is a string and is what you search
-    // fields is an array and is where do you want to search in the object, eg: productName
-
-    async searchProducts(query, fields) {
-
-        // if products is not filled show nothing
-        if (!this.products) {
-            return;
-        }
-
-        let results = []
-        for (var i = 0; i < this.products.length; ++i) {
-            for (let key of fields) {
-                if (this.products[i][key].toString().toLowerCase().indexOf(query.toLowerCase()) != -1) {
-                    results.push(this.products[i]);
-                }
-            }
-        }
-
-        // Remove duplicated
-        let result = results.filter(
-            (person, index) => index === results.findIndex(
-                other => person.id === other.id
-                    && person.productName === other.productName
-            )
-        );
-
-        return result;        
-    } 
-
     commonEvents() {
         const goTopButton = document.getElementById('myBtn');
         const navBar = document.getElementsByClassName('main-header__wrapper')[0];
@@ -165,8 +137,7 @@ class Main {
 
         searchBar.addEventListener('input', async e => {
 
-            const productsFound = await this.searchProducts(e.target.value, ['productName', 'vendor'])
-
+            const productsFound = find.find(e.target.value, this.products)
             await render.renderTemplateCards(productsFound, 'templates/search-results.hbs', '.search-results-list');
 
             if (e.target.value.length == 0) {
