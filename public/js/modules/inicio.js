@@ -141,7 +141,6 @@ class PageInicio {
         goTopOnLoad.goToTopOnLoad();
         this.arrowSlider();
         const products = await productController.getProducts();
-        const heartBtn = document.querySelectorAll('.heart-btn');
         console.log(`Se encontraron ${products.length} productos`);
         this.carousel();
         this.cardSlider();
@@ -165,6 +164,9 @@ class PageInicio {
         await render.renderTemplateCards(products, 'templates/card-row.hbs', '.latest-viewed')
 
         await cartController.init();
+
+
+        const heartBtn = document.querySelectorAll('.heart-btn');
 
         heartBtn.forEach(function (btn) {
             btn.addEventListener('click', function () {

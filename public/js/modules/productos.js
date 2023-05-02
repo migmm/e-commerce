@@ -91,6 +91,16 @@ class PageProductos {
         // Close search results
         const searchResults = document.getElementsByClassName('main-header__wrapper__search-results')[0]
         searchResults.classList.remove('visible');
+
+        const heartBtn = document.querySelectorAll('.heart-btn');
+
+        heartBtn.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                const isFav = (this.dataset.fav === 'true');
+                this.dataset.fav = !isFav;
+                this.classList.toggle('clicked', !isFav);
+            });
+        });
     }
 }
 
