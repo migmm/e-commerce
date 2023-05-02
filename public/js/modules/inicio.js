@@ -117,7 +117,7 @@ class PageInicio {
 
     static arrowSlider() {
 
-        document.addEventListener('click', e => { 
+        document.addEventListener('click', e => {
 
             if (e.target.classList.value === 'fa fa-chevron-circle-left fa-5x') {
                 const slider = e.target.parentNode.previousElementSibling;
@@ -132,7 +132,7 @@ class PageInicio {
                 slider.classList.add('scroll-smooth');
                 slider.scrollLeft += 290;
                 slider.classList.remove('scroll-smooth');
-                return; 
+                return;
             }
         })
     }
@@ -141,6 +141,7 @@ class PageInicio {
         goTopOnLoad.goToTopOnLoad();
         this.arrowSlider();
         const products = await productController.getProducts();
+        const heartBtn = document.querySelectorAll('.heart-btn');
         console.log(`Se encontraron ${products.length} productos`);
         this.carousel();
         this.cardSlider();
@@ -165,11 +166,12 @@ class PageInicio {
 
         await cartController.init();
 
-
-        const heartBtn = document.querySelector('.heart-btn');
-
-        heartBtn.addEventListener('click', function() {
-            this.classList.toggle('clicked');
+        heartBtn.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                const isFav = (this.dataset.fav === 'true');
+                this.dataset.fav = !isFav;
+                this.classList.toggle('clicked', !isFav);
+            });
         });
 
     }
