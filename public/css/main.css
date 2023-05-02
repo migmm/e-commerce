@@ -401,7 +401,7 @@ body {
 .main-header {
   width: 100%;
   background-color: #00b2eb;
-  box-shadow: 0px 3px 4px hsla(0deg, 0%, 0%, 0.3);
+  box-shadow: 0px 3px 4px hsla(0, 0%, 0%, 0.3);
   position: fixed;
   z-index: 100;
 }
@@ -516,7 +516,7 @@ body {
   padding: 1em;
   border-radius: 3px;
   text-decoration: none;
-  box-shadow: 0px 31px 19px -27px hsla(0deg, 0%, 0%, 0.3);
+  box-shadow: 0px 31px 19px -27px hsla(0, 0%, 0%, 0.3);
   font-size: 16px;
   line-height: 1.5em;
 }
@@ -862,7 +862,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: hsla(0deg, 0%, 0%, 0.8);
+  background-color: hsla(0, 0%, 0%, 0.8);
   overflow-y: scroll;
 }
 @media (min-width: 650px) {
@@ -1140,7 +1140,7 @@ body {
 }
 @media (hover: hover) {
   .card:hover {
-    box-shadow: 0 1px 5px hsla(0deg, 0%, 0%, 0.3), 0 0 3px hsla(0deg, 0%, 0%, 0.3);
+    box-shadow: 0 1px 5px hsla(0, 0%, 0%, 0.3), 0 0 3px hsla(0, 0%, 0%, 0.3);
     transform-origin: bottom;
   }
 }
@@ -1225,30 +1225,69 @@ body {
   margin: 0;
 }
 
-.fa-heart-o {
+.heart-btn {
+  width: 30px;
+  height: 30px;
+  /*  border: 2px solid #c6c6c6; */
+  border: none;
+  border-radius: 50%;
   position: absolute;
   top: 0.5em;
   right: 0.5em;
   cursor: pointer;
+  /*  transition: all 0.3s ease-in-out; */
+  background-color: white;
 }
 
-.fa-heart {
-  position: absolute;
-  top: 0.5em;
-  right: 0.5em;
-  cursor: pointer;
-  color: #ff0000;
+.heart-btn.clicked {
+  animation: grow-shrink 0.2s forwards;
 }
 
-@media (hover: hover) {
-  .fa-heart-o:hover {
-    color: #ff0000;
+/*  */
+@keyframes grow-shrink {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
   }
 }
-.fa-heart-o:active {
-  color: #6f00ff;
+.heart-btn i {
+  font-size: 20px;
+  position: absolute;
+  color: #000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
+.heart-btn i:hover {
+  color: #be0000;
+}
+
+.heart-btn.clicked i:before {
+  content: "\f004";
+  color: #be0000;
+  animation: heartbeat 0.4s linear;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.3);
+  }
+  60% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 .section-cards {
   max-width: 1600px;
   position: relative;
@@ -1435,7 +1474,7 @@ body {
 #button-whatsapp {
   background-color: #26d466;
   display: inline-block;
-  box-shadow: 3px 3px 4px hsla(0deg, 0%, 0%, 0.3);
+  box-shadow: 3px 3px 4px hsla(0, 0%, 0%, 0.3);
   border-radius: 50%;
   background-image: url("../img/icon-whatsapp.png");
   height: 64px;
@@ -1476,7 +1515,7 @@ body {
   border: none;
   outline: none;
   background-color: #00b2eb;
-  box-shadow: 3px 3px 4px hsla(0deg, 0%, 0%, 0.3);
+  box-shadow: 3px 3px 4px hsla(0, 0%, 0%, 0.3);
   cursor: pointer;
   padding-left: 14px;
   padding-top: 5px;
@@ -1522,7 +1561,7 @@ body {
   right: 0;
   width: 100%;
   height: 100%;
-  background-color: hsla(0deg, 0%, 0%, 0.8);
+  background-color: hsla(0, 0%, 0%, 0.8);
   z-index: 200;
   animation: fadeIn 0.5s;
 }
@@ -1712,7 +1751,7 @@ body {
 }
 @media (hover: hover) {
   .card-cart-preview__content .qty-selector-container .qty-selector-container__btn-minus:hover,
-.card-cart-preview__content .qty-selector-container .qty-selector-container__btn-plus:hover {
+  .card-cart-preview__content .qty-selector-container .qty-selector-container__btn-plus:hover {
     background-color: #8b8b8b;
   }
 }
@@ -1841,7 +1880,7 @@ body {
 }
 @media (hover: hover) {
   .card-checkout-preview__content .qty-selector-container .qty-selector-container__btn-minus:hover,
-.card-checkout-preview__content .qty-selector-container .qty-selector-container__btn-plus:hover {
+  .card-checkout-preview__content .qty-selector-container .qty-selector-container__btn-plus:hover {
     background-color: #8b8b8b;
   }
 }
@@ -1923,7 +1962,7 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: hsla(0deg, 0%, 0%, 0.8);
+  background-color: hsla(0, 0%, 0%, 0.8);
 }
 .main-content__modal-thanks {
   display: flex;
@@ -1984,7 +2023,7 @@ body {
   text-align: center;
   font-size: 5vw;
   line-height: 350px;
-  text-shadow: 4px 3px 5px hsla(0deg, 0%, 0%, 0.8);
+  text-shadow: 4px 3px 5px hsla(0, 0%, 0%, 0.8);
 }
 @media (min-width: 900px) {
   .separation-full-width__inner-text {

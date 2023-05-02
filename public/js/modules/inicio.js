@@ -164,6 +164,14 @@ class PageInicio {
         await render.renderTemplateCards(products, 'templates/card-row.hbs', '.latest-viewed')
 
         await cartController.init();
+
+
+        const heartBtn = document.querySelector('.heart-btn');
+
+        heartBtn.addEventListener('click', function() {
+            this.classList.toggle('clicked');
+        });
+
     }
 }
 
