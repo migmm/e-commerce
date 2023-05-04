@@ -2402,6 +2402,20 @@ input[type=number] {
   margin: 0.4em 0.4em;
 }
 
+.main-content__wrapper .login-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+}
+.main-content__wrapper .login-form .account {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .product-update-wrapper {
   display: none;
   margin: 2em 0 2em 0;

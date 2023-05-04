@@ -1,19 +1,25 @@
 <div class="main-content__wrapper">
     <div class="login-form">
         <div class="login-form__heading">
-            <h1 class="login-form__heading__title"></h1>
+            <h1 class="login-form__heading__title">Ingresar</h1>
         </div>
         <div class="login-form__container">
-            <div class="login-form__container__formatter">
-                <label for="user-account"></label>
-                <input type="text" id="user-account" name="user-account" class="login-form__container__user-account">
+            <div class="input-group__form-group">
+                <label for="user-account" class="input-group__label">Usuario</label>
+                <input type="text" id="user-account" name="user-account" class="input-group__input">
+                <span class="input-group__error">ERROR! Ingrese un comentario.</span>
             </div>
-            <div class="login-form__container__formatter">
-                <label for="user-password"></label>
-                <input type="text" id="user-password" name="user-password" class="login-form__container__user-password">
+            <div class="input-group__form-group">
+                <label for="user-password" class="input-group__label">Contraseña</label>
+                <input type="text" id="user-password" name="user-password" class="input-group__input">
+                <span class="input-group__error">ERROR! Ingrese un comentario.</span>
             </div>
         </div>
-        <div class="login-form__footer">
+        <div class="input-group__buttons">
+            <button type="submit">Ingresar</button>
+            <span class="input-group__error-form">Error! Verifique los campos marcados!</span>
+        </div>
+        <div class="input-group__form-group account">
             <span class="login-form__forgot-password">¿Olvidaste tu contraseña?</span>
             <span class="login-form__register">No tenes cuenta. ¿Deseas registrarte?</span>
         </div>
