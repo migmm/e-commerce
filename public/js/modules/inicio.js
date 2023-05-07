@@ -28,92 +28,51 @@ class PageInicio {
 
     static cardSlider() {
         let isDown = false;
+        let sliders = {};
         let startX;
         let scrollLeft;
-        const slider0 = document.querySelectorAll('.cards-container')[0];
-        const slider1 = document.querySelectorAll('.cards-container')[1];
-        const slider2 = document.querySelectorAll('.cards-container')[2];
-
+    
         const end = () => {
             isDown = false;
-            slider0.classList.remove('active');
-            slider1.classList.remove('active');
-            slider2.classList.remove('active');
-            slider0.classList.remove('grab');
-            slider1.classList.remove('grab');
-            slider2.classList.remove('grab');
+            for (const slider of Object.values(sliders)) {
+                slider.container.classList.remove('active', 'grab');
+            }
         }
-
+    
         const start = (e) => {
             isDown = true;
-
-            slider0.classList.add('active');
-            startX = e.pageX || e.touches[0].pageX - slider0.offsetLeft;
-            scrollLeft = slider0.scrollLeft;
-
-            slider1.classList.add('active');
-            startX = e.pageX || e.touches[0].pageX - slider1.offsetLeft;
-            scrollLeft = slider1.scrollLeft;
-
-            slider2.classList.add('active');
-            startX = e.pageX || e.touches[0].pageX - slider2.offsetLeft;
-            scrollLeft = slider2.scrollLeft;
+            const slider = e.target.closest('.cards-container');
+            slider.classList.add('active');
+            startX = e.pageX || e.touches[0].pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+            slider.classList.add('grab');
         }
-
+    
         const move = (e) => {
             if (!isDown) return;
-
-            slider0.classList.add('grab');
+            const slider = e.target.closest('.cards-container');
+            slider.classList.add('grab');
             e.preventDefault();
-            const x0 = e.pageX || e.touches[0].pageX - slider0.offsetLeft;
-            const dist0 = (x0 - startX);
-            slider0.scrollLeft = scrollLeft - dist0;
-
-            slider1.classList.add('grab');
-            const x1 = e.pageX || e.touches[1].pageX - slider1.offsetLeft;
-            const dist1 = (x1 - startX);
-            slider1.scrollLeft = scrollLeft - dist1;
-
-            slider2.classList.add('grab');
-            const x2 = e.pageX || e.touches[2].pageX - slider2.offsetLeft;
-            const dist2 = (x2 - startX);
-            slider2.scrollLeft = scrollLeft - dist2;
+            const x = e.pageX || e.touches[0].pageX;
+            const dist = (x - startX);
+            slider.scrollLeft = scrollLeft - dist;
         }
-
+        
+    
         (() => {
-            slider0.addEventListener('mousedown', start);
-            slider0.addEventListener('touchstart', start);
-
-            slider1.addEventListener('mousedown', start);
-            slider1.addEventListener('touchstart', start);
-
-            slider2.addEventListener('mousedown', start);
-            slider2.addEventListener('touchstart', start);
-
-
-            slider0.addEventListener('mousemove', move);
-            slider0.addEventListener('touchmove', move);
-
-            slider1.addEventListener('mousemove', move);
-            slider1.addEventListener('touchmove', move);
-
-            slider2.addEventListener('mousemove', move);
-            slider2.addEventListener('touchmove', move);
-
-
-            slider0.addEventListener('mouseleave', end);
-            slider0.addEventListener('mouseup', end);
-            slider0.addEventListener('touchend', end);
-
-            slider1.addEventListener('mouseleave', end);
-            slider1.addEventListener('mouseup', end);
-            slider1.addEventListener('touchend', end);
-
-            slider2.addEventListener('mouseleave', end);
-            slider2.addEventListener('mouseup', end);
-            slider2.addEventListener('touchend', end);
+            for (let i = 0; i < 3; i++) {
+                const container = document.querySelectorAll('.cards-container')[i];
+                container.addEventListener('mousedown', start);
+                container.addEventListener('touchstart', start);
+                container.addEventListener('mousemove', move);
+                container.addEventListener('touchmove', move);
+                container.addEventListener('mouseleave', end);
+                container.addEventListener('mouseup', end);
+                container.addEventListener('touchend', end);
+            }
         })();
     }
+    
 
     static arrowSlider() {
 
