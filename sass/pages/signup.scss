@@ -1,2 +1,13 @@
 @use '../abstracts/variables' as color;
 
+.main-content {
+    &__wrapper {
+        & .create-account {
+            display: flex;
+            flex-direction: column;
+            padding-top: 100px;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

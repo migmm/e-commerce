@@ -2416,6 +2416,14 @@ input[type=number] {
   align-items: center;
 }
 
+.main-content__wrapper .create-account {
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;
+  justify-content: center;
+  align-items: center;
+}
+
 .product-update-wrapper {
   display: none;
   margin: 2em 0 2em 0;
