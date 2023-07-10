@@ -1,4 +1,4 @@
-import otpGenerator from 'otp-generator';
+/* import otpGenerator from 'otp-generator';
 import nodemailer from 'nodemailer';
 const users = [];
 
@@ -53,3 +53,92 @@ async function sendOTPByEmail(email, otp) {
 
 
 export default { createUser, authenticateUser, generateOTP, verifyOTP, sendOTPByEmail };
+ */
+
+import config from '../config.js';
+import userModel from "../model/users/users.js";
+//import userValidator from '../model/users/validators/userValidator.js';
+
+const modelusers = userModel.get(config.PERSISTENCE_TYPE);
+
+
+///////////////////////////////////////////////////////////////////////////////
+//                                API Get ALL                                //
+///////////////////////////////////////////////////////////////////////////////
+
+const getusers = async () => {
+    const users = await modelusers.readusers();
+    return users;
+};
+
+
+///////////////////////////////////////////////////////////////////////////////
+//                                API Get ONE                                //
+///////////////////////////////////////////////////////////////////////////////
+
+const getuser = async id => {
+    const user = await modelusers.readuser(id);
+    return user;
+};
+
+
+///////////////////////////////////////////////////////////////////////////////
+//                                API Create                                 //
+///////////////////////////////////////////////////////////////////////////////
+
+const createuser = async user => {
+
+        const createduser = await modelusers.createuser(user);
+        return createduser;  
+
+        /*  const validationError = userValidator.validate(user);
+        
+        if(!validationError) {
+            const createduser = await modelusers.createuser(user);
+            return createduser;  
+        } else {
+            console.log(validationError);
+            console.error(`Error de validación en createuser: ${validationError.details[0].message}`);
+            return {};
+        } */
+};
+
+
+///////////////////////////////////////////////////////////////////////////////
+//                                API Update                                 //
+///////////////////////////////////////////////////////////////////////////////
+
+const updateuser = async (id, user) => {
+
+    const updateduser = await modelusers.updateuser(id, user);
+    return updateduser;   
+    /*  const validationError = userValidator.validate(user);
+
+    if(!validationError) {
+        const updateduser = await modelusers.updateuser(id, user);
+        return updateduser;    
+    } else {
+        console.log(validationError);
+        console.error(`Error de validación en updateuser: ${validationError.details[0].message}`);
+        return {};
+    } */
+};
+
+
+///////////////////////////////////////////////////////////////////////////////
+//                                API Delete                                 //
+///////////////////////////////////////////////////////////////////////////////
+
+const deleteuser = async id => {
+    const removeduser = await modelusers.deleteuser(id);
+    return removeduser;
+};
+
+
+export default {
+    getusers,
+    getuser,
+    createuser,
+    updateuser,
+    deleteuser
+};

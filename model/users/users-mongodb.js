@@ -6,8 +6,22 @@ import path from "path";
 
 const userSchema = mongoose.Schema({
     username: String,
-    email: Number,
-    password: Number,
+    email: String,
+    password: String,
+    phone: String,
+    photo: String,
+    role: {
+        type: String,
+        default: 'user',
+    },
+    status: {
+        type: String,
+        default: 'active',
+    },
+    created_at: {
+        type: Date,
+        default: Date.now,
+    },
 },
 {
     versionKey: false
