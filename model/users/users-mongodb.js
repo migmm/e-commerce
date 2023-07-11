@@ -9,7 +9,10 @@ const userSchema = mongoose.Schema({
     email: String,
     password: String,
     phone: String,
-    photo: String,
+    photo: {
+        type: String,
+        default: 'defaulimage.jpg',
+    },
     role: {
         type: String,
         default: 'user',
@@ -71,6 +74,17 @@ class UserModelMongoDB {
             return DBMongoDB.getObjectWithId(user);
         } catch (error) {
             console.error(`Error al intentar obtener el usero: ${error.message}`);
+            return {};
+        }
+    }
+
+     // Route to find by any value in database
+    async findByAny(field, value) {
+        try {
+            const user = await UsersModel.findOne({ [field]: value }).exec();
+            return user ? DBMongoDB.getObjectWithId(user) : '';
+        } catch (error) {
+            console.error(`Error getting user: ${error.message}`);
             return {};
         }
     }
