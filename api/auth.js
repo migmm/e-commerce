@@ -76,7 +76,22 @@ async function verifyOTP(email, otp) {
     }
 
     if (user.otpExpiration && new Date() > user.otpExpiration) {
-        return false;
+
+        user.otp = null;
+        user.otpExpiration = null;
+        const id = user.id;
+        delete user.id;
+
+        const validationError = UserValidator.validate(user);
+
+        if (!validationError) {
+            await modelUsers.updateUser(id, user);
+            return false;
+        } else {
+            console.log(validationError);
+            console.error(`Error validating createUser: ${validationError.details[0].message}`);
+            return false;
+        }
     }
     console.log(user)
 
