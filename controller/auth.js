@@ -71,7 +71,7 @@ export default {
 
 // const {getProduct, getProducts} = require('../api/products');
 import api from '../api/users.js';
-import { USER_IMG_UPLOAD_LOCATION } from '../config.js';
+//import { USER_IMG_UPLOAD_LOCATION } from '../config.js';
 
 
 
