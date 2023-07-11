@@ -18,13 +18,13 @@ dotenv.config();
 ///////////////////////////////////////////////////////////////////////////////
 
 const login = async (req, res) => {
-    const { username, password } = req.body
-    console.log(username, password)
-    if (!username || !password) {
+    const { email, password } = req.body
+    console.log("dsds",email, password)
+    if (!email || !password) {
         return res.status(400).json({ message: 'All fields are required' })
     }
 
-    const foundUser = await api.getAuth('username', username);
+    const foundUser = await api.getAuth('email', email);
     console.log('user auth', foundUser);
 
     if (!foundUser) {
