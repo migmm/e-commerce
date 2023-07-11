@@ -56,28 +56,18 @@ export default { createUser, authenticateUser, generateOTP, verifyOTP, sendOTPBy
  */
 
 import config from '../config.js';
-import userModel from "../model/users/users.js";
-//import userValidator from '../model/users/validators/userValidator.js';
+import UserModel from '../model/users/users.js';
+import UserValidator from '../model/users/validators/UserValidator.js';
 
-const modelusers = userModel.get(config.PERSISTENCE_TYPE);
-
-
-///////////////////////////////////////////////////////////////////////////////
-//                                API Get ALL                                //
-///////////////////////////////////////////////////////////////////////////////
-
-const getusers = async () => {
-    const users = await modelusers.readusers();
-    return users;
-};
+const modelUsers = UserModel.get(config.PERSISTENCE_TYPE);
 
 
 ///////////////////////////////////////////////////////////////////////////////
-//                                API Get ONE                                //
+//                                  API Get                                  //
 ///////////////////////////////////////////////////////////////////////////////
 
-const getuser = async id => {
-    const user = await modelusers.readuser(id);
+const getAuth = async (field, username) => {
+    const user = await modelUsers.findByAny(field, username);
     return user;
 };
 
@@ -86,59 +76,22 @@ const getuser = async id => {
 //                                API Create                                 //
 ///////////////////////////////////////////////////////////////////////////////
 
-const createuser = async user => {
+const createAuth = async (user) => {
 
-        const createduser = await modelusers.createuser(user);
-        return createduser;  
+        const validationError = UserValidator.validate(user);
 
-        /*  const validationError = userValidator.validate(user);
-        
         if(!validationError) {
-            const createduser = await modelusers.createuser(user);
-            return createduser;  
+            const createdUser = await modelUsers.createUser(user);
+            return createdUser;
         } else {
             console.log(validationError);
-            console.error(`Error de validación en createuser: ${validationError.details[0].message}`);
+            console.error(`Error validating createUser: ${validationError.details[0].message}`);
             return {};
-        } */
-};
-
-
-///////////////////////////////////////////////////////////////////////////////
-//                                API Update                                 //
-///////////////////////////////////////////////////////////////////////////////
-
-const updateuser = async (id, user) => {
-
-    const updateduser = await modelusers.updateuser(id, user);
-    return updateduser;   
-    /*  const validationError = userValidator.validate(user);
-
-    if(!validationError) {
-        const updateduser = await modelusers.updateuser(id, user);
-        return updateduser;    
-    } else {
-        console.log(validationError);
-        console.error(`Error de validación en updateuser: ${validationError.details[0].message}`);
-        return {};
-    } */
-};
-
-
-///////////////////////////////////////////////////////////////////////////////
-//                                API Delete                                 //
-///////////////////////////////////////////////////////////////////////////////
-
-const deleteuser = async id => {
-    const removeduser = await modelusers.deleteuser(id);
-    return removeduser;
+        }
 };
 
 
 export default {
-    getusers,
-    getuser,
-    createuser,
-    updateuser,
-    deleteuser
+    getAuth,
+    createAuth,
 };

@@ -2,8 +2,8 @@ import express from 'express';
 import routerProducts from './router/products.js';
 import routerCart from './router/cart.js';
 import routerUsers from './router/users.js'
-/* import routerAuth from './router/auth.js';
- */
+import routerAuth from './router/auth.js';
+
 import config from './config.js';
 
 const app = express();
@@ -15,7 +15,7 @@ app.use(express.json());
 app.use('/api/products', routerProducts);
 app.use('/api/cart', routerCart);
 app.use('/api/users', routerUsers);
-/* app.use('/api/auth', routerAuth); */
+app.use('/api/auth', routerAuth);
 
 app.get("/*", function (req, res) {
     res.redirect("/#/404");
