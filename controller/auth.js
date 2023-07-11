@@ -54,13 +54,10 @@ const login = async (req, res) => {
 };
 
 
-const logout = async (req, res) => {
-    const cookies = await req.cookies;
-    console.log(req.cookies);
+const logout = (req, res) => {
+    const cookies = req.cookies.jwt;
 
-    console.log('cookies', cookies)
-
-    if (!cookies?.jwt) return res.sendStatus(204)
+    if (!cookies) return res.sendStatus(204)
 
     res.clearCookie('jwt', {
         httpOnly: true,
@@ -71,6 +68,7 @@ const logout = async (req, res) => {
     res.json({ message: 'Cookie cleared' })
 }
 
+
 function signup(req, res) {
     const { username, password, email } = req.body;
 
@@ -78,6 +76,7 @@ function signup(req, res) {
     console.log(newUser)
     res.json({ message: 'User registered successfully' });
 }
+
 
 function verifyOTP(req, res) {
     const { otp, email } = req.body;
@@ -97,6 +96,7 @@ function verifyOTP(req, res) {
         }
     });
 }
+
 
 async function sendOTP(req, res) {
     try {

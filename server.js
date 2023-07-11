@@ -1,4 +1,5 @@
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import routerProducts from './router/products.js';
 import routerCart from './router/cart.js';
 import routerUsers from './router/users.js'
@@ -7,6 +8,8 @@ import routerAuth from './router/auth.js';
 import config from './config.js';
 
 const app = express();
+
+app.use(cookieParser());
 
 app.use(express.static('public', { extensions: ['html', 'htm'] }));
 app.use(express.urlencoded({extended: true}));
