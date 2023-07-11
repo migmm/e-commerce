@@ -1,14 +1,7 @@
-
-
-
-
-
-import api from '../api/auth.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-
-const secretKey = 'mysecretkey';
+import api from '../api/auth.js';
 
 dotenv.config();
 
@@ -19,7 +12,7 @@ dotenv.config();
 
 const login = async (req, res) => {
     const { email, password } = req.body
-    console.log("dsds",email, password)
+    console.log("dsds", email, password)
     if (!email || !password) {
         return res.status(400).json({ message: 'All fields are required' })
     }
@@ -68,7 +61,6 @@ const logout = (req, res) => {
     res.json({ message: 'Cookie cleared' })
 }
 
-
 function signup(req, res) {
     const { username, password, email } = req.body;
 
@@ -77,41 +69,41 @@ function signup(req, res) {
     res.json({ message: 'User registered successfully' });
 }
 
-
-function verifyOTP(req, res) {
-    const { otp, email } = req.body;
-
-    jwt.verify(token, secretKey, (err, decoded) => {
-        if (err) {
-            return res.status(403).json({ message: 'Invalid token' });
-        }
-
-        //const { email } = decoded;
-        const isValid = authService.verifyOTP(email, otp);
-
-        if (isValid) {
-            res.json({ message: 'OTP ok' });
-        } else {
-            res.status(401).json({ message: 'invalid OTP' });
-        }
-    });
-}
-
-
 async function sendOTP(req, res) {
     try {
         const { email } = req.body;
 
-        const otp = authService.generateOTP(email);
-        //await otpService.sendOTPByEmail(email, otp);
-        console.log(otp)
+        const user = await api.generateOTP(email);
+        if(!user) {
+            res.status(500).json({ message: 'Error sending OTP' });
+        }
 
+        console.log(user)
         res.status(201).json({ message: 'OTP sended' });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Error sendind OTP' });
+        res.status(500).json({ message: 'Error sending OTP' });
     }
 }
+
+async function verifyOTP(req, res) {
+    const { email, otp } = req.body;
+
+    try {
+        const isValid = await api.verifyOTP(email, otp);
+
+        if (isValid) {
+            res.json({ message: 'Valid OTP code' });
+        } else {
+            res.status(401).json({ message: 'Invalid OTP code' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error verifying OTP code' });
+    }
+}
+
+
 
 
 export default {

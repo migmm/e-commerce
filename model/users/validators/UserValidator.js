@@ -17,6 +17,8 @@ class UserValidator {
             role: String,
             status: String,
             created_at: Date,
+            otp: String,
+            otpExpiration: Date
         });
 
         const { error } = userSchema.validate(user);
