@@ -38,7 +38,7 @@ const postUser = async (req, res) => {
     if (!user.username || !user.password || !user.email) {
         return res.status(400).json({ message: 'All fields are required' });
     }
-
+/* 
     const foundUser = await api.getByField('username', user.username);
     const foundEmail = await api.getByField('email', user.email);
 
@@ -49,7 +49,7 @@ const postUser = async (req, res) => {
 
     if (foundEmail) {
         return res.status(401).json({ message: 'Existing email' });
-    }
+    } */
 
     const hashedPwd = await bcrypt.hash(user.password, 10);
     user.password = hashedPwd;
