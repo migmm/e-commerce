@@ -71,18 +71,26 @@ function signup(req, res) {
 
 async function sendOTP(req, res) {
     try {
-        const { email } = req.body;
+        const { email, deliveryMethod } = req.body;
 
-        const user = await api.generateOTP(email);
-        if(!user) {
-            res.status(500).json({ message: 'Error sending OTP' });
+        const user = await api.generateOTP(email, deliveryMethod);
+
+        if (!user) {
+            return res.status(500).json({ message: 'Error sending OTP' });
         }
 
-        console.log(user)
+        if (deliveryMethod === 'sms') {
+        
+        } else if (deliveryMethod === 'email') {
+        
+        } else {
+            return res.status(400).json({ message: 'Invalid delivery method' });
+        }
+
         res.status(201).json({ message: 'OTP sended' });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Error sending OTP' });
+        return res.status(500).json({ message: 'Error sending OTP' });
     }
 }
 

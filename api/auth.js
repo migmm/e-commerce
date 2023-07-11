@@ -1,9 +1,8 @@
 import config from '../config.js';
 import UserModel from '../model/users/users.js';
 import UserValidator from '../model/users/validators/UserValidator.js';
+import OTPgenerate from '../helpers/otpGenerator.js';
 
-import otpGenerator from 'otp-generator';
-import moment from 'moment';
 
 const modelUsers = UserModel.get(config.PERSISTENCE_TYPE);
 
@@ -36,15 +35,14 @@ const createAuth = async (user) => {
     }
 };
 
-async function generateOTP(email) {
+async function generateOTP(email, method) {
     const user = await modelUsers.findByAny('email', email);
 
     if (!user) {
         return false;
     }
 
-    const otp = otpGenerator.generate(6, { digits: true, upperCaseAlphabets: false, lowerCaseAlphabets: false, specialChars: false });
-    const expirationTime = moment().add(1, 'minute').toDate();
+    const { otp, expirationTime } = OTPgenerate(method); // Llamar a OTPgenerate en lugar de generateOTP
 
     user.otp = otp;
     user.otpExpiration = expirationTime;
@@ -63,6 +61,7 @@ async function generateOTP(email) {
         return false;
     }
 }
+
 
 async function verifyOTP(email, otp) {
     const user = await modelUsers.findByAny('email', email);
