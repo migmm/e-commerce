@@ -5,8 +5,14 @@ import path from "path";
 
 
 const userSchema = mongoose.Schema({
-    username: String,
-    email: String,
+    username: {
+        type: String,
+        unique: true
+    },
+    email: {
+        type: String,
+        unique: true
+    },
     password: String,
     phone: String,
     photo: {
@@ -26,10 +32,12 @@ const userSchema = mongoose.Schema({
         default: Date.now,
     },
 },
-{
-    versionKey: false
-}
+    {
+        versionKey: false
+    }
 );
+
+mongoose.set('strictQuery', true);
 
 const UsersModel = mongoose.model('users', userSchema);
 
@@ -78,7 +86,7 @@ class UserModelMongoDB {
         }
     }
 
-     // Route to find by any value in database
+    // Route to find by any value in database
     async findByAny(field, value) {
         if (! await DBMongoDB.connectDB()) {
             return {};
@@ -126,9 +134,9 @@ class UserModelMongoDB {
             const userToDelete = await UsersModel.findById(id).lean() || {};
             unlink.remove(path.resolve('./public/' + userToDelete.images.portada));
 
-            await unlink.pathExists(path.resolve('./public/' + userToDelete.images.galeria0)) ? unlink.remove(path.resolve('./public/' + userToDelete.images.galeria0)) :  console.log ("galeria0 false");
-            await unlink.pathExists(path.resolve('./public/' + userToDelete.images.galeria1)) ? unlink.remove(path.resolve('./public/' + userToDelete.images.galeria1)) :  console.log ("galeria1 false");
-            await unlink.pathExists(path.resolve('./public/' + userToDelete.images.galeria2)) ? unlink.remove(path.resolve('./public/' + userToDelete.images.galeria2)) :  console.log ("galeria2 false");
+            await unlink.pathExists(path.resolve('./public/' + userToDelete.images.galeria0)) ? unlink.remove(path.resolve('./public/' + userToDelete.images.galeria0)) : console.log("galeria0 false");
+            await unlink.pathExists(path.resolve('./public/' + userToDelete.images.galeria1)) ? unlink.remove(path.resolve('./public/' + userToDelete.images.galeria1)) : console.log("galeria1 false");
+            await unlink.pathExists(path.resolve('./public/' + userToDelete.images.galeria2)) ? unlink.remove(path.resolve('./public/' + userToDelete.images.galeria2)) : console.log("galeria2 false");
 
             const deletedUser = await UsersModel.findByIdAndDelete(id).lean();
             return DBMongoDB.getObjectWithId(deletedUser);
