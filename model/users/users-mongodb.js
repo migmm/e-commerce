@@ -29,6 +29,12 @@ const userSchema = mongoose.Schema({
     },
     otp: String,
     otpExpiration: Date,
+    cart: {
+        type: Object,
+    },
+    purchaseHistory: {
+        type: Object,
+    },
     created_at: {
         type: Date,
         default: Date.now,
