@@ -415,6 +415,16 @@ body {
   transition: 0.5s;
   position: relative;
 }
+.main-header__wrapper__language-select {
+  order: 2;
+  padding-right: 1em;
+}
+.main-header__wrapper__language-select .language-select {
+  background-color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.32em;
+}
 .main-header__wrapper__logo-container {
   flex-basis: 5em;
   margin-left: 2em;

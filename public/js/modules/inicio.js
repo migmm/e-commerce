@@ -3,7 +3,7 @@ import productController from '/js/controllers/product.js';
 import cartController from '/js/modules/cart.js';
 import render from '/js/utils/render.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
-
+import fetchLanguageData from '../utils/langFunctions.js'
 
 class PageInicio {
 
@@ -75,7 +75,6 @@ class PageInicio {
         })();
     }
 
-
     static arrowSlider() {
 
         document.addEventListener('click', e => {
@@ -120,15 +119,13 @@ class PageInicio {
             return dateB - dateA;
         })
         await render.renderTemplateCards(products, 'templates/card-row.hbs', '.most-selled')
-
-
         await render.renderTemplateCards(products, 'templates/card-row.hbs', '.latest-viewed')
 
         await cartController.init();
 
-
         const heartBtn = document.querySelectorAll('.heart-btn');
 
+        // Start 
         heartBtn.forEach(function (btn) {
             btn.addEventListener('click', function () {
                 const isFav = (this.dataset.fav === 'true');
@@ -136,6 +133,8 @@ class PageInicio {
                 this.classList.toggle('clicked', !isFav);
             });
         });
+
+        fetchLanguageData.fetchLanguageData();
 
     }
 }

@@ -18,6 +18,17 @@
         transition: .5s;
         position: relative;
 
+        &__language-select{
+
+            order: 2;
+            padding-right: 1em;
+            & .language-select {
+                background-color: color.$white;
+                border: none;
+                border-radius: 10px;
+                padding: .32em;
+            }
+        }
         &__logo-container {
             flex-basis: 5em;
             margin-left: 2em;

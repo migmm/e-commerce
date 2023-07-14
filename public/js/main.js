@@ -3,7 +3,7 @@ import productController from './controllers/product.js';
 import render from '/js/utils/render.js';
 import hbsHelpers from './utils/hb-templates.js';
 import find from './utils/find.js';
-
+import fetchLanguageData from './utils/langFunctions.js'
 class Main {
 
     static links
@@ -111,7 +111,7 @@ class Main {
         const searchLink = document.getElementsByClassName('search-results__link')[0]
         const searchQuery = document.getElementsByClassName('search-results__result')[0]
         const form = document.getElementsByClassName('main-header__wrapper__form')[0]
-        
+
         window.onscroll = function () {
             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
                 goTopButton.style.display = 'block';
@@ -144,13 +144,13 @@ class Main {
                 searchResults.classList.remove('visible');
                 return;
             }
-            
+
             searchQuery.innerHTML = e.target.value;
             searchLink.href = `/#/productos/${e.target.value}`;
             searchResults.classList.add('visible');
         });
 
-        form.addEventListener('submit', e =>{
+        form.addEventListener('submit', e => {
             e.preventDefault();
 
             if (searchBar.value.length == 0) {
@@ -169,12 +169,13 @@ class Main {
 
         // register ALL helpers at start
         Handlebars.registerHelper(hbsHelpers);
-
+        fetchLanguageData.fetchLanguageData();
         await this.loadTemplates();
         this.commonEvents();
         ModuleCart.cartFunctions();
         this.products = await productController.getProducts();
         // ModuleCart.init();
+        
     }
 }
 
