@@ -3,6 +3,6 @@ const langRouter = express.Router();
 
 import { changeLanguage } from '../controller/lang.js';
 
-langRouter.post('/language/:language?', changeLanguage);
+langRouter.post('/:language?', changeLanguage);
 
 export default langRouter;

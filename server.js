@@ -21,7 +21,7 @@ app.use('/api/products', routerProducts);
 app.use('/api/cart', routerCart);
 app.use('/api/users', routerUsers);
 app.use('/api/auth', routerAuth);
-app.use('/lang', langRouter);
+app.use('/api/lang', langRouter);
 
 app.get("/*", function (req, res) {
     res.redirect("/#/404");
