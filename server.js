@@ -4,6 +4,7 @@ import routerProducts from './router/products.js';
 import routerCart from './router/cart.js';
 import routerUsers from './router/users.js'
 import routerAuth from './router/auth.js';
+import langRouter from './router/lang.js';
 
 import config from './config.js';
 
@@ -12,13 +13,15 @@ const app = express();
 app.use(cookieParser());
 
 app.use(express.static('public', { extensions: ['html', 'htm'] }));
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 
 app.use('/api/products', routerProducts);
 app.use('/api/cart', routerCart);
 app.use('/api/users', routerUsers);
 app.use('/api/auth', routerAuth);
+app.use('/lang', langRouter);
 
 app.get("/*", function (req, res) {
     res.redirect("/#/404");
