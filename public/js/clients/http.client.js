@@ -12,25 +12,30 @@ class Http {
     /* POST */
     async post(url, data, mode) {
         try {
-            if (mode === 'json') {
-                return await fetch(url, {
-                    method: 'post',
-                    body: JSON.stringify(data),
-                    headers: { 'content-type': 'application/json' }
-                }).then(r => r.json());
+            const headers = mode === 'json' ? { 'content-type': 'application/json' } : undefined;
+            const body = mode === 'json' ? JSON.stringify(data) : data;
+    
+            const response = await fetch(url, {
+                method: 'post',
+                body: body,
+                headers: headers,
+            });
+    
+            const responseData = await response.json();
+    
+            if (!response.ok) {
+                const errorCode = response.status;
+                const errorMessage = responseData.message || response.statusText;
+                throw { status: errorCode, message: errorMessage, responseData: null };
             }
-
-            if (mode === 'formdata') {
-                return await fetch(url, {
-                    method: 'post',
-                    body: data,
-                }).then(r => r.json());
-            }
-
+    
+            return { status: response.status, responseData: responseData };
         } catch (error) {
-            console.error('ERROR POST', error);
+            /*  console.error('ERROR POST', error); */
+            throw error;
         }
     }
+    
 
     /* PUT */
     async put(url, id, data, mode) {
