@@ -6,14 +6,40 @@ import path from "path";
 
 const productSchema = mongoose.Schema({
 
-    productName: String,
-    price: Number,
+    productName: {
+        type: Map,
+        of: String,
+    },
+    price: {
+        type: Map,
+        of: Number,
+    },
+    tax: [
+        {
+            value: Number,
+            currency: String,
+        },
+    ],
+    vat: {
+        value: Number,
+        currency: String,
+    },
+    currencyConversion: {
+        type: Map,
+        of: Object,
+    },
     discountPercent: Number,
     vendor: String,
     stock: Number,
     category: String,
-    shortDescription: String,
-    longDescription: String,
+    shortDescription: {
+        type: Map,
+        of: String,
+    },
+    longDescription: {
+        type: Map,
+        of: String,
+    },
     freeShip: Boolean,
     ageFrom: Number,
     ageTo: Number,
@@ -21,12 +47,17 @@ const productSchema = mongoose.Schema({
     addedDate: Date,
     lastSell: Date,
     images: Object,
-    colors: Array,
+    colors: [
+        {
+            language: String,
+            colorNames: [String],
+        },
+    ],
     urlName: String,
 },
-{
-    versionKey: false
-}
+    {
+        versionKey: false
+    }
 );
 
 const ProductsModel = mongoose.model('products', productSchema);
@@ -110,9 +141,9 @@ class ProductModelMongoDB {
             const productToDelete = await ProductsModel.findById(id).lean() || {};
             unlink.remove(path.resolve('./public/' + productToDelete.images.portada));
 
-            await unlink.pathExists(path.resolve('./public/' + productToDelete.images.galeria0)) ? unlink.remove(path.resolve('./public/' + productToDelete.images.galeria0)) :  console.log ("galeria0 false");
-            await unlink.pathExists(path.resolve('./public/' + productToDelete.images.galeria1)) ? unlink.remove(path.resolve('./public/' + productToDelete.images.galeria1)) :  console.log ("galeria1 false");
-            await unlink.pathExists(path.resolve('./public/' + productToDelete.images.galeria2)) ? unlink.remove(path.resolve('./public/' + productToDelete.images.galeria2)) :  console.log ("galeria2 false");
+            await unlink.pathExists(path.resolve('./public/' + productToDelete.images.galeria0)) ? unlink.remove(path.resolve('./public/' + productToDelete.images.galeria0)) : console.log("galeria0 false");
+            await unlink.pathExists(path.resolve('./public/' + productToDelete.images.galeria1)) ? unlink.remove(path.resolve('./public/' + productToDelete.images.galeria1)) : console.log("galeria1 false");
+            await unlink.pathExists(path.resolve('./public/' + productToDelete.images.galeria2)) ? unlink.remove(path.resolve('./public/' + productToDelete.images.galeria2)) : console.log("galeria2 false");
 
             const deletedProduct = await ProductsModel.findByIdAndDelete(id).lean();
             return DBMongoDB.getObjectWithId(deletedProduct);
