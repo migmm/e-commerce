@@ -42,8 +42,9 @@
         "about-us": "About Us",
         "contact": "Contact Us",
         "categories": "Sections",
-        "our-adress": "Our adress:",
-        "open-days": "Mondays to fridays from 8am a 8pm"
+        "our-adress": "Our adress",
+        "open-days": "Mondays to fridays from 8 am to 8 pm",
+        "created-by": "Forged by"
     },
 
     "product-card": {
@@ -52,7 +53,7 @@
     },
 
     "new-product-page": {
-        "title": "New Product"
+        "title": "New product"
     },
 
     "card-all-products": {
