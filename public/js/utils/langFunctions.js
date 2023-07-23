@@ -4,10 +4,14 @@ const updateElements = (elementData) => {
         elements.forEach((element) => {
             element.textContent = text;
         });
+        const placeholders = document.querySelectorAll(`[data-placeholder="${elementKey}"]`);
+        placeholders.forEach((placeholder) => {
+            placeholder.placeholder = text;
+        });
     });
 };
 
-const fetchLanguageData = () => {
+const fetchLanguageData = async () => {
     const supportedLanguages = ['en', 'es'];
     const browserLanguage = navigator.language || navigator.userLanguage;
     const languageParts = browserLanguage.split("-");
