@@ -1,4 +1,7 @@
 {
+    "language": "Español",
+    "language-abbreviation": "ES",
+    
     "main-header": {
         "header-logo-alt": "Logo de la juguetería",
         "search-input-placeholder":"¿Qué estás buscando?",

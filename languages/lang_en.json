@@ -1,4 +1,7 @@
 {
+    "language": "English",
+    "language-abbreviation": "EN",
+
     "main-header":{
         "header-logo-alt": "Toystore logo",
         "search-input-placeholder":"What are you looking for?",
