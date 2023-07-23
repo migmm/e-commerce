@@ -1,5 +1,24 @@
 {
-    "greeting": "Hola",
-    "message": "¡Bienvenido a mi aplicación!"
-  }
-  
+    "your-cart": "TU CARRITO",
+    "add-to-cart": "Agregar al carrito",
+    "check-out": "Finalizar compra",
+    "continue-shopping": "Seguir comprando",
+    "contact-us": "Escribinos",
+    "go-top": "Ir arriba",
+    "view-search-results": "Ver todos los resultados de '",
+    "signin": "Iniciar sesión",
+    "signup": "Crear Cuenta",
+    "home": "Inicio",
+    "products": "Productos",
+    "about-us": "Nosotros",
+    "contact": "Contacto",
+    "login": "Iniciá sesión",
+    "register": "Registrate",
+    "about-description": "Somos una empresa familiar fundada en Argentina, <br> dedicada a la comercialización de figuras <br> y juguetes coleccionables.",
+    "categories": "Secciones",
+    "our-adress": "Estamos en:",
+    "open-days": "Lunes a viernes de 8 a 20hs"
+}
+
+
+

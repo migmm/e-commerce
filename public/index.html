@@ -17,11 +17,11 @@
     <div class="items-ui">
 
         <a href="https://wa.me/541133332222" id="button-whatsapp" target="_blank">
-            <span>Escribinos</span>
+            <span data-lang="contact-us">Escribinos</span>
         </a>
 
         <div id="myBtn">
-            <span>Ir arriba</span>
+            <span data-lang="go-top">Ir arriba</span>
         </div>
 
         <div class="background-dark background-dark--hidden">
@@ -29,7 +29,7 @@
 
         <div class="cart-modal">
 
-            <h2 class="cart-modal__title" data-element="greeting">
+            <h2 class="cart-modal__title" data-lang="your-cart">
                 TU CARRITO
             </h2>
 
@@ -37,8 +37,8 @@
 
             <div class="cart-modal__footer">
                 <p>Total: $<span class="cart-total">0</span></p>
-                <a href="#/checkout" class="cart-modal__footer__link-buy">FINALIZAR COMPRA</a>
-                <a href="#" class="cart-modal__footer__link-keep">Seguir comprando</a>
+                <a href="#/checkout" class="cart-modal__footer__link-buy" data-lang="check-out">FINALIZAR COMPRA</a>
+                <a href="#" class="cart-modal__footer__link-keep" data-lang="continue-shopping">Seguir comprando</a>
             </div>
 
             <div class="cart-modal__close-icon-container">
@@ -66,7 +66,7 @@
 
                     <div class="search-results__view-all-container">
                         <a class="search-results__link" href="/#/productos/">
-                            <p class="search-results__view-all">Ver todos los resultados de "<span
+                            <p class="search-results__view-all" data-lang="view-search-results">Ver todos los resultados de "<span
                                     class="search-results__result"></span>"</p>
                         </a>
                     </div>
@@ -78,8 +78,8 @@
             <div class="main-header__wrapper__login-button-container">
                 <i class="fa fa-user fa-lg" aria-hidden="true"></i>
                 <div class="login-button-menu">
-                    <a href="#/login" class="login-button-menu__login-button">Iniciar sesión</a>
-                    <a href="#/signup" class="login-button-menu__register-button">Crear cuenta</a>
+                    <a href="#/login" class="login-button-menu__login-button" data-lang="signin">Iniciar sesión</a>
+                    <a href="#/signup" class="login-button-menu__register-button" data-lang="signup">Crear cuenta</a>
                 </div>
             </div>
 
@@ -107,25 +107,22 @@
                 <nav class="main-nav">
                     <ul class="main-nav__list">
                         <li class="main-nav__item">
-                            <a href="#/inicio" class="main-nav__link">Inicio</a>
+                            <a href="#/inicio" class="main-nav__link" data-lang="home">Inicio</a>
                         </li>
                         <li class="main-nav__item">
-                            <a href="#/alta" class="main-nav__link">Alta</a>
+                            <a href="#/products" class="main-nav__link" data-lang="products">Productos</a>
                         </li>
                         <li class="main-nav__item">
-                            <a href="#/modificar" class="main-nav__link">Modificar</a>
+                            <a href="#/nosotros" class="main-nav__link" data-lang="about-us">Nosotros</a>
                         </li>
                         <li class="main-nav__item">
-                            <a href="#/contacto" class="main-nav__link">Contacto</a>
+                            <a href="#/contacto" class="main-nav__link" data-lang="contact">Contacto</a>
                         </li>
                         <li class="main-nav__item">
-                            <a href="#/nosotros" class="main-nav__link">Nosotros</a>
+                            <a href="#/login" class="main-nav__link" data-lang="login">Iniciá sesión</a>
                         </li>
                         <li class="main-nav__item">
-                            <a href="#/login" class="main-nav__link">Iniciá sesión</a>
-                        </li>
-                        <li class="main-nav__item">
-                            <a href="#/signup" class="main-nav__link">Registrate</a>
+                            <a href="#/signup" class="main-nav__link" data-lang="register">Registrate</a>
                         </li>
                         <!-- Hidden items to work propertly with JS module 404 -->
                         <li class="main-nav__item">
@@ -151,32 +148,32 @@
             <div class="footer-row-container">
                 <div class="footer-column-container">
                     <a href="/"><img src="img/logowhite.png" alt="Logo juguetería Cósmica"></a>
-                    <p>Somos una empresa familiar fundada en Argentina, <br> dedicada a la comercialización de figuras
+                    <p data-lang="about-description">Somos una empresa familiar fundada en Argentina, <br> dedicada a la comercialización de figuras
                         <br>
                         y juguetes coleccionables.
                     </p>
                 </div>
                 <div class="footer-column-container">
-                    <h2>Secciones</h2>
+                    <h2 data-lang="categories">Secciones</h2>
                     <ul class="footer-column-container__list">
                         <li class="footer-column-container__item">
-                            <a href="#/inicio" class="footer-column-container__link">Inicio</a>
+                            <a href="#/inicio" class="footer-column-container__link" data-lang="home">Inicio</a>
                         </li>
                         <li class="footer-column-container__item">
-                            <a href="#/alta" class="footer-column-container__link">Alta</a>
+                            <a href="#/products" class="footer-column-container__link" data-lang="products">Productos</a>
                         </li>
                         <li class="footer-column-container__item">
-                            <a href="#/nosotros" class="footer-column-container__link">Nosotros</a>
+                            <a href="#/nosotros" class="footer-column-container__link" data-lang="about-us">Nosotros</a>
                         </li>
                         <li class="footer-column-container__item">
-                            <a href="#/contacto" class="footer-column-container__link">Contacto</a>
+                            <a href="#/contacto" class="footer-column-container__link" data-lang="contact">Contacto</a>
                         </li>
                     </ul>
                 </div>
 
                 <div class="footer-column-container">
                     <section class="store-info">
-                        <h2>Estamos en:</h2>
+                        <h2 data-lang="our-adress">Estamos en:</h2>
                         <p>
                             <i class="fa fa-map-marker" aria-hidden="true"></i>
                             <a href="https://goo.gl/maps/3kYhseQqSyGVtbX88" target="_blank">Av. Alem 2456 - Buenos
@@ -196,7 +193,7 @@
                             <a href="https://www.jugueteriacosmica.com.ar"
                                 target="_blank">www.jugueteriacosmica.com.ar</a>
                         </p>
-                        <p>
+                        <p data-lang="open-days">
                             <i class="fa fa-calendar" aria-hidden="true"></i>
                             Lunes a viernes de 8 a 20hs
                         </p>

@@ -1,6 +1,6 @@
 const updateElements = (elementData) => {
     Object.entries(elementData).forEach(([elementKey, text]) => {
-        const elements = document.querySelectorAll(`[data-element="${elementKey}"]`);
+        const elements = document.querySelectorAll(`[data-lang="${elementKey}"]`);
         elements.forEach((element) => {
             element.textContent = text;
         });

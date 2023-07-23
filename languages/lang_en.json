@@ -1,5 +1,22 @@
 {
-    "greeting": "Hi",
-    "message": "Welcome to my app!"
-  }
-  
+    "your-cart": "YOUR CART",
+    "add-to-cart": "Add to cart",
+    "check-out": "Check out",
+    "continue-shopping":"Contine shopping",
+    "contact-us": "Contact Us",
+    "go-top": "Go to top",
+    "view-search-results": "View all search results of '",
+    "signin": "Sign in",
+    "signup": "Sign Up",
+    "home": "Home",
+    "products": "Products",
+    "about-us": "About Us",
+    "contact": "Contact Us",
+    "login": "Login",
+    "register": "Register",
+    "about-description": "We are a family-owned company founded in Argentina, <br> dedicated to the commercialization <br> of collectible figures and toys.",
+    "categories": "Sections",
+    "our-adress": "Our adress:",
+    "open-days": "Mondays to fridays from 8am a 8pm"
+}
+

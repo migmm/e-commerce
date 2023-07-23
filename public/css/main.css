@@ -630,15 +630,15 @@ body {
 .main-nav__item:nth-child(6) {
   border-top: 1px solid #004173;
 }
-.main-nav__item:nth-child(6), .main-nav__item:nth-child(7) {
+.main-nav__item:nth-child(5), .main-nav__item:nth-child(6) {
   order: 1;
 }
 @media (min-width: 900px) {
-  .main-nav__item:nth-child(6), .main-nav__item:nth-child(7) {
-    display: none;
+  .main-nav__item:nth-child(5), .main-nav__item:nth-child(6) {
+    /* display: none; */
   }
 }
-.main-nav__item:nth-child(8), .main-nav__item:nth-child(9), .main-nav__item:nth-child(10) {
+.main-nav__item:nth-child(7), .main-nav__item:nth-child(8), .main-nav__item:nth-child(9) {
   display: none;
 }
 .main-nav__link {
