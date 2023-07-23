@@ -10,7 +10,7 @@
 
             <div class="card-checkout-preview__content">
                 <p class="card-checkout-preview__description">{{this.productName}}</p>
-               {{!--  <div class="qty-selector-container">
+                {{!--  <div class="qty-selector-container">
                     <button class="qty-selector-container__btn-minus" {{#compare this.qty "<=" 1}} disabled {{/compare}}>-</button>
                     <input type="text" class="qty-selector-container__qty" value="{{this.qty}}" readonly />
                     <button class="qty-selector-container__btn-plus" {{#compare this.qty ">=" this.stock}} disabled {{/compare}}>+</button>
@@ -18,9 +18,9 @@
             </div>
 
             <div class="card-checkout-preview__price">
-                <span class="card-checkout-preview__price__price-currency">Precio: $<span class="card-checkout-preview__price__price-value">{{discount this.price this.discountPercent}}</span>
+                <span class="card-checkout-preview__price__price-currency" data-lang="price-with-sign">Precio: $<span class="card-checkout-preview__price__price-value">{{discount this.price this.discountPercent}}</span>
                 </span>
-                <span class="card-checkout-preview__price__sub-price-currency">Subtotal: $<span class="card-checkout-preview__price__price-subtotal"
+                <span class="card-checkout-preview__price__sub-price-currency" data-lang="subtotal">Subtotal: $<span class="card-checkout-preview__price__price-subtotal"
                     >{{finalPrice this.price this.discountPercent this.qty}}</span>
                 </span>
             </div>
@@ -31,7 +31,7 @@
     {{/each}}
 {{else}}
     <div class="empty-cart">
-        <h2>Tu carrito está vacío</h2>
+        <h2 "empty-cart">Tu carrito está vacío</h2>
         <p>¯\_(ツ)_/¯</p> 
     </div>
 {{/if}}

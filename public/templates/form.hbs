@@ -1,99 +1,99 @@
 <form action="/api/products" autocomplete="off" method="post" id="form-add-products">
     <div class="input-group__first-row">
         <div class="input-group__form-group">
-            <label class="input-group__label" for="productName">Nombre</label>
+            <label class="input-group__label" for="productName" data-lang="product-name">Nombre</label>
             <input class="input-group__input" name="productName" id="productName" type="text" placeholder="IRON MAN" autofocus value="" />
-            <span class="input-group__error">ERROR! EL nombre debe tener entre 5 y 30 caracteres.</span>
+            <span class="input-group__error" data-lang="product-name-error">ERROR! EL nombre debe tener entre 5 y 30 caracteres.</span>
         </div>
         <div class="input-group__form-group">
-            <label class="input-group__label" for="price">Precio</label>
+            <label class="input-group__label" for="price" data-lang="price">Precio</label>
             <input class="input-group__input" name="price" id="price" type="number" value="" />
-            <span class="input-group__error">ERROR! Ingrese números positivos.</span>
+            <span class="input-group__error" data-lang="price-error">ERROR! Ingrese números positivos.</span>
         </div>
         <div class="input-group__form-group">
-            <label class="input-group__label" for="discountPercent">Porcentaje de descuento</label>
+            <label class="input-group__label" for="discountPercent" data-lang="discount-percent">Porcentaje de descuento</label>
             <input class="input-group__input" name="discountPercent" id="discountPercent" type="number" value="" />
-            <span class="input-group__error">ERROR! Ingrese números positivos.</span>
+            <span class="input-group__error" data-lang="discount-percent-error">ERROR! Ingrese números positivos.</span>
         </div>
         <div class="input-group__form-group">
-            <label class="input-group__label" for="stock">Stock</label>
+            <label class="input-group__label" for="stock" data-lang="stock">Stock</label>
             <input class="input-group__input" name="stock" id="stock" type="number" value="" />
-            <span class="input-group__error">ERROR! Ingrese números.</span>
+            <span class="input-group__error" data-lang="stock-error">ERROR! Ingrese números.</span>
         </div>
     </div>
     <div class="input-group__second-row">
         <div class="input-group__form-group">
-            <label class="input-group__label" for="vendor">Fabricante</label>
+            <label class="input-group__label" for="vendor" data-lang="vendor">Fabricante</label>
             <input class="input-group__input" name="vendor" id="vendor" type="text" placeholder="HASBRO" value="" />
-            <span class="input-group__error">ERROR! El fabricante debe tener entre 5 y 40 caracteres.</span>
+            <span class="input-group__error" data-lang="vendor-error">ERROR! El fabricante debe tener entre 5 y 40 caracteres.</span>
         </div>
         <div class="input-group__form-group">
-            <label class="input-group__label" for="category">Categoría</label>
+            <label class="input-group__label" for="category" data-lang="category">Categoría</label>
             <input class="input-group__input" name="category" id="category" type="text" placeholder="Juguetes, coleccionables, autos" value="" />
-            <span class="input-group__error">ERROR! La categoría debe tener entre 5 y 50 caracteres.</span>
+            <span class="input-group__error" data-lang="category-error">ERROR! La categoría debe tener entre 5 y 50 caracteres.</span>
         </div>
         <div class="input-group__form-group">
-            <label class="input-group__label" for="colors">Colores principales</label>
+            <label class="input-group__label" for="colors" data-lang="main-colors">Colores principales</label>
             <input class="input-group__input" name="colors" id="colors" type="text" placeholder="rojo, azul" value="{{this.colors}}" />
-            <span class="input-group__error">ERROR! Ingrese de 1 a 3 colores separados por comas.</span>
+            <span class="input-group__error" data-lang="main-colors-error">ERROR! Ingrese de 1 a 3 colores separados por comas.</span>
         </div>
     </div>
     <div class="input-group__third-row">
         <div class="input-group__form-group">
-            <label class="input-group__label" for="shortDescription">Descripción corta</label>
+            <label class="input-group__label" for="shortDescription" data-lang="short-description">Descripción corta</label>
             <input class="input-group__input" name="shortDescription" id="shortDescription" type="text" placeholder="Figura de Iron Man" value="" />
-            <span class="input-group__error">ERROR! La descripción debe tener entre 5 y 80 caracteres.</span>
+            <span class="input-group__error" data-lang="short-description-error">ERROR! La descripción debe tener entre 5 y 80 caracteres.</span>
         </div>
     </div>
     <div class="input-group__fourth-row">
         <div class="input-group__form-group">
-            <label class="input-group__label" for="longDescription">Descripción larga.</label>
+            <label class="input-group__label" for="longDescription" data-lang="long-description">Descripción larga.</label>
             <textarea class="input-group__textarea" name="longDescription" id="longDescription" cols="30" rows="10"></textarea>
-            <span class="input-group__error">ERROR! La descripción debe tener entre 5 y 2000 caracteres.</span>
+            <span class="input-group__error" data-lang="long-description-error">ERROR! La descripción debe tener entre 5 y 2000 caracteres.</span>
         </div>
     </div>
 
     <div class="input-group__fifth-row">
         <div class="input-group__form-group">
-            <label class="input-group__label" for="ageFrom">Edad desde / hasta</label>
+            <label class="input-group__label" for="ageFrom" data-lang="age-from-to">Edad desde / hasta</label>
             <input class="input-group__input" name="ageFrom" id="ageFrom" type="number" />
             <input class="input-group__input" name="ageTo" id="ageTo" type="number" />
-            <span class="input-group__error">ERROR! Ingrese numeros <br /> de 0 a 99.</span>
+            <span class="input-group__error" data-lang="age-from-to-error">ERROR! Ingrese numeros <br /> de 0 a 99.</span>
         </div>
         <div class="input-group__form-group">
             <input type="radio" id="ageMonth" value="0" name="ageSelects" class="input-group__radio" />
-            <label for="ageMonth">Meses</label>
+            <label for="ageMonth" data-lang="months">Meses</label>
             <input type="radio" id="ageYear" value="1" name="ageSelects" class="input-group__radio" />
-            <label for="ageYear">Años</label>
+            <label for="ageYear" data-lang="years">Años</label>
             <input type="hidden" value="" name="ageSelect" id="ageSelect" />
             <input type="hidden" value="" name="addedDate" id="addedDate" />
             <input type="hidden" value="" name="lastSell" id="lastSell" />
             <input type="hidden" value="" name="urlName" id="urlName" />
             <input type="hidden" value="" name="id" id="id" />
-            <span class="input-group__error">ERROR! Seleccione meses o años.</span>
+            <span class="input-group__error" data-lang="months-years-error">ERROR! Seleccione meses o años.</span>
         </div>
         <div class="input-group__form-group">
             <input type="checkbox" id="freeShip" name="freeShip" value="false" class="input-group__check" />
-            <label class="input-group__label" for="freeShip" id="label-checkbox">Envío sin cargo</label>
-            <span class="input-group__error">¿El envío es sin cargo?</span>
+            <label class="input-group__label" for="freeShip" id="label-checkbox" data-lang="free-shipping">Envío sin cargo</label>
+            <span class="input-group__error" data-lang="is-shipping-free">¿El envío es sin cargo?</span>
         </div>
     </div>
     <div class="input-group__files-row">
         <div class="input-group__form-group">
-            <label class="input-group__label" for="avatar">Foto de portada</label>
+            <label class="input-group__label" for="avatar" data-lang="cover-image">Foto de portada</label>
             <input type="file" id="avatar" class="file-avatar" name="avatar" accept="image/png, image/gif, image/jpeg" />
-            <span class="input-group__error">ERROR! Debe cargar una imagen.</span>
+            <span class="input-group__error" data-lang="cover-image-error">ERROR! Debe cargar una imagen.</span>
         </div>
         <div class="input-group__form-group">
-            <label class="input-group__label" for="gallery">Fotos de galería (opcional, 3 máx)</label>
+            <label class="input-group__label" for="gallery" data-lang="gallery-photos">Fotos de galería (opcional, 3 máx)</label>
             <input type="file" multiple id="gallery" class="file-gallery" name="gallery" accept="image/png, image/gif, image/jpeg" />
-            <span class="input-group__error">ERROR! Mínimo una imagen, máximo 3.</span>
+            <span class="input-group__error" data-lang="gallery-photos-error">ERROR! Mínimo una imagen, máximo 3.</span>
         </div>
     </div>
     <div class="input-group__buttons">
-        <span class="input-group__error-form">Error! Verifique los campos marcados!</span>
-        <span class="input-group__ok-form">Producto cargado exitosamente 😁 !!</span>
-        <button type="submit" id="btn-update">Agregar</button>
-        <button type="reset" id="btn-cancel">Limpiar formulario</button>
+        <span class="input-group__error-form" data-lang="error-fields">Error! Verifique los campos marcados!</span>
+        <span class="input-group__ok-form" data-lang="sucessfully-added-product">Producto cargado exitosamente 😁 !!</span>
+        <button type="submit" id="btn-update" data-lang="add-product">Agregar</button>
+        <button type="reset" id="btn-cancel" data-lang="clean-form">Limpiar formulario</button>
     </div>
 </form>
