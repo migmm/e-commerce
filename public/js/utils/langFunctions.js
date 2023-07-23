@@ -1,13 +1,30 @@
-const updateElements = (elementData) => {
-    Object.entries(elementData).forEach(([elementKey, text]) => {
-        const elements = document.querySelectorAll(`[data-lang="${elementKey}"]`);
-        elements.forEach((element) => {
-            element.textContent = text;
-        });
-        const placeholders = document.querySelectorAll(`[data-placeholder="${elementKey}"]`);
-        placeholders.forEach((placeholder) => {
-            placeholder.placeholder = text;
-        });
+const updateElements = (elementData, parentKey = "") => {
+    Object.entries(elementData).forEach(([key, value]) => {
+        const elementKey = parentKey ? `${parentKey}-${key}` : key;
+
+        if (typeof value === 'object') {
+            updateElements(value, elementKey);
+        } else {
+            const elements = document.querySelectorAll(`[data-lang="${elementKey}"]`);
+            elements.forEach((element) => {
+                element.innerHTML = value;
+            });
+
+            const placeholders = document.querySelectorAll(`[data-placeholder="${elementKey}"]`);
+            placeholders.forEach((placeholder) => {
+                placeholder.placeholder = value;
+            });
+
+            const titles = document.querySelectorAll(`[data-title="${elementKey}"]`);
+            titles.forEach((title) => {
+                title.title = value;
+            });
+
+            const alts = document.querySelectorAll(`[data-alt="${elementKey}"]`);
+            alts.forEach((alt) => {
+                alt.alt = value;
+            });
+        }
     });
 };
 

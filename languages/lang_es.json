@@ -30,6 +30,7 @@
     "discount-percent": "Porcentaje de descuento",
     "discount-percent-error": "ERROR! Ingrese números positivos.",
     "stock": "Stock",
+    "header-logo-alt": "Logo de la juguetería",
     "stock-error": "ERROR! Ingrese números.",
     "vendor": "Fabricante",
     "vendor-error": "ERROR! El fabricante debe tener entre 5 y 40 caracteres.",
