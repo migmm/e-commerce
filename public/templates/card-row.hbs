@@ -3,7 +3,7 @@
         {{#compare this.stock ">=" 1}}
             <div class="card">
                 <input type="hidden" name="stockh" id="stockh" class="stockh" value="{{this.stock}}" />
-                <a href="#" class="card__link" data-id="{{this.id}}" data-lang="add-to-cart">Agregar al carrito</a>
+                <a href="#" class="card__link" data-id="{{this.id}}" data-lang="product-card-add-to-cart">Agregar al carrito</a>
 
                 <article class="card__article">
 
@@ -20,13 +20,13 @@
                     <div class="card__content">
                         {{#compare this.discountPercent ">=" 1 }}
                             <span class="card__price-currency">$<span class="card__price-value">{{discount this.price this.discountPercent}}</span></span>
-                            <span class="card__discount"><span class="card__discount__percent">{{this.discountPercent}}</span data-lang="discount">% DTO</span>
+                            <span class="card__discount"><span class="card__discount__percent">{{this.discountPercent}}</span><span data-lang="product-card-discount">% DTO</span></span>
                             <span class="card__latest-price-currency">$<span class="card__latest-price">{{this.price}}</span></span>
                         {{else}}
                             <span class="card__price-currency">$<span class="card__price-value">{{this.price}}</span></span>
                             <span class="card__discount hide-elements"><span
                                     class="card__discount__percent hide-elements"
-                                >{{this.discountPercent}}</span data-lang="discount">% DTO</span>
+                                >{{this.discountPercent}}</span data-lang="product-card-discount"><span data-lang="product-card-discount">% DTO</span></span>
                             <span class="card__latest-price-currency hide-elements">$<span
                                     class="card__latest-price hide-elements"
                                 >{{this.price}}</span></span>
@@ -40,5 +40,5 @@
         {{/compare}}
     {{/listItems}}
 {{else}}
-    <h2>No se encontraron productos</h2>
+    <h2 data-lang="product-card-products-not-found">No se encontraron productos</h2>
 {{/if}}

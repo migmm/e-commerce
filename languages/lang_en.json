@@ -1,19 +1,16 @@
 {
     "language": "English",
     "language-abbreviation": "EN",
-
-    "main-header":{
+    "main-header": {
         "header-logo-alt": "Toystore logo",
-        "search-input-placeholder":"What are you looking for?",
+        "search-input-placeholder": "What are you looking for?",
         "view-search-results": "View all search results of \"",
         "hamburger-button-title": "View Menu"
     },
-
     "user-button": {
         "signin": "Sign in",
         "signup": "Sign Up"
     },
-
     "navbar": {
         "home": "Home",
         "products": "Products",
@@ -22,7 +19,6 @@
         "login": "Login",
         "register": "Register"
     },
-
     "cart-preview": {
         "your-cart": "YOUR CART",
         "check-out": "Check out",
@@ -31,12 +27,25 @@
         "price-with-sign": "Price: $",
         "subtotal": "Subtotal: $"
     },
-
     "float-buttons": {
         "contact-us": "Contact Us",
         "go-top": "Go to top"
     },
-
+    "home": {
+        "new-arrrivals": "NEW ARRIVALS",
+        "new-arribals-sub": "We have new products in our store.",
+        "most-populars": "MOST POPULARS",
+        "top-sellers": "TOP SELLERS",
+        "bttf": "Go back to the future with Doc and Marty!",
+        "last-visited": "LAST VISITED",
+        "poster-promo-avengers-alt": "Poster promo avengers",
+        "poster-promo-transformers-alt": "Poster promo transformers",
+        "poster-promo-lego-alt": "Poster promo LEGO",
+        "oster-promo-jurassic-world-alt": "Poster promo Jurassic World",
+        "poster-promo-barbie-alt": "Poster promo Barbie",
+        "poster-promo-terminator-alt": "Poster promo Terminator",
+        "poster-promo-hot-wheels-alt": "Poster Promo Hot Wheels"
+    },
     "footer": {
         "header-logo-alt": "Toystore logo",
         "about-description": "We are a family-owned company founded in Argentina, <br> dedicated to the commercialization <br> of collectible figures and toys.",
@@ -49,20 +58,17 @@
         "open-days": "Mondays to fridays from 8 am to 8 pm",
         "created-by": "Forged by"
     },
-
     "product-card": {
         "add-to-cart": "Add to cart",
-        "discount": "% DISC"
+        "discount": "% DISC",
+        "products-not-found": "Products not found."
     },
-
     "new-product-page": {
         "title": "New product"
     },
-
     "card-all-products": {
-        "products-not-found": "Products not found"
+        "products-not-found": "Products not found."
     },
-
     "form-product": {
         "product-name": "Name",
         "placeholder-product-name": "IRON MAN",

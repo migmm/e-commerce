@@ -37,6 +37,22 @@
         "go-top": "Ir arriba"
     },
 
+    "home": {
+        "new-arrrivals": "NUEVOS INGRESOS",
+        "new-arribals-sub": "Ingresaron nuevos productos a nuestra tienda.",
+        "most-populars": "LOS MAS POPULARES",
+        "top-sellers": "LOS MAS VENDIDOS",
+        "bttf": "Volvé al futuro con Marty y el Doc!!",
+        "last-visited": "ULTIMOS VISITADOS",
+        "poster-promo-avengers-alt": "Poster promo figuras de Avengers",
+        "poster-promo-transformers-alt": "Poster promo figuras de Transformers",
+        "poster-promo-lego-alt": "Poster promo bricks Lego",
+        "oster-promo-jurassic-world-alt": "Poster promo figuras de Jurassic World",
+        "poster-promo-barbie-alt": "Poster promo figuras de Barbie",
+        "poster-promo-terminator-alt": "Poster promo figuras de Terminator",
+        "poster-promo-hot-wheels-alt": "poster promo vehiculos de Hot Wheels"
+    },
+
     "footer": {
         "header-logo-alt": "Toystore logo",
         "about-description": "Somos una empresa familiar fundada en Argentina, <br> dedicada a la comercialización de figuras <br> y juguetes coleccionables.",
@@ -52,7 +68,8 @@
 
     "product-card": {
         "add-to-cart": "Agregar al carrito",
-        "discount": "% DTO"
+        "discount": "% DTO",
+        "products-not-found": "No se encontraron productos."
     },
 
     "new-product-page":{
@@ -60,7 +77,7 @@
     },
 
     "card-all-products": {
-        "products-not-found": "No se encontraron productos"
+        "products-not-found": "No se encontraron productos."
     },
 
     "form-product": {
