@@ -766,6 +766,18 @@ body {
     flex-direction: column;
   }
 }
+.main-footer__wrapper .footer-row-container__payment-container {
+  margin: 0 1em 0 1em;
+}
+@media (min-width: 768px) {
+  .main-footer__wrapper .footer-row-container__payment-container {
+    width: 80%;
+  }
+}
+.main-footer__wrapper .footer-row-container__payment-container .payment-logo {
+  width: 50px;
+  cursor: default;
+}
 .main-footer .footer-info {
   color: #cecdcd;
   text-align: center;

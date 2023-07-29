@@ -14,6 +14,23 @@
         @media (min-width: 768px) {
             flex-direction: column;
         }
+
+        .footer-row-container {
+
+            &__payment-container {
+
+                margin: 0 1em 0 1em;
+
+                @media (min-width: 768px) {
+                    width: 80%;
+                }
+
+                .payment-logo {
+                    width: 50px;
+                    cursor: default;
+                }
+            }
+        }
     }
 
     & .footer-info {
