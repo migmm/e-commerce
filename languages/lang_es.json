@@ -63,7 +63,9 @@
         "categories": "Secciones",
         "our-adress": "Estamos en",
         "open-days": "Lunes a viernes de 8 a 20 hs",
-        "created-by": "Creado por"
+        "created-by": "Creado por",
+        "payment-methods": "Formas de pago",
+        "deliveries": "Envíos"
     },
 
     "product-card": {

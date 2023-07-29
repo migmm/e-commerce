@@ -56,7 +56,9 @@
         "categories": "Sections",
         "our-adress": "Our adress",
         "open-days": "Mondays to fridays from 8 am to 8 pm",
-        "created-by": "Forged by"
+        "created-by": "Forged by",
+        "payment-methods": "Payment methods",
+        "deliveries": "Deliveries"
     },
     "product-card": {
         "add-to-cart": "Add to cart",
