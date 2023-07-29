@@ -17,7 +17,9 @@
         "about-us": "About Us",
         "contact": "Contact Us",
         "login": "Login",
-        "register": "Register"
+        "register": "Register",
+        "new-product": "New product",
+        "edit-product": "Edit product"
     },
     "cart-preview": {
         "your-cart": "YOUR CART",

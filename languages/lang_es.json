@@ -20,7 +20,9 @@
         "about-us": "Nosotros",
         "contact": "Contacto",
         "login": "Iniciá sesión",
-        "register": "Registrate"
+        "register": "Registrate",
+        "new-product": "Alta",
+        "edit-product": "Editar"
     },
 
     "cart-preview": {
