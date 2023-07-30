@@ -118,7 +118,7 @@ class ModuleCart {
             }
             await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.cart-modal__products')
             localStorage.setItem('cart', JSON.stringify(this.cart));
-            toastComponent.toastNotification("Producto agregado al carrito!");
+            toastComponent.toastNotification('Producto agregado al carrito!', 'success', '#0FB681', 'center')
             this.updateCart();
             return;
         }
@@ -130,7 +130,7 @@ class ModuleCart {
         }
         await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.cart-modal__products')
         localStorage.setItem('cart', JSON.stringify(this.cart));
-        toastComponent.toastNotification("Producto agregado al carrito!");
+        toastComponent.toastNotification('Producto agregado al carrito!', 'success', '#0FB681', 'center')
         this.updateCart();
     }
 
@@ -157,7 +157,7 @@ class ModuleCart {
         }
         await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.cart-modal__products')
         localStorage.setItem('cart', JSON.stringify(this.cart));
-        toastComponent.toastNotification("Producto eliminado del carrito!");
+        toastComponent.toastNotification('Producto eliminado del carrito!', 'success', '#0FB681', 'center')
         this.updateCart();
     }
 
