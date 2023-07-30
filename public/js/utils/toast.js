@@ -1,9 +1,10 @@
+import fetchLanguageData from '../utils/langFunctions.js'
 class ToastComponent {
     generateId() {
         return '_' + Math.random().toString(36).substr(2, 9);
     }
 
-    toastNotification(message, type, color, location) {
+    toastNotification(translationKey, type, color, location) {
         const toastContainer = document.getElementById('toast-container');
         const toastElement = document.createElement('div');
         const toastId = this.generateId();
@@ -13,7 +14,7 @@ class ToastComponent {
         <div class="toast-icon">
             <i class="fa fa-${this.getIconForType(type)} fa-lg"></i>
         </div>
-        <div class="toast-text">${message}</div>
+        <div class="toast-text" data-lang="${translationKey}">${translationKey}</div>
         <div class="toast-close">
             <i class="fa fa-times fa-lg"></i>
         </div>
@@ -34,7 +35,7 @@ class ToastComponent {
         };
 
         toastContainer.appendChild(toastElement);
-
+        fetchLanguageData.fetchLanguageData();
         setTimeout(() => {
             toastElement.classList.add('show');
         }, 100);

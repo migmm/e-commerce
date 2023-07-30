@@ -48,6 +48,11 @@
         "poster-promo-terminator-alt": "Poster promo Terminator",
         "poster-promo-hot-wheels-alt": "Poster Promo Hot Wheels"
     },
+    "toast": {
+        "added-to-cart": "Product added to cart",
+        "removed-from-cart": "Producto removed from cart",
+        "cart-updated": "Updated cart"
+    },
     "footer": {
         "header-logo-alt": "Toystore logo",
         "about-description": "We are a family-owned company founded in Argentina, <br> dedicated to the commercialization <br> of collectible figures and toys.",

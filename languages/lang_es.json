@@ -1,19 +1,16 @@
 {
     "language": "Español",
     "language-abbreviation": "ES",
-    
     "main-header": {
         "header-logo-alt": "Logo de la juguetería",
-        "search-input-placeholder":"¿Qué estás buscando?",
+        "search-input-placeholder": "¿Qué estás buscando?",
         "view-search-results": "Ver todos los resultados de  \"",
         "hamburger-button-title": "Ver menú"
     },
-
     "user-button": {
         "signin": "Iniciar sesión",
         "signup": "Crear Cuenta"
     },
-
     "navbar": {
         "home": "Inicio",
         "products": "Productos",
@@ -24,7 +21,6 @@
         "new-product": "Alta",
         "edit-product": "Editar"
     },
-
     "cart-preview": {
         "your-cart": "TU CARRITO",
         "check-out": "Finalizar compra",
@@ -33,12 +29,10 @@
         "price-with-sign": "Precio: $",
         "subtotal": "Subtotal: $"
     },
-
     "float-buttons": {
         "contact-us": "Escribinos",
         "go-top": "Ir arriba"
     },
-
     "home": {
         "new-arrrivals": "NUEVOS INGRESOS",
         "new-arribals-sub": "Ingresaron nuevos productos a nuestra tienda.",
@@ -54,7 +48,11 @@
         "poster-promo-terminator-alt": "Poster promo figuras de Terminator",
         "poster-promo-hot-wheels-alt": "poster promo vehiculos de Hot Wheels"
     },
-
+    "toast": {
+        "added-to-cart": "Producto agregado al carrito",
+        "removed-from-cart": "Producto eliminado del carrito",
+        "cart-updated": "Carrito actualizado"
+    },
     "footer": {
         "header-logo-alt": "Toystore logo",
         "about-description": "Somos una empresa familiar fundada en Argentina, <br> dedicada a la comercialización de figuras <br> y juguetes coleccionables.",
@@ -69,21 +67,17 @@
         "payment-methods": "Formas de pago",
         "deliveries": "Envíos"
     },
-
     "product-card": {
         "add-to-cart": "Agregar al carrito",
         "discount": "% DTO",
         "products-not-found": "No se encontraron productos."
     },
-
-    "new-product-page":{
+    "new-product-page": {
         "title": "Nuevo producto"
     },
-
     "card-all-products": {
         "products-not-found": "No se encontraron productos."
     },
-
     "form-product": {
         "product-name": "Nombre",
         "placeholder-product-name": "IRON MAN",
