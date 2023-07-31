@@ -216,12 +216,6 @@
         &__main-nav-container {
             display: none;
 
-            & .main-nav {
-                &__item:nth-child(4) {
-                    order: 1;
-                }
-            }
-
             @media (min-width: 900px) {
                 order: 1;
                 display: block;

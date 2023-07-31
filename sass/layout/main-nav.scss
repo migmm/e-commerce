@@ -20,11 +20,7 @@
         text-align: center;
     }
 
-    &__item:nth-child(2) {
-       // order: 1;
-    }
-
-    &__item:nth-child(6) {
+    &__item:nth-child(5) {
         border-top: 1px solid color.$darkblue;
     }
 
@@ -33,15 +29,20 @@
         order: 1;
 
         @media (min-width: 900px) {
-            /* display: none; */
+            display: none;
         }
-        
     }
 
     &__item:nth-child(7),
     &__item:nth-child(8),
-    &__item:nth-child(9) {
+    &__item:nth-child(9),
+    &__item:nth-child(10),
+    &__item:nth-child(11) {
         display: none;
+
+        @media (min-width: 900px) {
+            display: none;
+        }
     }
 
     &__link {
