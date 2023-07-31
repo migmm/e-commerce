@@ -19,7 +19,7 @@ class LoginService {
             const postLogin = await http.post(this.URL_LOGIN, login, mode);
             return postLogin;
         } catch (error) {
-            throw error; // Simplemente lanzamos el error recibido del cliente HTTP al controlador
+            throw error;
         }
     }
 

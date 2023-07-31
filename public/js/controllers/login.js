@@ -20,8 +20,8 @@ class LoginController {
             return postedLogin;
         } catch (error) {
             console.error('Error al realizar el postLogin:', error.message);
-            // Realiza acciones adicionales según sea necesario para manejar el error
-            throw error; // Lanzar el error para que se pueda capturar y manejar en otros lugares si es necesario
+            return error;
+            //throw error;
         }
     }
 

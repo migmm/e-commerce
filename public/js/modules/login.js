@@ -5,8 +5,9 @@ import loginController from '../controllers/login.js';
 
 class PageLogin {
 
- static form
-    static fields
+    static form;
+    static fields;
+    static errorMsg;
 
     static async postLogin(product) {
         const mode = 'json';
@@ -19,31 +20,50 @@ class PageLogin {
         PageLogin.form.addEventListener('submit', async e => {
             e.preventDefault();
 
-            const data = {};
-            PageLogin.fields.forEach(field => {
-                data[field.name] = field.value;
-            });
+            if(this.validateForm()) {
+
+                const data = {};
+                PageLogin.fields.forEach(field => {
+                    data[field.name] = field.value;
+                });
+        
+                const mode = 'json';
+                const login = await loginController.postLogin(data, mode);
     
-            const mode = 'json';
-            const login = await loginController.postLogin(data, mode);
+                if (login.status === 201) {
+                    window.location.href = '/#/inicio';
+                    return;
+                } 
 
-            if (login.status === 201) {
-                window.location.href = '/#/inicio';
-            } else {
-
+                this.errorMsg[2].style.visibility = "visible";
+                PageLogin.form.reset();
+                return;
             }
-    
-            PageLogin.form.reset();
         });
     }
 
+    static validateForm() {
+        var result = true;
+
+        for (let i = 0; i < this.fields.length; i++) {
+            if (this.fields[i].value.trim() === '') {
+                this.errorMsg[i].style.visibility = 'visible';
+                result = false;
+            } else {
+                this.errorMsg[i].style.visibility = 'hidden';
+            }
+        }
+        return result
+    }
 
     static async init () {
         goTopOnLoad.goToTopOnLoad();
         await cartController.init();
-
+        const cookieValue = document.cookie;
+        console.log(cookieValue)
         this.form = document.getElementById('form-login');
-        this.fields = this.form.querySelectorAll(`input:not([type='radio']`);
+        this.fields = this.form.querySelectorAll('input');
+        this.errorMsg = this.form.querySelectorAll('span');
         this.addFormEvents();
         
         document.getElementById('email').focus();
