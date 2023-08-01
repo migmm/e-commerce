@@ -26,7 +26,7 @@ class PageLogin {
                 PageLogin.fields.forEach(field => {
                     data[field.name] = field.value;
                 });
-        
+
                 const mode = 'json';
                 const login = await loginController.postLogin(data, mode);
     
@@ -61,11 +61,12 @@ class PageLogin {
         await cartController.init();
         const cookieValue = document.cookie;
         console.log(cookieValue)
+
         this.form = document.getElementById('form-login');
         this.fields = this.form.querySelectorAll('input');
         this.errorMsg = this.form.querySelectorAll('span');
         this.addFormEvents();
-        
+
         document.getElementById('email').focus();
         await cartController.init();
 

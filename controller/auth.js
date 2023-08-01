@@ -25,27 +25,70 @@ const login = async (req, res) => {
     }
 
     const match = await bcrypt.compare(password, foundUser.password)
-
     if (!match) return res.status(401).json({ message: 'Unauthorized' })
 
     const secretKey = process.env.ACCESS_TOKEN_SECRET;
 
     const accessToken = jwt.sign(
-        { 'id': foundUser.id },
+        { 
+            'id': foundUser.id,
+            'username': foundUser.username,
+            'role': foundUser.roles
+        },
         secretKey,
         { expiresIn: '1d' }
     );
 
+    const refreshToken = jwt.sign(
+        { 'email': foundUser.email },
+        process.env.REFRESH_TOKEN_SECRET,
+        { expiresIn: '7d' }
+    )
+
     const cookieOptions = {
-        httpOnly: true,
+        httpOnly: false,
         sameSite: 'none',
-        secure: true,
+        secure: false,
         maxAge: 7 * 24 * 60 * 60 * 1000,
     };
 
-    return res.cookie('jwt', accessToken, cookieOptions).status(201).json({ accessToken });
+    return res.cookie('jwt', refreshToken, cookieOptions).status(201).json({ accessToken });
 };
 
+const refreshToken = (req, res) => {
+    const cookies = req.cookies
+    console.log(cookies)
+    if (!cookies?.jwt) return res.status(401).json({ message: 'Unauthorized' })
+
+    const refreshToken = cookies.jwt
+
+    jwt.verify( 
+        refreshToken, 
+        process.env.REFRESH_TOKEN_SECRET,
+        async (err, decoded) => {
+            if (err) return res.status(403).json({ message: 'Forbidden' })
+
+            const foundUser = await api.getAuth('email', decoded.email);
+            console.log('user auth', foundUser);
+        
+            if (!foundUser) {
+                return res.status(401).json({ message: 'Unauthorized' })
+            }
+
+            const accessToken = jwt.sign(
+                { 
+                    'id': foundUser.id,
+                    'username': foundUser.username,
+                    'role': foundUser.roles
+                },
+                process.env.ACCESS_TOKEN_SECRET,
+                { expiresIn: '1d' }
+            )
+
+            res.json({ accessToken })
+        }
+    )
+}
 
 const logout = (req, res) => {
     const cookies = req.cookies.jwt;
@@ -111,11 +154,9 @@ async function verifyOTP(req, res) {
     }
 }
 
-
-
-
 export default {
     login,
+    refreshToken,
     logout,
     signup,
     sendOTP,

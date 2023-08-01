@@ -35,6 +35,20 @@ const createAuth = async (user) => {
     }
 };
 
+const createRefreshToken = async (user) => {
+
+    const validationError = UserValidator.validate(user);
+
+/*     if (!validationError) { */
+        const createdUser = await modelUsers.createUser(user);
+        return createdUser;
+/*     } else {
+        console.log(validationError);
+        console.error(`Error validating createUser: ${validationError.details[0].message}`);
+        return {};
+    } */
+};
+
 async function generateOTP(email, method) {
     const user = await modelUsers.findByAny('email', email);
 
@@ -114,6 +128,7 @@ async function verifyOTP(email, otp) {
 export default {
     getAuth,
     createAuth,
+    createRefreshToken,
     generateOTP,
     verifyOTP,
 };
