@@ -538,9 +538,6 @@ body {
 .main-header__wrapper__login-button-container .login-button-menu__login-button:visited, .main-header__wrapper__login-button-container .login-button-menu__register-button:visited {
   color: #004173;
 }
-.main-header__wrapper__login-button-container .login-menu {
-  display: block;
-}
 @media (min-width: 768px) {
   .main-header__wrapper__login-button-container {
     order: 3;

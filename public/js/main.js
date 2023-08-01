@@ -111,6 +111,19 @@ class Main {
         const searchLink = document.getElementsByClassName('search-results__link')[0]
         const searchQuery = document.getElementsByClassName('search-results__result')[0]
         const form = document.getElementsByClassName('main-header__wrapper__form')[0]
+        const userMenu = document.getElementsByClassName('main-header__wrapper__login-button-container')[0];
+
+
+        userMenu.addEventListener('click', e => {
+            var menu = document.querySelector('.login-button-menu');
+            var computedStyle = window.getComputedStyle(menu);
+        
+            if (computedStyle.display === 'none' || computedStyle.display === '') {
+                menu.style.display = 'block';
+            } else {
+                menu.style.display = 'none';
+            }
+        });
 
         window.onscroll = function () {
             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -175,7 +188,7 @@ class Main {
         ModuleCart.cartFunctions();
         this.products = await productController.getProducts();
         // ModuleCart.init();
-        
+
     }
 }
 
