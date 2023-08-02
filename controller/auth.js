@@ -46,9 +46,9 @@ const login = async (req, res) => {
     )
 
     const cookieOptions = {
-        httpOnly: false,
-        sameSite: 'none',
-        secure: false,
+        httpOnly: false, //value for developing in local host, change to "true" in production.
+        sameSite: 'Strict', //value for developing in local host, change to "none" in production.
+        secure: false, //value for developing in local host, change to "true" in production.
         maxAge: 7 * 24 * 60 * 60 * 1000,
     };
 

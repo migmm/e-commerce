@@ -4,6 +4,7 @@ import render from '/js/utils/render.js';
 import hbsHelpers from './utils/hb-templates.js';
 import find from './utils/find.js';
 import fetchLanguageData from './utils/langFunctions.js'
+import loginController from './controllers/login.js';
 class Main {
 
     static links
@@ -178,6 +179,46 @@ class Main {
         }); */
     }
 
+    static getCookieValue(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    static parseJwt(token) {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => `%${(`00${c.charCodeAt(0).toString(16)}`).slice(-2)}`).join(''));
+        return JSON.parse(jsonPayload);
+    }
+
+    static async refreshAccessToken() {
+        //const refreshToken = getCookieValue('refreshToken');
+
+        try {
+                const login = await loginController.postRefreshToken();
+                console.log(login.responseData.accessToken)
+
+                if (login.status === 401) {
+                    window.location.href = '/#/login';
+                    return;
+                } 
+            
+                if (login.status === 200) {
+                    var menu = document.querySelector('.login-button-menu');
+                    menu.innerHTML = `
+                    <a href="#/login" class="login-button-menu__login-button"
+                        data-user-button-data-lang="signin">Configuración</a>
+                        <a href="#/signup" class="login-button-menu__register-button"
+                        data-user-button-data-lang="signup">Salir
+                    </a>
+                    `;
+                }
+
+        } catch (error) {
+            console.error('Error during refresh token:', error);
+        }
+    }
     async start() {
 
         // register ALL helpers at start
@@ -188,7 +229,7 @@ class Main {
         ModuleCart.cartFunctions();
         this.products = await productController.getProducts();
         // ModuleCart.init();
-
+        await Main.refreshAccessToken();
     }
 }
 

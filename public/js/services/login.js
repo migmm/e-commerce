@@ -3,6 +3,7 @@ import http from '../clients/http.client.js';
 class LoginService {
     
     URL_LOGIN = '/api/auth/login/'
+    URL_REFRESH_TOKEN = '/api/auth/refresh/'
 
     async getLogin(id) {
         const login = await http.get(this.URL_LOGIN, id);
@@ -17,6 +18,15 @@ class LoginService {
     async postLogin(login, mode) {
         try {
             const postLogin = await http.post(this.URL_LOGIN, login, mode);
+            return postLogin;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async postRefreshToken() {
+        try {
+            const postLogin = await http.post(this.URL_REFRESH_TOKEN);
             return postLogin;
         } catch (error) {
             throw error;

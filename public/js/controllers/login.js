@@ -25,6 +25,17 @@ class LoginController {
         }
     }
 
+    async postRefreshToken() {
+        try {
+            const postedLogin = await loginService.postRefreshToken();
+            return postedLogin;
+        } catch (error) {
+            console.error('Error al realizar el postLogin:', error.message);
+            return error;
+            //throw error;
+        }
+    }
+
     async updateLogin(id, login, mode) {
         // console.log('updateLogin:', id, login);
         const updatedLogin = await loginService.updateLogin(id, login, mode);
