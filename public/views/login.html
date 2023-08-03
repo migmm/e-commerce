@@ -15,14 +15,18 @@
                     <input type="text" id="password" name="password" class="input-group__input">
                     <span class="input-group__error">ERROR! Ingrese una contraseña.</span>
                 </div>
+                <div class="input-group__form-group">
+                    <input type="checkbox" id="stayConnected" name="stayConnected" value="false" class="input-group__check" />
+                    <label class="input-group__label" for="stayConnected" id="label-checkbox" data-lang="form-stay-connected">Seguir conectado.</label>
+                </div>
             </div>
             <div class="input-group__buttons">
                 <span class="input-group__error-form">Error! Verifique los campos marcados!</span>
                 <button type="submit">Ingresar</button>
             </div>
             <div class="input-group__form-group account">
-                <span class="login-form__forgot-password">¿Olvidaste tu contraseña?</span>
-                <span class="login-form__register">No tenes cuenta. ¿Deseas registrarte?</span>
+                <span class="login-form__forgot-password"><a href="" class="login-form__forgot-password__link">¿Olvidaste tu contraseña?</a></span>
+                <span class="login-form__register">No tenes cuenta. <a href="#/signup" class="login-form__register__link">¿Deseas registrarte?</a></span>
             </div>
         </form>
     </div>
