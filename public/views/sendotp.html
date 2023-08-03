@@ -1,0 +1,27 @@
+<div class="main-content__wrapper">
+    <div class="sendotp-form">
+        <div class="sendotp-form__heading">
+            <h1 class="sendotp-form__heading__title">Reiniciar contraseña</h1>
+        </div>
+        <form action="/api/auth/sendotp" autocomplete="off" method="post" id="form-sendotp">
+            <div class="sendotp-form__container">
+                <div class="input-group__form-group">
+                    <label class="input-group__label" for="stayConnected" id="label-checkbox" data-lang="form-stay-connected">Seguir conectado.</label>
+                </div>
+                <div class="input-group__form-group">
+                    <label for="email" class="input-group__label">E-mail</label>
+                    <input type="text" id="email" name="email" class="input-group__input">
+                    <span class="input-group__error">ERROR! Ingrese un e-mail válido.</span>
+                </div>
+            </div>
+            <div class="input-group__buttons">
+                <span class="input-group__error-form">Error! Verifique los campos marcados!</span>
+                <button type="submit">Ingresar</button>
+            </div>
+            <div class="input-group__form-group account">
+                <span class="sendotp-form__forgot-password"><a href="" class="sendotp-form__forgot-password__link">¿Olvidaste tu contraseña?</a></span>
+                <span class="sendotp-form__register">No tenes cuenta. <a href="#/signup" class="sendotp-form__register__link">¿Deseas registrarte?</a></span>
+            </div>
+        </form>
+    </div>
+</div>
