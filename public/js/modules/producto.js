@@ -37,8 +37,11 @@ class PageProducto {
         
         let searchResult = find.find(toSearch, this.products)
 
-        console.log (searchResult)
-        await render.renderTemplateCards(searchResult[0], 'templates/producto.hbs', '.full-product-page')
+        console.log ("search result" , searchResult)
+        console.log ("search result 0" , searchResult[0])
+        
+        const currentLang = 'en'
+        await render.renderTemplateCards(searchResult, 'templates/producto.hbs', '.full-product-page', currentLang)
     }
 
     static async optionsFunctions() {

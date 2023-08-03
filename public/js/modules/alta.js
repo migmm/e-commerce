@@ -90,7 +90,8 @@ class PageAlta {
         //await fetchLanguageData.fetchLanguageData();
         // Empty constant to tell render that only show form
         const showOnly = null;
-        await render.renderTemplateCards(showOnly, 'templates/form.hbs', '.input-group')
+        const currentLang = 'es'
+        await render.renderTemplateCards(showOnly, 'templates/form.hbs', '.input-group', currentLang)
         
         this.form = document.getElementById('form-add-products');
         this.fields = this.form.querySelectorAll(`textarea, input:not([type='radio']`);

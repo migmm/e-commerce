@@ -102,6 +102,7 @@ class PageInicio {
         this.arrowSlider();
         const products = await productController.getProducts();
         console.log(`Se encontraron ${products.length} productos`);
+        console.log(products)
         this.carousel();
         this.cardSlider();
 
@@ -111,7 +112,11 @@ class PageInicio {
             return dateB - dateA;
         })
         console.log(products);
-        await render.renderTemplateCards(products, 'templates/card-row.hbs', '.cards-container')
+
+
+        const currentLang = 'en';
+        await render.renderTemplateCards(products, 'templates/card-row.hbs', '.cards-container', currentLang);
+
 
         products.sort(function compare(a, b) {
             var dateA = new Date(a.lastSell);

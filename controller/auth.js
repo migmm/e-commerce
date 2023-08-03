@@ -31,16 +31,18 @@ const login = async (req, res) => {
 
     const accessToken = jwt.sign(
         { 
-            'id': foundUser.id,
             'username': foundUser.username,
-            'role': foundUser.roles
+            'role': foundUser.role
         },
         secretKey,
         { expiresIn: '1d' }
     );
 
     const refreshToken = jwt.sign(
-        { 'email': foundUser.email },
+        { 
+            'username': foundUser.username,
+            'role': foundUser.role
+        },
         process.env.REFRESH_TOKEN_SECRET,
         { expiresIn: '7d' }
     )
@@ -68,7 +70,7 @@ const refreshToken = (req, res) => {
         async (err, decoded) => {
             if (err) return res.status(403).json({ message: 'Forbidden' })
 
-            const foundUser = await api.getAuth('email', decoded.email);
+            const foundUser = await api.getAuth('username', decoded.username);
             console.log('user auth', foundUser);
         
             if (!foundUser) {
@@ -77,9 +79,8 @@ const refreshToken = (req, res) => {
 
             const accessToken = jwt.sign(
                 { 
-                    'id': foundUser.id,
                     'username': foundUser.username,
-                    'role': foundUser.roles
+                    'role': foundUser.role
                 },
                 process.env.ACCESS_TOKEN_SECRET,
                 { expiresIn: '1d' }

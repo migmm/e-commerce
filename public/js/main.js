@@ -118,7 +118,7 @@ class Main {
         userMenu.addEventListener('click', e => {
             var menu = document.querySelector('.login-button-menu');
             var computedStyle = window.getComputedStyle(menu);
-        
+
             if (computedStyle.display === 'none' || computedStyle.display === '') {
                 menu.style.display = 'block';
             } else {
@@ -179,16 +179,12 @@ class Main {
         }); */
     }
 
-    static getCookieValue(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-    }
-
-    static parseJwt(token) {
+    static decodeJWT(token) {
         const base64Url = token.split('.')[1];
         const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => `%${(`00${c.charCodeAt(0).toString(16)}`).slice(-2)}`).join(''));
+        const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
         return JSON.parse(jsonPayload);
     }
 
@@ -196,24 +192,42 @@ class Main {
         //const refreshToken = getCookieValue('refreshToken');
 
         try {
-                const login = await loginController.postRefreshToken();
-                console.log(login.responseData.accessToken)
+            const login = await loginController.postRefreshToken();
+            console.log(login.responseData.accessToken)
 
-                if (login.status === 401) {
-                    window.location.href = '/#/login';
-                    return;
-                } 
-            
-                if (login.status === 200) {
-                    var menu = document.querySelector('.login-button-menu');
-                    menu.innerHTML = `
+            const decodedToken = Main.decodeJWT(login.responseData.accessToken);
+            console.log('Username:', decodedToken.username);
+            console.log('Role:', decodedToken.role);
+
+            if (login.status === 401) {
+                window.location.href = '/#/login';
+                return;
+            }
+
+            if (login.status === 200) {
+
+                if(decodedToken.role === "user") {
+                var menu = document.querySelector('.login-button-menu');
+                menu.innerHTML = `
                     <a href="#/login" class="login-button-menu__login-button"
-                        data-user-button-data-lang="signin">Configuración</a>
+                        data-user-button-data-lang="signin">USER</a>
                         <a href="#/signup" class="login-button-menu__register-button"
                         data-user-button-data-lang="signup">Salir
                     </a>
                     `;
                 }
+                
+                if(decodedToken.role === "admin") {
+                    var menu = document.querySelector('.login-button-menu');
+                    menu.innerHTML = `
+                        <a href="#/login" class="login-button-menu__login-button"
+                            data-user-button-data-lang="signin">ADMIN</a>
+                            <a href="#/signup" class="login-button-menu__register-button"
+                            data-user-button-data-lang="signup">Salir
+                        </a>
+                        `;
+                    }
+            }
 
         } catch (error) {
             console.error('Error during refresh token:', error);
