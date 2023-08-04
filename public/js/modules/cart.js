@@ -195,14 +195,14 @@ class ModuleCart {
         const user = 'arthemis';
         let savedCart = {};
 
-        if (loggedIn) {
+        /*  if (loggedIn) {
 
             var index = cartLoaded.findIndex(item => item.userID === user);
             const userID = cartLoaded[index].id;
             savedCart.userID = user;
             savedCart.cartContent = this.cart;
             await cartService.updateCart(savedCart, userID);
-        }
+        } */
     }
 
     static async init() {

@@ -42,7 +42,7 @@ class Checkout {
 
             setTimeout(timedRedirect, 3000);
 
-            /*   if (loggedIn) {
+              if (loggedIn) {
     
                     var index = cartLoaded.findIndex(item => item.userID === user);
                     const userID = cartLoaded[index].id;
@@ -50,7 +50,7 @@ class Checkout {
                     savedCart.cartContent = this.cart;
                     await cartService.updateCart(savedCart, userID);
                 } 
-            */
+           
 
         })
     }
@@ -58,7 +58,8 @@ class Checkout {
     static async init() {
         await cartController.init();
         this.cart = JSON.parse(localStorage.getItem('cart')) || [];
-        await render.renderTemplateCards(this.cart, 'templates/card-checkout-preview.hbs', '.checkout__products')
+        const currentLang = 'en'
+        await render.renderTemplateCards(this.cart, 'templates/card-checkout-preview.hbs', '.checkout__products', currentLang)
         cartController.updateCart();
         this.links = document.querySelectorAll('.main-nav__link');
         goTopOnLoad.goToTopOnLoad();

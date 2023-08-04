@@ -193,7 +193,7 @@ class Main {
 
         try {
             const login = await loginController.postRefreshToken();
-            console.log(login.responseData.accessToken)
+            console.log("login",login.responseData.accessToken)
 
             const decodedToken = Main.decodeJWT(login.responseData.accessToken);
             console.log('Username:', decodedToken.username);
