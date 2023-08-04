@@ -1,22 +1,27 @@
 <div class="main-content__wrapper">
-    <div class="login-form">
-        <div class="login-form__heading">
-            <h1 class="login-form__heading__title">Olvidaste tu contraseña?</h1>
+    <div class="reset-form">
+        <div class="reset-form__heading">
+            <h1 class="reset-form__heading__title">Resetear contraseña</h1>
         </div>
-        <div class="login-form__container">
+        <div class="reset-form__container">
             <div class="input-group__form-group">
-                <label for="user-account" class="input-group__label">Usuario</label>
+                <label for="user-account" class="input-group__label">Nueva contraseña</label>
                 <input type="text" id="user-account" name="user-account" class="input-group__input">
-                <span class="input-group__error">ERROR! Ingrese un comentario.</span>
+                <span class="input-group__error">ERROR! Ingrese una contraseña válida.</span>
+            </div>
+            <div class="input-group__form-group">
+                <label for="user-account" class="input-group__label">Repetir contraseña</label>
+                <input type="text" id="user-account" name="user-account" class="input-group__input">
+                <span class="input-group__error">ERROR! Ingrese una contraseña válida.</span>
             </div>
         </div>
+        <span class="input-group__error-form">Error! Verifique los campos marcados!</span>
         <div class="input-group__buttons">
-            <button type="submit">Ingresar</button>
-            <span class="input-group__error-form">Error! Verifique los campos marcados!</span>
+            <button type="submit">Enviar</button>
         </div>
         <div class="input-group__form-group account">
-            <span class="login-form__forgot-password">¿Olvidaste tu contraseña?</span>
-            <span class="login-form__register">No tenes cuenta. ¿Deseas registrarte?</span>
+            <span class="reset-form__forgot-password">¿Olvidaste tu contraseña?</span>
+            <span class="reset-form__register">No tenes cuenta. ¿Deseas registrarte?</span>
         </div>
     </div>
 </div>

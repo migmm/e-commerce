@@ -2813,10 +2813,18 @@ input[type=number] {
 .main-content__wrapper .sendotp-form form .input-group__text {
   margin: 1em;
 }
-.main-content__wrapper .sendotp-form .account {
+
+.main-content__wrapper .reset-form {
   display: flex;
+  max-width: 400px;
+  margin: 0 auto;
   flex-direction: column;
+  margin-top: 100px;
   align-items: center;
+  margin-bottom: 100px;
+}
+.main-content__wrapper .reset-form form .input-group__text {
+  margin: 1em;
 }
 
 .hidden {
