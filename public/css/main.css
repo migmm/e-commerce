@@ -2488,11 +2488,9 @@ input[type=number] {
 }
 
 .main-content__wrapper .create-account {
-  display: flex;
-  flex-direction: column;
+  max-width: 350px;
   padding-top: 100px;
-  justify-content: center;
-  align-items: center;
+  margin: 0 auto;
 }
 
 .product-update-wrapper {

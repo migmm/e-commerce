@@ -12,7 +12,7 @@ class Main {
     async ajax(url, method = 'get') {
         return await fetch(url, { method: method }).then(r => r.text());
     }
-
+    
     getIdFromHash() {
 
         // Remove #
