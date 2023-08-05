@@ -20,7 +20,7 @@ class PageLogin {
         PageLogin.form.addEventListener('submit', async e => {
             e.preventDefault();
 
-            if(this.validateForm()) {
+            if (this.validateForm()) {
 
                 const data = {};
                 PageLogin.fields.forEach(field => {
@@ -29,17 +29,27 @@ class PageLogin {
 
                 const mode = 'json';
                 const login = await loginController.postLogin(data, mode);
-    
+
                 if (login.status === 201) {
+                    localStorage.setItem('logged', 'true');
                     window.location.href = '/#/inicio';
                     return;
-                } 
+                }
 
                 this.errorMsg[2].style.visibility = "visible";
                 PageLogin.form.reset();
                 return;
             }
         });
+    }
+
+    static async checkLogin() {
+        const storedLogin = localStorage.getItem('logged');
+        const login = await loginController.postRefreshToken();
+
+        if (storedLogin === 'true' &&
+            login.status === 200)
+            window.location.href = '/#/inicio';
     }
 
     static validateForm() {
@@ -56,7 +66,7 @@ class PageLogin {
         return result
     }
 
-    static async init () {
+    static async init() {
         goTopOnLoad.goToTopOnLoad();
         await cartController.init();
         const cookieValue = document.cookie;
@@ -66,7 +76,7 @@ class PageLogin {
         this.fields = this.form.querySelectorAll('input');
         this.errorMsg = this.form.querySelectorAll('span');
         this.addFormEvents();
-
+        this.checkLogin()
         document.getElementById('email').focus();
         await cartController.init();
 
