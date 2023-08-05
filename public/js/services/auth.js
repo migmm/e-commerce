@@ -1,11 +1,12 @@
 import http from '../clients/http.client.js';
 
-class LoginService {
+class AuthService {
     
-    URL_LOGIN = '/api/auth/login/'
-    URL_REFRESH_TOKEN = '/api/auth/refresh/'
+    URL_LOGIN = '/api/auth/login/';
+    URL_REFRESH_TOKEN = '/api/auth/refresh/';
+    URL_LOGOUT = '/api/auth/logout/';
 
-    async getLogin(id) {
+/*     async getLogin(id) {
         const login = await http.get(this.URL_LOGIN, id);
         return login;
     }
@@ -13,7 +14,7 @@ class LoginService {
     async getLogins() {
         const logins = await http.get(this.URL_LOGIN);
         return logins;
-    }
+    } */
 
     async postLogin(login, mode) {
         try {
@@ -24,16 +25,25 @@ class LoginService {
         }
     }
 
-    async postRefreshToken() {
+    async refreshToken() {
         try {
-            const postLogin = await http.post(this.URL_REFRESH_TOKEN);
-            return postLogin;
+            const refreshToken = await http.post(this.URL_REFRESH_TOKEN);
+            return refreshToken;
         } catch (error) {
             throw error;
         }
     }
 
-    async updateLogin(id, login, mode) {
+    async logout() {
+        try {
+            const logout = await http.post(this.URL_LOGOUT);
+            return logout;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+/*     async updateLogin(id, login, mode) {
         const updatedLogin = await http.put(this.URL_LOGIN, id, login, mode);
         return updatedLogin;
     }
@@ -41,9 +51,9 @@ class LoginService {
     async deleteLogin(id) {
         const deletedLogin = await http.delete(this.URL_LOGIN, id);
         return deletedLogin;
-    }
+    } */
 }
 
-const loginService = new LoginService();
+const authService = new AuthService();
 
-export default loginService;
+export default authService;

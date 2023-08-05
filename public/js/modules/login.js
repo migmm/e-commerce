@@ -1,6 +1,6 @@
 import cartController from '../modules/cart.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
-import loginController from '../controllers/login.js';
+import authController from '../controllers/auth.js';
 //import Validations from '../utils/validation.js';
 
 class PageLogin {
@@ -11,7 +11,7 @@ class PageLogin {
 
     static async postLogin(product) {
         const mode = 'json';
-        const savedProduct = await loginController.postLogin(product, mode);
+        const savedProduct = await authController.postLogin(product, mode);
         return savedProduct;
     }
 
@@ -28,11 +28,12 @@ class PageLogin {
                 });
 
                 const mode = 'json';
-                const login = await loginController.postLogin(data, mode);
+                const login = await authController.postLogin(data, mode);
 
                 if (login.status === 201) {
                     localStorage.setItem('logged', 'true');
                     window.location.href = '/#/inicio';
+                    location.reload();
                     return;
                 }
 
@@ -45,7 +46,7 @@ class PageLogin {
 
     static async checkLogin() {
         const storedLogin = localStorage.getItem('logged');
-        const login = await loginController.postRefreshToken();
+        const login = await authController.refreshToken();
 
         if (storedLogin === 'true' &&
             login.status === 200)

@@ -4,7 +4,7 @@ import render from '/js/utils/render.js';
 import hbsHelpers from './utils/hb-templates.js';
 import find from './utils/find.js';
 import fetchLanguageData from './utils/langFunctions.js'
-import loginController from './controllers/login.js';
+import authController from './controllers/auth.js';
 class Main {
 
     static links
@@ -12,7 +12,7 @@ class Main {
     async ajax(url, method = 'get') {
         return await fetch(url, { method: method }).then(r => r.text());
     }
-    
+
     getIdFromHash() {
 
         // Remove #
@@ -113,16 +113,19 @@ class Main {
         const searchQuery = document.getElementsByClassName('search-results__result')[0]
         const form = document.getElementsByClassName('main-header__wrapper__form')[0]
         const userMenu = document.getElementsByClassName('main-header__wrapper__login-button-container')[0];
+        
+    
+
 
 
         userMenu.addEventListener('click', e => {
-            var menu = document.querySelector('.login-button-menu');
-            var computedStyle = window.getComputedStyle(menu);
+            const menuButton = document.querySelector('.login-button-menu');
+            const computedStyle = window.getComputedStyle(menuButton);
 
             if (computedStyle.display === 'none' || computedStyle.display === '') {
-                menu.style.display = 'block';
+                menuButton.style.display = 'block';
             } else {
-                menu.style.display = 'none';
+                menuButton.style.display = 'none';
             }
         });
 
@@ -182,7 +185,7 @@ class Main {
     static decodeJWT(token) {
         const base64Url = token.split('.')[1];
         const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+        const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
             return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
         }).join(''));
         return JSON.parse(jsonPayload);
@@ -192,8 +195,8 @@ class Main {
         //const refreshToken = getCookieValue('refreshToken');
 
         try {
-            const login = await loginController.postRefreshToken();
-            console.log("login",login.responseData.accessToken)
+            const login = await authController.refreshToken();
+            console.log("login", login.responseData.accessToken)
 
             const decodedToken = Main.decodeJWT(login.responseData.accessToken);
             console.log('Username:', decodedToken.username);
@@ -206,31 +209,54 @@ class Main {
 
             if (login.status === 200) {
 
-                if(decodedToken.role === "user") {
-                var menu = document.querySelector('.login-button-menu');
-                menu.innerHTML = `
-                    <a href="#/login" class="login-button-menu__login-button"
-                        data-user-button-data-lang="signin">USER</a>
-                        <a href="#/signup" class="login-button-menu__register-button"
-                        data-user-button-data-lang="signup">Salir
+                if (decodedToken.role === "user") {
+                    var menu = document.querySelector('.login-button-menu');
+                    menu.innerHTML = `
+                    <a href="#/profile" class="panel-button-menu__panel-button"
+                        data-lang="signin">USER</a>
+                        <a href="#/logout" class="logout-button-menu__logout-button"
+                        data-lang="logout">Salir
                     </a>
                     `;
                 }
-                
-                if(decodedToken.role === "admin") {
+
+                if (decodedToken.role === "admin") {
                     var menu = document.querySelector('.login-button-menu');
                     menu.innerHTML = `
-                        <a href="#/login" class="login-button-menu__login-button"
-                            data-user-button-data-lang="signin">ADMIN</a>
-                            <a href="#/signup" class="login-button-menu__register-button"
-                            data-user-button-data-lang="signup">Salir
+                        <a href="#/profile" class="panel-button-menu__panel-button"
+                            data--lang="nav-bar-admin-button">ADMIN</a>
+                            <a href="#/logout" class="logout-button-menu__logout-button"
+                            data-lang="nav-bar-logout-button">Salir
                         </a>
                         `;
-                    }
+                }
             }
 
         } catch (error) {
             console.error('Error during refresh token:', error);
+        }
+    }
+
+    getLogoutButton () {
+
+        const logoutButton = document.getElementsByClassName('logout-button-menu__logout-button')[0];
+        console.log(logoutButton)
+        if (logoutButton) {
+            console.log("sdd")
+            logoutButton.addEventListener('click', e => {
+                console.log("sdd")
+                e.preventDefault();
+                Main.logout();
+            });
+        }
+    }
+
+    static async logout() {
+        console.log("ing")
+        const logout = await authController.logout();
+        console.log(logout)
+        if (logout.status === 200) {
+            window.location.href = '/#/login';
         }
     }
     async start() {
@@ -244,6 +270,7 @@ class Main {
         this.products = await productController.getProducts();
         // ModuleCart.init();
         await Main.refreshAccessToken();
+        this.getLogoutButton()
     }
 }
 
