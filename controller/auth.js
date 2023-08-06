@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import api from '../api/auth.js';
+import apiUsers from '../api/users.js';
 
 dotenv.config();
 
@@ -54,6 +55,10 @@ const login = async (req, res) => {
         maxAge: 7 * 24 * 60 * 60 * 1000,
     };
 
+    foundUser.lastLogin = new Date()
+    const { id, ...userData } = foundUser;
+
+    await apiUsers.updateUser(id, userData); 
     return res.cookie('jwt', refreshToken, cookieOptions).status(201).json({ accessToken });
 };
 
@@ -86,6 +91,11 @@ const refreshToken = (req, res) => {
                 { expiresIn: '1d' }
             )
 
+            foundUser.lastLogin = new Date()
+            const { id, ...userData } = foundUser;
+        
+            await apiUsers.updateUser(id, userData); 
+            
             res.json({ accessToken })
         }
     )

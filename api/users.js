@@ -36,7 +36,7 @@ const getByField = async (field, value) => {
 const createUser = async (user) => {
 
         const validationError = UserValidator.validate(user);
-    
+
         if(!validationError) {
             const createdUser = await modelUsers.createUser(user);
             return createdUser;  

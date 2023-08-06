@@ -18,7 +18,8 @@ class UserValidator {
             status: String,
             created_at: Date,
             otp: String,
-            otpExpiration: Date
+            otpExpiration: Date,
+            lastLogin: Date
         });
 
         const { error } = userSchema.validate(user);
