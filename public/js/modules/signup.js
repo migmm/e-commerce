@@ -1,5 +1,6 @@
 import cartController from '/js/modules/cart.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
+import authController from '../controllers/auth.js';
 import userController from '../controllers/users.js';
 
 class PageSignup {
@@ -50,7 +51,7 @@ class PageSignup {
 
     static validateForm() {
         var result = true;
-      
+
         for (let i = 0; i < this.fields.length; i++) {
             if (this.fields[i].value.trim() === '') {
                 this.errorMsg[i].style.visibility = 'visible';
@@ -97,6 +98,15 @@ class PageSignup {
         return result
     }
 
+    static async checkLogin() {
+        const storedLogin = localStorage.getItem('logged');
+        const login = await authController.refreshToken();
+
+        if (storedLogin === 'true' &&
+            login.status === 200)
+            window.location.href = '/#/inicio';
+    }
+
     static async init() {
         goTopOnLoad.goToTopOnLoad();
         await cartController.init();
@@ -104,6 +114,7 @@ class PageSignup {
         this.fields = this.form.querySelectorAll('input');
         this.errorMsg = this.form.querySelectorAll('span');
         this.addFormEvents();
+        this.checkLogin();
     }
 }
 
