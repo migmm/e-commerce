@@ -35,9 +35,15 @@ const userSchema = mongoose.Schema({
     purchaseHistory: {
         type: Object,
     },
+    verified: {
+        type: Boolean,
+    },
     created_at: {
         type: Date,
         default: Date.now,
+    },
+    lastLogin: {
+        type: Date,
     },
 },
     {
