@@ -1,0 +1,49 @@
+@use '../abstracts/variables' as color;
+
+.favs-modal {
+    display: none;
+    flex-direction: column;
+    width: 400px;
+    height: 250px;
+    position: fixed;
+    top: 60px;
+    right: 10px;
+    background-color: color.$white;
+    border-radius: 8px;
+    z-index: 201;
+    padding: .5em; 
+
+    &__products {
+        flex-grow: 1;
+        width: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        display: block;
+    }
+
+    &__footer {
+        width: 100%;
+        text-align: center;
+        padding:.5em;
+
+        & a {
+            text-decoration: none;
+        }
+
+        & a:visited {
+            color: color.$black;
+        }
+
+        & a:hover {
+            color: color.$darkblue;
+        }
+
+        & a:active {
+            color: color.$cyan;
+        }
+    }
+}
+
+.favs-modal--opendrawer {
+    display: flex;
+}

@@ -5,6 +5,9 @@ import hbsHelpers from './utils/hb-templates.js';
 import find from './utils/find.js';
 import fetchLanguageData from './utils/langFunctions.js'
 import authController from './controllers/auth.js';
+import ModuleFavs from './modules/favs.js';
+
+
 class Main {
 
     static links
@@ -113,8 +116,8 @@ class Main {
         const searchQuery = document.getElementsByClassName('search-results__result')[0]
         const form = document.getElementsByClassName('main-header__wrapper__form')[0]
         const userMenu = document.getElementsByClassName('main-header__wrapper__login-button-container')[0];
-        
-    
+
+
 
 
 
@@ -237,7 +240,7 @@ class Main {
         }
     }
 
-    getLogoutButton () {
+    getLogoutButton() {
 
         const logoutButton = document.getElementsByClassName('logout-button-menu__logout-button')[0];
         console.log(logoutButton)
@@ -271,6 +274,18 @@ class Main {
         // ModuleCart.init();
         await Main.refreshAccessToken();
         this.getLogoutButton()
+
+        const favoritosString = localStorage.getItem('favs');
+        const favoritos = favoritosString ? JSON.parse(favoritosString) : [];
+        console.log("davbd", favoritos);
+
+        Handlebars.registerHelper('isFavorito', function (productId) {
+            console.log(favoritos.find(e => e.id === productId))
+            return favoritos.find(e => e.id === productId)
+            //return favoritos.includes(productId);
+        });
+
+        ModuleFavs.favsFunctions();
     }
 }
 

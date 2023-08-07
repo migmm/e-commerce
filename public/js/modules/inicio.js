@@ -114,7 +114,7 @@ class PageInicio {
         console.log(products);
 
 
-        const currentLang = 'en';
+        const currentLang = localStorage.getItem('langSelection') || 'en';
         await render.renderTemplateCards(products, 'templates/card-row.hbs', '.cards-container', currentLang);
 
 
@@ -139,7 +139,8 @@ class PageInicio {
             });
         });
 
-        fetchLanguageData.fetchLanguageData();
+        const fetchdata = fetchLanguageData.fetchLanguageData();
+        console.log(fetchdata);
 
     }
 }

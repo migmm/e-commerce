@@ -1,0 +1,16 @@
+{{#if products}}
+    {{#each products}}
+        <div class="card-cart-preview">
+            <div class="card-cart-preview__image-container">
+                <img src="{{this.images.portada}}" alt="Producto" class="card-cart-preview__image" />
+            </div>
+            <div class="card-cart-preview__content">
+                <p class="card-cart-preview__description">{{this.productName}}</p>
+            </div>
+            <i class="fa fa-trash-o" aria-hidden="true" data-id="{{this.id}}"></i>
+        </div>
+    {{/each}}
+{{else}}
+    <h2 data-lang="cart-preview-empty-cart">No tenés favoritos.</h2>
+    <p>¯\_(ツ)_/¯</p> 
+{{/if}}

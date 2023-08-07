@@ -161,6 +161,34 @@
             }
         }
 
+        &__favs-button-container {
+            padding: 0;
+            padding-right: 1em;
+            color: color.$white;
+            cursor: pointer;
+            margin-right: 0;
+            position: relative;
+            order: 3;
+
+            //FIXME: fix this
+            &__qty-favs:hover {
+                color: color.$white;
+            }
+
+            &__button {
+                width: 2em;
+            }
+
+            @media (min-width: 768px) {
+                order: 3;
+                margin-right: .5em;
+
+                & :hover {
+                    color: color.$darkblue;
+                }
+            }
+        }
+
         &__cart-button-container {
             padding: 0;
             padding-right: 1em;
