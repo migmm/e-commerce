@@ -4,7 +4,7 @@ import multerFS from '../middlewares/multer.js';
 
 const routerProducts = express.Router();
 
-routerProducts.get('/:lang', productsController.getProducts);
+routerProducts.get('/:lang?', productsController.getProducts);
 routerProducts.get('/:id/:lang', productsController.getProduct);
 
 routerProducts.post('/', multerFS.fieldConfig, productsController.postProduct);
