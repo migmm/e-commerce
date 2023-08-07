@@ -84,28 +84,30 @@ class ModuleFavs {
         const currentLang = localStorage.getItem('langSelection') || 'en';
 
         try {
-            const products = await productController.getProducts();
+            const products = await productController.getProducts(currentLang);
             const product = products.find(product => product.id === id);
             const existingProductInFavs = this.favs.find(item => item.id === id);
             
             this.favs = JSON.parse(localStorage.getItem('favs')) || [];
         
             if (!existingProductInFavs) {
-                // Aquí obtén el nombre del producto según el idioma actual
-                const productName = product.productName[currentLang];
-        
-                this.favs.push({
+                const { id, productName, images } = product;
+
+                const favProduct = {
                     id: id,
                     productName: productName,
-                });
+                    image: images.portada
+                };
         
+                this.favs.push(favProduct);
+
                 localStorage.setItem('favs', JSON.stringify(this.favs));
                 toastComponent.toastNotification('toast-added-to-favs', 'success', '#0FB681', 'center');
                 this.updateFavs();
             } else {
                 console.log("Ya existe en favoritos");
             }
-        
+
             // Resto del código...
         } catch (error) {
             console.log(error);
@@ -127,8 +129,9 @@ class ModuleFavs {
         
         toastComponent.toastNotification('toast-added-to-favs', 'success', '#0FB681', 'center');
         this.updateFavs();
-        
-        await render.renderTemplateCards(this.favs, 'templates/card-favs-preview.hbs', '.favs-modal__products', currentLang)
+        const favsFromLocalStorage = JSON.parse(localStorage.getItem('favs'))
+        console.log(favsFromLocalStorage)
+        await render.renderTemplateCards(favsFromLocalStorage, 'templates/card-favs-preview.hbs', '.favs-modal__products')
         //return;
         /*  } */
 
