@@ -2,19 +2,43 @@
 import api from '../api/products.js';
 import { PRODUCT_IMG_UPLOAD_LOCATION } from '../config.js';
 
+const supportedLanguages = ['es', 'en'];
 
 
 ////////////////////////////////////////////////////////////////////////////////
 //                               GET Controllers                              //
 ////////////////////////////////////////////////////////////////////////////////
 
+
 const getProducts = async (req, res) => {
-    res.json(await api.getProducts());
+    const lang = req.params.lang;
+
+    if (!lang || !supportedLanguages.includes(lang)) {
+        return res.status(400).json({ error: 'Not a valid language' });
+    }
+
+    try {
+        const products = await api.getProducts(lang);
+        res.json(products);
+    } catch (error) {
+        res.status(500).json({ error: 'Error obtaining products' });
+    }
 };
 
 const getProduct = async (req, res) => {
     const id = req.params.id;
-    res.json(await api.getProduct(id));
+    const lang = req.params.lang;
+
+    if (!lang || !supportedLanguages.includes(lang)) {
+        return res.status(400).json({ error: 'Not a valid language' });
+    }
+
+    try {
+        const product = await api.getProduct(id, lang);
+        res.json(product);
+    } catch (error) {
+        res.status(500).json({ error: 'Error obtaining product' });
+    }
 };
 
 
@@ -72,7 +96,7 @@ const putProduct = async (req, res) => {
     const product = req.body;
     const files = req.files;
     const locationName = PRODUCT_IMG_UPLOAD_LOCATION.STORAGE_LOCATION.substring(9);
-    
+
     try {
         if (files.avatar !== undefined) {
 

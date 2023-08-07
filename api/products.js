@@ -9,9 +9,17 @@ const modelProducts = ProductModel.get(config.PERSISTENCE_TYPE);
 //                                API Get ALL                                //
 ///////////////////////////////////////////////////////////////////////////////
 
-const getProducts = async () => {
+const getProducts = async lang => {
     const products = await modelProducts.readProducts();
-    return products;
+
+    const productsWithLang = products.map(product => ({
+        ...product,
+        productName: product.productName[lang] || product.productName['en'],
+        shortDescription: product.shortDescription[lang] || product.shortDescription['en'],
+        longDescription: product.longDescription[lang] || product.longDescription['en']
+    }));
+
+    return productsWithLang;
 };
 
 
@@ -19,9 +27,17 @@ const getProducts = async () => {
 //                                API Get ONE                                //
 ///////////////////////////////////////////////////////////////////////////////
 
-const getProduct = async id => {
+const getProduct = async (id, lang) => {
     const product = await modelProducts.readProduct(id);
-    return product;
+
+    const productWithLang = {
+        ...product,
+        productName: product.productName[lang] || product.productName['en'],
+        shortDescription: product.shortDescription[lang] || product.shortDescription['en'],
+        longDescription: product.longDescription[lang] || product.longDescription['en']
+    };
+
+    return productWithLang;
 };
 
 
@@ -31,16 +47,16 @@ const getProduct = async id => {
 
 const createProduct = async product => {
 
-        const validationError = ProductValidator.validate(product);
-        
-        if(!validationError) {
-            const createdProduct = await modelProducts.createProduct(product);
-            return createdProduct;  
-        } else {
-            console.log(validationError);
-            console.error(`Error de validación en createProduct: ${validationError.details[0].message}`);
-            return {};
-        }
+    const validationError = ProductValidator.validate(product);
+
+    if (!validationError) {
+        const createdProduct = await modelProducts.createProduct(product);
+        return createdProduct;
+    } else {
+        console.log(validationError);
+        console.error(`Error de validación en createProduct: ${validationError.details[0].message}`);
+        return {};
+    }
 };
 
 
@@ -52,9 +68,9 @@ const updateProduct = async (id, product) => {
 
     const validationError = ProductValidator.validate(product);
 
-    if(!validationError) {
+    if (!validationError) {
         const updatedProduct = await modelProducts.updateProduct(id, product);
-        return updatedProduct;    
+        return updatedProduct;
     } else {
         console.log(validationError);
         console.error(`Error de validación en updateProduct: ${validationError.details[0].message}`);
