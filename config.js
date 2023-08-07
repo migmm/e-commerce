@@ -17,7 +17,8 @@ const config = {
 }
 
 const LANGUAGE_CONFIG = {
-    DEFAULT_LANGUAGE : 'en'
+    DEFAULT_LANGUAGE : 'en',
+    SUPPORTED_LANGUAGES:['en', 'es']
 }
 
 export {PERSISTENCE_TYPES, PRODUCT_IMG_UPLOAD_LOCATION, LANGUAGE_CONFIG, config as default};

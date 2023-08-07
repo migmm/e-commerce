@@ -1,8 +1,9 @@
 // const {getProduct, getProducts} = require('../api/products');
 import api from '../api/products.js';
 import { PRODUCT_IMG_UPLOAD_LOCATION } from '../config.js';
+import { LANGUAGE_CONFIG } from '../config.js';
 
-const supportedLanguages = ['es', 'en'];
+const supportedLanguages = LANGUAGE_CONFIG.SUPPORTED_LANGUAGES;
 
 
 ////////////////////////////////////////////////////////////////////////////////
