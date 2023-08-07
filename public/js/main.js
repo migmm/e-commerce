@@ -270,7 +270,7 @@ class Main {
         await this.loadTemplates();
         this.commonEvents();
         ModuleCart.cartFunctions();
-        this.products = await productController.getProducts();
+        //this.products = await productController.getProducts('es');
         // ModuleCart.init();
         await Main.refreshAccessToken();
         this.getLogoutButton()

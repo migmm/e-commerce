@@ -81,8 +81,9 @@ class PageProductos {
     }
 
     static async init() {
+        const currentLang = 'en';
         goTopOnLoad.goToTopOnLoad();
-        this.products = await productController.getProducts();
+        this.products = await productController.getProducts(currentLang);
         console.log(`Se encontraron ${this.products.length} productos`);
         this.optionsFunctions();
         this.getIdFromHash();

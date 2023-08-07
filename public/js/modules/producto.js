@@ -40,8 +40,7 @@ class PageProducto {
         console.log ("search result" , searchResult)
         console.log ("search result 0" , searchResult[0])
         
-        const currentLang = 'en'
-        await render.renderTemplateCards(searchResult, 'templates/producto.hbs', '.full-product-page', currentLang)
+        await render.renderTemplateCards(searchResult, 'templates/producto.hbs', '.full-product-page')
     }
 
     static async optionsFunctions() {
@@ -104,8 +103,9 @@ class PageProducto {
     }
 
     static async init() {
+        const currentLang = 'en'
         goTopOnLoad.goToTopOnLoad();
-        this.products = await productController.getProducts();
+        this.products = await productController.getProducts(currentLang);
         console.log(`Se encontraron ${this.products.length} productos`);
         this.optionsFunctions();
         const product = this.getIdFromHash(2)

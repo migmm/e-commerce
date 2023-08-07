@@ -98,9 +98,11 @@ class PageInicio {
     }
 
     static async init() {
+        const currentLang = localStorage.getItem('langSelection') || 'en';
         goTopOnLoad.goToTopOnLoad();
         this.arrowSlider();
-        const products = await productController.getProducts();
+
+        const products = await productController.getProducts(currentLang);
         console.log(`Se encontraron ${products.length} productos`);
         console.log(products)
         this.carousel();
@@ -113,10 +115,7 @@ class PageInicio {
         })
         console.log(products);
 
-
-        const currentLang = localStorage.getItem('langSelection') || 'en';
-        await render.renderTemplateCards(products, 'templates/card-row.hbs', '.cards-container', currentLang);
-
+        await render.renderTemplateCards(products, 'templates/card-row.hbs', '.cards-container');
 
         products.sort(function compare(a, b) {
             var dateA = new Date(a.lastSell);
