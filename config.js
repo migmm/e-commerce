@@ -12,7 +12,7 @@ const PERSISTENCE_TYPES = {
 const config = {
     PORT: process.env.PORT,
     PERSISTENCE_TYPE: PERSISTENCE_TYPES.TYPE_MONGODB, 
-    MONGODB_CONNECTION_STR: 'mongodb://127.0.0.1:27017/cosmica',
+    MONGODB_CONNECTION_STR: process.env.MONGODB_URI,
     MONGODB_TIMEOUT: 30000, 
 }
 
