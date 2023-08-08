@@ -89,14 +89,15 @@ class ModuleFavs {
             const existingProductInFavs = this.favs.find(item => item.id === id);
             
             this.favs = JSON.parse(localStorage.getItem('favs')) || [];
-        
+
             if (!existingProductInFavs) {
-                const { id, productName, images } = product;
+                const { id, productName, images, urlName } = product;
 
                 const favProduct = {
                     id: id,
                     productName: productName,
-                    image: images.portada
+                    image: images.portada,
+                    urlName: urlName
                 };
         
                 this.favs.push(favProduct);
