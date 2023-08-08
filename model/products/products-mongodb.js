@@ -45,6 +45,7 @@ const productSchema = mongoose.Schema({
     ageTo: Number,
     ageSelect: Number,
     addedDate: Date,
+    status: Boolean,
     lastSell: Date,
     images: Object,
     colors: {

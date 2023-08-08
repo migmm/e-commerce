@@ -3,7 +3,6 @@ import productController from '/js/controllers/product.js';
 import toastComponent from '/js/utils/toast.js';
 import render from '/js/utils/render.js';
 
-
 class ModuleCart {
 
     static cart = [];
@@ -107,7 +106,8 @@ class ModuleCart {
     }
 
     static async addItemToCart(id, qty = 1) {
-        const products = await productController.getProducts();
+        const currentLang = localStorage.getItem('langSelection') || 'en';
+        const products = await productController.getProducts(currentLang);
         const product = products.find(product => product.id == id)
         const productToRemoveId = this.cart.findIndex(product => product.id == id)
 

@@ -130,10 +130,10 @@ class ModuleFavs {
         
         toastComponent.toastNotification('toast-added-to-favs', 'success', '#0FB681', 'center');
         this.updateFavs();
-        const favsFromLocalStorage = JSON.parse(localStorage.getItem('favs'))
+        /* const favsFromLocalStorage = JSON.parse(localStorage.getItem('favs'))
         console.log(favsFromLocalStorage)
         await render.renderTemplateCards(favsFromLocalStorage, 'templates/card-favs-preview.hbs', '.favs-modal__products')
-        //return;
+        //return; */
         /*  } */
 
         //this.favs.push(product);
@@ -176,7 +176,9 @@ class ModuleFavs {
     }
 
     static async updateFavs() {
-
+        const favsFromLocalStorage = JSON.parse(localStorage.getItem('favs'))
+        console.log(favsFromLocalStorage)
+        await render.renderTemplateCards(favsFromLocalStorage, 'templates/card-favs-preview.hbs', '.favs-modal__products')
         /*   const favsLoaded = await favsService.loadFavs();
   
               var index = favsLoaded.findIndex(item => item.userID === user);
@@ -187,6 +189,7 @@ class ModuleFavs {
     }
 
     static async init() {
+        console.log("paso por inicio")
         this.favs = JSON.parse(localStorage.getItem('favs')) || [];
         await render.renderTemplateCards(this.favs, 'templates/card-favs-preview.hbs', '.favs-modal__products')
         this.updateFavs();

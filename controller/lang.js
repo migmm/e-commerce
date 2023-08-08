@@ -8,6 +8,30 @@ const __dirname = path.dirname(__filename);
 
 const DEFAULT_LANG = LANGUAGE_CONFIG.DEFAULT_LANGUAGE;
 
+const getAvailableLanguages = () => {
+    const languages = [];
+    const directoryPath = `${__dirname}/../languages`;
+    console.log("entro aca")
+    try {
+        const files = fs.readdirSync(directoryPath);
+        files.forEach(file => {
+            if (file.startsWith('lang_') && file.endsWith('.json')) {
+                const language = file.substring(5, file.length - 5);
+                languages.push(language);
+            }
+        });
+    } catch (err) {
+        console.error('Error reading directory:', err);
+    }
+
+    return languages;
+};
+
+const availableLanguages = (req, res) => {
+    const languages = getAvailableLanguages();
+    res.json(languages);
+}
+
 const changeLanguage = (req, res) => {
     let language = req.params.language;
 
@@ -39,4 +63,4 @@ const changeLanguage = (req, res) => {
     });
 };
 
-export { changeLanguage };
+export { changeLanguage, availableLanguages };
