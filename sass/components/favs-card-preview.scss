@@ -1,0 +1,132 @@
+@use '../abstracts/variables' as color;
+
+a {
+    text-decoration: none;
+    color: color.$black;
+
+    & :hover,
+    :active {
+        color: color.$black;
+    }
+
+    .card-favs-preview {
+        max-width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border: 1px solid color.$lightgrey;
+        border-radius: 8px;
+        transition: all .2s;
+        margin: 1em 0;
+        background-color: color.$white;
+        position: relative;
+        height: 149px;
+
+        &__image-container {
+            display: inline-block;
+            height: 80px;
+            width: 80px;
+            line-height: 80px;
+            text-align: center;
+            margin: 1em;
+            cursor: pointer;
+        }
+
+        &__image {
+            max-width: 100%;
+            max-height: 100%;
+            vertical-align: middle;
+            object-fit: contain;
+        }
+
+        &__content {
+            display: inline-block;
+            flex-grow: 1;
+        }
+
+        &__product-name {
+            height: 39px;
+            text-overflow: ellipsis;
+            display: block;
+            overflow: hidden;
+        }
+
+        &__price-container {
+            display: flex;
+            flex-direction: row;
+        }
+
+        &__product-freeship-container,
+        &__product-unavailable-container,
+        &__product-last-units-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: .5em;
+            
+        }
+
+        &__product-freeship-container {
+            color: color.$green;
+        }
+
+        &__product-unavailable-container {
+            color: color.$yellow;
+        }
+
+        &__product-last-units-container {
+            color: color.$red;
+        }
+
+        &__price-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.5em;
+            text-align: left;
+            margin: 0;
+        }
+
+        &__price-currency,
+        &__price {
+            margin: 0;
+        }
+
+        & .fa-trash-o {
+            display: block;
+            padding-right: .5em;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        @media (hover: hover) {
+            & .fa-trash-o:hover {
+                color: color.$darkblue;
+            }
+        }
+
+        & .fa-trash-o:active {
+            color: color.$cyan;
+        }
+
+        & .fa-trash-o {
+            display: block;
+            padding-right: .5em;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        @media (hover: hover) {
+            & .fa-trash-o:hover {
+                color: color.$darkblue;
+                transform: rotate(10deg);
+                transition: 500ms ease all;
+            }
+        }
+
+        & .fa-trash-o:active {
+            color: color.$cyan;
+        }
+    }
+}

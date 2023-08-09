@@ -1,20 +1,48 @@
 {{#if products}}
     {{#each products}}
         <a href="/#/producto/{{this.urlName}}">
-            <div class="card-cart-preview">
-                <div class="card-cart-preview__image-container">
-                    <img src="{{this.image}}" alt="Producto" class="card-cart-preview__image" />
+            <div class="card-favs-preview">
+                <div class="card-favs-preview__image-container">
+                    <img src="{{this.image}}" alt="Producto" class="card-favs-preview__image" />
                 </div>
-                <div class="card-cart-preview__content">
-                    <p class="card-cart-preview__description">{{this.productName}}</p>
-                    <p class="card-cart-preview__price">{{this.price}}</p>
-                    <p class="card-cart-preview__productStatus">{{this.status}}</p>
+                <div class="card-favs-preview__content">
+                    <p class="card-favs-preview__product-name">{{this.productName}}</p>
+                    <span class="card-favs-preview__price-container">
+                        <p class="card-favs-preview__price-currency">$</p>
+                        <p class="card-favs-preview__price">{{this.price}}</p>
+                    </span>
+                    {{#compare this.stock ">" 3}}
+                        {{#if this.freeShip}}
+                            <span class="card-favs-preview__product-freeship-container">
+                                <i class="fa fa-truck" aria-hidden="true"></i>
+                                <p class="card-favs-preview__product-freeship"> Envío gratis </p>
+                            </span>
+                        {{else}}
+                            <span class="card-favs-preview__product-freeship-container">
+                                <p class="card-favs-preview__product-blank"></p>
+                            </span>
+                        {{/if}}
+                    {{else}}
+                        {{#compare this.stock "<" 1}}
+                            <span class="card-favs-preview__product-unavailable-container">
+                                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                                <p class="card-favs-preview__product-unavailable"> Producto no disponible </p>
+                            </span>
+                        {{else}}
+                            <span class="card-favs-preview__product-last-units-container">
+                                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                                <p class="card-favs-preview__product-last-units"> Últimas unidades </p>
+                            </span>
+                        {{/compare}}
+                    {{/compare}}
                 </div>
                 <i class="fa fa-trash-o" aria-hidden="true" data-id="{{this.id}}"></i>
             </div>
         </a>
     {{/each}}
 {{else}}
-    <h2 data-lang="cart-preview-empty-cart">No tenés favoritos.</h2>
-    <p>¯\_(ツ)_/¯</p>
+    <div class="empty-cards-container">
+        <h2 data-lang="favs-preview-empty-favs">No tenés favoritos.</h2>
+        <p>¯\_(ツ)_/¯</p>
+    </div>
 {{/if}}

@@ -286,6 +286,7 @@ class Main {
         });
 
         ModuleFavs.favsFunctions();
+        ModuleFavs.init();
     }
 }
 
