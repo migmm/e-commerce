@@ -4,7 +4,6 @@
             <div class="card-cart-preview__image-container">
                 <img src="{{this.images.portada}}" alt="Producto" class="card-cart-preview__image" />
             </div>
-            {{!--  <input type="hidden" name="ids" id="ids" class="ids" value="{{this.id}}"/> --}}
             <input type="hidden" name="stocks" id="stocks" class="stocks" value="{{this.stock}}" />
             <div class="card-cart-preview__content">
                 <p class="card-cart-preview__description">{{this.productName}}</p>
@@ -21,7 +20,7 @@
                     >{{finalPrice this.price this.discountPercent this.qty}}</span>
                 </span>
             </div>
-            <i class="fa fa-trash-o fa-2x" aria-hidden="true" data-id="{{this.id}}"></i>
+            <i class="fa fa-trash-o" aria-hidden="true" data-id="{{this.id}}"></i>
         </div>
     {{/each}}
 {{else}}

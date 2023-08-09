@@ -39,25 +39,15 @@
             overflow-x: hidden;
         }
 
-        &__total-container {
-            border-top: 1px solid grey;
-            margin: 1.5em 0 1em 0;
-            padding-top: 1em;
-            display:flex;
-            flex-direction: row;
-        }
-
-        &__total-label {
-            font-size: 2em;
-            flex-grow: 1;
-        }
-
-        &__total {
+        &__final-container {
+            display: block;
+            margin: 0.5em 0;
             font-size: 2em;
             font-weight: 600;
+            text-align: right;
         }
 
-        &__total::before {
+        &__final::before {
             content: '$';
         }
     }
