@@ -23,7 +23,7 @@ class ModuleFavs {
             // Click on favs button to show favs preview
             if (e.target.classList.value === 'fa fa-heart fa-lg') {
                 toggleFavs();
-                if(isFavsPreviewOpen === 1) {
+                if (isFavsPreviewOpen === 1) {
                     isFavsPreviewOpen = 0;
                     return;
                 }
@@ -31,22 +31,24 @@ class ModuleFavs {
                 return;
             }
 
-            // Click on "Agregar al carrito"
+            // Click to add favs
             if (e.target.classList.value === 'fa fa-heart-o') {
                 e.preventDefault();
                 let id = e.target.getAttribute("data-id");
+                console.log("data-ID", id)
                 this.addItemToFavs(id);
                 return;
             }
 
             // Click on trash icon to delete product from favs
-            if (e.target.classList.value === 'fa fa-trash-o') {
+            if (e.target.classList.value === 'fa fa-trash-o favs') {
                 e.preventDefault();
                 let id = e.target.getAttribute('data-id');
                 this.removeItemFromFavs(id)
                 return;
             }
 
+            //Close with ESC key
             document.addEventListener('keydown', e => {
                 if (e.key == 'Escape') {
                     if (isFavsPreviewOpen) {
@@ -61,36 +63,40 @@ class ModuleFavs {
     static async addItemToFavs(id) {
         const currentLang = localStorage.getItem('langSelection') || 'en';
 
-            const productsFromDatabase = await productController.getProducts(currentLang);
-            const product = productsFromDatabase.find(product => product.id === id);
-            const existingProductInFavs = this.favs.find(item => item.id === id);
+        console.log("id", id)
 
-            if (!existingProductInFavs) {
-                const { id, productName, images, urlName, stock, status, price, freeShip } = product;
+        const productsFromDatabase = await productController.getProducts(currentLang);
+        console.log("database", productsFromDatabase)
+        const product = productsFromDatabase.find(product => product.id === id);
+        console.log("found", product)
+        const existingProductInFavs = this.favs.find(item => item.id === id);
+        console.log("existingProductInFavs", existingProductInFavs)
+        if (!existingProductInFavs) {
+            const { id, productName, images, urlName, stock, status, price, freeShip } = product;
 
-                const favProduct = {
-                    id: id,
-                    productName: productName,
-                    image: images.portada,
-                    urlName: urlName,
-                    status: status,
-                    price: price,
-                    stock: stock,
-                    freeShip: freeShip
-                };
+            const favProduct = {
+                id: id,
+                productName: productName,
+                image: images.portada,
+                urlName: urlName,
+                status: status,
+                price: price,
+                stock: stock,
+                freeShip: freeShip
+            };
 
-                this.favs.push(favProduct);
+            this.favs.push(favProduct);
 
-                localStorage.setItem('favs', JSON.stringify(this.favs));
-                this.updateFavs();
-            }
+            localStorage.setItem('favs', JSON.stringify(this.favs));
+            this.updateFavs();
+        }
 
         toastComponent.toastNotification('toast-added-to-favs', 'success', '#0FB681', 'center');
         this.updateFavs();
     }
 
-    static async removeItemFromFavs(id) {;
-        const productToRemoveId = this.favs.findIndex(product => product.id == id)
+    static async removeItemFromFavs(id) {
+        const productToRemoveId = this.favs.findIndex(product => product.id == id);
 
         this.favs.splice(productToRemoveId, 1);
         localStorage.setItem('favs', JSON.stringify(this.favs));
@@ -101,16 +107,16 @@ class ModuleFavs {
     static async updateFavs() {
         const currentLang = localStorage.getItem('langSelection') || 'en';
         const productsFromDatabase = await productController.getProducts(currentLang);
-    
+
         for (let i = 0; i < this.favs.length; i++) {
             const favProduct = this.favs[i];
             const matchingProduct = productsFromDatabase.find(product => product.id === favProduct.id);
-    
+
             if (matchingProduct) {
                 Object.assign(favProduct, matchingProduct);
             }
         }
-    
+
         localStorage.setItem('favs', JSON.stringify(this.favs));
         await render.renderTemplateCards(this.favs, 'templates/card-favs-preview.hbs', '.favs-modal__products');
     }
