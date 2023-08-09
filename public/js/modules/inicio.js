@@ -138,7 +138,7 @@ class PageInicio {
             });
         });
 
-        const fetchdata = fetchLanguageData.fetchLanguageData();
+        const fetchdata = await fetchLanguageData.fetchLanguageData();
         console.log(fetchdata);
 
     }

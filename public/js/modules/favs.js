@@ -10,52 +10,31 @@ class ModuleFavs {
 
     static favsFunctions() {
 
-        const backgroundDark = document.querySelector('.background-dark');
         const favsPreview = document.querySelector('.favs-modal');
         let isFavsPreviewOpen = 0;
 
         function toggleFavs() {
-            //backgroundDark.classList.toggle('background-dark--hidden');
             favsPreview.classList.toggle('favs-modal--opendrawer');
         }
 
         // ¯\_(ツ)_/¯
         document.addEventListener('click', e => {
 
-            // Click on background dark and favs is closed
-            if (e.target.classList.value === 'background-dark') {
-                toggleFavs();
-                isFavsPreviewOpen = 0;
-                return;
-            }
-
             // Click on favs button to show favs preview
             if (e.target.classList.value === 'fa fa-heart fa-lg') {
                 toggleFavs();
+                if(isFavsPreviewOpen === 1) {
+                    isFavsPreviewOpen = 0;
+                    return;
+                }
                 isFavsPreviewOpen = 1;
-                console.log("fdfd")
                 return;
             }
-
-            /*           // Click on badge to show favs preview
-                      if (e.target.classList.value === 'main-header__wrapper__favs-button-container__qty-favs') {
-                          toggleFavs();
-                          isFavsPreviewOpen = 1;
-                          return;
-                      }
-           */
-            /*         // Click on X button to close favs preview
-                    if (e.target.classList.value === 'fa fa-times-circle-o fa-2x') {
-                        toggleFavs();
-                        isFavsPreviewOpen = 0;
-                        return;
-                    } */
 
             // Click on "Agregar al carrito"
             if (e.target.classList.value === 'fa fa-heart-o') {
                 e.preventDefault();
                 let id = e.target.getAttribute("data-id");
-                console.log("ddd", id)
                 this.addItemToFavs(id);
                 return;
             }
@@ -80,15 +59,11 @@ class ModuleFavs {
     }
 
     static async addItemToFavs(id) {
-
         const currentLang = localStorage.getItem('langSelection') || 'en';
 
-        try {
-            const products = await productController.getProducts(currentLang);
-            const product = products.find(product => product.id === id);
+            const productsFromDatabase = await productController.getProducts(currentLang);
+            const product = productsFromDatabase.find(product => product.id === id);
             const existingProductInFavs = this.favs.find(item => item.id === id);
-            
-            this.favs = JSON.parse(localStorage.getItem('favs')) || [];
 
             if (!existingProductInFavs) {
                 const { id, productName, images, urlName, stock, status, price, freeShip } = product;
@@ -103,99 +78,45 @@ class ModuleFavs {
                     stock: stock,
                     freeShip: freeShip
                 };
-        
+
                 this.favs.push(favProduct);
 
                 localStorage.setItem('favs', JSON.stringify(this.favs));
-                toastComponent.toastNotification('toast-added-to-favs', 'success', '#0FB681', 'center');
                 this.updateFavs();
-            } else {
-                console.log("Ya existe en favoritos");
             }
 
-            // Resto del código...
-        } catch (error) {
-            console.log(error);
-        }
-        
-
-
-        //const productToRemoveId = this.favs.findIndex(product => product.id == id)
-
-
-
-
-        /*  if (productToRemoveId >= 0) {
-            this.favs[productToRemoveId].qty = this.favs[productToRemoveId].qty + qty;
-            if (document.getElementsByClassName('checkout__products')[0]) {
-                await render.renderTemplateCards(this.favs, 'templates/card-favs-preview.hbs', '.checkout__products')
-            } */
-        //await render.renderTemplateCards(this.favs, 'templates/card-favs-preview.hbs', '.favs-modal__products')
-        
         toastComponent.toastNotification('toast-added-to-favs', 'success', '#0FB681', 'center');
         this.updateFavs();
-        /* const favsFromLocalStorage = JSON.parse(localStorage.getItem('favs'))
-        console.log(favsFromLocalStorage)
-        await render.renderTemplateCards(favsFromLocalStorage, 'templates/card-favs-preview.hbs', '.favs-modal__products')
-        //return; */
-        /*  } */
-
-        //this.favs.push(product);
-        //this.favs[this.favs.length - 1].qty = 1;
-        /*  
-         if (document.getElementsByClassName('checkout__products')[0]) {
-             await render.renderTemplateCards(this.favs, 'templates/card-favs-preview.hbs', '.checkout__products')
-         }*/
-        /*  await render.renderTemplateCards(this.favs, 'templates/card-favs-preview.hbs', '.favs-modal__products')
-         localStorage.setItem('favs', JSON.stringify(this.favs));
-         toastComponent.toastNotification('toast-added-to-favs', 'success', '#0FB681', 'center'); 
-         this.updateFavs(); */
     }
 
-    static async removeItemFromFavs(id, qty) {
-
+    static async removeItemFromFavs(id) {;
         const productToRemoveId = this.favs.findIndex(product => product.id == id)
 
-        if (qty === 1) {
-            --this.favs[productToRemoveId].qty;
-            if (document.getElementsByClassName('checkout__products')[0]) {
-                await render.renderTemplateCards(this.favs, 'templates/card-favs-preview.hbs', '.checkout__products')
-            }
-
-            await render.renderTemplateCards(this.favs, 'templates/card-favs-preview.hbs', '.favs-modal__products')
-            localStorage.setItem('favs', JSON.stringify(this.favs));
-            toastComponent.toastNotification('toast-removed-from-favs', 'success', '#0FB681', 'center');
-            this.updateFavs();
-            return;
-        }
-
         this.favs.splice(productToRemoveId, 1);
-        if (document.getElementsByClassName('checkout__products')[0]) {
-            await render.renderTemplateCards(this.favs, 'templates/card-favs-preview.hbs', '.checkout__products')
-        }
-        await render.renderTemplateCards(this.favs, 'templates/card-favs-preview.hbs', '.favs-modal__products')
         localStorage.setItem('favs', JSON.stringify(this.favs));
         toastComponent.toastNotification('toast-removed-from-favs', 'success', '#0FB681', 'center');
         this.updateFavs();
     }
 
     static async updateFavs() {
-        const favsFromLocalStorage = JSON.parse(localStorage.getItem('favs'))
-        console.log(favsFromLocalStorage)
-        await render.renderTemplateCards(favsFromLocalStorage, 'templates/card-favs-preview.hbs', '.favs-modal__products')
-        /*   const favsLoaded = await favsService.loadFavs();
-  
-              var index = favsLoaded.findIndex(item => item.userID === user);
-              const userID = favsLoaded[index].id;
-              savedFavs.userID = user;
-              savedFavs.favsContent = this.favs;
-              await favsService.updateFavs(savedFavs, userID); */
+        const currentLang = localStorage.getItem('langSelection') || 'en';
+        const productsFromDatabase = await productController.getProducts(currentLang);
+    
+        for (let i = 0; i < this.favs.length; i++) {
+            const favProduct = this.favs[i];
+            const matchingProduct = productsFromDatabase.find(product => product.id === favProduct.id);
+    
+            if (matchingProduct) {
+                Object.assign(favProduct, matchingProduct);
+            }
+        }
+    
+        localStorage.setItem('favs', JSON.stringify(this.favs));
+        await render.renderTemplateCards(this.favs, 'templates/card-favs-preview.hbs', '.favs-modal__products');
     }
 
     static async init() {
-        console.log("paso por inicio")
-        this.favs = JSON.parse(localStorage.getItem('favs')) || [];
-        await render.renderTemplateCards(this.favs, 'templates/card-favs-preview.hbs', '.favs-modal__products')
+        this.favs = JSON.parse(localStorage.getItem('favs'));
         this.updateFavs();
     }
 }
