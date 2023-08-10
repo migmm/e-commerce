@@ -1354,8 +1354,7 @@ body {
   .section-cards .arrows__prev {
     width: 4em;
     height: 76%;
-    color: #004173;
-    background-color: rgba(255, 255, 255, 0);
+    color: #00b2eb;
     position: absolute;
     bottom: 15px;
     left: 0;
@@ -1372,7 +1371,7 @@ body {
   .section-cards .arrows__next {
     width: 4em;
     height: 76%;
-    color: #004173;
+    color: #00b2eb;
     background-color: rgba(255, 255, 255, 0);
     position: absolute;
     bottom: 15px;
@@ -1388,7 +1387,7 @@ body {
     border-radius: 50%;
   }
   .section-cards .arrows__prev:hover, .section-cards .arrows__next:hover {
-    color: #00b2eb;
+    color: #004173;
   }
 }
 

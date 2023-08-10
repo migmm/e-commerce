@@ -210,8 +210,8 @@
             &__prev {
                 width: 4em;
                 height: 76%;
-                color: color.$darkblue;
-                background-color: rgba(255, 255, 255, 0);
+                color: color.$cyan;
+
                 position: absolute;
                 bottom: 15px;
                 left: 0;
@@ -230,7 +230,7 @@
             &__next {
                 width: 4em;
                 height: 76%;
-                color: color.$darkblue;
+                color: color.$cyan;
                 background-color: rgba(255, 255, 255, 0);
                 position: absolute;
                 bottom: 15px;
@@ -249,7 +249,7 @@
 
             &__prev:hover,
             &__next:hover {
-                color: color.$cyan;
+                color: color.$darkblue;
             }
         }
     }
