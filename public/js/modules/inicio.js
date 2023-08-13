@@ -33,14 +33,14 @@ class PageInicio {
         let sliders = {};
         let startX;
         let scrollLeft;
-
+    
         const end = () => {
             isDown = false;
             for (const slider of Object.values(sliders)) {
                 slider.container.classList.remove('active', 'grab');
             }
         }
-
+    
         const start = (e) => {
             isDown = true;
             const slider = e.target.closest('.cards-container');
@@ -49,7 +49,7 @@ class PageInicio {
             scrollLeft = slider.scrollLeft;
             slider.classList.add('grab');
         }
-
+    
         const move = (e) => {
             if (!isDown) return;
             const slider = e.target.closest('.cards-container');
@@ -59,21 +59,19 @@ class PageInicio {
             const dist = (x - startX);
             slider.scrollLeft = scrollLeft - dist;
         }
-
-
-        (() => {
-            for (let i = 0; i < 3; i++) {
-                const container = document.querySelectorAll('.cards-container')[i];
-                container.addEventListener('mousedown', start);
-                container.addEventListener('touchstart', start);
-                container.addEventListener('mousemove', move);
-                container.addEventListener('touchmove', move);
-                container.addEventListener('mouseleave', end);
-                container.addEventListener('mouseup', end);
-                container.addEventListener('touchend', end);
-            }
-        })();
+    
+        const containers = document.querySelectorAll('.cards-container');
+        containers.forEach(container => {
+            container.addEventListener('mousedown', start);
+            container.addEventListener('touchstart', start);
+            container.addEventListener('mousemove', move);
+            container.addEventListener('touchmove', move);
+            container.addEventListener('mouseleave', end);
+            container.addEventListener('mouseup', end);
+            container.addEventListener('touchend', end);
+        });
     }
+    
 
     static arrowSlider() {
 
