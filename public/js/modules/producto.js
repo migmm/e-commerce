@@ -3,6 +3,7 @@ import cartController from '/js/modules/cart.js';
 import render from '/js/utils/render.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
 import find from '../utils/find.js';
+import fetchLanguageData from '../utils/langFunctions.js'
 
 class PageProducto {
 
@@ -103,9 +104,10 @@ class PageProducto {
     }
 
     static async init() {
-        const currentLang = 'en'
+        const currentLang = localStorage.getItem('langSelection') || 'en';
         goTopOnLoad.goToTopOnLoad();
         this.products = await productController.getProducts(currentLang);
+        console.log(this.products)
         console.log(`Se encontraron ${this.products.length} productos`);
         this.optionsFunctions();
         const product = this.getIdFromHash(2)
@@ -114,6 +116,9 @@ class PageProducto {
         // Close search results
         const searchResults = document.getElementsByClassName('main-header__wrapper__search-results')[0]
         searchResults.classList.remove('visible');
+
+        const fetchdata = await fetchLanguageData.fetchLanguageData();
+        console.log(fetchdata);
     }
 }
 
