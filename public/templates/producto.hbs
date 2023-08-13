@@ -31,11 +31,12 @@
                 </div>
             </div>
             <div class="product-full-page__detail">
-                <h1 class="product-full-page__heading">{{this.productName}}</h1>
                 <h2 class="product-full-page__brand">{{this.vendor}}</h2>
+                <h1 class="product-full-page__heading">{{this.productName}}</h1>
                 <p class="product-full-page__description">{{this.shortDescription}}</p>
-                <p class="product-full-page__long-description">{{this.longDescription}}</p>
-                <p class="product-full-page__age">No apto para menores de
+                <p class="product-full-page__age">Edad recomendada: de 
+                    <span class="product-full-page__age-number">{{this.ageFrom}}</span>
+                    <span> a </span>
                     <span class="product-full-page__age-number">{{this.ageTo}}</span>
                     <span>años</span>.</p>
                 <div class="product-full-page__price-and-discount-order">
@@ -60,6 +61,8 @@
                     </div>
             </div>
         </div>
+        <h2 class="product-full-page__title-description">Descripción</h2>
+        <p class="product-full-page__long-description">{{{this.longDescription}}}</p>
     {{/each}}
 {{else}}
     <h2>Error al visualizar el producto.</h2>

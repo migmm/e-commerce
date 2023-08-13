@@ -98,6 +98,8 @@ class PageProducto {
         const searchResults = document.getElementsByClassName('main-header__wrapper__search-results')[0]
         searchResults.classList.remove('visible');
 
+        await render.renderTemplateCards(this.products, '../../templates/card-row.hbs', '.more-of-this-product')
+
         await fetchLanguageData.fetchLanguageData();
     }
 }

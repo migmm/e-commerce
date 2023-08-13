@@ -1270,6 +1270,12 @@ body {
 }
 .card__heading {
   margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 1em;
 }
 
 .heart-btn {
@@ -1338,6 +1344,7 @@ body {
 .section-cards {
   max-width: 1600px;
   position: relative;
+  margin-bottom: 6em;
   /* Separated block in order to make dissapear first */
   /* Then the complete media query to show the arrows */
 }
@@ -2919,6 +2926,13 @@ input[type=number] {
 }
 .product-full-page__close-view:active {
   color: #00b2eb;
+}
+.product-full-page__title-description {
+  margin-top: 3em;
+}
+
+.cards-full-product-view {
+  margin-top: 2em;
 }
 
 .main-content .checkout {
