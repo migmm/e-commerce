@@ -5,6 +5,8 @@ import render from '/js/utils/render.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
 import fetchLanguageData from '../utils/langFunctions.js'
 import cardSliders from '../utils/cardSliders.js';
+import heartButton from '../utils/heartButton.js';
+
 
 class PageInicio {
 
@@ -45,6 +47,7 @@ class PageInicio {
             var dateB = new Date(b.addedDate);
             return dateB - dateA;
         })
+        
         console.log(products);
 
         await render.renderTemplateCards(products, 'templates/card-row.hbs', '.cards-container');
@@ -54,21 +57,13 @@ class PageInicio {
             var dateB = new Date(b.lastSell);
             return dateB - dateA;
         })
+
         await render.renderTemplateCards(products, 'templates/card-row.hbs', '.most-selled')
         await render.renderTemplateCards(products, 'templates/card-row.hbs', '.latest-viewed')
 
         await cartController.init();
 
-        const heartBtn = document.querySelectorAll('.heart-btn');
-
-        // Start 
-        heartBtn.forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                const isFav = (this.dataset.fav === 'true');
-                this.dataset.fav = !isFav;
-                this.classList.toggle('clicked', !isFav);
-            });
-        });
+        heartButton();
 
         const fetchdata = await fetchLanguageData.fetchLanguageData();
         console.log(fetchdata);

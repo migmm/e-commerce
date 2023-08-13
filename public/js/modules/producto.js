@@ -5,6 +5,7 @@ import goTopOnLoad from '../utils/goTopOnLoad.js';
 import Find from '../utils/find.js';
 import fetchLanguageData from '../utils/langFunctions.js'
 import cardSliders from '../utils/cardSliders.js';
+import heartButton from '../utils/heartButton.js';
 
 
 class PageProducto {
@@ -104,7 +105,7 @@ class PageProducto {
         await fetchLanguageData.fetchLanguageData();
         cardSliders.cardSlider();
         cardSliders.arrowSlider();
-
+        heartButton();
     }
 }
 
