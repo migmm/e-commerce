@@ -2,7 +2,7 @@ import productController from '/js/controllers/product.js';
 import cartController from '/js/modules/cart.js';
 import render from '/js/utils/render.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
-import find from '../utils/find.js';
+import Find from '../utils/find.js';
 import fetchLanguageData from '../utils/langFunctions.js'
 
 class PageProducto {
@@ -19,6 +19,7 @@ class PageProducto {
         // Check if / exist at beginning, if exist remove
         if (hashFromURL[0] === '/') {
             hashFromURL = hashFromURL.slice(1);
+
         }
 
         hashFromURL = hashFromURL.split('/');
@@ -32,14 +33,8 @@ class PageProducto {
         }
 
         hashFromURL = hashFromURL[1];
-        const nameCheck = hashFromURL.split('-');
-        hashFromURL = nameCheck.slice(0, -1).join(' ')
-        let toSearch = hashFromURL
         
-        let searchResult = find.find(toSearch, this.products)
-
-        console.log ("search result" , searchResult)
-        console.log ("search result 0" , searchResult[0])
+        let searchResult = Find.find(hashFromURL, this.products)
         
         await render.renderTemplateCards(searchResult, 'templates/producto.hbs', '.full-product-page')
     }
