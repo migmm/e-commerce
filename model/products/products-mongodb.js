@@ -80,18 +80,41 @@ class ProductModelMongoDB {
     }
 
     // CRUD - R: READ
-    async readProducts() {
-        if (! await DBMongoDB.connectDB()) {
-            return [];
+    async readProducts(filters = {}, sortBy = 'productName', sortOrder = 'asc', page = 1, perPage = 10) {
+        if (!await DBMongoDB.connectDB()) {
+            return {
+                products: [],
+                totalPages: 0,
+                totalProducts: 0,
+            };
         }
         try {
-            const products = await ProductsModel.find({}).lean();
-            return DBMongoDB.getObjectWithId(products);
+            const totalProducts = await ProductsModel.countDocuments(filters);
+            const totalPages = Math.ceil(totalProducts / perPage);
+
+            const skip = (page - 1) * perPage;
+
+            const products = await ProductsModel.find(filters)
+                .sort({ [sortBy]: sortOrder === 'asc' ? 1 : -1 })
+                .skip(skip)
+                .limit(perPage)
+                .lean();
+
+            return {
+                products: DBMongoDB.getObjectWithId(products),
+                totalPages,
+                totalProducts,
+            };
         } catch (error) {
             console.error(`Error al intentar obtener los productos: ${error.message}`);
-            return [];
+            return {
+                products: [],
+                totalPages: 0,
+                totalProducts: 0,
+            };
         }
     }
+
 
     async readProduct(id) {
         if (! await DBMongoDB.connectDB()) {
@@ -151,7 +174,6 @@ class ProductModelMongoDB {
             return {};
         }
     }
-
 }
 
 export default ProductModelMongoDB;

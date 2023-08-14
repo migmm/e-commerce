@@ -13,16 +13,21 @@ const supportedLanguages = LANGUAGE_CONFIG.SUPPORTED_LANGUAGES;
 
 const getProducts = async (req, res) => {
     const lang = req.params.lang;
+    const queryParams = req.query;
 
-    if (!lang || !supportedLanguages.includes(lang)) {
+    console.log("lang", lang)
+    console.log("queryParams", queryParams)
+
+/*     if (!lang || !supportedLanguages.includes(lang)) {
         return res.status(400).json({ error: 'Not a valid language' });
-    }
+    } */
 
     try {
-        const products = await api.getProducts(lang);
+        const products = await api.getProducts(lang, queryParams);
         res.json(products);
     } catch (error) {
         res.status(500).json({ error: 'Error obtaining products' });
+        console.log(error)
     }
 };
 
