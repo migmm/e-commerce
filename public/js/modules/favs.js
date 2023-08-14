@@ -107,10 +107,10 @@ class ModuleFavs {
     static async updateFavs() {
         const currentLang = localStorage.getItem('langSelection') || 'en';
         const productsFromDatabase = await productController.getProducts(currentLang);
-
+        console.log(productController)
         for (let i = 0; i < this.favs.length; i++) {
             const favProduct = this.favs[i];
-            const matchingProduct = productsFromDatabase.find(product => product.id === favProduct.id);
+            const matchingProduct = productsFromDatabase.products.find(product => product.id === favProduct.id);
 
             if (matchingProduct) {
                 Object.assign(favProduct, matchingProduct);

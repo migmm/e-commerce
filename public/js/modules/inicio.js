@@ -42,7 +42,7 @@ class PageInicio {
         this.carousel();
         cardSliders.cardSlider();
 
-        products.sort(function compare(a, b) {
+        products.products.sort(function compare(a, b) {
             var dateA = new Date(a.addedDate);
             var dateB = new Date(b.addedDate);
             return dateB - dateA;
@@ -50,16 +50,16 @@ class PageInicio {
         
         console.log(products);
 
-        await render.renderTemplateCards(products, 'templates/card-row.hbs', '.cards-container');
+        await render.renderTemplateCards(products.products, 'templates/card-row.hbs', '.cards-container');
 
-        products.sort(function compare(a, b) {
+        products.products.sort(function compare(a, b) {
             var dateA = new Date(a.lastSell);
             var dateB = new Date(b.lastSell);
             return dateB - dateA;
         })
 
-        await render.renderTemplateCards(products, 'templates/card-row.hbs', '.most-selled')
-        await render.renderTemplateCards(products, 'templates/card-row.hbs', '.latest-viewed')
+        await render.renderTemplateCards(products.products, 'templates/card-row.hbs', '.most-selled')
+        await render.renderTemplateCards(products.products, 'templates/card-row.hbs', '.latest-viewed')
 
         await cartController.init();
 
