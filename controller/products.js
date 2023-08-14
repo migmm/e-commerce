@@ -18,9 +18,9 @@ const getProducts = async (req, res) => {
     console.log("lang", lang)
     console.log("queryParams", queryParams)
 
-/*     if (!lang || !supportedLanguages.includes(lang)) {
+    if (!lang || !supportedLanguages.includes(lang)) {
         return res.status(400).json({ error: 'Not a valid language' });
-    } */
+    }
 
     try {
         const products = await api.getProducts(lang, queryParams);
