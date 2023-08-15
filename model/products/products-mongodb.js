@@ -95,10 +95,11 @@ class ProductModelMongoDB {
             const skip = (page - 1) * perPage;
 
             const products = await ProductsModel.find(filters)
-                .sort({ [sortBy]: sortOrder === 'asc' ? 1 : -1 })
-                .skip(skip)
-                .limit(perPage)
-                .lean();
+            .sort({ [sortBy]: sortOrder === 'asc' ? 1 : -1 })
+            .skip(skip)
+            .limit(perPage)
+            /* .select('-addedDate -lastSell -status') */
+            .lean();
 
             return {
                 products: DBMongoDB.getObjectWithId(products),
@@ -114,7 +115,6 @@ class ProductModelMongoDB {
             };
         }
     }
-
 
     async readProduct(id) {
         if (! await DBMongoDB.connectDB()) {
