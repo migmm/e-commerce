@@ -88,23 +88,37 @@ class ProductModelMongoDB {
                 totalProducts: 0,
             };
         }
+    
         try {
-            const totalProducts = await ProductsModel.countDocuments(filters);
-            const totalPages = Math.ceil(totalProducts / perPage);
-
             const skip = (page - 1) * perPage;
-
-            const products = await ProductsModel.find(filters)
-            .sort({ [sortBy]: sortOrder === 'asc' ? 1 : -1 })
-            .skip(skip)
-            .limit(perPage)
-            /* .select('-addedDate -lastSell -status') */
-            .lean();
-
+            perPage = parseInt(perPage); // Convertir perPage a un número entero
+    
+            const aggregationPipeline = [];
+    
+            if (Object.keys(filters).length > 0) {
+                aggregationPipeline.push({ $match: filters });
+            }
+    
+            const sortingStage = { $sort: { [sortBy]: sortOrder === 'asc' ? 1 : -1 } };
+            const paginationStage = { $skip: skip };
+            const limitStage = { $limit: perPage };
+            const projectionStage = { $project: { _id: 0, __v: 0 } };
+    
+            aggregationPipeline.push(sortingStage, paginationStage, limitStage, projectionStage);
+    
+            const facetStage = {
+                $facet: {
+                    products: aggregationPipeline,
+                    totalCount: [{ $group: { _id: null, count: { $sum: 1 } } }],
+                },
+            };
+    
+            const result = await ProductsModel.aggregate([facetStage]).allowDiskUse(true);
+    
             return {
-                products: DBMongoDB.getObjectWithId(products),
-                totalPages,
-                totalProducts,
+                products: result[0].products,
+                totalPages: Math.ceil(result[0].totalCount[0].count / perPage),
+                totalProducts: result[0].totalCount[0].count,
             };
         } catch (error) {
             console.error(`Error al intentar obtener los productos: ${error.message}`);
@@ -115,6 +129,11 @@ class ProductModelMongoDB {
             };
         }
     }
+    
+    
+    
+    
+    
 
     async readProduct(id) {
         if (! await DBMongoDB.connectDB()) {

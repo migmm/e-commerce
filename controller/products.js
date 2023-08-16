@@ -15,9 +15,6 @@ const getProducts = async (req, res) => {
     const lang = req.params.lang;
     const queryParams = req.query;
 
-    console.log("lang", lang)
-    console.log("queryParams", queryParams)
-
     if (!lang || !supportedLanguages.includes(lang)) {
         return res.status(400).json({ error: 'Not a valid language' });
     }
