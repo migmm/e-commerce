@@ -17,7 +17,7 @@ class PageInicio {
         function carousel() {
             var i;
             var x = document.getElementsByClassName("mySlides");
-            if (x.length === 0) return; // si no hay elementos con la clase "mySlides" en la página actual, detener la función
+            if (x.length === 0) return;
 
             for (i = 0; i < x.length; i++) {
                 x[i].style.display = "none";
@@ -27,7 +27,7 @@ class PageInicio {
             if (slideIndex > x.length) { slideIndex = 1 }
             x[slideIndex - 1].style.display = "block";
             setTimeout(carousel, 2000);
-            x = false // Change image every 2 seconds
+            x = false
         }
     }
 
@@ -52,12 +52,9 @@ class PageInicio {
         await render.renderTemplateCards(products.products, 'templates/card-row.hbs', '.latest-viewed')
 
         await cartController.init();
-
         heartButton();
 
-        const fetchdata = await fetchLanguageData.fetchLanguageData();
-        console.log(fetchdata);
-
+        await fetchLanguageData.fetchLanguageData();
     }
 }
 
