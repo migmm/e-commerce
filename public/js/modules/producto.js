@@ -2,15 +2,12 @@ import productController from '/js/controllers/product.js';
 import cartController from '/js/modules/cart.js';
 import render from '/js/utils/render.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
-import Find from '../utils/find.js';
-import fetchLanguageData from '../utils/langFunctions.js'
+import fetchLanguageData from '../utils/langFunctions.js';
 import cardSliders from '../utils/cardSliders.js';
 import heartButton from '../utils/heartButton.js';
 
 
 class PageProducto {
-
-    static products = [];
 
     static async getIdFromHash(route) {
 
@@ -25,17 +22,14 @@ class PageProducto {
         hashFromURL = hashFromURL.split('/');
 
         if (route === 1) {
-            hashFromURL = '#/' + hashFromURL[0]
-            hashFromURL = hashFromURL.toLowerCase()
+            hashFromURL = '#/' + hashFromURL[0];
+            hashFromURL = hashFromURL.toLowerCase();
             window.location.hash = hashFromURL;
             return;
         }
 
         hashFromURL = hashFromURL[1];
-        
-        let searchResult = Find.find(hashFromURL, this.products)
-        
-        await render.renderTemplateCards(searchResult, 'templates/producto.hbs', '.full-product-page')
+        return hashFromURL;
     }
 
     static async optionsFunctions() {
@@ -64,7 +58,7 @@ class PageProducto {
 
             // Click on plus icon to increase product quantity in cart to the maximum stock
             if (e.target.classList.value === 'product-full-page__qty-button-plus') {
-                inputStock.value++
+                inputStock.value++;
 
                 if (parseInt(inputStock.value) >= parseInt(maxStock.innerHTML)) {
                     buttonPlus.setAttribute("disabled", "");
@@ -89,19 +83,25 @@ class PageProducto {
 
     static async init() {
         const currentLang = localStorage.getItem('langSelection') || 'en';
-        goTopOnLoad.goToTopOnLoad();
-        this.products = await productController.getProducts(currentLang);
 
-        this.optionsFunctions();
-        this.getIdFromHash(2)
-        
-        await cartController.init();
-    
+        goTopOnLoad.goToTopOnLoad();
+
         // Close search results
-        const searchResults = document.getElementsByClassName('main-header__wrapper__search-results')[0]
+        const searchResults = document.getElementsByClassName('main-header__wrapper__search-results')[0];
         searchResults.classList.remove('visible');
 
-        await render.renderTemplateCards(this.products, '../../templates/card-row.hbs', '.more-of-this-product')
+        this.optionsFunctions();
+        await cartController.init();
+        const productURL = await this.getIdFromHash(2)
+
+        let query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=urlName&value=${productURL}`;
+        const product = await productController.getProducts(currentLang, query);
+        await render.renderTemplateCards(product.products, 'templates/producto.hbs', '.full-product-page');
+
+        query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=vendor&value=${product.products[0].vendor}`;
+        const relatedProducts = await productController.getProducts(currentLang, query);
+        await render.renderTemplateCards(relatedProducts.products, '../../templates/card-row.hbs', '.more-of-this-product');
+
         await fetchLanguageData.fetchLanguageData();
         cardSliders.cardSlider();
         cardSliders.arrowSlider();

@@ -10,7 +10,6 @@ class Http {
         }
 
         try {
-            console.log(url, lang, id)
             return await fetch(url, { method: 'get' }).then(r => r.json());
         } catch (error) {
             console.error('ERROR GET', error);
