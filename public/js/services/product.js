@@ -9,8 +9,8 @@ class ProductService {
         return product;
     }
 
-    async getProducts(lang) {
-        const products = await http.get(this.URL_PRODUCTOS, lang);
+    async getProducts(lang, query) {
+        const products = await http.get(this.URL_PRODUCTOS, lang, query);
         return products;
     }
 

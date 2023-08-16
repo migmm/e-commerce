@@ -36,29 +36,19 @@ class PageInicio {
         goTopOnLoad.goToTopOnLoad();
         cardSliders.arrowSlider();
 
-        const products = await productController.getProducts(currentLang);
-        console.log(`Se encontraron ${products.length} productos`);
-        console.log(products)
         this.carousel();
         cardSliders.cardSlider();
 
-        products.products.sort(function compare(a, b) {
-            var dateA = new Date(a.addedDate);
-            var dateB = new Date(b.addedDate);
-            return dateB - dateA;
-        })
-        
-        console.log(products);
-
+        let query = 'page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=addedDate&value='
+        let products = await productController.getProducts(currentLang,query);
         await render.renderTemplateCards(products.products, 'templates/card-row.hbs', '.cards-container');
-
-        products.products.sort(function compare(a, b) {
-            var dateA = new Date(a.lastSell);
-            var dateB = new Date(b.lastSell);
-            return dateB - dateA;
-        })
-
+        
+        query = 'page=1&perPage=10&sortBy=lastSell&sortOrder=desc&field=lastSell&value='
+        products = await productController.getProducts(currentLang,query);
         await render.renderTemplateCards(products.products, 'templates/card-row.hbs', '.most-selled')
+
+        query = 'page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=lastSell&value='
+        products = await productController.getProducts(currentLang,query);
         await render.renderTemplateCards(products.products, 'templates/card-row.hbs', '.latest-viewed')
 
         await cartController.init();

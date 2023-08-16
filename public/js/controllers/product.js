@@ -8,9 +8,9 @@ class ProductController {
         return product;
     }
 
-    async getProducts(lang) {
+    async getProducts(lang, query) {
         // console.log('getProducts');
-        const products = await productService.getProducts(lang);
+        const products = await productService.getProducts(lang, query);
         return products;
     }
 

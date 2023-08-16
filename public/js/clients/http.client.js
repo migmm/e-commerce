@@ -1,15 +1,16 @@
 class Http {
 
     /* GET */
-    async get(url, lang, id) {
+    async get(url, lang, query, id) {
 
         if (id && lang) {
-            url += `${id}/${lang}/`;
+            url += `${id}/${lang}`;
         } else if (lang) {
-            url += `${lang}/`;
+            url += `${lang}?${query}`;
         }
 
         try {
+            console.log(url, lang, id)
             return await fetch(url, { method: 'get' }).then(r => r.json());
         } catch (error) {
             console.error('ERROR GET', error);
