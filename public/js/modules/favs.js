@@ -63,16 +63,13 @@ class ModuleFavs {
     static async addItemToFavs(id) {
         const currentLang = localStorage.getItem('langSelection') || 'en';
 
-        console.log("id", id)
+        let query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=_id&value=${id}`;
+        const product = await productController.getProducts(currentLang, query);
 
-        const productsFromDatabase = await productController.getProducts(currentLang);
-        console.log("database", productsFromDatabase)
-        const product = productsFromDatabase.find(product => product.id === id);
-        console.log("found", product)
-        const existingProductInFavs = this.favs.find(item => item.id === id);
-        console.log("existingProductInFavs", existingProductInFavs)
-        if (!existingProductInFavs) {
-            const { id, productName, images, urlName, stock, status, price, freeShip } = product;
+        const existingProductInFavs = this.favs.find(item => item.id === id); 
+        
+        if (!existingProductInFavs && product) {
+            const { id, productName, images, urlName, stock, status, price, freeShip } = product.products[0];
 
             const favProduct = {
                 id: id,
@@ -89,9 +86,10 @@ class ModuleFavs {
 
             localStorage.setItem('favs', JSON.stringify(this.favs));
             this.updateFavs();
+        } else {
+            toastComponent.toastNotification('toast-error-added-to-favs', 'success', '#0FB681', 'center');
         }
 
-        toastComponent.toastNotification('toast-added-to-favs', 'success', '#0FB681', 'center');
         this.updateFavs();
     }
 
