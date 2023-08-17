@@ -14,8 +14,7 @@ const supportedLanguages = LANGUAGE_CONFIG.SUPPORTED_LANGUAGES;
 const getProducts = async (req, res) => {
     const lang = req.params.lang;
     const queryParams = req.query;
-    console.log(req.params.lang)
-    console.log(req.query)
+
     if (!lang || !supportedLanguages.includes(lang)) {
         return res.status(400).json({ error: 'Not a valid language' });
     }

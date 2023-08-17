@@ -22,7 +22,15 @@ const adjustLanguage = (product, lang) => ({
 const getProducts = async (lang, query) => {
     const { page, perPage, sortBy, sortOrder, field, value } = query;
 
-    const  filter = field && value ? { [field]: { $regex: value, $options: 'i' } } : {};
+    let filter = {};
+
+    if (field && value) {
+        if (field === "_id") {
+            filter[field] = value;
+        } else {
+            filter[field] = { $regex: value, $options: 'i' };
+        }
+    }
 
     const { products, totalPages } = await modelProducts.readProducts(filter, sortBy, sortOrder, page, perPage);
 
@@ -38,6 +46,7 @@ const getProducts = async (lang, query) => {
         products: productsWithLang,
     };
 };
+
 
 
 

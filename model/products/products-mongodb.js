@@ -91,30 +91,32 @@ class ProductModelMongoDB {
     
         try {
             const skip = (page - 1) * perPage;
-            perPage = parseInt(perPage); // Convertir perPage a un número entero
+            perPage = parseInt(perPage);
     
             const aggregationPipeline = [];
     
             if (Object.keys(filters).length > 0) {
-                aggregationPipeline.push({ $match: filters });
+                if (filters._id) {
+                    aggregationPipeline.push({ $match: { _id: mongoose.Types.ObjectId(filters._id) } });
+                } else {
+                    aggregationPipeline.push({ $match: filters });
+                }
             }
-    
+
             const sortingStage = { $sort: { [sortBy]: sortOrder === 'asc' ? 1 : -1 } };
+    
             const paginationStage = { $skip: skip };
             const limitStage = { $limit: perPage };
             const projectionStage = { $project: { __v: 0 } };
     
             aggregationPipeline.push(sortingStage, paginationStage, limitStage, projectionStage);
-    
             const facetStage = {
                 $facet: {
                     products: aggregationPipeline,
                     totalCount: [{ $group: { _id: null, count: { $sum: 1 } } }],
                 },
             };
-    
             const result = await ProductsModel.aggregate([facetStage]).allowDiskUse(true);
-
             const productsWithId = result[0].products.map(product => DBMongoDB.getObjectWithId(product));
     
             return {
