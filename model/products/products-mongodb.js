@@ -102,7 +102,7 @@ class ProductModelMongoDB {
             const sortingStage = { $sort: { [sortBy]: sortOrder === 'asc' ? 1 : -1 } };
             const paginationStage = { $skip: skip };
             const limitStage = { $limit: perPage };
-            const projectionStage = { $project: { _id: 0, __v: 0 } };
+            const projectionStage = { $project: { __v: 0 } };
     
             aggregationPipeline.push(sortingStage, paginationStage, limitStage, projectionStage);
     
@@ -114,9 +114,11 @@ class ProductModelMongoDB {
             };
     
             const result = await ProductsModel.aggregate([facetStage]).allowDiskUse(true);
+
+            const productsWithId = result[0].products.map(product => DBMongoDB.getObjectWithId(product));
     
             return {
-                products: result[0].products,
+                products: productsWithId,
                 totalPages: Math.ceil(result[0].totalCount[0].count / perPage),
                 totalProducts: result[0].totalCount[0].count,
             };
