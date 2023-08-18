@@ -116,10 +116,6 @@ class Main {
         const form = document.getElementsByClassName('main-header__wrapper__form')[0]
         const userMenu = document.getElementsByClassName('main-header__wrapper__login-button-container')[0];
 
-
-
-
-
         userMenu.addEventListener('click', e => {
             const menuButton = document.querySelector('.login-button-menu');
             const computedStyle = window.getComputedStyle(menuButton);
@@ -240,9 +236,8 @@ class Main {
     }
 
     getLogoutButton() {
-
         const logoutButton = document.getElementsByClassName('logout-button-menu__logout-button')[0];
-        console.log(logoutButton)
+
         if (logoutButton) {
             console.log("sdd")
             logoutButton.addEventListener('click', e => {
@@ -261,10 +256,12 @@ class Main {
             window.location.href = '/#/login';
         }
     }
+    
     async start() {
 
         // register ALL helpers at start
         Handlebars.registerHelper(hbsHelpers);
+
         fetchLanguageData.fetchLanguageData();
         await this.loadTemplates();
         this.commonEvents();
@@ -272,13 +269,6 @@ class Main {
 
         await Main.refreshAccessToken();
         this.getLogoutButton()
-
-        const favoritosString = localStorage.getItem('favs');
-        const favoritos = favoritosString ? JSON.parse(favoritosString) : [];
-
-        Handlebars.registerHelper('isFavorito', function (productId) {
-            return favoritos.find(e => e.id === productId)
-        });
 
         ModuleFavs.favsFunctions();
         ModuleFavs.init();

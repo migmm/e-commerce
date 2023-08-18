@@ -1,3 +1,5 @@
+const favoritosString = localStorage.getItem('favs');
+const favoritos = favoritosString ? JSON.parse(favoritosString) : [];
 
 function discount(price, discount) {
     return price - ((price * discount) / 100);
@@ -54,9 +56,14 @@ function listItems(from, to, context, options) {
     return item;
 }
 
+function isFavorito (productId) {
+    return favoritos.find(e => e.id === productId)
+};
+
 export default {
     discount,
     finalPrice,
     compare,
-    listItems
+    listItems,
+    isFavorito
 }
