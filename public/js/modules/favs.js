@@ -31,15 +31,6 @@ class ModuleFavs {
                 return;
             }
 
-            // Click to add favs
-            if (e.target.classList.value === 'fa fa-heart-o') {
-                e.preventDefault();
-                let id = e.target.getAttribute("data-id");
-                console.log("data-ID", id)
-                this.addItemToFavs(id);
-                return;
-            }
-
             // Click on trash icon to delete product from favs
             if (e.target.classList.value === 'fa fa-trash-o favs') {
                 e.preventDefault();
