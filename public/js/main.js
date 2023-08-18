@@ -1,5 +1,4 @@
 import ModuleCart from './modules/cart.js';
-import productController from './controllers/product.js';
 import render from '/js/utils/render.js';
 import hbsHelpers from './utils/hb-templates.js';
 import find from './utils/find.js';
@@ -270,19 +269,15 @@ class Main {
         await this.loadTemplates();
         this.commonEvents();
         ModuleCart.cartFunctions();
-        //this.products = await productController.getProducts('es');
-        // ModuleCart.init();
+
         await Main.refreshAccessToken();
         this.getLogoutButton()
 
         const favoritosString = localStorage.getItem('favs');
         const favoritos = favoritosString ? JSON.parse(favoritosString) : [];
-        console.log("davbd", favoritos);
 
         Handlebars.registerHelper('isFavorito', function (productId) {
-            console.log(favoritos.find(e => e.id === productId))
             return favoritos.find(e => e.id === productId)
-            //return favoritos.includes(productId);
         });
 
         ModuleFavs.favsFunctions();
