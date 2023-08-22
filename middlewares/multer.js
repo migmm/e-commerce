@@ -1,4 +1,4 @@
-
+/* 
 import multer from 'multer';
 import {PRODUCT_IMG_UPLOAD_LOCATION} from '../config.js';
 
@@ -29,3 +29,12 @@ const fieldConfig = upload.fields([{ name: 'avatar', maxCount: 1 }, { name: 'gal
 export default {
     fieldConfig,
 };
+ */
+
+import multer from 'multer';
+
+// Multer configuration to store in memory
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+export default upload;

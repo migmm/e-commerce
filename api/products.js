@@ -67,6 +67,10 @@ const getProduct = async (id, lang) => {
     return productWithLang;
 };
 
+const getProductToUpdate = async (id, lang) => {
+    const product = await modelProducts.readProduct(id);
+    return product;
+};
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                API Create                                 //
@@ -74,16 +78,16 @@ const getProduct = async (id, lang) => {
 
 const createProduct = async product => {
 
-    const validationError = ProductValidator.validate(product);
-
-    if (!validationError) {
+   /*  const validationError = ProductValidator.validate(product); */
+/*     const validationError = true;
+    if (!validationError) { */
         const createdProduct = await modelProducts.createProduct(product);
         return createdProduct;
-    } else {
+   /*  } else {
         console.log(validationError);
         console.error(`Error de validación en createProduct: ${validationError.details[0].message}`);
         return {};
-    }
+    } */
 };
 
 
@@ -92,17 +96,17 @@ const createProduct = async product => {
 ///////////////////////////////////////////////////////////////////////////////
 
 const updateProduct = async (id, product) => {
-
+/* 
     const validationError = ProductValidator.validate(product);
 
-    if (!validationError) {
+    if (!validationError) { */
         const updatedProduct = await modelProducts.updateProduct(id, product);
         return updatedProduct;
-    } else {
+    /*}  else {
         console.log(validationError);
         console.error(`Error de validación en updateProduct: ${validationError.details[0].message}`);
         return {};
-    }
+    } */
 };
 
 
@@ -118,6 +122,7 @@ const deleteProduct = async id => {
 
 export default {
     getProducts,
+    getProductToUpdate,
     getProduct,
     createProduct,
     updateProduct,

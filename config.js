@@ -1,3 +1,4 @@
+import { S3 } from '@aws-sdk/client-s3';
 import * as dotenv from 'dotenv'
 dotenv.config()
 
@@ -21,4 +22,17 @@ const LANGUAGE_CONFIG = {
     SUPPORTED_LANGUAGES:['en', 'es']
 }
 
-export {PERSISTENCE_TYPES, PRODUCT_IMG_UPLOAD_LOCATION, LANGUAGE_CONFIG, config as default};
+// S3 configuration
+const s3Client = new S3({
+    endpoint: process.env.AWS_ENDPOINT,
+    region: process.env.AWS_REGION,
+    credentials: {
+        accessKeyId: process.env.AWS_KEY,
+        secretAccessKey: process.env.AWS_SECRET,
+    },
+});
+
+// S3 Bucket name
+const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME;
+
+export {PERSISTENCE_TYPES, PRODUCT_IMG_UPLOAD_LOCATION, LANGUAGE_CONFIG, s3Client,AWS_BUCKET_NAME , config as default};
