@@ -95,14 +95,15 @@ class ModuleFavs {
 
     static async updateFavs() {
         const currentLang = localStorage.getItem('langSelection') || 'en';
-        const productsFromDatabase = await productController.getProducts(currentLang);
-        console.log(productController)
+
         for (let i = 0; i < this.favs.length; i++) {
             const favProduct = this.favs[i];
-            const matchingProduct = productsFromDatabase.products.find(product => product.id === favProduct.id);
+            
+            const query = `page=1&perPage=1&sortBy=addedDate&sortOrder=desc&field=_id&value=${favProduct.id}`;
+            const productFromDatabase = await productController.getProducts(currentLang, query);
 
-            if (matchingProduct) {
-                Object.assign(favProduct, matchingProduct);
+            if (productFromDatabase.length > 0) {
+                Object.assign(favProduct, productFromDatabase[0]);
             }
         }
 

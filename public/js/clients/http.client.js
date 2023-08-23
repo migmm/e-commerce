@@ -8,9 +8,7 @@ class Http {
         } else if (lang) {
             url += `${lang}?${query}`;
         }
-        console.log("url", url)
-        console.log("lang", lang)
-        console.log("query", query)
+
         try {
             return await fetch(url, { method: 'get' }).then(r => r.json());
         } catch (error) {
