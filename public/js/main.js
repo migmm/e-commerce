@@ -268,10 +268,14 @@ class Main {
         ModuleCart.cartFunctions();
 
         await Main.refreshAccessToken();
+
+        //Check this [Object: null prototype] {}
         this.getLogoutButton()
 
         ModuleFavs.favsFunctions();
-        ModuleFavs.init();
+
+        //Check this TypeError: Cannot read properties of undefined (reading 'es')
+        ModuleFavs.init(); 
     }
 }
 

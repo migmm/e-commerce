@@ -31,7 +31,8 @@ const getProducts = async (req, res) => {
                 if (Array.isArray(product.images)) {
                     const imageUrls = await Promise.all(
                         product.images.map(async (imageName) => {
-                            const imageUrl = await getSignedUrl(imageName);
+                            /* const imageUrl = await getSignedUrl(imageName); */
+                            const imageUrl = imageName; //this is for testing
                             return imageUrl;
                         })
                     );

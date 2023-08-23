@@ -4,28 +4,15 @@
             <div class="product-full-page__row">
                 <div class="product-full-page__gallery">
                     <div class="img-select">
-                        <div class="img-select__img-container">
-                            <img class="img-select__avatar" src="{{this.images.portada}}" alt="Product image" />
-                        </div>
-                        <div class="img-select__img-container">
-                            {{#if this.images.galeria0}}
-                            <img src="{{this.images.galeria0}}" alt="Product image">
-                            {{/if}}
-                        </div>
-                        <div class="img-select__img-container">
-                            {{#if this.images.galeria1}}
-                            <img src="{{this.images.galeria1}}" alt="Product image">
-                            {{/if}}
-                        </div>
-                        <div class="img-select__img-container">
-                            {{#if this.images.galeria2}}
-                            <img src="{{this.images.galeria2}}" alt="Product image">
-                            {{/if}}
-                        </div>
+                        {{#each this.images}}
+                            <div class="img-select__img-container">
+                                <img src="{{this}}" alt="Product image" />
+                            </div>
+                        {{/each}}
                     </div>
                     <div class="img-display">
                         <div class="img-display__img-showcase">
-                            <img src="{{this.images.portada}}" class="img-display__img-big" alt="Product image" />
+                            <img src="{{this.images.[0]}}" class="img-display__img-big" alt="Product image" />
                         </div>
                     </div>
                 </div>
@@ -34,7 +21,7 @@
                 <h2 class="product-full-page__brand">{{this.vendor}}</h2>
                 <h1 class="product-full-page__heading">{{this.productName}}</h1>
                 <p class="product-full-page__description">{{this.shortDescription}}</p>
-                <p class="product-full-page__age">Edad recomendada: de 
+                <p class="product-full-page__age">Edad recomendada: de
                     <span class="product-full-page__age-number">{{this.ageFrom}}</span>
                     <span> a </span>
                     <span class="product-full-page__age-number">{{this.ageTo}}</span>
@@ -50,15 +37,15 @@
                 <span class="product-full-page__stock">Stock
                     <span class="product-full-page__stock-value">{{this.stock}}</span>
                     unidades.</span>
-                    
-                    <div class="product-full-page__qty-and-buy-container">
-                        <div class="product-full-page__qty-selector">
-                            <button class="product-full-page__qty-button-minus" disabled>-</button> 
-                            <input type="text" class="product-full-page__qty" value="1" readonly >
-                            <button class="product-full-page__qty-button-plus">+</button>
-                        </div>
-                        <a href="#" class="product-full-page__link" data-id="{{this.id}}">Agregar al carrito</a>
+
+                <div class="product-full-page__qty-and-buy-container">
+                    <div class="product-full-page__qty-selector">
+                        <button class="product-full-page__qty-button-minus" disabled>-</button>
+                        <input type="text" class="product-full-page__qty" value="1" readonly />
+                        <button class="product-full-page__qty-button-plus">+</button>
                     </div>
+                    <a href="#" class="product-full-page__link" data-id="{{this.id}}">Agregar al carrito</a>
+                </div>
             </div>
         </div>
         <h2 class="product-full-page__title-description">Descripción</h2>
