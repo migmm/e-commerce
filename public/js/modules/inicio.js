@@ -43,15 +43,15 @@ class PageInicio {
 
         query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=addedDate&value=`;
         products = await productController.getProducts(currentLang, query);
-        await render.renderTemplateCards(products, 'templates/card-row.hbs', '.cards-container');
+        await render.renderTemplateCards(products.products, 'templates/card-row.hbs', '.cards-container');
 
         query = 'page=1&perPage=10&sortBy=lastSell&sortOrder=desc&field=lastSell&value='
         products = await productController.getProducts(currentLang,query);
-        await render.renderTemplateCards(products, 'templates/card-row.hbs', '.most-selled')
+        await render.renderTemplateCards(products.products, 'templates/card-row.hbs', '.most-selled')
 
         query = 'page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=lastSell&value='
         products = await productController.getProducts(currentLang,query);
-        await render.renderTemplateCards(products, 'templates/card-row.hbs', '.latest-viewed')
+        await render.renderTemplateCards(products.products, 'templates/card-row.hbs', '.latest-viewed')
 
         await cartController.init();
         heartButton();
