@@ -21,7 +21,6 @@ const getProducts = async (req, res) => {
 
     try {
         const fullProducts = await api.getProducts(lang, queryParams);
-        console.log(fullProducts)
         if (!Array.isArray(fullProducts.products)) {
             return res.status(500).json({ error: 'Products data is not an array' });
         }

@@ -96,11 +96,11 @@ class PageProducto {
 
         let query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=urlName&value=${productURL}`;
         const product = await productController.getProducts(currentLang, query);
-        await render.renderTemplateCards(product, 'templates/producto.hbs', '.full-product-page');
-        query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=vendor&value=${product[0].vendor}`;
+        await render.renderTemplateCards(product.products, 'templates/producto.hbs', '.full-product-page');
 
+        query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=vendor&value=${product.products[0].vendor}`;
         const relatedProducts = await productController.getProducts(currentLang, query);
-        await render.renderTemplateCards(relatedProducts, '../../templates/card-row.hbs', '.more-of-this-product');
+        await render.renderTemplateCards(relatedProducts.products, '../../templates/card-row.hbs', '.more-of-this-product');
 
         await fetchLanguageData.fetchLanguageData();
         cardSliders.cardSlider();
