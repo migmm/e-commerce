@@ -20,14 +20,14 @@ const getProducts = async (req, res) => {
     }
 
     try {
-        const products = await api.getProducts(lang, queryParams);
-
-        if (!Array.isArray(products.products)) {
+        const fullProducts = await api.getProducts(lang, queryParams);
+        console.log(fullProducts)
+        if (!Array.isArray(fullProducts.products)) {
             return res.status(500).json({ error: 'Products data is not an array' });
         }
 
-        const productsWithImageUrls = await Promise.all(
-            products.products.map(async (product) => {
+        const products = await Promise.all(
+            fullProducts.products.map(async (product) => {
                 if (Array.isArray(product.images)) {
                     const imageUrls = await Promise.all(
                         product.images.map(async (imageName) => {
@@ -43,7 +43,13 @@ const getProducts = async (req, res) => {
             })
         );
 
-        res.json(productsWithImageUrls);
+        res.json({
+            page: fullProducts.page,
+            perPage: fullProducts.perPage,
+            totalProducts:fullProducts.totalProducts,
+            totalPages: fullProducts.totalPages,
+            products
+        });
     } catch (error) {
         res.status(500).json({ error: 'Error obtaining products' });
         console.log(error);
