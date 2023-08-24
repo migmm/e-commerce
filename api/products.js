@@ -12,12 +12,20 @@ const DEFAULT_LANG = LANGUAGE_CONFIG.DEFAULT_LANGUAGE;
 //                                API Get ALL                                //
 ///////////////////////////////////////////////////////////////////////////////
 
-const adjustLanguage = (product, lang) => ({
-    ...product,
-    productName: product.productName[lang] || product.productName[DEFAULT_LANG],
-    shortDescription: product.shortDescription[lang] || product.shortDescription[DEFAULT_LANG],
-    longDescription: product.longDescription[lang] || product.longDescription[DEFAULT_LANG]
-});
+const adjustLanguage = (product, lang) => {
+    const hasProductName = product.productName && (product.productName[lang] || product.productName[DEFAULT_LANG]);
+    const hasShortDescription = product.shortDescription && (product.shortDescription[lang] || product.shortDescription[DEFAULT_LANG]);
+    const hasLongDescription = product.longDescription && (product.longDescription[lang] || product.longDescription[DEFAULT_LANG]);
+
+    if (hasProductName && hasShortDescription && hasLongDescription)
+        return {
+            ...product,
+            productName: product.productName[lang] || product.productName[DEFAULT_LANG],
+            shortDescription: product.shortDescription[lang] || product.shortDescription[DEFAULT_LANG],
+            longDescription: product.longDescription[lang] || product.longDescription[DEFAULT_LANG]
+        };
+    return null;
+};
 
 const getProducts = async (lang, query) => {
     const { page, perPage, sortBy, sortOrder, field, value } = query;
@@ -34,7 +42,11 @@ const getProducts = async (lang, query) => {
 
     const { products, totalPages } = await modelProducts.readProducts(filter, sortBy, sortOrder, page, perPage);
 
-    const productsWithLang = products.map(product => adjustLanguage(product, lang));
+    //const productsWithLang = products.map(product => adjustLanguage(product, lang));
+
+    const productsWithLang = products
+        .map(product => adjustLanguage(product, lang))
+        .filter(product => product !== null);
 
     const count = productsWithLang.length;
 
@@ -78,16 +90,16 @@ const getProductToUpdate = async (id, lang) => {
 
 const createProduct = async product => {
 
-   /*  const validationError = ProductValidator.validate(product); */
-/*     const validationError = true;
-    if (!validationError) { */
-        const createdProduct = await modelProducts.createProduct(product);
-        return createdProduct;
-   /*  } else {
-        console.log(validationError);
-        console.error(`Error de validación en createProduct: ${validationError.details[0].message}`);
-        return {};
-    } */
+    /*  const validationError = ProductValidator.validate(product); */
+    /*     const validationError = true;
+        if (!validationError) { */
+    const createdProduct = await modelProducts.createProduct(product);
+    return createdProduct;
+    /*  } else {
+         console.log(validationError);
+         console.error(`Error de validación en createProduct: ${validationError.details[0].message}`);
+         return {};
+     } */
 };
 
 
@@ -96,12 +108,12 @@ const createProduct = async product => {
 ///////////////////////////////////////////////////////////////////////////////
 
 const updateProduct = async (id, product) => {
-/* 
-    const validationError = ProductValidator.validate(product);
-
-    if (!validationError) { */
-        const updatedProduct = await modelProducts.updateProduct(id, product);
-        return updatedProduct;
+    /* 
+        const validationError = ProductValidator.validate(product);
+    
+        if (!validationError) { */
+    const updatedProduct = await modelProducts.updateProduct(id, product);
+    return updatedProduct;
     /*}  else {
         console.log(validationError);
         console.error(`Error de validación en updateProduct: ${validationError.details[0].message}`);
