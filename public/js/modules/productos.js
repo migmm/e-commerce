@@ -3,6 +3,7 @@ import cartController from '/js/modules/cart.js';
 import render from '/js/utils/render.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
 import find from '../utils/find.js';
+import heartButton from '../utils/heartButton.js';
 
 
 class PageProductos {
@@ -10,8 +11,6 @@ class PageProductos {
     static products = [];
 
     static async getIdFromHash(route) {
-
-        let results = [];
 
         // Remove #
         let hashFromURL = location.hash.slice(1);
@@ -37,13 +36,11 @@ class PageProductos {
         // Check if the hash is only "products"
         if (toSearch === undefined) {
             toSearch = this.products;
-            render.renderTemplateCards(toSearch, 'templates/card-all-products.hbs', '.section-cards__cards-container');
-            return;
+            return toSearch;
         }
 
         const searchResult = find.find(toSearch, this.products)
-        render.renderTemplateCards(searchResult, 'templates/card-all-products.hbs', '.section-cards__cards-container');
-        return results;
+        return searchResult;
     }
 
     static async optionsFunctions() {
@@ -52,56 +49,42 @@ class PageProductos {
 
             if (e.target.tagName === 'SPAN') {
                 e.preventDefault();
-                var results = [];
+
                 var toSearch = e.target.innerHTML;
 
                 const searchResult = find.find(toSearch, this.products)
-                render.renderTemplateCards(searchResult, 'templates/card-all-products.hbs', '.section-cards__cards-container');
-                return;
+                return searchResult;
             }
 
             if (e.target.closest('aside') && e.target.tagName === 'A') {
                 e.preventDefault();
                 const innerOfSelected = e.target.innerHTML
                 const selectedOption = innerOfSelected.split("/");
-                var results = [];
+
                 var toSearch = selectedOption.toString();
 
                 const searchResult = find.find(toSearch, this.products)
-                render.renderTemplateCards(searchResult, 'templates/card-all-products.hbs', '.section-cards__cards-container');
-                return;
+                return searchResult;
             }
-
-            /*             
-            if (e.target.classList.value === 'background-dark') {
-            
-                            return;
-                        } */
         });
     }
 
     static async init() {
         const currentLang = 'en';
         goTopOnLoad.goToTopOnLoad();
-        this.products = await productController.getProducts(currentLang);
-        console.log(`Se encontraron ${this.products.length} productos`);
+
+        let query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=&value=`;
+        this.products = await productController.getProducts(currentLang, query);
+        render.renderTemplateCards(this.products.products, 'templates/card-all-products.hbs', '.section-cards__cards-container');
+        
         this.optionsFunctions();
-        this.getIdFromHash();
+        const search = this.getIdFromHash();
         await cartController.init();
         
         // Close search results
         const searchResults = document.getElementsByClassName('main-header__wrapper__search-results')[0]
         searchResults.classList.remove('visible');
-
-        const heartBtn = document.querySelectorAll('.heart-btn');
-
-        heartBtn.forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                const isFav = (this.dataset.fav === 'true');
-                this.dataset.fav = !isFav;
-                this.classList.toggle('clicked', !isFav);
-            });
-        });
+        heartButton();
     }
 }
 
