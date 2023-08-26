@@ -33,7 +33,14 @@ const getProducts = async (lang, query) => {
     let filter = {};
 
     if (field && value) {
-        if (field === "_id") {
+        if (field === "all") {
+            const searchFields = ["productName", "shortDescription", "longDescription", "category"];
+            filter = {
+                $or: searchFields.map(fieldName => ({
+                    [fieldName]: { $regex: value, $options: 'i' }
+                }))
+            };
+        } else if (field === "_id") {
             filter[field] = value;
         } else {
             filter[field] = { $regex: value, $options: 'i' };
@@ -42,22 +49,23 @@ const getProducts = async (lang, query) => {
 
     const { products, totalPages } = await modelProducts.readProducts(filter, sortBy, sortOrder, page, perPage);
 
-    //const productsWithLang = products.map(product => adjustLanguage(product, lang));
-
     const productsWithLang = products
         .map(product => adjustLanguage(product, lang))
         .filter(product => product !== null);
 
     const count = productsWithLang.length;
 
+    const calculatedTotalPages = count <= perPage ? 1 : Math.ceil(count / perPage);
+
     return {
         page,
         perPage,
         totalProducts: count,
-        totalPages,
+        totalPages: calculatedTotalPages,
         products: productsWithLang,
     };
 };
+
 
 
 

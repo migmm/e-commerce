@@ -56,6 +56,7 @@ const getProducts = async (req, res) => {
 };
 
 
+
 const getProduct = async (req, res) => {
     const id = req.params.id;
     const lang = req.params.lang;
