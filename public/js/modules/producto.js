@@ -6,6 +6,7 @@ import fetchLanguageData from '../utils/langFunctions.js';
 import cardSliders from '../utils/cardSliders.js';
 import heartButton from '../utils/heartButton.js';
 import getIdFromHash from '../utils/getIdFromHash.js';
+import { indexQueries, fetchAndRenderProducts, queryFunction } from '../utils/fetchAndRenderProducts.js';
 
 
 class PageProducto {

@@ -24,7 +24,7 @@ const indexQueries = [
     }
 ];
 
-const queryFunction = async ( field='', value='', sortBy='', page=1, perPage=10, sortOrder='desc',) => {
+const queryFunction = async ( field='', value='', sortBy='addedDate', page=1, perPage=10, sortOrder='desc') => {
     const query = `page=${page}&perPage=${perPage}&sortBy=${sortBy}&sortOrder=${sortOrder}&field=${field}&value=${value}`;
     return query;
 }

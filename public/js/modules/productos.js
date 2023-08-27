@@ -5,6 +5,7 @@ import goTopOnLoad from '../utils/goTopOnLoad.js';
 import find from '../utils/find.js';
 import heartButton from '../utils/heartButton.js';
 import getIdFromHash from '../utils/getIdFromHash.js';
+import { fetchAndRenderProducts, queryFunction } from '../utils/fetchAndRenderProducts.js';
 
 
 class PageProductos {
@@ -12,17 +13,15 @@ class PageProductos {
     static products = [];
 
     static async optionsFunctions() {
-        const currentLang = 'en';
         document.addEventListener('click', async e => {
 
             if (e.target.tagName === 'SPAN') {
                 e.preventDefault();
 
                 var toSearch = e.target.innerHTML;
-                console.log(toSearch)
-                const query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=all&value=${toSearch}`;
-                this.products = await productController.getProducts(currentLang, query);
-                render.renderTemplateCards(this.products.products, 'templates/card-all-products.hbs', '.section-cards__cards-container');
+
+                const query = await queryFunction('all', toSearch)
+                await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
             }
 
             if (e.target.closest('aside') && e.target.tagName === 'A') {
@@ -31,28 +30,25 @@ class PageProductos {
                 const selectedOption = innerOfSelected.split("/");
 
                 var toSearch = selectedOption.toString();
-                console.log(toSearch)
-                const query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=all&value=${toSearch}`;
-                this.products = await productController.getProducts(currentLang, query);
-                render.renderTemplateCards(this.products.products, 'templates/card-all-products.hbs', '.section-cards__cards-container');
+
+                const query = await queryFunction('all', toSearch)
+                await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
             }
         });
     }
 
     static async init() {
-        const currentLang = 'en';
         goTopOnLoad.goToTopOnLoad();
 
-        let query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=&value=`;
-        this.products = await productController.getProducts(currentLang, query);
-        render.renderTemplateCards(this.products.products, 'templates/card-all-products.hbs', '.section-cards__cards-container');
+        const query = await queryFunction()
+        await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
         
         this.optionsFunctions();
+
         const search = await getIdFromHash();
         if (search) {
-            query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=all&value=${search}`;
-            this.products = await productController.getProducts(currentLang, query);
-            render.renderTemplateCards(this.products.products, 'templates/card-all-products.hbs', '.section-cards__cards-container');
+            const query = await queryFunction('all', search)
+            await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
         }
 
         await cartController.init();
