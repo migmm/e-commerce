@@ -4,34 +4,12 @@ import render from '/js/utils/render.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
 import find from '../utils/find.js';
 import heartButton from '../utils/heartButton.js';
+import getIdFromHash from '../utils/getIdFromHash.js';
 
 
 class PageProductos {
 
     static products = [];
-
-    static async getIdFromHash(route) {
-
-        // Remove #
-        let hashFromURL = location.hash.slice(1);
-
-        // Check if / exist at beginning, if exist remove
-        if (hashFromURL[0] === '/') {
-            hashFromURL = hashFromURL.slice(1);
-        }
-
-        hashFromURL = hashFromURL.split('/');
-
-        if (route === 1) {
-            hashFromURL = '#/' + hashFromURL[0];
-            hashFromURL = hashFromURL.toLowerCase();
-            window.location.hash = hashFromURL;
-            return;
-        }
-
-        hashFromURL = hashFromURL[1];
-        return hashFromURL;
-    }
 
     static async optionsFunctions() {
         const currentLang = 'en';
@@ -70,7 +48,7 @@ class PageProductos {
         render.renderTemplateCards(this.products.products, 'templates/card-all-products.hbs', '.section-cards__cards-container');
         
         this.optionsFunctions();
-        const search = await this.getIdFromHash();
+        const search = await getIdFromHash();
         if (search) {
             query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=all&value=${search}`;
             this.products = await productController.getProducts(currentLang, query);

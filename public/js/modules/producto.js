@@ -5,32 +5,10 @@ import goTopOnLoad from '../utils/goTopOnLoad.js';
 import fetchLanguageData from '../utils/langFunctions.js';
 import cardSliders from '../utils/cardSliders.js';
 import heartButton from '../utils/heartButton.js';
+import getIdFromHash from '../utils/getIdFromHash.js';
 
 
 class PageProducto {
-
-    static async getIdFromHash(route) {
-
-        // Remove #
-        let hashFromURL = location.hash.slice(1);
-
-        // Check if / exist at beginning, if exist remove
-        if (hashFromURL[0] === '/') {
-            hashFromURL = hashFromURL.slice(1);
-        }
-
-        hashFromURL = hashFromURL.split('/');
-
-        if (route === 1) {
-            hashFromURL = '#/' + hashFromURL[0];
-            hashFromURL = hashFromURL.toLowerCase();
-            window.location.hash = hashFromURL;
-            return;
-        }
-
-        hashFromURL = hashFromURL[1];
-        return hashFromURL;
-    }
 
     static async optionsFunctions() {
 
@@ -70,7 +48,8 @@ class PageProducto {
 
             // Click on minus icon to decrease product quantity in cart to the minimum stock
             if (e.target.classList.value === 'product-full-page__qty-button-minus') {
-                inputStock.value--
+                inputStock.value--;
+
                 if (inputStock.value <= '1') {
                     buttonMinus.setAttribute("disabled", "");
                 } else {
@@ -92,7 +71,7 @@ class PageProducto {
 
         this.optionsFunctions();
         await cartController.init();
-        const productURL = await this.getIdFromHash(2)
+        const productURL = await getIdFromHash(2);
 
         let query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=urlName&value=${productURL}`;
         const product = await productController.getProducts(currentLang, query);
