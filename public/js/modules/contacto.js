@@ -4,8 +4,8 @@ import goTopOnLoad from '../utils/goTopOnLoad.js';
 
 class PageContacto {
 
-    static form
-    static fields
+    static form;
+    static fields;
 
     static validators = {
         name: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9 .,\"\'\s\/_-]{4,30}$/,
@@ -34,7 +34,7 @@ class PageContacto {
 
             let errorField = document.getElementsByName(field.name)[0];
             let ancest = errorField.closest(".input-group__form-group");
-            let spanElement = ancest.querySelector('span:last-child')
+            let spanElement = ancest.querySelector('span:last-child');
 
             if (!validated) {
                 errorField.classList.remove("input-group__input--ok");

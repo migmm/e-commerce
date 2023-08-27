@@ -10,8 +10,8 @@ import fetchLanguageData from '../utils/langFunctions.js'
 
 class PageAlta {
 
-    static form
-    static fields
+    static form;
+    static fields;
 
     static async saveProduct(product) {
         const mode = 'formdata';
@@ -28,11 +28,11 @@ class PageAlta {
             document.getElementById('lastSell').value = new Date('1900-01-01').toISOString();
 
             // Generate url name 
-            let urlName = document.getElementById('urlName')
-            const productName = document.getElementById('productName')
+            let urlName = document.getElementById('urlName');
+            const productName = document.getElementById('productName');
             urlName.value = productName.value + '-' + generateId.makeid(6);
-            urlName.value = urlName.value.split(' ').join('-')
-            console.log ("urlname" , urlName.value)
+            urlName.value = urlName.value.split(' ').join('-');
+            console.log ("urlname" , urlName.value);
 
             // Free ship value adaptation to backend
             let freeShip = document.getElementById('freeShip');

@@ -71,13 +71,13 @@ class PageLogin {
         goTopOnLoad.goToTopOnLoad();
         await cartController.init();
         const cookieValue = document.cookie;
-        console.log(cookieValue)
+        console.log(cookieValue);
 
         this.form = document.getElementById('form-login');
         this.fields = this.form.querySelectorAll('input');
         this.errorMsg = this.form.querySelectorAll('span');
         this.addFormEvents();
-        this.checkLogin()
+        this.checkLogin();
         document.getElementById('email').focus();
         await cartController.init();
 

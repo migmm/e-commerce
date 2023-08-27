@@ -27,7 +27,7 @@ class Checkout {
             modalOk.classList.add("visible-flex");
             function timedRedirect() {
                 modalOk.classList.remove("visible-flex");
-                location.href = '#'
+                location.href = '#';
             }
 
             setTimeout(timedRedirect, 3000);
@@ -37,7 +37,7 @@ class Checkout {
     static async init() {
         await cartController.init();
         this.cart = JSON.parse(localStorage.getItem('cart')) || [];
-        await render.renderTemplateCards(this.cart, 'templates/card-checkout-preview.hbs', '.checkout__products')
+        await render.renderTemplateCards(this.cart, 'templates/card-checkout-preview.hbs', '.checkout__products');
         cartController.updateCart();
         this.links = document.querySelectorAll('.main-nav__link');
         goTopOnLoad.goToTopOnLoad();

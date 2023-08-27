@@ -8,11 +8,11 @@ import goTopOnLoad from '../utils/goTopOnLoad.js';
 
 class PageModificar {
 
-    static form
-    static fields
-    static btnCancel
-    static productFullView
-    static productFullViewBg
+    static form;
+    static fields;
+    static btnCancel;
+    static productFullView;
+    static productFullViewBg;
     products = [];
 
 
@@ -21,7 +21,7 @@ class PageModificar {
         const updatedProduct = await productController.updateProduct(product.get('id'), product, mode);
         const products = await productController.getProducts();
         console.log(`Ahora hay ${products.length} productos`);
-        await render.renderTemplateCards(products, 'templates/products-table.hbs', '.products-table-container')
+        await render.renderTemplateCards(products, 'templates/products-table.hbs', '.products-table-container');
         return updatedProduct;
     }
 
@@ -56,7 +56,7 @@ class PageModificar {
             dataProducts.delete('colors');
             dataProducts.delete('ageSelects');
             var colorsSplit = colorsString.split(',');
-            colorsSplit.forEach((item) => dataProducts.append('colors[]', item))
+            colorsSplit.forEach((item) => dataProducts.append('colors[]', item));
 
             if (productToSave) {
                 const savedProduct = await this.updateProduct(dataProducts);
@@ -133,7 +133,7 @@ class PageModificar {
 
             const products = await productController.getProducts();
             console.log(`Aún quedan ${products.length} productos`);
-            await render.renderTemplateCards(products, 'templates/products-table.hbs', '.products-table-container')
+            await render.renderTemplateCards(products, 'templates/products-table.hbs', '.products-table-container');
         };
 
         document.querySelector('.products-table-container').addEventListener('click', async e => {
@@ -147,7 +147,7 @@ class PageModificar {
 
                 // Empty constant to tell render that only show form
                 const showOnly = null;
-                await render.renderTemplateCards(showOnly, 'templates/form.hbs', '.input-group')
+                await render.renderTemplateCards(showOnly, 'templates/form.hbs', '.input-group');
 
                 this.form = document.getElementById('form-add-products');
                 this.fields = this.form.querySelectorAll(`textarea, input:not([type='file']`);
@@ -163,7 +163,7 @@ class PageModificar {
 
                     //Avoid this field
                     if (field.name !== 'ageSelects') {
-                        field.value = product[field.name]
+                        field.value = product[field.name];
                     }
                 })
 
@@ -178,11 +178,11 @@ class PageModificar {
                     if (field.name === 'ageSelect') {
                         if (product[field.name] === 1) {
                             document.getElementById("ageYear").checked = true;
-                            console.log("keseso", product[field.name])
+                            console.log("keseso", product[field.name]);
 
                         } else {
                             document.getElementById("ageMonth").checked = true;
-                            console.log("keseso", product[field.name])
+                            console.log("keseso", product[field.name]);
                         }
                     }
                     field.value = product[field.name];
@@ -224,7 +224,7 @@ class PageModificar {
         this.products = await productController.getProducts();
         console.log(`Se encontraron ${this.products.length} productos`);
 
-        await render.renderTemplateCards(this.products, 'templates/products-table.hbs', '.products-table-container')
+        await render.renderTemplateCards(this.products, 'templates/products-table.hbs', '.products-table-container');
         this.addTableEvents();
         await cartController.init();
     }

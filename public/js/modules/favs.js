@@ -35,7 +35,7 @@ class ModuleFavs {
             if (e.target.classList.value === 'fa fa-trash-o favs') {
                 e.preventDefault();
                 let id = e.target.getAttribute('data-id');
-                this.removeItemFromFavs(id)
+                this.removeItemFromFavs(id);
                 return;
             }
 

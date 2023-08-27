@@ -207,7 +207,7 @@ class ModuleCart {
 
     static async init() {
         this.cart = JSON.parse(localStorage.getItem('cart')) || [];
-        await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.cart-modal__products')
+        await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.cart-modal__products');
         this.updateCart();
     }
 }
