@@ -3,7 +3,7 @@ import goTopOnLoad from '../utils/goTopOnLoad.js';
 import fetchLanguageData from '../utils/langFunctions.js'
 import cardSliders from '../utils/cardSliders.js';
 import heartButton from '../utils/heartButton.js';
-import { indexQueries, fetchAndRenderProducts } from '../utils/fetchAndRenderProducts.js';
+import { indexQueries, fetchAndRenderProducts, queryFunction } from '../utils/fetchAndRenderProducts.js';
 
 class PageInicio {
 
@@ -37,7 +37,7 @@ class PageInicio {
         cardSliders.cardSlider();
 
         for (const q of indexQueries) {
-            const query = `page=1&perPage=10&sortBy=${q.key}&sortOrder=desc&field=${q.key}&value=${q.value}`;
+            const query = queryFunction(q.key, q.value, q.key)
             await fetchAndRenderProducts(query, q.label, q.template);
         }
 

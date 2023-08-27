@@ -24,12 +24,18 @@ const indexQueries = [
     }
 ];
 
-async function fetchAndRenderProducts(query, targetSelector, template) {
+const queryFunction = async ( field='', value='', sortBy='', page=1, perPage=10, sortOrder='desc',) => {
+    const query = `page=${page}&perPage=${perPage}&sortBy=${sortBy}&sortOrder=${sortOrder}&field=${field}&value=${value}`;
+    return query;
+}
+
+const fetchAndRenderProducts = async (query, targetSelector, template) => {
     const products = await productController.getProducts(currentLang, query);
     await render.renderTemplateCards(products.products, template, targetSelector);
 }
 
 export {
     indexQueries,
-    fetchAndRenderProducts
+    fetchAndRenderProducts,
+    queryFunction
 }
