@@ -1,7 +1,4 @@
-
-
 import cartController from '/js/modules/cart.js';
-
 import goTopOnLoad from '../utils/goTopOnLoad.js';
 import fetchLanguageData from '../utils/langFunctions.js'
 import cardSliders from '../utils/cardSliders.js';
@@ -39,10 +36,8 @@ class PageInicio {
         this.carousel();
         cardSliders.cardSlider();
 
-        
-
         for (const q of indexQueries) {
-            const query = `page=1&perPage=10&sortBy=${q.key}&sortOrder=desc&field=${q.key}&value=`;
+            const query = `page=1&perPage=10&sortBy=${q.key}&sortOrder=desc&field=${q.key}&value=${q.value}`;
             await fetchAndRenderProducts(query, q.label, q.template);
         }
 

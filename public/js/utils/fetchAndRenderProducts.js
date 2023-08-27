@@ -8,16 +8,19 @@ const indexQueries = [
         key: 'addedDate',
         label: '.cards-container',
         template: 'templates/card-row.hbs',
+        value: ''
     },
     {
         key: 'lastSell',
         label: '.most-selled',
         template: 'templates/card-row.hbs',
+        value: ''
     },
     {
         key: 'lastSell',
         label: '.latest-viewed',
         template: 'templates/card-row.hbs',
+        value: ''
     }
 ];
 
