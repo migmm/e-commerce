@@ -53,15 +53,16 @@ const getProducts = async (lang, query) => {
         .map(product => adjustLanguage(product, lang))
         .filter(product => product !== null);
 
-    const count = productsWithLang.length;
+    const productCount = productsWithLang.length;
+    let pageCount = totalPages - 1;
 
-    const calculatedTotalPages = count <= perPage ? 1 : Math.ceil(count / perPage);
+    if (!productCount) pageCount = 0;
 
     return {
         page,
         perPage,
-        totalProducts: count,
-        totalPages: calculatedTotalPages,
+        totalProducts: productCount,
+        totalPages: pageCount,
         products: productsWithLang,
     };
 };
