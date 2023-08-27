@@ -35,4 +35,12 @@ const s3Client = new S3({
 // S3 Bucket name
 const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 
-export {PERSISTENCE_TYPES, PRODUCT_IMG_UPLOAD_LOCATION, LANGUAGE_CONFIG, s3Client,AWS_BUCKET_NAME , config as default};
+//Specify allowed fields to search in database when use query with params
+const SEARCH_FIELDS = [
+    'productName',
+    'shortDescription',
+    'longDescription',
+    'category',
+    'colors'
+]
+export {PERSISTENCE_TYPES, PRODUCT_IMG_UPLOAD_LOCATION, LANGUAGE_CONFIG, s3Client,AWS_BUCKET_NAME, SEARCH_FIELDS, config as default};

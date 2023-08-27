@@ -1,7 +1,7 @@
 import config from '../config.js';
 import ProductModel from "../model/products/products.js";
 import ProductValidator from '../model/products/validators/ProductValidator.js';
-import { LANGUAGE_CONFIG } from '../config.js';
+import { LANGUAGE_CONFIG, SEARCH_FIELDS } from '../config.js';
 
 const modelProducts = ProductModel.get(config.PERSISTENCE_TYPE);
 
@@ -34,7 +34,7 @@ const getProducts = async (lang, query) => {
 
     if (field && value) {
         if (field === "all") {
-            const searchFields = ["productName", "shortDescription", "longDescription", "category"];
+            const searchFields = SEARCH_FIELDS;
             filter = {
                 $or: searchFields.map(fieldName => ({
                     [fieldName]: { $regex: value, $options: 'i' }
