@@ -23,7 +23,6 @@ class PageProductos {
         hashFromURL = hashFromURL.split('/');
 
         if (route === 1) {
-
             hashFromURL = '#/' + hashFromURL[0];
             hashFromURL = hashFromURL.toLowerCase();
             window.location.hash = hashFromURL;
@@ -31,40 +30,33 @@ class PageProductos {
         }
 
         hashFromURL = hashFromURL[1];
-        let toSearch = hashFromURL;
-
-        // Check if the hash is only "products"
-        if (toSearch === undefined) {
-            toSearch = this.products;
-            return toSearch;
-        }
-
-        const searchResult = find.find(toSearch, this.products)
-        return searchResult;
+        return hashFromURL;
     }
 
     static async optionsFunctions() {
-
-        document.addEventListener('click', e => {
+        const currentLang = 'en';
+        document.addEventListener('click', async e => {
 
             if (e.target.tagName === 'SPAN') {
                 e.preventDefault();
 
                 var toSearch = e.target.innerHTML;
-
-                const searchResult = find.find(toSearch, this.products)
-                return searchResult;
+                console.log(toSearch)
+                const query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=all&value=${toSearch}`;
+                this.products = await productController.getProducts(currentLang, query);
+                render.renderTemplateCards(this.products.products, 'templates/card-all-products.hbs', '.section-cards__cards-container');
             }
 
             if (e.target.closest('aside') && e.target.tagName === 'A') {
                 e.preventDefault();
-                const innerOfSelected = e.target.innerHTML
+                const innerOfSelected = e.target.innerHTML;
                 const selectedOption = innerOfSelected.split("/");
 
                 var toSearch = selectedOption.toString();
-
-                const searchResult = find.find(toSearch, this.products)
-                return searchResult;
+                console.log(toSearch)
+                const query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=all&value=${toSearch}`;
+                this.products = await productController.getProducts(currentLang, query);
+                render.renderTemplateCards(this.products.products, 'templates/card-all-products.hbs', '.section-cards__cards-container');
             }
         });
     }
@@ -78,7 +70,13 @@ class PageProductos {
         render.renderTemplateCards(this.products.products, 'templates/card-all-products.hbs', '.section-cards__cards-container');
         
         this.optionsFunctions();
-        const search = this.getIdFromHash();
+        const search = await this.getIdFromHash();
+        if (search) {
+            query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=all&value=${search}`;
+            this.products = await productController.getProducts(currentLang, query);
+            render.renderTemplateCards(this.products.products, 'templates/card-all-products.hbs', '.section-cards__cards-container');
+        }
+
         await cartController.init();
         
         // Close search results

@@ -1,6 +1,4 @@
-// const {getProduct, getProducts} = require('../api/products');
 import api from '../api/products.js';
-import { PRODUCT_IMG_UPLOAD_LOCATION } from '../config.js';
 import { LANGUAGE_CONFIG } from '../config.js';
 import { uploadImages, getSignedUrl, deleteImage } from '../helpers/awsFileManager.js';
 const supportedLanguages = LANGUAGE_CONFIG.SUPPORTED_LANGUAGES;
@@ -9,7 +7,6 @@ const supportedLanguages = LANGUAGE_CONFIG.SUPPORTED_LANGUAGES;
 ////////////////////////////////////////////////////////////////////////////////
 //                               GET Controllers                              //
 ////////////////////////////////////////////////////////////////////////////////
-
 
 const getProducts = async (req, res) => {
     const lang = req.params.lang;
@@ -55,8 +52,6 @@ const getProducts = async (req, res) => {
     }
 };
 
-
-
 const getProduct = async (req, res) => {
     const id = req.params.id;
     const lang = req.params.lang;
@@ -87,7 +82,6 @@ const getProduct = async (req, res) => {
 ///////////////////////////////////////////////////////////////////////////////
 //                              POST Controllers                             //
 ///////////////////////////////////////////////////////////////////////////////
-
 
 const postProduct = async (req, res) => {
     const productData = req.body;
