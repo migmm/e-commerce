@@ -8,10 +8,9 @@ const __dirname = path.dirname(__filename);
 
 const DEFAULT_LANG = LANGUAGE_CONFIG.DEFAULT_LANGUAGE;
 
-const getAvailableLanguages = () => {
+const getAvailableLanguages = async () => {
     const languages = [];
     const directoryPath = `${__dirname}/../languages`;
-    console.log("entro aca")
     try {
         const files = fs.readdirSync(directoryPath);
         files.forEach(file => {
@@ -23,16 +22,15 @@ const getAvailableLanguages = () => {
     } catch (err) {
         console.error('Error reading directory:', err);
     }
-
     return languages;
 };
 
-const availableLanguages = (req, res) => {
+const availableLanguages = async (req, res) => {
     const languages = getAvailableLanguages();
     res.json(languages);
 }
 
-const changeLanguage = (req, res) => {
+const changeLanguage = async (req, res) => {
     let language = req.params.language;
 
     if (!language) {
@@ -63,4 +61,4 @@ const changeLanguage = (req, res) => {
     });
 };
 
-export { changeLanguage, availableLanguages };
+export { changeLanguage, availableLanguages, getAvailableLanguages };

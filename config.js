@@ -43,4 +43,12 @@ const SEARCH_FIELDS = [
     'category',
     'colors'
 ]
-export {PERSISTENCE_TYPES, PRODUCT_IMG_UPLOAD_LOCATION, LANGUAGE_CONFIG, s3Client,AWS_BUCKET_NAME, SEARCH_FIELDS, config as default};
+
+//Fields to used specifically with search in multiples langs
+const FIELDS_WITH_LANG = [
+    'productName',
+    'shortDescription',
+    'longDescription',
+]
+
+export {PERSISTENCE_TYPES, PRODUCT_IMG_UPLOAD_LOCATION, LANGUAGE_CONFIG, s3Client,AWS_BUCKET_NAME, SEARCH_FIELDS, FIELDS_WITH_LANG, config as default};

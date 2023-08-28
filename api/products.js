@@ -1,12 +1,12 @@
 import config from '../config.js';
 import ProductModel from "../model/products/products.js";
 import ProductValidator from '../model/products/validators/ProductValidator.js';
-import { LANGUAGE_CONFIG, SEARCH_FIELDS } from '../config.js';
-
+import { LANGUAGE_CONFIG, SEARCH_FIELDS, FIELDS_WITH_LANG } from '../config.js';
 const modelProducts = ProductModel.get(config.PERSISTENCE_TYPE);
+import { getAvailableLanguages } from '../controller/lang.js';
 
 const DEFAULT_LANG = LANGUAGE_CONFIG.DEFAULT_LANGUAGE;
-
+const AvailableLangs = await getAvailableLanguages();
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                API Get ALL                                //
@@ -42,6 +42,18 @@ const getProducts = async (lang, query) => {
             };
         } else if (field === "_id") {
             filter[field] = value;
+
+        }  else if (field === 'productName' || field === 'shortDescription' || field === 'longDescription')  {
+            const fieldsToSearch = FIELDS_WITH_LANG
+
+            filter = {
+                $expr: {
+                    $or: fieldsToSearch.map((field, index) => ({
+                        $regexMatch: { input: { $toLower: `$${field}.${AvailableLangs[index]}` }, regex: value, options: 'i' }
+                    }))
+                }
+            };
+
         } else {
             filter[field] = { $regex: value, $options: 'i' };
         }
@@ -66,9 +78,6 @@ const getProducts = async (lang, query) => {
         products: productsWithLang,
     };
 };
-
-
-
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -105,9 +114,9 @@ const createProduct = async product => {
     const createdProduct = await modelProducts.createProduct(product);
     return createdProduct;
     /*  } else {
-         console.log(validationError);
-         console.error(`Error de validación en createProduct: ${validationError.details[0].message}`);
-         return {};
+        console.log(validationError);
+        console.error(`Error de validación en createProduct: ${validationError.details[0].message}`);
+        return {};
      } */
 };
 
@@ -139,7 +148,6 @@ const deleteProduct = async id => {
     const removedProduct = await modelProducts.deleteProduct(id);
     return removedProduct;
 };
-
 
 export default {
     getProducts,
