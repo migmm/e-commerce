@@ -51,4 +51,11 @@ const FIELDS_WITH_LANG = [
     'longDescription',
 ]
 
-export {PERSISTENCE_TYPES, PRODUCT_IMG_UPLOAD_LOCATION, LANGUAGE_CONFIG, s3Client,AWS_BUCKET_NAME, SEARCH_FIELDS, FIELDS_WITH_LANG, config as default};
+//Image resizing parameters
+const IMAGE_RESIZE_PARAMETERS = {
+    maxWidth : 1000,
+    maxHeight : 1000,
+    imageQuality : 50,
+}
+
+export {PERSISTENCE_TYPES, PRODUCT_IMG_UPLOAD_LOCATION, LANGUAGE_CONFIG, s3Client,AWS_BUCKET_NAME, SEARCH_FIELDS, FIELDS_WITH_LANG, IMAGE_RESIZE_PARAMETERS, config as default};
