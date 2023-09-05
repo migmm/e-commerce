@@ -14,20 +14,8 @@ const productSchema = mongoose.Schema({
         type: Map,
         of: Number,
     },
-    tax: [
-        {
-            value: Number,
-            currency: String,
-        },
-    ],
-    vat: {
-        value: Number,
-        currency: String,
-    },
-    currencyConversion: {
-        type: Map,
-        of: Object,
-    },
+    tax: Number,
+    vat: Number,
     discountPercent: Number,
     vendor: String,
     stock: Number,
@@ -43,10 +31,11 @@ const productSchema = mongoose.Schema({
     freeShip: Boolean,
     ageFrom: Number,
     ageTo: Number,
-    ageSelect: Number,
+    ageSelect: String,
     addedDate: Date,
     status: Boolean,
     lastSell: Date,
+    lastModified: Date,
     images: Array,
     colors: {
         type: Map,

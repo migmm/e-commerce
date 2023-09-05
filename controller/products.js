@@ -87,12 +87,17 @@ const postProduct = async (req, res) => {
     const productData = req.body;
     const files = req.files;
 
-    console.log(productData)
+    console.log("product data", productData)
+    console.log("files", files)
+
+
+    const productDetails = JSON.parse(productData.productData);
+
 
     try {
         const images = await uploadImages(files);
         const product = {
-            ...productData,
+            ...productDetails,
             images
         }
         console.log(product)
@@ -104,7 +109,7 @@ const postProduct = async (req, res) => {
     catch (err) {
         console.log(err)
         res.status(415).send({ error: 'Error adding new product' });
-    }
+    } 
 }
 
 
