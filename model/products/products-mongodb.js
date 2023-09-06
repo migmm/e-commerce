@@ -37,10 +37,7 @@ const productSchema = mongoose.Schema({
     lastSell: Date,
     lastModified: Date,
     images: Array,
-    colors: {
-        type: Map,
-        of: [String],
-    },
+    colors: Array,
     urlName: String,
 },
     {
