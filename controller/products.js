@@ -90,9 +90,7 @@ const postProduct = async (req, res) => {
     console.log("product data", productData)
     console.log("files", files)
 
-
     const productDetails = JSON.parse(productData.productData);
-
 
     try {
         const images = await uploadImages(files);

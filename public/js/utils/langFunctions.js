@@ -44,7 +44,7 @@ const fetchLanguageData = async () => {
 
     languageSelect.value = defaultLanguage;
 
-    const response = await fetch(`/api/lang/${defaultLanguage}`, {
+    const response = await fetch(`/api/lang/changelanguage/${defaultLanguage}`, {
         method: 'POST'
     })
         .then(response => response.json())
