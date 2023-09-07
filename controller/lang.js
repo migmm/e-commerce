@@ -5,33 +5,19 @@ import { LANGUAGE_CONFIG } from '../config.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const langDirectory = path.join(__dirname, '../languages');
 
 const DEFAULT_LANG = LANGUAGE_CONFIG.DEFAULT_LANGUAGE;
 
-const getAvailableLanguages = async () => {
-    const languages = [];
-    const directoryPath = `${__dirname}/../languages`;
-    try {
-        const files = fs.readdirSync(directoryPath);
-        files.forEach(file => {
-            if (file.startsWith('lang_') && file.endsWith('.json')) {
-                const language = file.substring(5, file.length - 5);
-                languages.push(language);
-            }
-        });
-    } catch (err) {
-        console.error('Error reading directory:', err);
-    }
-    return languages;
-};
-
-const availableLanguages = async (req, res) => {
-    const languages = getAvailableLanguages();
-    res.json(languages);
-}
 
 const changeLanguage = async (req, res) => {
     let language = req.params.language;
+
+    const filePath = `${__dirname}/../languages/lang_${language}.json`;
+
+    if (!fs.existsSync(filePath)) {
+        language = DEFAULT_LANG;
+    }
 
     if (!language) {
         const acceptLanguage = req.headers['accept-language'];
@@ -43,13 +29,7 @@ const changeLanguage = async (req, res) => {
         }
     }
 
-    const filePath = `${__dirname}/../languages/lang_${language}.json`;
-    if (!fs.existsSync(filePath)) {
-        language = DEFAULT_LANG;
-    }
-
-    const defaultFilePath = `${__dirname}/../languages/lang_${language}.json`;
-    fs.readFile(defaultFilePath, 'utf8', (err, data) => {
+    fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
             console.log(err);
             res.sendStatus(500);
@@ -61,4 +41,56 @@ const changeLanguage = async (req, res) => {
     });
 };
 
-export { changeLanguage, availableLanguages, getAvailableLanguages };
+async function getLanguageInfo(req, res = null) {
+    const availableLangs = [];
+    const availableLangsWithName = {};
+
+    try {
+        const langFiles = fs.readdirSync(langDirectory);
+
+        langFiles.forEach(fileName => {
+            const langCode = fileName.replace(/^lang_(.+)\.json$/, '$1');
+            const langData = loadLanguageFile(langCode);
+            if (langData) {
+                availableLangs.push(langCode);
+                availableLangsWithName[langCode] = langData['language'];
+            }
+        });
+
+        const languageInfo = {
+            availableLangs,
+            availableLangsWithName,
+        };
+
+        if (res) {
+            res.json(languageInfo);
+        } else {
+            return languageInfo;
+        }
+    }
+
+    catch (error) {
+        console.error(`Error obtaining language files: ${error}`);
+        if (res) {
+            res.status(500).json({ error: 'Error obtaining language files.' });
+        } else {
+            throw new Error('Error obtaining language files.');
+        }
+    }
+}
+
+function loadLanguageFile(langCode) {
+    const filePath = path.join(langDirectory, `lang_${langCode}.json`);
+    try {
+        const data = fs.readFileSync(filePath, 'utf8');
+        return JSON.parse(data);
+    } catch (error) {
+        console.error(`Error loading file ${filePath}: ${error}`);
+        return null;
+    }
+}
+
+export {
+    changeLanguage,
+    getLanguageInfo
+};

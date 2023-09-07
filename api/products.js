@@ -3,10 +3,11 @@ import ProductModel from "../model/products/products.js";
 import ProductValidator from '../model/products/validators/ProductValidator.js';
 import { LANGUAGE_CONFIG, SEARCH_FIELDS, FIELDS_WITH_LANG } from '../config.js';
 const modelProducts = ProductModel.get(config.PERSISTENCE_TYPE);
-import { getAvailableLanguages } from '../controller/lang.js';
+import { getLanguageInfo } from '../controller/lang.js';
 
 const DEFAULT_LANG = LANGUAGE_CONFIG.DEFAULT_LANGUAGE;
-const AvailableLangs = await getAvailableLanguages();
+const AvailableLangs = await getLanguageInfo();
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                API Get ALL                                //
@@ -49,7 +50,7 @@ const getProducts = async (lang, query) => {
             filter = {
                 $expr: {
                     $or: fieldsToSearch.map((field, index) => ({
-                        $regexMatch: { input: { $toLower: `$${field}.${AvailableLangs[index]}` }, regex: value, options: 'i' }
+                        $regexMatch: { input: { $toLower: `$${field}.${AvailableLangs.availableLangs[index]}` }, regex: value, options: 'i' }
                     }))
                 }
             };
@@ -101,6 +102,7 @@ const getProductToUpdate = async (id, lang) => {
     const product = await modelProducts.readProduct(id);
     return product;
 };
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                API Create                                 //
