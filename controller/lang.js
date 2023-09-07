@@ -10,36 +10,9 @@ const langDirectory = path.join(__dirname, '../languages');
 const DEFAULT_LANG = LANGUAGE_CONFIG.DEFAULT_LANGUAGE;
 
 
-const changeLanguage = async (req, res) => {
-    let language = req.params.language;
-
-    const filePath = `${__dirname}/../languages/lang_${language}.json`;
-
-    if (!fs.existsSync(filePath)) {
-        language = DEFAULT_LANG;
-    }
-
-    if (!language) {
-        const acceptLanguage = req.headers['accept-language'];
-        if (acceptLanguage) {
-            const languages = acceptLanguage.split(',');
-            language = languages[0];
-        } else {
-            language = DEFAULT_LANG;
-        }
-    }
-
-    fs.readFile(filePath, 'utf8', (err, data) => {
-        if (err) {
-            console.log(err);
-            res.sendStatus(500);
-            return;
-        }
-
-        const languageData = JSON.parse(data);
-        res.json(languageData);
-    });
-};
+////////////////////////////////////////////////////////////////////////////////
+//                               GET Controllers                              //
+////////////////////////////////////////////////////////////////////////////////
 
 async function getLanguageInfo(req, res = null) {
     const availableLangs = [];
@@ -81,6 +54,7 @@ async function getLanguageInfo(req, res = null) {
 
 function loadLanguageFile(langCode) {
     const filePath = path.join(langDirectory, `lang_${langCode}.json`);
+    
     try {
         const data = fs.readFileSync(filePath, 'utf8');
         return JSON.parse(data);
@@ -89,6 +63,43 @@ function loadLanguageFile(langCode) {
         return null;
     }
 }
+
+
+///////////////////////////////////////////////////////////////////////////////
+//                              POST Controllers                             //
+///////////////////////////////////////////////////////////////////////////////
+
+const changeLanguage = async (req, res) => {
+    let language = req.params.language;
+
+    const filePath = `${__dirname}/../languages/lang_${language}.json`;
+
+    if (!fs.existsSync(filePath)) {
+        language = DEFAULT_LANG;
+    }
+
+    if (!language) {
+        const acceptLanguage = req.headers['accept-language'];
+        if (acceptLanguage) {
+            const languages = acceptLanguage.split(',');
+            language = languages[0];
+        } else {
+            language = DEFAULT_LANG;
+        }
+    }
+
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+            console.log(err);
+            res.sendStatus(500);
+            return;
+        }
+
+        const languageData = JSON.parse(data);
+        res.json(languageData);
+    });
+};
+
 
 export {
     changeLanguage,
