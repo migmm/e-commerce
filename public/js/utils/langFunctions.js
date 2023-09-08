@@ -28,13 +28,31 @@ const updateElements = (elementData, parentKey = "") => {
     });
 };
 
+const fetchFunction = async (route, method) => {
+    try {
+        const response = await fetch(route, {
+            method: method
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching data.', error);
+        throw error;
+    }
+};
+
 const fetchLanguageData = async () => {
-    const supportedLanguages = ['en', 'es'];
+
+    const availableLangs = await fetchFunction('/api/lang/availablelangs', 'GET')
+
+    const supportedLanguages = availableLangs.availableLangs
+
     const browserLanguage = navigator.language || navigator.userLanguage;
     const languageParts = browserLanguage.split("-");
     const language = languageParts[0];
+
     let defaultLanguage = supportedLanguages.includes(language) ? language : 'en';
-    
+
     if (localStorage.getItem('langSelection')) {
         console.log(localStorage.getItem('langSelection'))
         defaultLanguage = localStorage.getItem('langSelection');
@@ -44,16 +62,7 @@ const fetchLanguageData = async () => {
 
     languageSelect.value = defaultLanguage;
 
-    const response = await fetch(`/api/lang/changelanguage/${defaultLanguage}`, {
-        method: 'POST'
-    })
-        .then(response => response.json())
-        .then(languageData => {
-            updateElements(languageData);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+    const response = await fetchFunction(`/api/lang/changelanguage/${defaultLanguage}`, 'POST')
 
     return response;
 };
