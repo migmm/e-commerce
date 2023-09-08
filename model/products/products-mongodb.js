@@ -36,6 +36,8 @@ const productSchema = mongoose.Schema({
     status: Boolean,
     lastSell: Date,
     lastModified: Date,
+    views: Number,
+    lastVisited: Date,
     images: Array,
     colors: Array,
     urlName: String,
