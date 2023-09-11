@@ -8,7 +8,7 @@
     <div class="productDetails">
         <div class="input-group__first-row">
             <div class="input-group__form-group">
-                <label class="input-group__label" for="price">Price:</label>
+                <label class="input-group__label" for="price" data-lang="form-product-price">Price:</label>
                 <div class="input-group">
                     <div class="input-group__flex">
                         <input class="input-group__input" type="number" id="price" name="price" />
@@ -18,52 +18,52 @@
                 </div>
             </div>
             <div class="input-group__form-group">
-                <label class="input-group__label" for="tax">Tax:</label>
+                <label class="input-group__label" for="tax" data-lang="form-product-tax">Tax:</label>
                 <input class="input-group__input" type="number" id="tax" name="tax[0][value]" />
                 <span class="input-group__error" data-lang="form-product-tax-error">ERROR! Ingrese números positivos.</span>
             </div>
             <div class="input-group__form-group">
-                <label class="input-group__label" for="vat">VAT:</label>
+                <label class="input-group__label" for="vat" data-lang="form-product-vat">VAT:</label>
                 <input class="input-group__input" type="number" id="vat" name="vat[0][value]" />
                 <span class="input-group__error" data-lang="form-product-vat-error">ERROR! Ingrese números positivos.</span>
             </div>
             <div class="input-group__form-group">
-                <label class="input-group__label" for="discountPercent">Discount Percent:</label>
+                <label class="input-group__label" for="discountPercent" data-lang="form-product-discount-percent">Discount Percent:</label>
                 <input class="input-group__input" type="number" id="discountPercent" name="discountPercent" />
                 <span class="input-group__error" data-lang="form-product-discount-percent-error">ERROR! Ingrese números positivos.</span>
             </div>
             <div class="input-group__form-group">
-                <label class="input-group__label" for="stock">Stock Quantity:</label>
+                <label class="input-group__label" for="stock" data-lang="form-product-stock">Stock Quantity:</label>
                 <input class="input-group__input" type="number" id="stock" name="stock" />
                 <span class="input-group__error" data-lang="form-product-stock-error">ERROR! Ingrese números.</span>
             </div>
         </div>
         <div class="input-group__second-row">
             <div class="input-group__form-group">
-                <label class="input-group__label" for="vendor">Vendor:</label>
+                <label class="input-group__label" for="vendor" data-lang="form-product-vendor">Vendor:</label>
                 <input class="input-group__input" type="text" id="vendor" name="vendor" />
                 <span class="input-group__error" data-lang="form-product-vendor-error">ERROR! El fabricante debe tener entre 5 y 40 caracteres.</span>
             </div>
             <div class="input-group__form-group">
-                <label class="input-group__label" for="category">Category:</label>
+                <label class="input-group__label" for="category" data-lang="form-product-category">Category:</label>
                 <input class="input-group__input" type="text" id="category" name="category" />
                 <span class="input-group__error" data-lang="form-product-category-error">ERROR! La categoría debe tener entre 5 y 50 caracteres.</span>
             </div>
         </div>
         <div class="input-group__first-row">
             <div class="input-group__form-group">
-                <label class="input-group__label" for="optionSelect">Colors:</label>
+                <label class="input-group__label" for="optionSelect" data-lang="form-product-main-colors">Colors:</label>
                 <div class="container">
                     <select id="optionSelect">
-                        <option value="">Seleccionar colores</option>
-                        <option value="01">Rojo</option>
-                        <option value="02">Azul</option>
-                        <option value="03">Amarillo</option>
-                        <option value="04">Verde</option>
-                        <option value="05">Violeta</option>
-                        <option value="06">Naranja</option>
+                        <option value="" data-lang="form-product-select-colors">Seleccionar colores</option>
+                        <option value="01" data-lang="form-product-color-red">Rojo</option>
+                        <option value="02" data-lang="form-product-color-blue">Azul</option>
+                        <option value="03" data-lang="form-product-color-yellow">Amarillo</option>
+                        <option value="04" data-lang="form-product-color-green">Verde</option>
+                        <option value="05" data-lang="form-product-color-violet">Violeta</option>
+                        <option value="06" data-lang="form-product-color-orange">Naranja</option>
                     </select>
-                    <button type="button" id="addButton">Agregar</button>
+                    <button type="button" id="addButton"  data-lang="form-product-color-button">Agregar</button>
                 </div>
                 <div class="selected-options" id="selectedOptions">
                 </div>
@@ -71,10 +71,10 @@
             </div>
 
             <div class="input-group__form-group">
-                <label class="input-group__label" for="freeShip">Free Shipping</label>
+                <label class="input-group__label" for="freeShip" data-lang="form-product-free-shipping-title">Free Shipping</label>
                 <div class="center-align">
                     <input class="input-group__check" type="checkbox" id="freeShip" name="freeShip" />
-                    <label class="input-group__label" for="freeShip">Free Shipping</label>
+                    <label class="input-group__label" for="freeShip"  data-lang="form-product-free-shipping-text">Free Shipping</label>
                 </div>
                 <span class="input-group__error" data-lang="form-product-is-shipping-free">¿El envío es sin cargo?</span>
             </div>
@@ -87,25 +87,25 @@
                 <span class="input-group__error" data-lang="form-product-months-years-error">ERROR! Seleccione meses o años.</span>
             </div>
             <div class="input-group__form-group">
-                <label class="input-group__label" for="ageMonths">Select Age</label>
+                <label class="input-group__label" for="ageMonths"data-lang="form-product-radio-age">Select Age</label>
                 <div class="form-group-flex">
-                    <input class="input-group__radio" type="radio" id="ageMonths" name="ageSelect" value="months" />
-                    <label class="input-group__label" for="ageMonths">Months</label>
+                    <input class="input-group__radio" type="radio" id="ageMonths" name="ageSelect" value="months"/>
+                    <label class="input-group__label" for="ageMonths" data-lang="form-product-months">Months</label>
                     <input class="input-group__radio" type="radio" id="ageYears" name="ageSelect" value="years" />
-                    <label class="input-group__label" for="ageYears">Years</label>
+                    <label class="input-group__label" for="ageYears" data-lang="form-product-years">Years</label>
                 </div>
                 <span class="input-group__error" data-lang="form-product-months-years-error">ERROR! Seleccione meses o años.</span>
             </div>
         </div>
         <div class="input-group__fifth-row">
-            <div class="input-group__form-group">
+            {{!-- <div class="input-group__form-group">
                 <input type="hidden" id="addedDate" name="addedDate" value="" />
                 <input type="hidden" id="lastSell" name="lastSell" value="" />
                 <input type="hidden" id="urlName" name="urlName" value="" />
-            </div>
+            </div> --}}
             <div class="input-group__form-group">
-                <label class="input-group__label" for="images">Images:</label>
-                <p>Insertar imagenes haciendo click en el cuadro correspondiente a cada imagen, la primer imagen de izquierda a derecha es la que se
+                <label class="input-group__label" for="images" data-lang="form-product-images">Images:</label>
+                <p data-lang="form-product-images-text">Insertar imagenes haciendo click en el cuadro correspondiente a cada imagen, la primer imagen de izquierda a derecha es la que se
                     mostrará en la card del producto. para borrar la imagen hacer clic en la imagen cargada. para reordenar las imagenes arrastrarla
                     hasta el lugar que deseas que quede.</p>
                 <div id="imageContainer">

@@ -63,7 +63,7 @@ const fetchLanguageData = async () => {
     languageSelect.value = defaultLanguage;
 
     const response = await fetchFunction(`/api/lang/changelanguage/${defaultLanguage}`, 'POST')
-
+    updateElements(response)
     return response;
 };
 

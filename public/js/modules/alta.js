@@ -104,7 +104,7 @@ class PageAlta {
         
         /* document.getElementById('productName').focus(); */
         await cartController.init();
-        await fetchLanguageData.fetchLanguageData();
+        
 
 
 
@@ -176,22 +176,22 @@ class PageAlta {
                     inputElement = `
                     <div class="input-group__form-group">
                         <label for="${field}_${langCode}">
-                            <span data-lang="form-${separateCamelCase(field)}">${capitalize(field)}</span>
+                            <span data-lang="form-product-${separateCamelCase(field)}">${capitalize(field)}</span>
                             <span> (${langName}):</span>
                         </label>
                         <textarea class="input-group__textarea" id="${field}-${langCode}" name="${field}[${langCode}]" required></textarea><br>
-                        <span class="input-group__error" data-lang="form-${field}-error">${field}</span>
+                        <span class="input-group__error" data-lang="form-${field}-error">${field}"</span>
                     </div>
                     `;
                 } else {
                     inputElement = `
                     <div class="input-group__form-group">
                         <label for="${field}_${langCode}">
-                            <span data-lang="form-${separateCamelCase(field)}">${capitalize(field)}</span>
+                            <span data-lang="form-product-${separateCamelCase(field)}">${capitalize(field)}</span>
                             <span> (${langName}):</span>
                         </label>
                         <input type="text" class="input-group__input" id="${field}-${langCode}" name="${field}[${langCode}]">
-                        <span class="input-group__error" data-lang="form-${field}-error">${field}</span>
+                        <span class="input-group__error" data-lang="form-${field}-error">${field}"</span>
                     </div>
                     `;
                 }
@@ -542,6 +542,8 @@ class PageAlta {
             e.preventDefault();
             collectFormData()
         });
+
+        await fetchLanguageData.fetchLanguageData();
     }
 }
 
