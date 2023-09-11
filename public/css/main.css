@@ -1492,6 +1492,7 @@ body {
   border-radius: 0.3em;
   padding: 0.3em;
   resize: vertical;
+  height: 150px;
 }
 .input-group__buttons {
   margin: 1em;

@@ -170,6 +170,43 @@ class PageAlta {
         }
 
         function generateFormHtml(langCode, langName) {
+            const formElements = formFields.map(field => {
+                let inputElement;
+                if (field === "shortDescription" || field === "longDescription") {
+                    inputElement = `
+                    <div class="input-group__form-group">
+                        <label for="${field}_${langCode}">
+                            <span data-lang="form-${separateCamelCase(field)}">${capitalize(field)}</span>
+                            <span> (${langName}):</span>
+                        </label>
+                        <textarea class="input-group__textarea" id="${field}-${langCode}" name="${field}[${langCode}]" required></textarea><br>
+                        <span class="input-group__error" data-lang="form-${field}-error">${field}</span>
+                    </div>
+                    `;
+                } else {
+                    inputElement = `
+                    <div class="input-group__form-group">
+                        <label for="${field}_${langCode}">
+                            <span data-lang="form-${separateCamelCase(field)}">${capitalize(field)}</span>
+                            <span> (${langName}):</span>
+                        </label>
+                        <input type="text" class="input-group__input" id="${field}-${langCode}" name="${field}[${langCode}]">
+                        <span class="input-group__error" data-lang="form-${field}-error">${field}</span>
+                    </div>
+                    `;
+                }
+                return inputElement;
+            }).join('');
+        
+            return `
+                <form class="form-container-${langCode}">
+                    ${formElements}
+                </form>
+            `;
+        }
+
+    /*    
+        function generateFormHtml(langCode, langName) {
             const formElements = formFields.map(field => `
             <div class="input-group__form-group">
                 <label for="${field}_${langCode}" class="input-group__label" >
@@ -185,7 +222,7 @@ class PageAlta {
                 ${formElements}
             </div>
             `;
-        }
+        } */
 
         function capitalize(string) {
             const result = string.charAt(0).toUpperCase() + string.slice(1)
