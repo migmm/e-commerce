@@ -1535,13 +1535,13 @@ body {
 
 #addButton,
 .language-button {
-  border: 1px grey solid;
+  border: 1px #8b8b8b solid;
 }
 
 @media (hover: hover) {
   #addButton:hover,
   .language-button:hover {
-    background-color: rgb(145, 142, 142);
+    background-color: #8b8b8b;
   }
 }
 .form-group-flex {
@@ -2431,7 +2431,7 @@ a .card-favs-preview .fa-trash-o:active {
 }
 
 .selected-option {
-  background-color: #f0f0f0;
+  background-color: #fff;
   border-radius: 4px;
   padding: 6px 10px;
   margin-right: 10px;
@@ -2444,8 +2444,8 @@ a .card-favs-preview .fa-trash-o:active {
   position: absolute;
   top: -5px;
   right: -5px;
-  background-color: red;
-  color: white;
+  background-color: #be0000;
+  color: #fff;
   border: none;
   border-radius: 50%;
   width: 20px;
@@ -2453,17 +2453,6 @@ a .card-favs-preview .fa-trash-o:active {
   cursor: pointer;
 }
 
-/* .image-container {
-    width: 200px;
-    height: 200px;
-    border: 1px solid #9e9e9e;
-    border-radius: 10px;
-    margin: 10px;
-    display: inline-block;
-    background-size: cover;
-    background-position: center;
-    cursor: pointer;
-} */
 #imageContainer {
   display: grid;
   grid-template-columns: 1fr;
@@ -2474,7 +2463,7 @@ a .card-favs-preview .fa-trash-o:active {
   width: 100%;
   padding-top: 100%;
   position: relative;
-  border: 1px solid #9e9e9e;
+  border: 1px solid #8b8b8b;
   border-radius: 10px;
 }
 
@@ -2493,7 +2482,7 @@ a .card-favs-preview .fa-trash-o:active {
   .image-container {
     width: 100%;
     height: 20%;
-    border: 1px solid #9e9e9e;
+    border: 1px solid #8b8b8b;
     border-radius: 10px;
     margin: 10px;
     display: inline-block;
@@ -2631,7 +2620,7 @@ a .card-favs-preview .fa-trash-o:active {
     width: 20%;
   }
   .input-group__fifth-row :first-child > span {
-    background-color: red;
+    background-color: #be0000;
   }
   .input-group__fifth-row :nth-child(3) {
     flex-grow: 3;
@@ -2658,6 +2647,7 @@ input::-webkit-inner-spin-button {
 
 /* Firefox */
 input[type=number] {
+  appearance: textfield;
   -moz-appearance: textfield;
 }
 

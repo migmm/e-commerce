@@ -1,3 +1,7 @@
+@use '../abstracts/variables' as color;
+@use '../abstracts/mixins' as mixin;
+
+
 @media (min-width: 950px) {
 
     .input-group {
@@ -44,7 +48,7 @@
             }
 
             & :first-child>span {
-                background-color: red;
+                background-color: color.$red;
             }
 
             & :nth-child(3) {
@@ -79,5 +83,6 @@ input::-webkit-inner-spin-button {
 
 /* Firefox */
 input[type=number] {
+    appearance: textfield;
     -moz-appearance: textfield;
 }
