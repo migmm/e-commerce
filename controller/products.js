@@ -90,9 +90,13 @@ const postProduct = async (req, res) => {
     console.log("product data", productData)
     console.log("files", files)
 
-    const productDetails = JSON.parse(productData.productData);
-
     try {
+
+        if (typeof productData === 'object' && productData !== null){
+            res.status(415).send({ error: 'Error in json format' });
+        } 
+        
+        const productDetails = JSON.parse(productData.productData);
         const images = await uploadImages(files);
         const product = {
             ...productDetails,

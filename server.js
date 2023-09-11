@@ -18,6 +18,13 @@ app.use(express.static('public', { extensions: ['html', 'htm'] }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+const jsonErrorHandler = (err, req, res, next) => {
+    console.log(err)
+    //res.status(err.statusCode).send({ error: err.message });
+    res.status(500).json({ error: 'Server error.' });
+}
+
+app.use(jsonErrorHandler)  
 
 app.use('/api/products', routerProducts);
 app.use('/api/cart', routerCart);
