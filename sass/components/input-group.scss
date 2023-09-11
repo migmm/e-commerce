@@ -6,10 +6,19 @@
 
     &__form-group {
         padding: 0 1em 0 1em;
+
+        &__flex {
+            display: flex;
+            height: 30px;
+            align-items: center;
+            gap: 1em;
+        }
     }
 
     &__label {
         display: block;
+        height: 30px;
+        line-height: 30px;
     }
 
     &__input {
@@ -18,12 +27,24 @@
         border-radius: .3em;
         padding: .3em;
         width: 100%;
+
+        &__select {
+            width: 90px;
+            border-radius: .3em;
+            margin-left: 5px;
+        }
+
+        &__flex {
+            display: flex;
+            height: 30px;
+            gap: 1em;
+        }
     }
 
     &__radio {
         display: inline-block;
-        margin-left: 1em;
-        margin-top: .3em;
+        margin-left: .5em;
+        margin-top: 0px;
     }
 
     &__checkbox {
@@ -75,6 +96,11 @@
         visibility: visible;
     }
 
+    &__flex {
+        display: flex;
+        height: 30px;
+    }
+
     &__textarea {
         width: 100%;
         border-radius: .3em;
@@ -93,9 +119,11 @@
         border: none;
         cursor: pointer;
     }
+
     &__buttons button:hover {
         @include mixin.red-button-hover;
     }
+
     &__buttons button:active {
         @include mixin.red-button-active;
     }
@@ -108,4 +136,32 @@
 
 #label-checkbox {
     display: inline-block;
+}
+
+#optionSelect,
+#addButton,
+.language-button {
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#addButton,
+.language-button {
+    border: 1px grey solid;
+}
+
+@media (hover: hover) {
+    #addButton:hover,
+
+    .language-button:hover {
+        background-color: rgb(145, 142, 142);
+    }
+}
+
+.form-group-flex {
+    display: flex;
+    height: 30px;
+    align-items: center;
+    gap: .5em;
 }
