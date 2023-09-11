@@ -7,7 +7,7 @@ import routerProducts from './router/products.js';
 import routerCart from './router/cart.js';
 import routerUsers from './router/users.js'
 import routerAuth from './router/auth.js';
-import langRouter from './router/lang.js';
+import routerLang from './router/lang.js';
 import routerImages from './router/awsFileManager.js'
 
 import cors from 'cors';
@@ -29,7 +29,7 @@ app.use('/api/products', routerProducts);
 app.use('/api/cart', routerCart);
 app.use('/api/users', routerUsers);
 app.use('/api/auth', routerAuth);
-app.use('/api/lang', langRouter);
+app.use('/api/lang', routerLang);
 app.use('/api/images', routerImages);
 
 app.get("/*", function (req, res) {
