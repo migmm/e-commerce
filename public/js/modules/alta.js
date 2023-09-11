@@ -98,7 +98,7 @@ class PageAlta {
         
         //await render.renderTemplateCards(showOnly, 'templates/form.hbs', '.input-group', currentLang)
         
-        this.form = document.getElementById('form-add-products');
+        //this.form = document.getElementById('form-add-products');
       /*   this.fields = this.form.querySelectorAll(`textarea, input:not([type='radio']`); */
         /* this.addFormEvents(); */
         
@@ -201,7 +201,7 @@ class PageAlta {
 
         function collectFormData() {
             const productInfo = {};
-
+            console.log("entra")
             formFields.forEach(field => {
                 productInfo[field] = {};
                 Object.keys(languages).forEach(langCode => {
@@ -239,6 +239,7 @@ class PageAlta {
             productInfo.lastModified = productInfo.lastSell = new Date("1900-01-01T00:00:00.000Z");
             productInfo.urlName = document.getElementById("urlName").value;
 
+            console.log(productInfo);
             const formData = new FormData();
 
             formData.append('productData', JSON.stringify(productInfo));
@@ -499,6 +500,11 @@ class PageAlta {
         }
 
 
+        const btnSubmit = document.getElementById('btn-sendform');
+        btnSubmit.addEventListener('click', async (e) => {
+            e.preventDefault();
+            collectFormData()
+        });
     }
 }
 
