@@ -1,28 +1,37 @@
+const languages = {
+    "en": "English",
+    "es": "Español",
+    "fr": "Frances"
+};
+
+const currencies = [
+    "USD",
+    "EUR"
+];
+
+const formFields = [
+    "productName",
+    "shortDescription",
+    "longDescription"
+];
+
+
+///////////////////////////////////////////////////////////////////////////////
+//                               TEXT RELATED                                //
+///////////////////////////////////////////////////////////////////////////////
+
 function initForm() {
-
-    const languages = {
-        "en": "English",
-        "es": "Español",
-        "fr": "Frances"
-    };
-
-    const currencies = [
-        "USD",
-        "EUR"
-    ];
-
-    const formFields = [
-        "productName",
-        "shortDescription",
-        "longDescription"
-    ];
 
     const languageForms = document.getElementById("languageForms");
     const languageButtons = document.getElementById("languageButtons");
-    const productInformation = document.getElementById("productInformation");
-
-    const formData = {};
     const currencySelect = document.getElementById("currency");
+
+    const optionSelect = document.getElementById('optionSelect');
+    const addButton = document.getElementById('addButton');
+    const selectedOptionsContainer = document.getElementById('selectedOptions');
+    const selectedOptions = [];
+    const maxSelections = 3;
+
 
     currencies.forEach(currency => {
         const option = document.createElement("option");
@@ -109,89 +118,7 @@ function initForm() {
         return result;
     }
 
-    function collectFormData() {
-        const productInfo = {};
-        console.log("entra")
-        formFields.forEach(field => {
-            productInfo[field] = {};
-            Object.keys(languages).forEach(langCode => {
-                const inputId = `${field}-${langCode}`;
-                const inputValue = document.getElementById(inputId).value;
-                productInfo[field][langCode] = inputValue;
-            });
-        });
-
-        const priceValue = parseFloat(document.getElementById("price").value);
-        const currencyValue = document.getElementById("currency").value;
-
-        const priceObject = {
-            [currencyValue]: priceValue
-        };
-
-        productInfo.price = priceObject;
-        productInfo.currency = document.getElementById("currency").value;
-        productInfo.tax = parseFloat(document.getElementById("tax").value),
-
-        productInfo.vat = parseFloat(document.getElementById("vat").value);
-
-        productInfo.vendor = document.getElementById("vendor").value;
-        productInfo.stock = parseInt(document.getElementById("stock").value);
-        productInfo.category = document.getElementById("category").value;
-        productInfo.discountPercent = parseFloat(document.getElementById("discountPercent").value);
-        productInfo.freeShip = document.getElementById("freeShip").checked;
-        productInfo.ageFrom = parseInt(document.getElementById("ageFrom").value);
-        productInfo.ageTo = parseInt(document.getElementById("ageTo").value);
-        productInfo.ageSelect = document.querySelector('input[name="ageSelect"]:checked').value;
-
-        productInfo.colors = selectedOptions;
-        productInfo.addedDate = new Date();
-        productInfo.lastSell = productInfo.lastSell = new Date("1900-01-01T00:00:00.000Z");
-        productInfo.lastModified = productInfo.lastSell = new Date("1900-01-01T00:00:00.000Z");
-        productInfo.urlName = 'urlName';
-
-        console.log(productInfo);
-        const formData = new FormData();
-
-        formData.append('productData', JSON.stringify(productInfo));
-
-        const imagesInput = document.getElementById("images");
-
-        for (const file of imagesInput.files) {
-            formData.append("images", file);
-        }
-
-        for (let i = 0; i < totalImages.length; i++) {
-            if (totalImages[i]) {
-                const file = dataURItoBlob(totalImages[i]);
-                formData.append('images', file);
-            }
-        }
-
-        // check
-        for (const pair of formData.entries()) {
-            console.log(pair[0], pair[1]);
-        }
-
-        fetch("http://localhost:8080/api/products/", {
-            method: "POST",
-            body: formData,
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log("Respuesta de la API:", data);
-            })
-            .catch(error => {
-                console.error("Error al enviar los datos:", error);
-            });
-    }
-
     showFormForLanguage('en');
-
-    const optionSelect = document.getElementById('optionSelect');
-    const addButton = document.getElementById('addButton');
-    const selectedOptionsContainer = document.getElementById('selectedOptions');
-    const selectedOptions = [];
-    const maxSelections = 3;
 
     addButton.addEventListener('click', () => {
         const selectedValue = optionSelect.value;
@@ -232,14 +159,21 @@ function initForm() {
             selectedOptionsContainer.appendChild(selectedOptionDiv);
         });
     }
+}
 
-    //--------------------------------------------------------------------------
 
-    const endpointUrl = 'http://localhost:8080/api/products/';
-    const cantidadImagenes = 4;
+///////////////////////////////////////////////////////////////////////////////
+//                               IMAGE RELATED                               //
+///////////////////////////////////////////////////////////////////////////////
+
+const cantidadImagenes = 4;
+let totalImages = new Array(cantidadImagenes).fill(null);
+
+function initImageDriver() {
+
     const imageContainer = document.getElementById('imageContainer');
     const images = document.getElementById('images');
-    let totalImages = new Array(cantidadImagenes).fill(null);
+
     let draggedIndex = null;
 
     for (let i = 0; i < cantidadImagenes; i++) {
@@ -298,6 +232,7 @@ function initForm() {
                 totalImagesLoaded++;
                 if (totalImagesLoaded === files.length) {
                     images.value = '';
+                    // Guardar la imagen arrastrada como la primera en el input
                     if (draggedIndex !== null) {
                         const draggedImage = totalImages[draggedIndex];
                         totalImages.splice(draggedIndex, 1);
@@ -320,12 +255,112 @@ function initForm() {
         updateImageContainers();
     }
 
+    function handleDragStart(event, index) {
+        draggedIndex = index;
+    }
+
+    function handleDragOver(event) {
+        event.preventDefault();
+    }
+
+    function handleDrop(event, targetIndex) {
+        event.preventDefault();
+        if (draggedIndex !== null) {
+            const draggedImage = totalImages[draggedIndex];
+            totalImages.splice(draggedIndex, 1);
+            totalImages.splice(targetIndex, 0, draggedImage);
+            updateImageContainers();
+            draggedIndex = null;
+        }
+    }
+
     function updateImageContainers() {
         for (let i = 0; i < totalImages.length; i++) {
             const imageDiv = document.getElementById(`image${i + 1}`);
             imageDiv.style.backgroundImage = totalImages[i] ? `url(${totalImages[i]})` : '';
         }
     }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+//                              FORM INFO COLLECT                            //
+///////////////////////////////////////////////////////////////////////////////
+
+function collectFormData() {
+    const productInfo = {};
+    console.log("entra")
+    formFields.forEach(field => {
+        productInfo[field] = {};
+        Object.keys(languages).forEach(langCode => {
+            const inputId = `${field}-${langCode}`;
+            const inputValue = document.getElementById(inputId).value;
+            productInfo[field][langCode] = inputValue;
+        });
+    });
+
+    const priceValue = parseFloat(document.getElementById("price").value);
+    const currencyValue = document.getElementById("currency").value;
+
+    const priceObject = {
+        [currencyValue]: priceValue
+    };
+
+    productInfo.price = priceObject;
+    productInfo.currency = document.getElementById("currency").value;
+    productInfo.tax = parseFloat(document.getElementById("tax").value),
+
+        productInfo.vat = parseFloat(document.getElementById("vat").value);
+
+    productInfo.vendor = document.getElementById("vendor").value;
+    productInfo.stock = parseInt(document.getElementById("stock").value);
+    productInfo.category = document.getElementById("category").value;
+    productInfo.discountPercent = parseFloat(document.getElementById("discountPercent").value);
+    productInfo.freeShip = document.getElementById("freeShip").checked;
+    productInfo.ageFrom = parseInt(document.getElementById("ageFrom").value);
+    productInfo.ageTo = parseInt(document.getElementById("ageTo").value);
+    productInfo.ageSelect = document.querySelector('input[name="ageSelect"]:checked').value;
+
+    productInfo.colors = selectedOptions;
+    productInfo.addedDate = new Date();
+    productInfo.lastSell = productInfo.lastSell = new Date("1900-01-01T00:00:00.000Z");
+    productInfo.lastModified = productInfo.lastSell = new Date("1900-01-01T00:00:00.000Z");
+    productInfo.urlName = 'urlName';
+
+    console.log(productInfo);
+    const formData = new FormData();
+
+    formData.append('productData', JSON.stringify(productInfo));
+
+    const imagesInput = document.getElementById("images");
+
+    for (const file of imagesInput.files) {
+        formData.append("images", file);
+    }
+
+    for (let i = 0; i < totalImages.length; i++) {
+        if (totalImages[i]) {
+            const file = dataURItoBlob(totalImages[i]);
+            formData.append('images', file);
+        }
+    }
+
+    // check
+    for (const pair of formData.entries()) {
+        console.log(pair[0], pair[1]);
+    }
+
+    fetch("http://localhost:8080/api/products/", {
+        method: "POST",
+        body: formData,
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Respuesta de la API:", data);
+        })
+        .catch(error => {
+            console.error("Error al enviar los datos:", error);
+        });
 
     function dataURItoBlob(dataURI) {
         const byteString = atob(dataURI.split(',')[1]);
@@ -337,7 +372,14 @@ function initForm() {
         }
         return new Blob([ab], { type: mimeString });
     }
+}
 
+
+///////////////////////////////////////////////////////////////////////////////
+//                                 SEND FORM                                 //
+///////////////////////////////////////////////////////////////////////////////
+
+function sendForm() {
     const btnSubmit = document.getElementById('btn-sendform');
     btnSubmit.addEventListener('click', async (e) => {
         e.preventDefault();
@@ -345,5 +387,4 @@ function initForm() {
     });
 }
 
-
-export default { initForm }
+export default { initForm, initImageDriver, sendForm }

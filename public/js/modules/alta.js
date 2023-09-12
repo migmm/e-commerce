@@ -106,6 +106,8 @@ class PageAlta {
         /* document.getElementById('productName').focus(); */
         await cartController.init();
         formUtils.initForm()
+        formUtils.initImageDriver()
+        formUtils.sendForm()
         await fetchLanguageData.fetchLanguageData();
     }
 }
