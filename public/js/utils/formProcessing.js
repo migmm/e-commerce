@@ -187,8 +187,6 @@ function initForm() {
 
     showFormForLanguage('en');
 
-
-
     const optionSelect = document.getElementById('optionSelect');
     const addButton = document.getElementById('addButton');
     const selectedOptionsContainer = document.getElementById('selectedOptions');
@@ -300,7 +298,6 @@ function initForm() {
                 totalImagesLoaded++;
                 if (totalImagesLoaded === files.length) {
                     images.value = '';
-                    // Guardar la imagen arrastrada como la primera en el input
                     if (draggedIndex !== null) {
                         const draggedImage = totalImages[draggedIndex];
                         totalImages.splice(draggedIndex, 1);
@@ -323,61 +320,11 @@ function initForm() {
         updateImageContainers();
     }
 
-    function handleDragStart(event, index) {
-        draggedIndex = index;
-    }
-
-    function handleDragOver(event) {
-        event.preventDefault();
-    }
-
-    function handleDrop(event, targetIndex) {
-        event.preventDefault();
-        if (draggedIndex !== null) {
-            // Reordenar las imágenes
-            const draggedImage = totalImages[draggedIndex];
-            totalImages.splice(draggedIndex, 1);
-            totalImages.splice(targetIndex, 0, draggedImage);
-            updateImageContainers();
-            draggedIndex = null;
-        }
-    }
-
     function updateImageContainers() {
         for (let i = 0; i < totalImages.length; i++) {
             const imageDiv = document.getElementById(`image${i + 1}`);
             imageDiv.style.backgroundImage = totalImages[i] ? `url(${totalImages[i]})` : '';
         }
-    }
-
-    function showImageOrder() {
-        console.log(totalImages);
-    }
-
-    function submitForm(event) {
-        event.preventDefault();
-
-        const form = document.getElementById('galleryForm');
-        const formData = new FormData(form);
-
-        for (let i = 0; i < totalImages.length; i++) {
-            if (totalImages[i]) {
-                const file = dataURItoBlob(totalImages[i]);
-                formData.append('totalImages', file, `image${i + 1}.png`);
-            }
-        }
-
-        fetch(endpointUrl, {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Respuesta del servidor:', data);
-            })
-            .catch(error => {
-                console.error('Error al enviar el formulario:', error);
-            });
     }
 
     function dataURItoBlob(dataURI) {
