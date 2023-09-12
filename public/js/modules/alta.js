@@ -274,7 +274,7 @@ class PageAlta {
             productInfo.addedDate = new Date();
             productInfo.lastSell = productInfo.lastSell = new Date("1900-01-01T00:00:00.000Z");
             productInfo.lastModified = productInfo.lastSell = new Date("1900-01-01T00:00:00.000Z");
-            productInfo.urlName = document.getElementById("urlName").value;
+            productInfo.urlName ='urlName'
 
             console.log(productInfo);
             const formData = new FormData();

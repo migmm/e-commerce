@@ -91,11 +91,6 @@ const postProduct = async (req, res) => {
     console.log("files", files)
 
     try {
-
-        if (typeof productData === 'object' && productData !== null){
-            res.status(415).send({ error: 'Error in json format' });
-        } 
-        
         const productDetails = JSON.parse(productData.productData);
         const images = await uploadImages(files);
         const product = {
@@ -110,7 +105,7 @@ const postProduct = async (req, res) => {
 
     catch (err) {
         console.log(err)
-        res.status(415).send({ error: 'Error adding new product' });
+        res.status(415).json({ error: 'Error adding new product' });
     } 
 }
 
