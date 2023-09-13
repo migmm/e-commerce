@@ -4,6 +4,7 @@ import cartController from '/js/modules/cart.js';
 import Validations from '../utils/validation.js';
 import Form from '../utils/form.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
+import { fetchAndRenderProducts, queryFunction } from '../utils/fetchAndRenderProducts.js';
 
 
 class PageModificar {
@@ -15,7 +16,7 @@ class PageModificar {
     static productFullViewBg;
     products = [];
 
-
+/* 
     static async updateProduct(product) {
         const mode = 'formdata';
         const updatedProduct = await productController.updateProduct(product.get('id'), product, mode);
@@ -23,9 +24,9 @@ class PageModificar {
         console.log(`Ahora hay ${products.length} productos`);
         await render.renderTemplateCards(products, 'templates/products-table.hbs', '.products-table-container');
         return updatedProduct;
-    }
+    } */
 
-    static async addFormEvents() {
+/*     static async addFormEvents() {
 
         this.form.addEventListener('submit', async e => {
 
@@ -204,27 +205,30 @@ class PageModificar {
             }
 
             if (e.target.classList.contains('btn-view')) {
-                /* 
+                
                 const row = e.target.closest('tr');
                 const id = row.dataset.id;
                 var productIndex = this.products.findIndex(item => item.id === id);
                 let product = this.products[productIndex]
 
                 this.productView(product); 
-                */
+               
                 return;
             }
         });
     }
+ */
 
     static async init() {
         goTopOnLoad.goToTopOnLoad();
 
-        this.keyEvents();
-        this.products = await productController.getProducts();
-        console.log(`Se encontraron ${this.products.length} productos`);
+        //this.keyEvents();
+/*         this.products = await productController.getProducts();
+        console.log(`Se encontraron ${this.products.length} productos`); */
 
-        await render.renderTemplateCards(this.products, 'templates/products-table.hbs', '.products-table-container');
+        const query = await queryFunction()
+        await fetchAndRenderProducts(query, '.products-table-container', 'templates/products-table.hbs');
+
         this.addTableEvents();
         await cartController.init();
     }

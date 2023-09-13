@@ -16,7 +16,7 @@
             {{#each products}}
 
                 <tr class="table-content" data-id="{{this.id}}">
-                    <td class="table-content__cell-image-container"><img class="table-content__image" src="{{this.images.portada}}" alt="Foto de producto"/></td>
+                    <td class="table-content__cell-image-container"><img class="table-content__image" src="{{this.images.[0]}}" alt="Foto de producto"/></td>
 
                     <td class="table-content__cell-name">{{this.productName}}</td>
                     <td class="table-content__cell-description table-content__hide-on-responsive">{{this.shortDescription}}</td>
