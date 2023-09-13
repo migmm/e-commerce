@@ -1,3 +1,5 @@
+import generateId from '../utils/generateId.js';
+
 const languages = {
     en: "English",
     es: "Español",
@@ -5,13 +7,13 @@ const languages = {
 };
 
 const currencies = [
-    "USD", 
+    "USD",
     "EUR"
 ];
 
 const formFields = [
-    "productName", 
-    "shortDescription", 
+    "productName",
+    "shortDescription",
     "longDescription"
 ];
 
@@ -329,7 +331,6 @@ function initImageDriver() {
 
 function collectFormData() {
     const productInfo = {};
-    console.log("entra")
     formFields.forEach(field => {
         productInfo[field] = {};
         Object.keys(languages).forEach(langCode => {
@@ -348,10 +349,8 @@ function collectFormData() {
 
     productInfo.price = priceObject;
     productInfo.currency = document.getElementById("currency").value;
-    productInfo.tax = parseFloat(document.getElementById("tax").value),
-
-        productInfo.vat = parseFloat(document.getElementById("vat").value);
-
+    productInfo.tax = parseFloat(document.getElementById("tax").value);
+    productInfo.vat = parseFloat(document.getElementById("vat").value);
     productInfo.vendor = document.getElementById("vendor").value;
     productInfo.stock = parseInt(document.getElementById("stock").value);
     productInfo.category = document.getElementById("category").value;
@@ -365,11 +364,17 @@ function collectFormData() {
     productInfo.addedDate = new Date();
     productInfo.lastSell = productInfo.lastSell = new Date("1900-01-01T00:00:00.000Z");
     productInfo.lastModified = productInfo.lastSell = new Date("1900-01-01T00:00:00.000Z");
-    productInfo.urlName = 'urlName';
 
-    console.log(productInfo);
+    const productName = productInfo.productName.en;
+    productInfo.urlName = productName + '-' + generateId.makeid(6);
+    productInfo.urlName = productInfo.urlName.split(' ').join('-').toLowerCase();
+    console.log("urlname", productInfo.urlName);
+
+    return productInfo;
+}
+
+function appendFiles(productInfo) {
     const formData = new FormData();
-
     formData.append('productData', JSON.stringify(productInfo));
 
     const imagesInput = document.getElementById("images");
@@ -390,6 +395,10 @@ function collectFormData() {
         console.log(pair[0], pair[1]);
     }
 
+    return formData;
+}
+
+function sendFullForm(formData) {
     fetch("http://localhost:8080/api/products/", {
         method: "POST",
         body: formData,
@@ -401,18 +410,19 @@ function collectFormData() {
         .catch(error => {
             console.error("Error al enviar los datos:", error);
         });
-
-    function dataURItoBlob(dataURI) {
-        const byteString = atob(dataURI.split(',')[1]);
-        const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-        const ab = new ArrayBuffer(byteString.length);
-        const ia = new Uint8Array(ab);
-        for (let i = 0; i < byteString.length; i++) {
-            ia[i] = byteString.charCodeAt(i);
-        }
-        return new Blob([ab], { type: mimeString });
-    }
 }
+
+function dataURItoBlob(dataURI) {
+    const byteString = atob(dataURI.split(',')[1]);
+    const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: mimeString });
+}
+
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -423,7 +433,9 @@ function sendForm() {
     const btnSubmit = document.getElementById('btn-sendform');
     btnSubmit.addEventListener('click', async (e) => {
         e.preventDefault();
-        collectFormData()
+        const productInfo = collectFormData();
+        const formData = appendFiles(productInfo);
+        sendFullForm(formData);
     });
 }
 
