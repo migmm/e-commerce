@@ -1,162 +1,202 @@
 const languages = {
-    "en": "English",
-    "es": "Español",
-    "fr": "Frances"
+    en: "English",
+    es: "Español",
+    fr: "Frances",
 };
 
 const currencies = [
-    "USD",
+    "USD", 
     "EUR"
 ];
 
 const formFields = [
-    "productName",
-    "shortDescription",
+    "productName", 
+    "shortDescription", 
     "longDescription"
 ];
 
+const config = {
+    maxSelections: 3,
+    imageQuantity: 4,
+    showFormForLanguage: "en",
+
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////
-//                               TEXT RELATED                                //
+//                                TEXT RELATED                               //
 ///////////////////////////////////////////////////////////////////////////////
 
 function initForm() {
-
     const languageForms = document.getElementById("languageForms");
     const languageButtons = document.getElementById("languageButtons");
     const currencySelect = document.getElementById("currency");
 
-    const optionSelect = document.getElementById('optionSelect');
-    const addButton = document.getElementById('addButton');
-    const selectedOptionsContainer = document.getElementById('selectedOptions');
+    const optionSelect = document.getElementById("optionSelect");
+    const addButton = document.getElementById("addButton");
+    const selectedOptionsContainer = document.getElementById("selectedOptions");
     const selectedOptions = [];
-    const maxSelections = 3;
+    const maxSelections = config.maxSelections;
 
-
-    currencies.forEach(currency => {
-        const option = document.createElement("option");
-        option.value = currency.toLowerCase();
-        option.textContent = currency;
+    // Initialize currency select options
+    currencies.forEach((currency) => {
+        const option = createOptionElement(currency.toLowerCase(), currency);
         currencySelect.appendChild(option);
     });
 
-    Object.keys(languages).forEach(langCode => {
-        const button = document.createElement("button");
-        button.textContent = languages[langCode];
-        button.setAttribute("class", "language-button");
-        button.setAttribute("data-lang", `form-language-button-${langCode}`);
-        button.setAttribute("type", "button");
-        button.addEventListener("click", function () {
-            showFormForLanguage(langCode);
-        });
+    // Initialize language buttons
+    Object.keys(languages).forEach((langCode) => {
+        const button = createLanguageButton(langCode);
         languageButtons.appendChild(button);
     });
 
+    // Initialize form containers
     const formContainers = {};
-
-    Object.keys(languages).forEach(langCode => {
-        const formHtml = generateFormHtml(langCode, languages[langCode]);
-        const formContainer = document.createElement("div");
-        formContainer.classList.add(`form-container-${langCode}`);
-        formContainer.style.display = "none";
-        formContainer.innerHTML = formHtml;
+    Object.keys(languages).forEach((langCode) => {
+        const formContainer = createFormContainer(langCode, languages[langCode]);
         formContainers[langCode] = formContainer;
         languageForms.appendChild(formContainer);
     });
 
-    function showFormForLanguage(langCode) {
-        Object.keys(formContainers).forEach(code => {
-            formContainers[code].style.display = (code === langCode) ? "block" : "none";
-        });
+    // Show form for the selected language
+    showFormForLanguage(config.showFormForLanguage);
+
+    // Add event listeners
+    addButton.addEventListener("click", handleAddButtonClick);
+
+    // Function to create an option element
+    function createOptionElement(value, text) {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = text;
+        return option;
     }
 
-    function generateFormHtml(langCode, langName) {
-        const formElements = formFields.map(field => {
-            let inputElement;
-            if (field === "shortDescription" || field === "longDescription") {
-                inputElement = `
-                <div class="input-group__form-group">
-                    <label for="${field}_${langCode}">
-                        <span data-lang="form-product-${separateCamelCase(field)}">${capitalize(field)}</span>
-                        <span> (${langName}):</span>
-                    </label>
-                    <textarea class="input-group__textarea" id="${field}-${langCode}" name="${field}[${langCode}]" required></textarea><br>
-                    <span class="input-group__error" data-lang="form-${field}-error">${field}"</span>
-                </div>
-                `;
-            } else {
-                inputElement = `
-                <div class="input-group__form-group">
-                    <label for="${field}_${langCode}">
-                        <span data-lang="form-product-${separateCamelCase(field)}">${capitalize(field)}</span>
-                        <span> (${langName}):</span>
-                    </label>
-                    <input type="text" class="input-group__input" id="${field}-${langCode}" name="${field}[${langCode}]">
-                    <span class="input-group__error" data-lang="form-${field}-error">${field}"</span>
-                </div>
-                `;
-            }
-            return inputElement;
-        }).join('');
+    // Function to create a language button
+    function createLanguageButton(langCode) {
+        const button = document.createElement("button");
+        button.textContent = languages[langCode];
+        button.className = "language-button";
+        button.setAttribute("data-lang", `form-language-button-${langCode}`);
+        button.setAttribute("type", "button");
+        button.addEventListener("click", () => showFormForLanguage(langCode));
+        return button;
+    }
 
+    // Function to create a form container
+    function createFormContainer(langCode, langName) {
+        const formHtml = generateFormHtml(langCode, langName);
+        const formContainer = document.createElement("div");
+        formContainer.classList.add(`form-container-${langCode}`);
+        formContainer.style.display = "none";
+        formContainer.innerHTML = formHtml;
+        return formContainer;
+    }
+
+    // Function to generate form HTML
+    function generateFormHtml(langCode, langName) {
         return `
-            <form class="form-container-${langCode}">
-                ${formElements}
-            </form>
+        <form class="form-container-${langCode}">
+            ${formFields.map((field) => generateFormElement(field, langCode, langName)).join("")}
+        </form>
         `;
     }
 
-    function capitalize(string) {
-        const result = string.charAt(0).toUpperCase() + string.slice(1)
-            .split(/(?=[A-Z])/)
-            .join(' ');
-        return result;
+    // Function to generate form elements
+    function generateFormElement(field, langCode, langName) {
+        const inputElement =
+            field === "shortDescription" || field === "longDescription"
+                ? generateTextareaElement(field, langCode, langName)
+                : generateInputElement(field, langCode, langName);
+
+        return `
+        <div class="input-group__form-group">
+            <label for="${field}_${langCode}">
+                <span data-lang="form-product-${separateCamelCase(field)}">${capitalize(field)}</span>
+                <span> (${langName}):</span>
+            </label>
+            ${inputElement}
+            <span class="input-group__error" data-lang="form-${field}-error">${field}"</span>
+        </div>
+        `;
     }
 
-    function separateCamelCase(string) {
-        let result = string.split(/(?=[A-Z])/).join('-').toLowerCase();
-        return result;
+    // Function to generate input element
+    function generateInputElement(field, langCode) {
+        return `<input type="text" class="input-group__input" id="${field}-${langCode}" name="${field}[${langCode}]">`;
     }
 
-    showFormForLanguage('en');
+    // Function to generate textarea element
+    function generateTextareaElement(field, langCode) {
+        return `
+        <textarea class="input-group__textarea" id="${field}-${langCode}" name="${field}[${langCode}]" required></textarea><br>
+        `;
+    }
 
-    addButton.addEventListener('click', () => {
+    // Function to handle add button click
+    function handleAddButtonClick() {
         const selectedValue = optionSelect.value;
 
-        if (selectedValue !== '') {
+        if (selectedValue !== "") {
             if (!selectedOptions.includes(selectedValue)) {
                 if (selectedOptions.length < maxSelections) {
                     selectedOptions.push(selectedValue);
                     updateSelectedOptionsUI();
-
-                    optionSelect.value = '';
+                    optionSelect.value = "";
                 } else {
-                    alert('Se ha alcanzado el límite máximo de selecciones.');
+                    alert("Se ha alcanzado el límite máximo de selecciones.");
                 }
             } else {
-                alert('Esta selección ya ha sido agregada.');
+                alert("Esta selección ya ha sido agregada.");
             }
         }
-    });
+    }
 
+    // Function to update selected options UI
     function updateSelectedOptionsUI() {
-        selectedOptionsContainer.innerHTML = '';
+        selectedOptionsContainer.innerHTML = "";
         selectedOptions.forEach((optionValue, index) => {
-            const selectedOptionDiv = document.createElement('div');
-            const selectedText = optionSelect.querySelector(`option[value="${optionValue}"]`).textContent;
-            selectedOptionDiv.textContent = selectedText;
-            selectedOptionDiv.classList.add('selected-option');
-
-            const closeButton = document.createElement('button');
-            closeButton.textContent = 'X';
-            closeButton.classList.add('selected-option-close');
-            closeButton.addEventListener('click', () => {
-                selectedOptions.splice(index, 1);
-                updateSelectedOptionsUI();
-            });
-
-            selectedOptionDiv.appendChild(closeButton);
+            const selectedOptionDiv = createSelectedOptionDiv(optionValue);
+            selectedOptionDiv.appendChild(createCloseButton(index));
             selectedOptionsContainer.appendChild(selectedOptionDiv);
+        });
+    }
+
+    // Function to create selected option div
+    function createSelectedOptionDiv(optionValue) {
+        const selectedOptionDiv = document.createElement("div");
+        const selectedText = optionSelect.querySelector(`option[value="${optionValue}"]`).textContent;
+        selectedOptionDiv.textContent = selectedText;
+        selectedOptionDiv.classList.add("selected-option");
+        return selectedOptionDiv;
+    }
+
+    // Function to create close button for selected option
+    function createCloseButton(index) {
+        const closeButton = document.createElement("button");
+        closeButton.textContent = "X";
+        closeButton.classList.add("selected-option-close");
+        closeButton.addEventListener("click", () => {
+            selectedOptions.splice(index, 1);
+            updateSelectedOptionsUI();
+        });
+        return closeButton;
+    }
+
+    // Helper function to capitalize a string
+    function capitalize(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1).split(/(?=[A-Z])/).join(" ");
+    }
+
+    // Helper function to separate camel case
+    function separateCamelCase(string) {
+        return string.split(/(?=[A-Z])/).join("-").toLowerCase();
+    }
+
+    // Function to show form for a specific language
+    function showFormForLanguage(langCode) {
+        Object.keys(formContainers).forEach((code) => {
+            formContainers[code].style.display = code === langCode ? "block" : "none";
         });
     }
 }
@@ -166,8 +206,8 @@ function initForm() {
 //                               IMAGE RELATED                               //
 ///////////////////////////////////////////////////////////////////////////////
 
-const cantidadImagenes = 4;
-let totalImages = new Array(cantidadImagenes).fill(null);
+const imageQuantity = config.imageQuantity;
+let totalImages = new Array(imageQuantity).fill(null);
 
 function initImageDriver() {
 
@@ -176,7 +216,7 @@ function initImageDriver() {
 
     let draggedIndex = null;
 
-    for (let i = 0; i < cantidadImagenes; i++) {
+    for (let i = 0; i < imageQuantity; i++) {
         const imageDiv = document.createElement('div');
         imageDiv.classList.add('image-container');
         imageDiv.id = `image${i + 1}`;
@@ -251,7 +291,7 @@ function initImageDriver() {
         totalImages[index - 1] = null;
         document.getElementById(`image${index}`).style.backgroundImage = '';
         totalImages = totalImages.filter(img => img !== null);
-        totalImages = totalImages.concat(new Array(cantidadImagenes - totalImages.length).fill(null));
+        totalImages = totalImages.concat(new Array(imageQuantity - totalImages.length).fill(null));
         updateImageContainers();
     }
 
