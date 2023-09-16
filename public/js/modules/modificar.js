@@ -25,8 +25,21 @@ class PageModificar {
         const btnSubmit = document.getElementById('btn-sendform');
         const btnCancel = document.getElementById("btn-cancel");
 
-        btnSubmit.addEventListener('submit', async e => {
+        btnSubmit.addEventListener('click', async (e) => {
             e.preventDefault();
+            
+            const productToSave = Validations.validateForm(this.fields);
+            
+
+            if (productToSave) {
+                formUtils.sendForm();
+                formUtils.resetForm();
+                msgGlobalOK.classList.add( 'input-group__ok-form--show');
+            }
+
+            setTimeout(function () {
+                msgGlobalOK.classList.remove( 'input-group__ok-form--show');
+            }, 5000);
         });
 
         btnCancel.addEventListener('click', async e => {
@@ -36,53 +49,6 @@ class PageModificar {
         });
     }
 
-    /* 
-        static async productView(product) {
-            const hbsFile = await fetch('templates/product-full-view.hbs').then(r => r.text());
-            const template = Handlebars.compile(hbsFile);
-            const html = template({ product });
-            document.querySelector('.full-product-view').innerHTML = html;
-            this.productFullView = document.querySelector('.product-full-view');
-            this.productFullViewBg = document.querySelector('.full-product-view');
-            this.productFullView.classList.add('product-full-view--on');
-            this.productFullViewBg.classList.add('product-full-view-bg--on');
-        }
-    
-        static keyEvents() {
-            document.addEventListener('click', e => {
-    
-                // Click on background dark and product view is closed
-                if (e.target.classList.value === 'full-product-view product-full-view-bg--on') {
-                    this.productFullView.classList.remove('product-full-view--on');
-                    this.productFullViewBg.classList.remove('product-full-view-bg--on');
-                    return;
-                }
-    
-                // Click on X to close product view
-                if (e.target.classList.value === 'fa fa-times fa-2x') {
-                    this.productFullView.classList.remove('product-full-view--on');
-                    this.productFullViewBg.classList.remove('product-full-view-bg--on');
-                    return;
-                }
-    
-                // Click on image thumbnail to see full image
-                if (e.target.parentNode.classList.value === 'img-select__img-container') {
-                    let bigImg = document.getElementsByClassName('img-display__img-big')[0];
-                    bigImg.src = e.target.src;
-                    return;
-                }
-            });
-    
-            document.addEventListener('keydown', e => {
-                if (e.key == 'Escape') {
-                    if (this.productFullViewBg) {
-                        this.productFullView.classList.remove('product-full-view--on');
-                        this.productFullViewBg.classList.remove('product-full-view-bg--on');
-                    }
-                }
-            });
-        }
-     */
     static async addTableEvents() {
 
         const deleteProduct = async (e) => {

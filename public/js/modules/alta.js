@@ -11,12 +11,6 @@ class PageAlta {
     static form;
     static fields;
 
-    static async saveProduct(product) {
-        const mode = 'formdata';
-        const savedProduct = await productController.saveProduct(product, mode);
-        return savedProduct;
-    }
-
     static async addFormEvents() {
         const msgGlobalOK = document.getElementsByClassName('input-group__ok-form')[0];
         const btnSubmit = document.getElementById('btn-sendform');
@@ -28,7 +22,6 @@ class PageAlta {
             
 
             if (productToSave) {
-                console.log("entra");
                 formUtils.sendForm();
                 formUtils.resetForm();
                 msgGlobalOK.classList.add( 'input-group__ok-form--show');
