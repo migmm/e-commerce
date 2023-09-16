@@ -1,8 +1,6 @@
 import productController from '/js/controllers/product.js';
-import render from '/js/utils/render.js';
 import cartController from '/js/modules/cart.js';
 import Validations from '../utils/validation.js';
-import Form from '../utils/form.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
 import { fetchAndRenderProducts, queryFunction } from '../utils/fetchAndRenderProducts.js';
 import formUtils from '../utils/formProcessing.js'
@@ -29,7 +27,6 @@ class PageModificar {
             e.preventDefault();
             
             const productToSave = Validations.validateForm(this.fields);
-            
 
             if (productToSave) {
                 formUtils.sendForm();
