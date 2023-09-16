@@ -11,6 +11,6 @@ routerProducts.get('/:id/:lang', productsController.getProduct);
 routerProducts.post('/', upload.array('images', 10), handleMulterError, resizeImagesMiddleware, productsController.postProduct);
 
 routerProducts.put('/:id', upload.array('images', 10), handleMulterError, resizeImagesMiddleware, productsController.putProduct);
-routerProducts.delete('/:id/:lang', productsController.deleteProduct);
+routerProducts.delete('/:id', productsController.deleteProduct);
 
 export default routerProducts;
