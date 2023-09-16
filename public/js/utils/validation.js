@@ -1,35 +1,35 @@
 console.log('🆗: Módulo Validations cargado.');
 
+const fieldMappings = {
+    productName: ['productName[en]', 'productName[es]'],
+    shortDescription: ['shortDescription[en]', 'shortDescription[es]'],
+    longDescription: ['longDescription[en]', 'longDescription[es]'],
+    // Agrega más campos principales y sus equivalentes de idioma aquí
+};
+
 class Validations {
 
     static validators = {
         id: /[A-Za-z0-9]?/,
         productName: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{4,30}$/,
-        price: /^[0-9,]{1,30}$/,
-        discountPercent: /^[0-9,]{1,30}$/,
+        price: /^\d{1,20}(\.\d{1,2})?$/,
+        tax: /^(1000(\.00?)?|\d{1,3}(,\d{3})*(\.\d{1,2})?)$/,
+        vat: /^(1000(\.00?)?|\d{1,3}(,\d{3})*(\.\d{1,2})?)$/,
+        discountPercent: /^(1000(\.00?)?|\d{1,3}(,\d{3})*(\.\d{1,2})?)$/,
         vendor: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,40}$/,
         stock: /^-?[0-9]{1,30}$/,
         category: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,50}$/,
         shortDescription: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,80}$/,
         longDescription: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,2000}$/,
-        freeShip: /^(?:tru|fals)e$/,
-        ageFrom: /^[0-9]{1,3}$/,
-        ageTo: /^[0-9]{1,3}$/,
-        ageSelect: /^[0-1]{1,2}$/,
-        addedDate: /(^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$)?/,
-        lastSell: /(^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$)?/,
-        avatar: /^.+\.(jpe?g|gif|png)$/i,
-        gallery: /[^]*/,
-        colors: /^\s*([a-zA-Z0-9ÁáÉéÍíÓóÚúÑñ,.-_]+\s*){1,3}$/,
-        urlName: /[^]*/,
-        ageSelects: /[^]*/,
+        ageFrom: /^(?:[1-9]|[1-9][0-9])$/,
+        ageTo: /^(?:[1-9]|[1-9][0-9])$/,
     };
 
     static validate(value, validator) {
 
         // if field is "undefined" do nothing
         // eg. radio or checkboxes that will be adapted later
-        
+
         if (value !== undefined) {
             console.log(value, validator)
             return validator.test(value);
@@ -39,44 +39,69 @@ class Validations {
     static validateForm(fields) {
         let allValidated = true;
         const productToSave = {};
-        console.log('\n\n');
-        const msgGlobalError = document.getElementsByClassName('input-group__error-form')[0];
-        const msgGlobalOK = document.getElementsByClassName('input-group__ok-form')[0];
 
-        for (const field of fields) {
-            const validated = Validations.validate(field.value, Validations.validators[field.name]);
-            console.log(field.name, validated);
+        for (const mainField in fieldMappings) {
+            const languageFields = fieldMappings[mainField];
+            const fieldValues = {};
 
-            let errorField = document.getElementsByName(field.name)[0];
-            let ancest = errorField.closest('.input-group__form-group');
-            let spanElement = ancest.querySelector('span:last-child');
+            let languageFieldsValid = true;
+            const errorElement = document.querySelector(`[data-lang="form-${mainField}-error"]`);
 
-            if (!validated) {
-                errorField.classList.remove('input-group__input--ok');
-                errorField.classList.add('input-group__input--error');
-                spanElement.style.visibility = 'visible';
+            for (const languageField of languageFields) {
+                const field = fields.find(f => f.name === languageField);
+                if (field) {
+                    fieldValues[languageField] = field.value;
 
+                    const validator = Validations.validators[mainField];
+                    const validated = Validations.validate(field.value, validator);
+                    if (!validated) {
+                        languageFieldsValid = false;
+                        console.log(`Error en el campo ${languageField}`);
+                    }
+                }
+            }
+
+            if (!languageFieldsValid) {
                 allValidated = false;
-                break;
-
+                errorElement.style.visibility = 'visible';
             } else {
-                productToSave[field.name] = field.value;
-
-                errorField.classList.remove('input-group__input--error');
-                errorField.classList.add('input-group__input--ok');
-                spanElement.style.visibility = 'hidden';
+                productToSave[mainField] = fieldValues;
+                errorElement.style.visibility = 'hidden';
             }
         }
 
-        console.log('allValidated:', allValidated);
-
-        if (!allValidated) {
-            msgGlobalError.classList.add('input-group__error--show');
-            return false;
+        for (const field of fields) {
+            const validator = Validations.validators[field.name];
+            if (validator) {
+                const validated = Validations.validate(field.value, validator);
+                const errorElement = document.querySelector(`[data-lang="form-product-${field.name}-error"]`);
+                if (!validated) {
+                    console.log(field.name)
+                    
+                    allValidated = false;
+                    errorElement.style.visibility = 'visible';
+                    console.log(`Error en el campo ${field.name}`);
+                } else {
+                    productToSave[field.name] = field.value;
+                    errorElement.style.visibility = 'hidden';
+                }
+            }
         }
-        msgGlobalError.classList.remove('input-group__error--show');
-        msgGlobalOK.classList.add('input-group__ok-form--show');
-        return productToSave;
+
+        const radioFields = fields.filter(field => field.type === 'radio');
+        const checkedRadio = radioFields.find(field => field.checked);
+        const errorElement = document.querySelector(`[data-lang="form-product-months-years-error"]`);
+
+        if (!checkedRadio) {
+            allValidated = false;
+            console.log('Error: Debe seleccionar un radio');
+            errorElement.style.visibility = 'visible';
+        } else {
+            productToSave[checkedRadio.name] = checkedRadio.value;
+            errorElement.style.visibility = 'hidden';
+        }
+
+        return allValidated;
     }
 
     static async init() {
@@ -85,3 +110,4 @@ class Validations {
 }
 
 export default Validations;
+

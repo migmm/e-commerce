@@ -1,12 +1,9 @@
 import productController from '/js/controllers/product.js';
 import cartController from '/js/modules/cart.js';
 import Validations from '../utils/validation.js';
-import Form from '../utils/form.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
-import generateId from '../utils/generateId.js';
-import render from '/js/utils/render.js';
 import fetchLanguageData from '../utils/langFunctions.js'
-import { fetchAndRenderProducts, queryFunction } from '../utils/fetchAndRenderProducts.js';
+import { fetchAndRenderProducts } from '../utils/fetchAndRenderProducts.js';
 import formUtils from '../utils/formProcessing.js'
 
 class PageAlta {
@@ -20,94 +17,42 @@ class PageAlta {
         return savedProduct;
     }
 
-/*     static async addFormEvents() {
+    static async addFormEvents() {
+        const msgGlobalOK = document.getElementsByClassName('input-group__ok-form')[0];
+        const btnSubmit = document.getElementById('btn-sendform');
 
-        PageAlta.form.addEventListener('submit', async e => {
+        btnSubmit.addEventListener('click', async (e) => {
             e.preventDefault();
-
-            document.getElementById('addedDate').value = new Date().toISOString();
-            document.getElementById('lastSell').value = new Date('1900-01-01').toISOString();
-
-            // Generate url name 
-            let urlName = document.getElementById('urlName');
-            const productName = document.getElementById('productName');
-            urlName.value = productName.value + '-' + generateId.makeid(6);
-            urlName.value = urlName.value.split(' ').join('-');
-            console.log ("urlname" , urlName.value);
-
-            // Free ship value adaptation to backend
-            let freeShip = document.getElementById('freeShip');
-
-            freeShip.value = false;
-            if (freeShip.checked) {
-                freeShip.value = 'true';
-            }
-
-            // Age select and year values adaptation to backend
-            let ageYear = document.getElementById('ageYear');
-            let ageSelect = document.getElementById('ageSelect');
-
-            ageSelect.value = 0;
-
-            if (ageYear.checked) {
-                ageSelect.value = '1';
-            }
-
-            const productToSave = Validations.validateForm(PageAlta.fields);
-
-            //Bypass to get the files too
-            let dataProducts = new FormData(document.getElementById('form-add-products'));
-            console.log(dataProducts);
-            const colorsString = dataProducts.get('colors');
-            dataProducts.delete('colors');
-            dataProducts.delete('ageSelects');
-            var colorsSplit = colorsString.split(',');
-            colorsSplit.forEach((item) => dataProducts.append('colors[]', item))
+            
+            const productToSave = Validations.validateForm(this.fields);
+            
 
             if (productToSave) {
-                const savedProduct = await PageAlta.saveProduct(dataProducts);
-                console.log('savedProduct:', savedProduct);
-                Form.emptyForm(this.fields);
+                console.log("entra");
+                formUtils.sendForm();
+                formUtils.resetForm();
+                msgGlobalOK.classList.add( 'input-group__ok-form--show');
             }
-        });
 
-        const inputMultipleFiles = document.querySelector('.file-gallery');
-        inputMultipleFiles.addEventListener('change', (e) => {
-            const files = inputMultipleFiles.files;
-
-            if (files.length > 3) {
-                let ancest = inputMultipleFiles.closest('.input-group__form-group');
-                let spanElement = ancest.querySelector('span:last-child')
-                spanElement.style.visibility = 'visible';
-                inputMultipleFiles.value = '';
-                return;
-            }
-            spanElement.style.visibility = 'hidden';
+            setTimeout(function () {
+                msgGlobalOK.classList.remove( 'input-group__ok-form--show');
+            }, 5000);
         });
-    } */
+    }
 
     static async init() {
         goTopOnLoad.goToTopOnLoad();
-        //await fetchLanguageData.fetchLanguageData();
-        // Empty constant to tell render that only show form
-        const showOnly = null;
-        const currentLang = 'es'
 
-        const query = await queryFunction()
         await fetchAndRenderProducts([], '.input-group', 'templates/form.hbs');
-        
-        
-        //await render.renderTemplateCards(showOnly, 'templates/form.hbs', '.input-group', currentLang)
-        
-        //this.form = document.getElementById('form-add-products');
-      /*   this.fields = this.form.querySelectorAll(`textarea, input:not([type='radio']`); */
-        /* this.addFormEvents(); */
-        
-        /* document.getElementById('productName').focus(); */
         await cartController.init();
-        formUtils.initForm()
-        formUtils.initImageDriver()
-        formUtils.sendForm()
+
+        formUtils.initForm();
+        formUtils.initImageDriver();
+
+        this.fields = Array.from(document.querySelectorAll('input, textarea'));
+
+        document.getElementById('productName-en').focus();
+        this.addFormEvents();
         await fetchLanguageData.fetchLanguageData();
     }
 }

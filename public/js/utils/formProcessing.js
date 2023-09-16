@@ -3,7 +3,6 @@ import generateId from '../utils/generateId.js';
 const languages = {
     en: "English",
     es: "Español",
-    fr: "Frances",
 };
 
 const currencies = [
@@ -29,6 +28,10 @@ const config = {
 //                                TEXT RELATED                               //
 ///////////////////////////////////////////////////////////////////////////////
 
+let selectedOptionsContainer = null
+const selectedOptions = [];
+const maxSelections = config.maxSelections;
+
 function initForm() {
     const languageForms = document.getElementById("languageForms");
     const languageButtons = document.getElementById("languageButtons");
@@ -36,9 +39,9 @@ function initForm() {
 
     const optionSelect = document.getElementById("optionSelect");
     const addButton = document.getElementById("addButton");
-    const selectedOptionsContainer = document.getElementById("selectedOptions");
-    const selectedOptions = [];
-    const maxSelections = config.maxSelections;
+    selectedOptionsContainer = document.getElementById("selectedOptions");
+
+
 
     // Initialize currency select options
     currencies.forEach((currency) => {
@@ -98,9 +101,9 @@ function initForm() {
     // Function to generate form HTML
     function generateFormHtml(langCode, langName) {
         return `
-        <form class="form-container-${langCode}">
+        
             ${formFields.map((field) => generateFormElement(field, langCode, langName)).join("")}
-        </form>
+        
         `;
     }
 
@@ -154,37 +157,6 @@ function initForm() {
         }
     }
 
-    // Function to update selected options UI
-    function updateSelectedOptionsUI() {
-        selectedOptionsContainer.innerHTML = "";
-        selectedOptions.forEach((optionValue, index) => {
-            const selectedOptionDiv = createSelectedOptionDiv(optionValue);
-            selectedOptionDiv.appendChild(createCloseButton(index));
-            selectedOptionsContainer.appendChild(selectedOptionDiv);
-        });
-    }
-
-    // Function to create selected option div
-    function createSelectedOptionDiv(optionValue) {
-        const selectedOptionDiv = document.createElement("div");
-        const selectedText = optionSelect.querySelector(`option[value="${optionValue}"]`).textContent;
-        selectedOptionDiv.textContent = selectedText;
-        selectedOptionDiv.classList.add("selected-option");
-        return selectedOptionDiv;
-    }
-
-    // Function to create close button for selected option
-    function createCloseButton(index) {
-        const closeButton = document.createElement("button");
-        closeButton.textContent = "X";
-        closeButton.classList.add("selected-option-close");
-        closeButton.addEventListener("click", () => {
-            selectedOptions.splice(index, 1);
-            updateSelectedOptionsUI();
-        });
-        return closeButton;
-    }
-
     // Helper function to capitalize a string
     function capitalize(string) {
         return string.charAt(0).toUpperCase() + string.slice(1).split(/(?=[A-Z])/).join(" ");
@@ -203,6 +175,36 @@ function initForm() {
     }
 }
 
+// Function to update selected options UI
+function updateSelectedOptionsUI() {
+    selectedOptionsContainer.innerHTML = "";
+    selectedOptions.forEach((optionValue, index) => {
+        const selectedOptionDiv = createSelectedOptionDiv(optionValue);
+        selectedOptionDiv.appendChild(createCloseButton(index));
+        selectedOptionsContainer.appendChild(selectedOptionDiv);
+    });
+}
+
+// Function to create selected option div
+function createSelectedOptionDiv(optionValue) {
+    const selectedOptionDiv = document.createElement("div");
+    const selectedText = optionSelect.querySelector(`option[value="${optionValue}"]`).textContent;
+    selectedOptionDiv.textContent = selectedText;
+    selectedOptionDiv.classList.add("selected-option");
+    return selectedOptionDiv;
+}
+
+// Function to create close button for selected option
+function createCloseButton(index) {
+    const closeButton = document.createElement("button");
+    closeButton.textContent = "X";
+    closeButton.classList.add("selected-option-close");
+    closeButton.addEventListener("click", () => {
+        selectedOptions.splice(index, 1);
+        updateSelectedOptionsUI();
+    });
+    return closeButton;
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 //                               IMAGE RELATED                               //
@@ -210,6 +212,7 @@ function initForm() {
 
 const imageQuantity = config.imageQuantity;
 let totalImages = new Array(imageQuantity).fill(null);
+let totalImagesLoaded = 0;
 
 function initImageDriver() {
 
@@ -248,7 +251,7 @@ function initImageDriver() {
 
     function handleFileSelect(event, index) {
         const files = event.target.files;
-        let totalImagesLoaded = 0;
+
         let emptyContainers = [];
 
         for (let i = 0; i < totalImages.length; i++) {
@@ -315,15 +318,14 @@ function initImageDriver() {
             draggedIndex = null;
         }
     }
-
-    function updateImageContainers() {
-        for (let i = 0; i < totalImages.length; i++) {
-            const imageDiv = document.getElementById(`image${i + 1}`);
-            imageDiv.style.backgroundImage = totalImages[i] ? `url(${totalImages[i]})` : '';
-        }
-    }
 }
 
+function updateImageContainers() {
+    for (let i = 0; i < totalImages.length; i++) {
+        const imageDiv = document.getElementById(`image${i + 1}`);
+        imageDiv.style.backgroundImage = totalImages[i] ? `url(${totalImages[i]})` : '';
+    }
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 //                              FORM INFO COLLECT                            //
@@ -423,20 +425,51 @@ function dataURItoBlob(dataURI) {
     return new Blob([ab], { type: mimeString });
 }
 
+function resetForm() {
+    formFields.forEach(field => {
+        Object.keys(languages).forEach(langCode => {
+            const inputId = `${field}-${langCode}`;
+            document.getElementById(inputId).value = '';
+        });
+    });
 
+    const numericFieldIds = ["price", "tax", "vat", "stock", "discountPercent", "ageFrom", "ageTo"];
+    numericFieldIds.forEach(fieldId => {
+        document.getElementById(fieldId).value = '';
+    });
+
+    document.getElementById("currency").selectedIndex = 0;
+    document.getElementById("freeShip").checked = false;
+    selectedOptions.length = 0;
+    updateSelectedOptionsUI();
+
+    const ageSelectInputs = document.querySelectorAll('input[name="ageSelect"]');
+    ageSelectInputs.forEach(input => {
+        input.checked = false;
+    });
+
+    totalImages = new Array(imageQuantity).fill(null);
+    updateImageContainers();
+
+    const imagesInput = document.getElementById("images");
+    imagesInput.value = '';
+
+    document.getElementById("vendor").value = '';
+    document.getElementById("category").value = '';
+
+    const firstInputId = `${formFields[0]}-${config.showFormForLanguage}`;
+    document.getElementById(firstInputId).focus();
+    
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                 SEND FORM                                 //
 ///////////////////////////////////////////////////////////////////////////////
 
 function sendForm() {
-    const btnSubmit = document.getElementById('btn-sendform');
-    btnSubmit.addEventListener('click', async (e) => {
-        e.preventDefault();
-        const productInfo = collectFormData();
-        const formData = appendFiles(productInfo);
-        sendFullForm(formData);
-    });
+    const productInfo = collectFormData();
+    const formData = appendFiles(productInfo);
+    sendFullForm(formData);
 }
 
-export default { initForm, initImageDriver, sendForm }
+export default { initForm, initImageDriver, sendForm, resetForm }
