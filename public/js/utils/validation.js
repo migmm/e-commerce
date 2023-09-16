@@ -45,7 +45,7 @@ class Validations {
             const fieldValues = {};
 
             let languageFieldsValid = true;
-            const errorElement = document.querySelector(`[data-lang="form-${mainField}-error"]`);
+            const errorElement = document.querySelector(`[data-lang="form-product-${mainField}-error"]`);
 
             for (const languageField of languageFields) {
                 const field = fields.find(f => f.name === languageField);

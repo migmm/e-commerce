@@ -121,7 +121,7 @@ function initForm() {
                 <span> (${langName}):</span>
             </label>
             ${inputElement}
-            <span class="input-group__error" data-lang="form-${field}-error">${field}"</span>
+            <span class="input-group__error" data-lang="form-product-${field}-error">${field}"</span>
         </div>
         `;
     }
