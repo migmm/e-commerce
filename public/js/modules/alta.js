@@ -1,4 +1,3 @@
-import productController from '/js/controllers/product.js';
 import cartController from '/js/modules/cart.js';
 import Validations from '../utils/validation.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
@@ -19,7 +18,6 @@ class PageAlta {
             e.preventDefault();
             
             const productToSave = Validations.validateForm(this.fields);
-            
 
             if (productToSave) {
                 formUtils.sendForm();
