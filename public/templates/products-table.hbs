@@ -2,12 +2,12 @@
     <table class="table-products">
         <thead class="table-products__thead">
             <tr class="table-head">
-                <th class="table-head__th" scope="column">Imagen</th>
-                <th class="table-head__th" scope="column">Nombre</th>
-                <th class="table-head__th table-head__hide-on-responsive" scope="column">Descripción</th>
-                <th class="table-head__th table-head__hide-on-responsive" scope="column">Stock</th>
-                <th class="table-head__th table-head__hide-on-responsive" scope="column">Precio</th>
-                <th class="table-head__th" scope="column">Acciones</th>
+                <th class="table-head__th" scope="column" data-lang="edit-product-table-image">Imagen</th>
+                <th class="table-head__th" scope="column" data-lang="edit-product-table-name">Nombre</th>
+                <th class="table-head__th table-head__hide-on-responsive" scope="column" data-lang="edit-product-table-description">Descripción</th>
+                <th class="table-head__th table-head__hide-on-responsive" scope="column" data-lang="edit-product-table-stock">Stock</th>
+                <th class="table-head__th table-head__hide-on-responsive" scope="column" data-lang="edit-product-table-price">Precio</th>
+                <th class="table-head__th" scope="column" data-lang="edit-product-table-action">Acciones</th>
             </tr>
         </thead>
 
@@ -49,10 +49,10 @@
         </tbody>
         <tfoot class="table-products__tfoot">
             <tr class="table-foot">
-                <td class="table-foot__content" colspan="6">Total: {{products.length}} productos</td>
+                <td class="table-foot__content" colspan="6"><span data-lang="edit-product-table-total">Total: </span> {{products.length}} <span data-lang="edit-product-table-products"> productos</span></td>
             </tr>
         </tfoot>
     </table>
 {{else}}
-    <p>No se encontraron productos</p>
+    <pdata-lang="edit-product-table-error">No se encontraron productos</pdata-lang=>
 {{/if}}

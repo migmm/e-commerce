@@ -123,5 +123,17 @@
         "sucessfully-added-product": "Product successfully uploaded 😁 !!",
         "add-product": "Add product",
         "clean-form": "Clean form"
+    },
+    "edit-product": {
+        "title": "Edit products",
+        "table-image": "Image",
+        "table-name": "Name",
+        "table-description": "Description",
+        "table-stock": "Stock",
+        "table-price": "Price",
+        "table-total": "Total",
+        "table-products": "products",
+        "table-error": "Products not found.",
+        "table-action": "Actions"
     }
 }
