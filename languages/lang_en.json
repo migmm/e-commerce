@@ -141,6 +141,7 @@
         "confirm-deletion": "Are you sure you want to delete the product?"
     },
     "contact": {
+        "title": "Contact Us",
         "subtitle": "Send your inquiry",
         "name-surname": "Last Name and First Name",
         "name-error": "ERROR! Enter a name.",
