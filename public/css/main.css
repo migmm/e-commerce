@@ -2832,6 +2832,10 @@ input[type=number] {
   display: block;
 }
 
+#product-delete-button {
+  display: none;
+}
+
 .product-full-page {
   background-color: #fff;
   display: flex;

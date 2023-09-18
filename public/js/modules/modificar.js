@@ -50,8 +50,10 @@ class PageModificar {
     static async addTableEvents() {
 
         const deleteProduct = async (e) => {
-
-            if (!confirm('¿Estás seguro de querer eliminar el producto?')) {
+            const deleteMessage = document.getElementById('product-delete-button');
+            const confirmMessage = deleteMessage.innerHTML;
+    
+            if (!confirm (confirmMessage)) {
                 return;
             }
 
@@ -103,7 +105,6 @@ class PageModificar {
                     this.productView(product);
                     return;
                 }
-            
         });
     }
 

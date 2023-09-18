@@ -136,6 +136,7 @@
         "table-total": "Total",
         "table-products": "productos",
         "table-error": "No se encontraron productos",
-        "table-action": "Acciones"
+        "table-action": "Acciones",
+        "confirm-deletion": "¿Estás seguro de querer eliminar el producto?"
     }
 }
