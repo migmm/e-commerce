@@ -139,5 +139,21 @@
         "table-error": "Products not found.",
         "table-action": "Actions",
         "confirm-deletion": "Are you sure you want to delete the product?"
+    },
+    "contact": {
+        "subtitle": "Send your inquiry",
+        "name-surname": "Last Name and First Name",
+        "name-error": "ERROR! Enter a name.",
+        "telephone": "Phone Number",
+        "telephone-error": "ERROR! Enter a valid phone number.",
+        "email": "Email",
+        "email-error": "ERROR! Enter a valid email.",
+        "comment": "Write your comment",
+        "comment-error": "ERROR! Enter a comment.",
+        "general-error": "Error! Check the marked fields!",
+        "button-send-form": "Send",
+        "button-clear-form": "Clear all",
+        "location-title": "We are located at:",
+        "days": "Monday to Friday from 8 AM to 8 PM"
     }
 }

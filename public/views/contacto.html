@@ -1,43 +1,43 @@
 <div class="main-content__title">
-    <h1>Contacto</h1>
+    <h1 data-lang="contact-title">Contacto</h1>
 </div>
 <div class="main-content__wrapper form-contact">
     <div class="main-content__wrapper__contact">
         <div class="main-content__divider-left__contact">
             <section class="input-group">
                 <form action="#" autocomplete="off" id="form-contact">
-                    <h2>Envíe su consulta</h2>
+                    <h2 data-lang="contact-subtitle">Envíe su consulta</h2>
                     <div class="input-group__form-group">
-                        <label for="name" class="input-group__label">Apellido y Nombre</label>
+                        <label for="name" class="input-group__label" data-lang="contact-name-surname">Apellido y Nombre</label>
                         <input type="text" id="name" name="name" class="input-group__input" autofocus/>
-                        <span class="input-group__error">ERROR! Ingrese un nombre.</span>
+                        <span class="input-group__error" data-lang="contact-name-error">ERROR! Ingrese un nombre.</span>
                     </div>
                     <div class="input-group__form-group">
-                        <label for="phone-number" class="input-group__label">Número de teléfono</label>
+                        <label for="phone-number" class="input-group__label" data-lang="contact-telephone">Número de teléfono</label>
                         <input type="text" id="phoneNumber" name="phoneNumber" class="input-group__input"/>
-                        <span class="input-group__error">ERROR! Ingrese un télefono válido.</span>
+                        <span class="input-group__error" data-lang="contact-telephone-error">ERROR! Ingrese un télefono válido.</span>
                     </div>
                     <div class="input-group__form-group">
-                        <label for="email" class="input-group__label">Correo electrónico</label>
+                        <label for="email" class="input-group__label" data-lang="contact-email">Correo electrónico</label>
                         <input type="text" id="email" name="email" class="input-group__input"/>
-                        <span class="input-group__error">ERROR! Ingrese un e-mail válido.</span>
+                        <span class="input-group__error" data-lang="contact-email-error">ERROR! Ingrese un e-mail válido.</span>
                     </div>
                     <div class="input-group__form-group">
-                        <label for="message" class="input-group__label">Escriba su omentario</label>
+                        <label for="message" class="input-group__label" data-lang="contact-comment">Escriba su comentario</label>
                         <textarea name="message" id="message" name="message" cols="30" rows="10" class="input-group__textarea"></textarea>
-                        <span class="input-group__error">ERROR! Ingrese un comentario.</span>
+                        <span class="input-group__error" data-lang="contact-comment-error">ERROR! Ingrese un comentario.</span>
                     </div>
                     <div class="input-group__buttons">
-                        <span class="input-group__error-form">Error! Verifique los campos marcados!</span>
-                        <button type="submit">Enviar</button>
-                        <button type="reset">Borrar todo</button>
+                        <span class="input-group__error-form" data-lang="contact-general-error">Error! Verifique los campos marcados!</span>
+                        <button type="submit" data-lang="contact-button-send-form">Enviar</button>
+                        <button type="reset" data-lang="contact-button-clear-form">Borrar todo</button>
                     </div>
                 </form>
             </section>
         </div>
         <div class="main-content__divider-right__contact">
             <section class="store-info">
-                <h2>Estamos en:</h2>
+                <h2 data-lang="contact-location-title">Estamos en:</h2>
                 <p>
                     <i class="fa fa-map-marker" aria-hidden="true"></i>
                     <a href="https://goo.gl/maps/3kYhseQqSyGVtbX88" target="_blank">Av. Alem 2456 - Buenos Aires, Argentina</a>
@@ -56,7 +56,7 @@
                 </p>
                 <p>
                     <i class="fa fa-calendar" aria-hidden="true"></i>
-                    Lunes a viernes de 8 a 20hs
+                    <span data-lang="contact-days">Lunes a viernes de 8 a 20hs</span>
                 </p>
             </section>
         </div>

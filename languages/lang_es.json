@@ -141,5 +141,22 @@
         "table-error": "No se encontraron productos",
         "table-action": "Acciones",
         "confirm-deletion": "¿Estás seguro de querer eliminar el producto?"
+    },
+    "contact": {
+        "title": "Contacto",
+        "subtitle":"Envíe su consulta",
+        "name-surname":"Apellido y Nombre",
+        "name-error":"ERROR! Ingrese un nombre.",
+        "telephone":"Número de teléfono",
+        "telephone-error":"ERROR! Ingrese un télefono válido.",
+        "email":"Correo electrónico",
+        "email-error":"ERROR! Ingrese un e-mail válido.",
+        "comment":"Escriba su comentario",
+        "comment-error":"ERROR! Ingrese un comentario.",
+        "general-error":"Error! Verifique los campos marcados!",
+        "button-send-form":"Enviar",
+        "button-clear-form":"Borrar todo",
+        "location-title":"Estamos en:",
+        "days":"Lunes a viernes de 8 a 20hs"
     }
 }
