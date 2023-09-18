@@ -2,6 +2,7 @@ import productController from '/js/controllers/product.js';
 import cartController from '/js/modules/cart.js';
 import Validations from '../utils/validation.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
+import fetchLanguageData from '../utils/langFunctions.js'
 import { fetchAndRenderProducts, queryFunction } from '../utils/fetchAndRenderProducts.js';
 import formUtils from '../utils/formProcessing.js'
 
@@ -25,7 +26,7 @@ class PageModificar {
 
         btnSubmit.addEventListener('click', async (e) => {
             e.preventDefault();
-            
+
             const productToSave = Validations.validateForm(this.fields);
 
             if (productToSave) {
@@ -91,6 +92,8 @@ class PageModificar {
                 btnCancel.textContent = "Cancelar";
                 btnCancel.setAttribute("data-lang", "form-product-cancel-modification");
 
+                await fetchLanguageData.fetchLanguageData();
+            }
                 if (e.target.classList.contains('btn-view')) {
                     const row = e.target.closest('tr');
                     const id = row.dataset.id;
@@ -100,7 +103,7 @@ class PageModificar {
                     this.productView(product);
                     return;
                 }
-            }
+            
         });
     }
 
@@ -113,6 +116,7 @@ class PageModificar {
         this.addTableEvents();
         await cartController.init();
         this.addFormEvents();
+        await fetchLanguageData.fetchLanguageData();
     }
 }
 
