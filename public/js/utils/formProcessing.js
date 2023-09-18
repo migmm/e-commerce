@@ -220,7 +220,6 @@ function createCloseButton(index) {
 
 const imageQuantity = config.imageQuantity;
 let totalImages = new Array(imageQuantity).fill(null);
-let totalImagesLoaded = 0;
 
 function initImageDriver() {
 
@@ -259,7 +258,7 @@ function initImageDriver() {
 
     function handleFileSelect(event, index) {
         const files = event.target.files;
-
+        let totalImagesLoaded = 0;
         let emptyContainers = [];
 
         for (let i = 0; i < totalImages.length; i++) {
@@ -328,12 +327,12 @@ function initImageDriver() {
             draggedIndex = null;
         }
     }
-}
 
-function updateImageContainers() {
-    for (let i = 0; i < totalImages.length; i++) {
-        const imageDiv = document.getElementById(`image${i + 1}`);
-        imageDiv.style.backgroundImage = totalImages[i] ? `url(${totalImages[i]})` : '';
+    function updateImageContainers() {
+        for (let i = 0; i < totalImages.length; i++) {
+            const imageDiv = document.getElementById(`image${i + 1}`);
+            imageDiv.style.backgroundImage = totalImages[i] ? `url(${totalImages[i]})` : '';
+        }
     }
 }
 
