@@ -2651,6 +2651,12 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+#select-message,
+#repeated-selection,
+#image-select-message {
+  display: none;
+}
+
 .nosotros p,
 .nosotros img {
   display: inline-block;

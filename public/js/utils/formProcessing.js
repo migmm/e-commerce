@@ -142,6 +142,14 @@ function initForm() {
     function handleAddButtonClick() {
         const selectedValue = optionSelect.value;
 
+        const selectMessage = document.getElementById('select-message');
+        const selectConfirmMessage = selectMessage.innerHTML;
+
+        const repeatedSelection = document.getElementById('repeated-selection');
+        const selectRepeated = repeatedSelection.innerHTML;
+        
+
+
         if (selectedValue !== "") {
             if (!selectedOptions.includes(selectedValue)) {
                 if (selectedOptions.length < maxSelections) {
@@ -149,10 +157,10 @@ function initForm() {
                     updateSelectedOptionsUI();
                     optionSelect.value = "";
                 } else {
-                    alert("Se ha alcanzado el límite máximo de selecciones.");
+                    alert(selectConfirmMessage);
                 }
             } else {
-                alert("Esta selección ya ha sido agregada.");
+                alert(selectRepeated);
             }
         }
     }
@@ -271,7 +279,9 @@ function initImageDriver() {
                     totalImages[emptyContainerIndex] = imageData;
                     document.getElementById(`image${emptyContainerIndex + 1}`).style.backgroundImage = `url(${imageData})`;
                 } else {
-                    alert('Se ha alcanzado el límite de imágenes permitidas.');
+                    const maximumImagesSelected = document.getElementById('image-select-message');
+                    const maximumImagesMessage = maximumImagesSelected.innerHTML;
+                    alert(maximumImagesMessage);
                 }
 
                 totalImagesLoaded++;

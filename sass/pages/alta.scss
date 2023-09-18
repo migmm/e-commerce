@@ -86,3 +86,9 @@ input[type=number] {
     appearance: textfield;
     -moz-appearance: textfield;
 }
+
+#select-message,
+#repeated-selection,
+#image-select-message {
+    display:none;
+}

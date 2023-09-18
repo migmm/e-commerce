@@ -122,7 +122,10 @@
         "error-fields": "Error! Please check the marked fields!",
         "sucessfully-added-product": "Product successfully uploaded 😁 !!",
         "add-product": "Add product",
-        "clean-form": "Clean form"
+        "clean-form": "Clean form",
+        "select-message":"The maximum selection limit has been reached.",
+        "repeated-selection":"This selection has already been added.",
+        "image-select-message":  "The maximum allowed number of images has been reached."
     },
     "edit-product": {
         "title": "Edit products",

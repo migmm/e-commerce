@@ -124,7 +124,10 @@
         "error-fields": "Error! Verifique los campos marcados!",
         "sucessfully-added-product": "Producto cargado exitosamente 😁 !!",
         "add-product": "Agregar",
-        "clean-form": "Limpiar formulario"
+        "clean-form": "Limpiar formulario",
+        "select-message":"Se ha alcanzado el límite máximo de selecciones.",
+        "repeated-selection":"Esta selección ya ha sido agregada.",
+        "image-select-message": "Se ha alcanzado el límite de imágenes permitidas."
     },
     "edit-product": {
         "title": "Modificar productos",
