@@ -156,5 +156,14 @@
         "button-clear-form": "Clear all",
         "location-title": "We are located at:",
         "days": "Monday to Friday from 8 AM to 8 PM"
+    },
+    "us": {
+        "title": "Our History",
+        "paragraph-1": "It has its beginnings in 1945 when Carlos Santana arrived from Italy and settled in the city of Buenos Aires with a small toy store for children. After years of hard work and effort, in 1955, he achieved his first commercial store located on one of the most emblematic corners of Buenos Aires.",
+        "paragraph-2": "As the years passed, new generations joined, and it was these later generations that drove the firm's expansion to different, more significant locations in the country. After 30 years of selling a wide variety of toys, we decided to specialize in collectibles, both figures and vehicles, thus achieving expansion throughout Latin America.",
+        "paragraph-3": "Adapting to the times ahead and the new sales systems, we are developing our Online Sales department, which would expand our offering to the entire world. Currently, Cosmic Toy Store markets all products from leading brands in the market and is always at the forefront for new collectible product releases.",
+        "paragraph1-alt":"Traveler picture",
+        "paragraph2-alt":"Traveler picture",
+        "paragraph3-alt":"Store photo"
     }
 }

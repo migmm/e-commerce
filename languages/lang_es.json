@@ -158,5 +158,14 @@
         "button-clear-form":"Borrar todo",
         "location-title":"Estamos en:",
         "days":"Lunes a viernes de 8 a 20hs"
+    },
+    "us": {
+        "title": "Nosotros",
+        "paragraph-1": "Tiene sus comienzos en el año 1945 cuando Carlos Santana desembarca de Italia y se instala en la cuidad de Buenos Aires con un pequeño comercio de producto de juguetes para niños. Luego de años de duro trabajo y esfuerzo dan sus resultados y el 1955 consigue su primer local comercial ubicado en una de las esquinas mas emblemáticas de Buenos Aires.",
+        "paragraph-2": "Pasando los años se suman nuevas generaciones y son estas últimas las que producen el crecimiento de expansión de la firma a distintas localidades más importante del pais. Luego de 30 años de comercializar una amplia variedad de juguetes nos hemos decicido a especializarnos en coleccionables, tanto figuras como vehiculos y asi lograr una expansión a toda latinoamérica.",
+        "paragraph-3": "Adaptándonos a los tiempos que vienen y a los nuevos sistemas de ventas, estamos desarrollando nuestro departamento de Venta Online lo cual ampliaríamos nuestra oferta a todo el mundo. En la actualidad juguetería Cósmica comercializa todo los productos de firmas líderes en el mercado y estando siempre a la vanguardia para los nuevos lanzamientos de productos de coleccionables.",
+        "paragraph1-alt":"Foto viajero",
+        "paragraph2-alt":"Foto viajero",
+        "paragraph3-alt":"Foto de la tienda"
     }
 }
