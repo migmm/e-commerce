@@ -206,10 +206,21 @@
         "thanks": "¡Gracias por tu compra!",
         "shippping": "Los productos están en camino...",
         "go-to-home": "Ir al inicio",
-        "shipping-icon":"Logo de envío"
+        "shipping-icon": "Logo de envío"
     },
     "error404": {
         "message": "404 - Página no encontrada",
         "go-home": "Ir al inicio"
+    },
+    "reset-password": {
+        "title": "Resetear contraseña",
+        "new-password": "Nueva contraseña",
+        "error-password": "ERROR! Ingrese una contraseña válida.",
+        "re-password": "Repetir contraseña",
+        "re-password-error": "ERROR! Ingrese una contraseña válida.",
+        "general-error": "Error! Verifique los campos marcados!",
+        "send": "Enviar",
+        "forgot-pass": "¿Olvidaste tu contraseña?",
+        "not-account": "No tenes cuenta. ¿Deseas registrarte?"
     }
 }
