@@ -222,5 +222,9 @@
         "send": "Enviar",
         "forgot-pass": "¿Olvidaste tu contraseña?",
         "not-account": "No tenes cuenta. ¿Deseas registrarte?"
+    },
+    "product": {
+        "discount":"% DTO",
+        "add-to-cart":"Agregar al carrito"
     }
 }

@@ -31,7 +31,7 @@
                                 this.price
                                 this.discountPercent
                             }}</span></span>
-                    <span class="product-full-page__discount"><span class="product-full-page__discount-percent">{{this.discountPercent}}</span>% DTO</span>
+                    <span class="product-full-page__discount"><span class="product-full-page__discount-percent">{{this.discountPercent}}</span data-lang="product-discount">% DTO</span>
                 </div>
                 <span class="product-full-page__latest-price-currency">$<span class="product-full-page__latest-price">{{this.price}}</span></span>
                 <span class="product-full-page__stock">Stock
@@ -44,7 +44,7 @@
                         <input type="text" class="product-full-page__qty" value="1" readonly />
                         <button class="product-full-page__qty-button-plus">+</button>
                     </div>
-                    <a href="#" class="product-full-page__link" data-id="{{this.id}}">Agregar al carrito</a>
+                    <a href="#" class="product-full-page__link" data-id="{{this.id}}" data-lang="product-add-to-cart">Agregar al carrito</a>
                 </div>
             </div>
         </div>
