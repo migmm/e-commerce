@@ -2,6 +2,7 @@ import cartController from '/js/modules/cart.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
 import authController from '../controllers/auth.js';
 import userController from '../controllers/users.js';
+import fetchLanguageData from '../utils/langFunctions.js'
 
 class PageSignup {
 
@@ -61,33 +62,33 @@ class PageSignup {
             }
         }
 
-        if(!this.validateEmail(this.fields[0].value)) {
+        if (!this.validateEmail(this.fields[0].value)) {
             this.errorMsg[0].style.visibility = 'visible';
             this.errorMsg[0].innerHTML = "Ingresar un email válido";
             result = false;
         }
 
-        if(this.fields[2].value.length < 4) {
+        if (this.fields[2].value.length < 4) {
             this.errorMsg[2].style.visibility = 'visible';
             this.errorMsg[2].innerHTML = 'El usuario debe tener 4 o mas caracteres';
             result = false;
         }
 
-        if(this.fields[3].value.length < 8) {
+        if (this.fields[3].value.length < 8) {
             this.errorMsg[3].style.visibility = 'visible';
             this.errorMsg[3].innerHTML = 'La contraseña debe tener 8 o mas caracteres';
             result = false;
         }
 
-        if(this.fields[0].value !== this.fields[1].value) {
+        if (this.fields[0].value !== this.fields[1].value) {
             this.errorMsg[0].style.visibility = 'visible';
             this.errorMsg[0].innerHTML = "Los emails tienen que ser iguales";
             this.errorMsg[1].style.visibility = 'visible';
             this.errorMsg[1].innerHTML = "Los emails tienen que ser iguales";
             result = false;
-        } 
+        }
 
-        if(this.fields[3].value !== this.fields[4].value) {
+        if (this.fields[3].value !== this.fields[4].value) {
             this.errorMsg[3].style.visibility = 'visible';
             this.errorMsg[3].innerHTML = "Las contraseñas deben ser iguales";
             this.errorMsg[4].style.visibility = 'visible';
@@ -115,6 +116,7 @@ class PageSignup {
         this.errorMsg = this.form.querySelectorAll('span');
         this.addFormEvents();
         this.checkLogin();
+        await fetchLanguageData.fetchLanguageData();
     }
 }
 
