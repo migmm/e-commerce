@@ -205,5 +205,9 @@
         "shippping": "The products are on their way...",
         "go-to-home": "Go to homepage",
         "shipping-icon": "Shipping Logo"
+    },
+    "error404": {
+        "message": "404 - Page not found",
+        "go-home": "Go to home"
     }
 }
