@@ -165,5 +165,18 @@
         "paragraph1-alt":"Traveler picture",
         "paragraph2-alt":"Traveler picture",
         "paragraph3-alt":"Store photo"
+    },
+    "login": {
+        "title": "Log In",
+        "email": "Email",
+        "email-error": "ERROR! Please enter a valid email.",
+        "password": "Password",
+        "password-error": "ERROR! Please enter a password.",
+        "stay-connected": "Stay connected.",
+        "gereral-error": "Error! Please check the marked fields.",
+        "login": "Log In",
+        "forgot-password": "Forgot your password?",
+        "no-account": "Don't have an account.",
+        "signup": "Want to sign up?"
     }
 }

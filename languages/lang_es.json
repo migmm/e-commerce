@@ -167,5 +167,18 @@
         "paragraph1-alt":"Foto viajero",
         "paragraph2-alt":"Foto viajero",
         "paragraph3-alt":"Foto de la tienda"
+    },
+    "login": {
+        "title": "Ingresar",
+        "email": "E-mail",
+        "email-error":"ERROR! Ingrese un e-mail válido.",
+        "password":"Contraseña",
+        "password-error":"ERROR! Ingrese una contraseña.",
+        "stay-connected":"Seguir conectado.",
+        "gereral-error":"Error! Verifique los campos marcados!",
+        "login":"Ingresar",
+        "forgot-password":"¿Olvidaste tu contraseña?",
+        "no-account":"No tenes cuenta.",
+        "signup":"¿Deseas registrarte?"
     }
 }

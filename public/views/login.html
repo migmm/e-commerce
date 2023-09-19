@@ -1,32 +1,39 @@
 <div class="main-content__wrapper">
     <div class="login-form">
         <div class="login-form__heading">
-            <h1 class="login-form__heading__title">Ingresar</h1>
+            <h1 class="login-form__heading__title" data-lang="login-title">Ingresar</h1>
         </div>
         <form action="/api/auth/login" autocomplete="off" method="post" id="form-login">
             <div class="login-form__container">
                 <div class="input-group__form-group">
-                    <label for="email" class="input-group__label">E-mail</label>
+                    <label for="email" class="input-group__label" data-lang="login-email">E-mail</label>
                     <input type="text" id="email" name="email" class="input-group__input">
-                    <span class="input-group__error">ERROR! Ingrese un e-mail válido.</span>
+                    <span class="input-group__error" data-lang="login-email-error">ERROR! Ingrese un e-mail válido.</span>
                 </div>
                 <div class="input-group__form-group">
-                    <label for="password" class="input-group__label">Contraseña</label>
+                    <label for="password" class="input-group__label" data-lang="login-password">Contraseña</label>
                     <input type="text" id="password" name="password" class="input-group__input">
-                    <span class="input-group__error">ERROR! Ingrese una contraseña.</span>
+                    <span class="input-group__error" data-lang="login-password-error">ERROR! Ingrese una contraseña.</span>
                 </div>
                 <div class="input-group__form-group">
-                    <input type="checkbox" id="stayConnected" name="stayConnected" value="false" class="input-group__check" />
-                    <label class="input-group__label" for="stayConnected" id="label-checkbox" data-lang="form-stay-connected">Seguir conectado.</label>
+                    <input type="checkbox" id="stayConnected" name="stayConnected" value="false"
+                        class="input-group__check" />
+                    <label class="input-group__label" for="stayConnected" id="label-checkbox"
+                        data-lang="login-stay-connected">Seguir conectado.</label>
                 </div>
             </div>
             <div class="input-group__buttons">
-                <span class="input-group__error-form">Error! Verifique los campos marcados!</span>
-                <button type="submit">Ingresar</button>
+                <span class="input-group__error-form" data-lang="login-gereral-error">Error! Verifique los campos marcados!</span>
+                <button type="submit" data-lang="login-login">Ingresar</button>
             </div>
             <div class="input-group__form-group account">
-                <span class="login-form__forgot-password"><a href="" class="login-form__forgot-password__link">¿Olvidaste tu contraseña?</a></span>
-                <span class="login-form__register">No tenes cuenta. <a href="#/signup" class="login-form__register__link">¿Deseas registrarte?</a></span>
+                <span class="login-form__forgot-password">
+                    <a href="" class="login-form__forgot-password__link" data-lang="login-forgot-password">¿Olvidaste tu contraseña?</a>
+                </span>
+                <span class="login-form__register">
+                    <span data-lang="login-no-account">No tenes cuenta.</span>
+                    <a href="#/signup" class="login-form__register__link"  data-lang="login-signup">¿Deseas registrarte?</a>
+                </span>
             </div>
         </form>
     </div>
