@@ -1,6 +1,7 @@
 import cartController from '../modules/cart.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
 import authController from '../controllers/auth.js';
+import fetchLanguageData from '../utils/langFunctions.js'
 //import Validations from '../utils/validation.js';
 
 class PageLogin {
@@ -80,6 +81,7 @@ class PageLogin {
         this.checkLogin();
         document.getElementById('email').focus();
         await cartController.init();
+        await fetchLanguageData.fetchLanguageData();
 
     }
 }
