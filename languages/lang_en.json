@@ -96,14 +96,14 @@
         "category": "Category",
         "category-error": "ERROR! The category must have between 5 and 50 characters.",
         "main-colors": "Main colors",
-        "select-colors":"Select colors",
-        "color-red":"Red",
-        "color-blue":"Blue",
-        "color-yellow":"Yellow",
-        "color-green":"Green",
-        "color-violet":"Violet",
-        "color-orange":"Orange",
-        "color-button":"Add",
+        "select-colors": "Select colors",
+        "color-red": "Red",
+        "color-blue": "Blue",
+        "color-yellow": "Yellow",
+        "color-green": "Green",
+        "color-violet": "Violet",
+        "color-orange": "Orange",
+        "color-button": "Add",
         "main-colors-error": "ERROR! Please enter 1 to 3 colors separated by commas.",
         "short-description": "Short description",
         "shortDescription-error": "ERROR! The description must have between 5 and 80 characters.",
@@ -123,9 +123,9 @@
         "sucessfully-added-product": "Product successfully uploaded 😁 !!",
         "add-product": "Add product",
         "clean-form": "Clean form",
-        "select-message":"The maximum selection limit has been reached.",
-        "repeated-selection":"This selection has already been added.",
-        "image-select-message":  "The maximum allowed number of images has been reached."
+        "select-message": "The maximum selection limit has been reached.",
+        "repeated-selection": "This selection has already been added.",
+        "image-select-message": "The maximum allowed number of images has been reached."
     },
     "edit-product": {
         "title": "Edit products",
@@ -162,9 +162,9 @@
         "paragraph-1": "It has its beginnings in 1945 when Carlos Santana arrived from Italy and settled in the city of Buenos Aires with a small toy store for children. After years of hard work and effort, in 1955, he achieved his first commercial store located on one of the most emblematic corners of Buenos Aires.",
         "paragraph-2": "As the years passed, new generations joined, and it was these later generations that drove the firm's expansion to different, more significant locations in the country. After 30 years of selling a wide variety of toys, we decided to specialize in collectibles, both figures and vehicles, thus achieving expansion throughout Latin America.",
         "paragraph-3": "Adapting to the times ahead and the new sales systems, we are developing our Online Sales department, which would expand our offering to the entire world. Currently, Cosmic Toy Store markets all products from leading brands in the market and is always at the forefront for new collectible product releases.",
-        "paragraph1-alt":"Traveler picture",
-        "paragraph2-alt":"Traveler picture",
-        "paragraph3-alt":"Store photo"
+        "paragraph1-alt": "Traveler picture",
+        "paragraph2-alt": "Traveler picture",
+        "paragraph3-alt": "Store photo"
     },
     "login": {
         "title": "Log In",
@@ -178,5 +178,22 @@
         "forgot-password": "Forgot your password?",
         "no-account": "Don't have an account.",
         "signup": "Want to sign up?"
+    },
+    "signup": {
+        "title": "Sign Up",
+        "email": "Email",
+        "email-error": "ERROR! Please enter a valid email.",
+        "re-email": "Repeat Email",
+        "re-email-error": "ERROR! Please enter a valid email.",
+        "user": "Username",
+        "user-error": "ERROR! Please enter a valid email.",
+        "password": "Password",
+        "password-error": "ERROR! Please enter a password.",
+        "re-password": "Repeat Password",
+        "re-password-error": "ERROR! Please enter a password.",
+        "have-account": "Already have an account.",
+        "want-login": "Want to log in?",
+        "general-error": "Error! Please check the marked fields!",
+        "signup": "Sign Up"
     }
 }
