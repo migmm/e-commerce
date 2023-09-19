@@ -195,5 +195,15 @@
         "want-login": "Want to log in?",
         "general-error": "Error! Please check the marked fields!",
         "signup": "Sign Up"
+    },
+    "checkout": {
+        "title": "Cart",
+        "products": "Order Summary",
+        "total": "Total:",
+        "ckeckout": "Checkout!",
+        "thanks": "Thank you for your purchase!",
+        "shippping": "The products are on their way...",
+        "go-to-home": "Go to homepage",
+        "shipping-icon": "Shipping Logo"
     }
 }

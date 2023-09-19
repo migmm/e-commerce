@@ -197,5 +197,15 @@
         "want-login": "¿Deseas ingresar?",
         "general-error": "Error! Verifique los campos marcados!",
         "signup": "Registrarte"
+    },
+    "chekout": {
+        "title": "Carrito",
+        "products": "Resumen del pedido",
+        "total": "Total:",
+        "ckeckout": "Finalizar compra!",
+        "thanks": "¡Gracias por tu compra!",
+        "shippping": "Los productos están en camino...",
+        "go-to-home": "Ir al inicio",
+        "shipping-icon":"Logo de envío"
     }
 }
