@@ -12,6 +12,9 @@ import routerImages from './router/awsFileManager.js'
 
 import cors from 'cors';
 
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./helpers/swagger.js";
+
 import config from './config.js';
 
 const app = express();
@@ -32,14 +35,22 @@ app.use('/api/auth', routerAuth);
 app.use('/api/lang', routerLang);
 app.use('/api/images', routerImages);
 
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.get("/api/docs.json", (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+    res.send(swaggerSpec);
+});
+
 app.get("/*", function (req, res) {
     res.redirect("/#/404");
 });
 
 const PORT = config.PORT;
-const server = app.listen(PORT, () =>
+
+const server = app.listen(PORT, () => 
     console.log(`Servidor Express escuchando en el puerto ${PORT}.`)
 );
+
 server.on('error', error => 
     console.log('Error al iniciar el servidor Express: ' + error.message)
 );
