@@ -142,7 +142,7 @@ const signup = async (req, res) => {
         const foundEmail = await apiUsers.getByField('email', email);
 
         if (foundUser && foundEmail) {
-            return res.status(409).json({ message: 'Username or email already exists.' });
+            return res.status(409).json({ message: 'Internal server error: Username or email already exists.' });
         }
 
         const hashedPwd = await bcrypt.hash(password, 10);
@@ -158,7 +158,7 @@ const signup = async (req, res) => {
 
     } catch (error) {
         console.log(error)
-        res.status(500).json({ message: 'Error creating user.' });
+        res.status(500).json({ message: 'Internal server error: Error creating user.' });
     }
 }
 
@@ -183,7 +183,7 @@ async function sendOTP(req, res) {
         res.status(201).json({ message: 'OTP sended' });
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ message: 'Error sending OTP' });
+        return res.status(500).json({ message: 'Internal server error: Error sending OTP' });
     }
 }
 
@@ -200,7 +200,7 @@ async function verifyOTP(req, res) {
         }
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Error verifying OTP code' });
+        res.status(500).json({ message: 'Internal server error: Error verifying OTP code' });
     }
 }
 
