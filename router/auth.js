@@ -81,6 +81,76 @@ const routerAuth = express.Router();
  */
 
 routerAuth.post('/signup', authController.signup);
+
+
+/**
+ * @openapi
+ * /api/auth/login:
+ *   post:
+ *     summary: User login.
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: User email. the API will check if this email is already registered.
+ *                 example: 'example@email.com'
+ *               password:
+ *                 type: string
+ *                 description: Password.
+ *                 example: 'password12345'
+ *     responses:
+ *       200:
+ *         description: Successfully logged in user response.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Response message.
+ *                   example: 'User sucessfully logged in'
+ *       400:
+ *         description: Bad Request indicating missing or invalid fields in the request.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Response message.
+ *                   example: 'All fields are required.'
+ *       401:
+ *         description: Unauthorized response for invalid credentials.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Message if user does not exist or password is incorrect.
+ *                   example: 'Unauthorized.'
+ *       500:
+ *         description: Internal Server Error indicating a server-side error.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Response message.
+ *                   example: 'Internal Server Error: Login error'
+ */
+
 routerAuth.post('/login', loginLimiter, authController.login);
 routerAuth.post('/refresh', authController.refreshToken);
 routerAuth.post('/logout', authController.logout);
