@@ -5,6 +5,7 @@ import loginLimiter from '../helpers/loginLimiter.js';
 
 const routerAuth = express.Router();
 
+
 /**
  * @openapi
  * /api/auth/signup:
@@ -79,7 +80,6 @@ const routerAuth = express.Router();
  *                   description: Response message.
  *                   example: 'Internal Server Error: Register error'
  */
-
 routerAuth.post('/signup', authController.signup);
 
 
@@ -150,8 +150,61 @@ routerAuth.post('/signup', authController.signup);
  *                   description: Response message.
  *                   example: 'Internal Server Error: Login error'
  */
-
 routerAuth.post('/login', loginLimiter, authController.login);
+
+
+/**
+ * @openapi
+ * /api/auth/refresh:
+ *   post:
+ *     summary: Refresh token.
+ *     tags: [Auth]
+ *     responses:
+ *       200:
+ *         description: Successfully refreshed token.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 token:
+ *                   type: string
+ *                   description: Response message.
+ *                   example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+ *       401:
+ *         description: Unauthorized response for invalid credentials.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Message if token does not exist or if user is different from token.
+ *                   example: 'Unauthorized.'
+ *       403:
+ *         description: Forbidden response indicating an issue with the refresh token.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Response message indicating that the refresh token is invalid or expired.
+ *                   example: 'Forbidden: Invalid or expired refresh token.'
+ *       500:
+ *         description: Internal Server Error indicating a server-side error.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Response message.
+ *                   example: 'Internal Server Error: Error refreshing token.'
+ */
 routerAuth.post('/refresh', authController.refreshToken);
 routerAuth.post('/logout', authController.logout);
 routerAuth.post('/verify-otp', authController.verifyOTP);
