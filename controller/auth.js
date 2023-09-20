@@ -14,76 +14,84 @@ dotenv.config();
 const login = async (req, res) => {
     const { email, password } = req.body
     console.log("dsds", email, password)
-    if (!email || !password) {
-        return res.status(400).json({ message: 'All fields are required' })
+    try {
+        if (!email || !password) {
+            return res.status(400).json({ message: 'All fields are required.' })
+        }
+
+        const foundUser = await api.getAuth('email', email);
+
+        if (!foundUser) {
+            return res.status(401).json({ message: 'Unauthorized.' })
+        }
+
+        const match = await bcrypt.compare(password, foundUser.password)
+        if (!match) return res.status(401).json({ message: 'Unauthorized.' })
+
+        const secretKey = process.env.ACCESS_TOKEN_SECRET;
+
+        const accessToken = jwt.sign(
+            {
+                'username': foundUser.username,
+                'role': foundUser.role
+            },
+            secretKey,
+            { expiresIn: '1d' }
+        );
+
+        const refreshToken = jwt.sign(
+            {
+                'username': foundUser.username,
+                'role': foundUser.role
+            },
+            process.env.REFRESH_TOKEN_SECRET,
+            { expiresIn: '7d' }
+        )
+
+        const cookieOptions = {
+            httpOnly: false, //value for developing in local host, change to "true" in production.
+            sameSite: 'Strict', //value for developing in local host, change to "none" in production.
+            secure: false, //value for developing in local host, change to "true" in production.
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+        };
+
+        foundUser.lastLogin = new Date()
+        const { id, ...userData } = foundUser;
+
+        await apiUsers.updateUser(id, userData);
+
+        return res.cookie('jwt', refreshToken, cookieOptions).status(201).json({ accessToken })
+            .status(200)
+            .json({ message: 'User sucessfully logged in' });
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: 'Internal Server Error: An unexpected error occurred.' });
     }
 
-    const foundUser = await api.getAuth('email', email);
-    console.log('user auth', foundUser);
-
-    if (!foundUser) {
-        return res.status(401).json({ message: 'Unauthorized' })
-    }
-
-    const match = await bcrypt.compare(password, foundUser.password)
-    if (!match) return res.status(401).json({ message: 'Unauthorized' })
-
-    const secretKey = process.env.ACCESS_TOKEN_SECRET;
-
-    const accessToken = jwt.sign(
-        { 
-            'username': foundUser.username,
-            'role': foundUser.role
-        },
-        secretKey,
-        { expiresIn: '1d' }
-    );
-
-    const refreshToken = jwt.sign(
-        { 
-            'username': foundUser.username,
-            'role': foundUser.role
-        },
-        process.env.REFRESH_TOKEN_SECRET,
-        { expiresIn: '7d' }
-    )
-
-    const cookieOptions = {
-        httpOnly: false, //value for developing in local host, change to "true" in production.
-        sameSite: 'Strict', //value for developing in local host, change to "none" in production.
-        secure: false, //value for developing in local host, change to "true" in production.
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-    };
-
-    foundUser.lastLogin = new Date()
-    const { id, ...userData } = foundUser;
-
-    await apiUsers.updateUser(id, userData); 
-    return res.cookie('jwt', refreshToken, cookieOptions).status(201).json({ accessToken });
 };
 
 const refreshToken = (req, res) => {
     const cookies = req.cookies
-    console.log(cookies)
+
     if (!cookies?.jwt) return res.status(401).json({ message: 'Unauthorized' })
 
     const refreshToken = cookies.jwt
 
-    jwt.verify( 
-        refreshToken, 
+    jwt.verify(
+        refreshToken,
         process.env.REFRESH_TOKEN_SECRET,
         async (err, decoded) => {
             if (err) return res.status(403).json({ message: 'Forbidden' })
 
             const foundUser = await api.getAuth('username', decoded.username);
             console.log('user auth', foundUser);
-        
+
             if (!foundUser) {
                 return res.status(401).json({ message: 'Unauthorized' })
             }
 
             const accessToken = jwt.sign(
-                { 
+                {
                     'username': foundUser.username,
                     'role': foundUser.role
                 },
@@ -93,9 +101,9 @@ const refreshToken = (req, res) => {
 
             foundUser.lastLogin = new Date()
             const { id, ...userData } = foundUser;
-        
-            await apiUsers.updateUser(id, userData); 
-            
+
+            await apiUsers.updateUser(id, userData);
+
             res.json({ accessToken })
         }
     )
@@ -104,23 +112,54 @@ const refreshToken = (req, res) => {
 const logout = (req, res) => {
     const cookies = req.cookies.jwt;
 
-    if (!cookies) return res.sendStatus(204)
+    try {
+        if (!cookies) {
+            return res.status(204).end();
+        }
 
-    res.clearCookie('jwt', {
-        httpOnly: true,
-        sameSite: 'none',
-        secure: true
-    })
+        res.clearCookie('jwt', {
+            httpOnly: true,
+            sameSite: 'none',
+            secure: true
+        })
 
-    res.json({ message: 'Cookie cleared' })
+        res.status(204).json({ message: 'Cookie cleared' })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: 'Internal server error: Error clearing cookie.' });
+    }
 }
 
-function signup(req, res) {
+const signup = async (req, res) => {
     const { username, password, email } = req.body;
 
-    const newUser = authService.createUser(username, password, email);
-    console.log(newUser)
-    res.json({ message: 'User registered successfully' });
+    try {
+        if (!username || !password || !email) {
+            return res.status(400).json({ message: 'All fields are required.' });
+        }
+
+        const foundUser = await apiUsers.getByField('username', username);
+        const foundEmail = await apiUsers.getByField('email', email);
+
+        if (foundUser && foundEmail) {
+            return res.status(409).json({ message: 'Username or email already exists.' });
+        }
+
+        const hashedPwd = await bcrypt.hash(password, 10);
+
+        const newUser = {
+            username,
+            password: hashedPwd,
+            email
+        }
+
+        await apiUsers.createUser(newUser);
+        res.status(201).json({ message: "User created sucessfully." });
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: 'Error creating user.' });
+    }
 }
 
 async function sendOTP(req, res) {
@@ -134,9 +173,9 @@ async function sendOTP(req, res) {
         }
 
         if (deliveryMethod === 'sms') {
-        
+
         } else if (deliveryMethod === 'email') {
-        
+
         } else {
             return res.status(400).json({ message: 'Invalid delivery method' });
         }
