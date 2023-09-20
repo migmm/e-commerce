@@ -82,7 +82,6 @@ const routerAuth = express.Router();
  */
 routerAuth.post('/signup', authController.signup);
 
-
 /**
  * @openapi
  * /api/auth/login:
@@ -152,7 +151,6 @@ routerAuth.post('/signup', authController.signup);
  */
 routerAuth.post('/login', loginLimiter, authController.login);
 
-
 /**
  * @openapi
  * /api/auth/refresh:
@@ -206,7 +204,106 @@ routerAuth.post('/login', loginLimiter, authController.login);
  *                   example: 'Internal Server Error: Error refreshing token.'
  */
 routerAuth.post('/refresh', authController.refreshToken);
+
+/**
+ * @openapi
+ * /api/auth/logout:
+ *   post:
+ *     summary: Logout and clear JWT cookie.
+ *     tags: [Auth]
+ *     responses:
+ *       204:
+ *         description: Successfully logged out and cleared JWT cookie.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Response message.
+ *                   example: 'Cookie cleared'
+ *       401:
+ *         description: Unauthorized response indicating the absence of a JWT cookie.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Message if no JWT cookie is present.
+ *                   example: 'Unauthorized'
+ *       500:
+ *         description: Internal Server Error indicating a server-side error.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Response message.
+ *                   example: 'Internal Server Error: Error clearing cookie.'
+ */
 routerAuth.post('/logout', authController.logout);
+
+/**
+ * @openapi
+ * /api/auth/sendOTP:
+ *   post:
+ *     summary: Send OTP (One-Time Password) to the user.
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: User email to send OTP to.
+ *                 example: 'example@email.com'
+ *               deliveryMethod:
+ *                 type: string
+ *                 description: Delivery method for OTP (sms or email).
+ *                 example: 'email'
+ *     responses:
+ *       201:
+ *         description: Successfully sent OTP.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Response message.
+ *                   example: 'OTP sent'
+ *       400:
+ *         description: Bad Request indicating an invalid delivery method.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Message indicating an invalid delivery method.
+ *                   example: 'Invalid delivery method'
+ *       500:
+ *         description: Internal Server Error indicating a server-side error while sending OTP.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Response message.
+ *                   example: 'Internal Server Error: Error sending OTP'
+ */
 routerAuth.post('/verify-otp', authController.verifyOTP);
 routerAuth.post('/send-otp', authController.sendOTP);
 
