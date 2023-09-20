@@ -305,6 +305,63 @@ routerAuth.post('/logout', authController.logout);
  *                   example: 'Internal Server Error: Error sending OTP'
  */
 routerAuth.post('/verify-otp', authController.verifyOTP);
+
+/**
+ * @openapi
+ * /api/auth/verifyOTP:
+ *   post:
+ *     summary: Verify OTP (One-Time Password) code for user.
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: User email for OTP verification.
+ *                 example: 'example@email.com'
+ *               otp:
+ *                 type: string
+ *                 description: OTP code to be verified.
+ *                 example: '123456'
+ *     responses:
+ *       200:
+ *         description: Successfully verified OTP code.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Response message indicating a valid OTP code.
+ *                   example: 'Valid OTP code'
+ *       401:
+ *         description: Unauthorized response indicating an invalid OTP code.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Message indicating an invalid OTP code.
+ *                   example: 'Invalid OTP code'
+ *       500:
+ *         description: Internal Server Error indicating a server-side error while verifying OTP code.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Response message.
+ *                   example: 'Internal Server Error: Error verifying OTP code'
+ */
 routerAuth.post('/send-otp', authController.sendOTP);
 
 
