@@ -13,17 +13,14 @@ dotenv.config();
 
 const login = async (req, res) => {
     const { email, password } = req.body
-    console.log("dsds", email, password)
+
     try {
         if (!email || !password) {
             return res.status(400).json({ message: 'All fields are required.' })
         }
 
         const foundUser = await api.getAuth('email', email);
-
-        if (!foundUser) {
-            return res.status(401).json({ message: 'Unauthorized.' })
-        }
+        if (!foundUser) return res.status(401).json({ message: 'Unauthorized.' })
 
         const match = await bcrypt.compare(password, foundUser.password)
         if (!match) return res.status(401).json({ message: 'Unauthorized.' })
@@ -63,11 +60,11 @@ const login = async (req, res) => {
         return res.cookie('jwt', refreshToken, cookieOptions).status(201).json({ accessToken })
             .status(200)
             .json({ message: 'User sucessfully logged in' });
+
     } catch (error) {
         console.log(error)
         res.status(500).json({ message: 'Internal Server Error: An unexpected error occurred.' });
     }
-
 };
 
 const refreshToken = (req, res) => {
@@ -85,7 +82,6 @@ const refreshToken = (req, res) => {
                 if (err) return res.status(403).json({ message: 'Forbidden' })
 
                 const foundUser = await api.getAuth('username', decoded.username);
-                console.log('user auth', foundUser);
 
                 if (!foundUser) {
                     return res.status(401).json({ message: 'Unauthorized' })
@@ -105,7 +101,7 @@ const refreshToken = (req, res) => {
 
                 await apiUsers.updateUser(id, userData);
 
-                res.json({ accessToken })
+                res.status(201).json({ token: accessToken })
             }
         )
 
@@ -119,9 +115,7 @@ const logout = (req, res) => {
     const cookies = req.cookies.jwt;
 
     try {
-        if (!cookies) {
-            return res.status(204).end();
-        }
+        if (!cookies) return res.status(204).end();
 
         res.clearCookie('jwt', {
             httpOnly: true,
@@ -174,9 +168,7 @@ async function sendOTP(req, res) {
 
         const user = await api.generateOTP(email, deliveryMethod);
 
-        if (!user) {
-            return res.status(500).json({ message: 'Error sending OTP' });
-        }
+        if (!user) return res.status(500).json({ message: 'Error sending OTP' });
 
         if (deliveryMethod === 'sms') {
 
