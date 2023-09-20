@@ -73,40 +73,46 @@ const login = async (req, res) => {
 const refreshToken = (req, res) => {
     const cookies = req.cookies
 
-    if (!cookies?.jwt) return res.status(401).json({ message: 'Unauthorized' })
+    try {
+        if (!cookies?.jwt) return res.status(401).json({ message: 'Unauthorized' })
 
-    const refreshToken = cookies.jwt
+        const refreshToken = cookies.jwt
 
-    jwt.verify(
-        refreshToken,
-        process.env.REFRESH_TOKEN_SECRET,
-        async (err, decoded) => {
-            if (err) return res.status(403).json({ message: 'Forbidden' })
+        jwt.verify(
+            refreshToken,
+            process.env.REFRESH_TOKEN_SECRET,
+            async (err, decoded) => {
+                if (err) return res.status(403).json({ message: 'Forbidden' })
 
-            const foundUser = await api.getAuth('username', decoded.username);
-            console.log('user auth', foundUser);
+                const foundUser = await api.getAuth('username', decoded.username);
+                console.log('user auth', foundUser);
 
-            if (!foundUser) {
-                return res.status(401).json({ message: 'Unauthorized' })
+                if (!foundUser) {
+                    return res.status(401).json({ message: 'Unauthorized' })
+                }
+
+                const accessToken = jwt.sign(
+                    {
+                        'username': foundUser.username,
+                        'role': foundUser.role
+                    },
+                    process.env.ACCESS_TOKEN_SECRET,
+                    { expiresIn: '1d' }
+                )
+
+                foundUser.lastLogin = new Date()
+                const { id, ...userData } = foundUser;
+
+                await apiUsers.updateUser(id, userData);
+
+                res.json({ accessToken })
             }
+        )
 
-            const accessToken = jwt.sign(
-                {
-                    'username': foundUser.username,
-                    'role': foundUser.role
-                },
-                process.env.ACCESS_TOKEN_SECRET,
-                { expiresIn: '1d' }
-            )
-
-            foundUser.lastLogin = new Date()
-            const { id, ...userData } = foundUser;
-
-            await apiUsers.updateUser(id, userData);
-
-            res.json({ accessToken })
-        }
-    )
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: 'Internal Server Error: Error refreshing token.' });
+    }
 }
 
 const logout = (req, res) => {
