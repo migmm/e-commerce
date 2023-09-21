@@ -684,7 +684,35 @@ routerProducts.post('/', upload.array('images', 10), handleMulterError, resizeIm
  */
 routerProducts.put('/:id', upload.array('images', 10), handleMulterError, resizeImagesMiddleware, productsController.putProduct);
 
-
+/**
+ * @openapi
+ * /api/products/{productId}:
+ *   delete:
+ *     summary: Delete an existing product.
+ *     tags: [Products]
+ *     parameters:
+ *       - in: path
+ *         name: productId
+ *         required: true
+ *         description: Unique identifier of the product to delete.
+ *         schema:
+ *           type: string
+ *           example: '6505195b4b623a3fa731e1db'
+ *     responses:
+ *       204:
+ *         description: Successfully deleted the product.
+ *       500:
+ *         description: Internal Server Error indicating a server-side error while deleting the product.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Error message.
+ *                   example: 'Error deleting the product'
+ */
 routerProducts.delete('/:id', productsController.deleteProduct);
 
 export default routerProducts;
