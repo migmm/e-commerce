@@ -3,7 +3,32 @@ const routerLang = express.Router();
 
 import { changeLanguage, getLanguageInfo } from '../controller/lang.js';
 
-
+/**
+ * @openapi
+ * /api/lang/availablelangs:
+ *   get:
+ *     summary: Obtener información sobre los idiomas disponibles.
+ *     tags: [Localization]
+ *     responses:
+ *       200:
+ *         description: Información sobre los idiomas disponibles recuperada con éxito.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 availableLangs:
+ *                   type: array
+ *                   description: Un array de códigos de idioma disponibles (por ejemplo, ["en", "es"]).
+ *                   items:
+ *                     type: string
+ *                 availableLangsWithName:
+ *                   type: object
+ *                   description: Un objeto que contiene los códigos de idioma como claves y sus nombres correspondientes como valores.
+ *                   additionalProperties:
+ *                     type: string
+ *                     description: El nombre del idioma.
+*/
 routerLang.get('/availablelangs', getLanguageInfo);
 
 /**
