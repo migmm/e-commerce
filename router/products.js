@@ -444,11 +444,247 @@ routerProducts.get('/:id/:lang', productsController.getProduct);
  *                   description: Error message.
  *                   example: 'Error creating the product'
  */
-
-
 routerProducts.post('/', upload.array('images', 10), handleMulterError, resizeImagesMiddleware, productsController.postProduct);
 
+/**
+ * @openapi
+ * /api/products/{productId}:
+ *   put:
+ *     summary: Update an existing product.
+ *     tags: [Products]
+ *     parameters:
+ *       - in: path
+ *         name: productId
+ *         required: true
+ *         description: Unique identifier of the product to update.
+ *         schema:
+ *           type: string
+ *           example: '64e3d1095e958d300be4b5a2'
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               productData:
+ *                 type: string
+ *                 format: binary
+ *                 description: |
+ *                   JSON data containing updated product details.
+ *                   
+ *                   Example JSON data:
+ *                   ```json
+ *                   {
+ *                     "productName": {
+ *                       "es": "Nuevo nombre del producto",
+ *                       "en": "New Product Name"
+ *                     },
+ *                     "price": {
+ *                       "usd": 12.99,
+ *                       "eur": 11.99
+ *                     },
+ *                     "tax": 6.0,
+ *                     "vat": 22.0,
+ *                     "discountPercent": 15,
+ *                     "vendor": "Proveedor B",
+ *                     "stock": 150,
+ *                     "category": "Nueva categoría",
+ *                     "shortDescription": {
+ *                       "es": "Nueva descripción corta en español",
+ *                       "en": "New Short Description in English"
+ *                     },
+ *                     "longDescription": {
+ *                       "es": "Nueva descripción larga en español",
+ *                       "en": "New Long Description in English"
+ *                     },
+ *                     "freeShip": false,
+ *                     "ageFrom": 6,
+ *                     "ageTo": 14,
+ *                     "ageSelect": "Nuevo rango de edad",
+ *                     "status": true
+ *                   }
+ *                   ```
+ *               files:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                   format: binary
+ *                 description: Updated product images.
+ *     responses:
+ *       200:
+ *         description: Successfully updated the product.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                   description: Unique product identifier.
+ *                   example: '64e3d1095e958d300be4b5a2'
+ *                 productName:
+ *                   type: object
+ *                   properties:
+ *                     es:
+ *                       type: string
+ *                       description: Product name in Spanish.
+ *                       example: 'Nuevo nombre del producto'
+ *                     en:
+ *                       type: string
+ *                       description: Product name in English.
+ *                       example: 'New Product Name'
+ *                 price:
+ *                   type: object
+ *                   description: Product price in multiple currencies.
+ *                   example:
+ *                     {
+ *                       usd: 12.99,
+ *                       eur: 11.99
+ *                     }
+ *                 tax:
+ *                   type: number
+ *                   description: Tax rate applied to the product.
+ *                   example: 6.0
+ *                 vat:
+ *                   type: number
+ *                   description: VAT (Value Added Tax) rate applied to the product.
+ *                   example: 22.0
+ *                 discountPercent:
+ *                   type: number
+ *                   description: Discount percentage applied to the product.
+ *                   example: 15
+ *                 vendor:
+ *                   type: string
+ *                   description: Product vendor or supplier.
+ *                   example: 'Proveedor B'
+ *                 stock:
+ *                   type: number
+ *                   description: Available stock quantity.
+ *                   example: 150
+ *                 category:
+ *                   type: string
+ *                   description: Product category.
+ *                   example: 'Nueva categoría'
+ *                 shortDescription:
+ *                   type: object
+ *                   properties:
+ *                     es:
+ *                       type: string
+ *                       description: Short product description in Spanish.
+ *                       example: 'Nueva descripción corta en español'
+ *                     en:
+ *                       type: string
+ *                       description: Short product description in English.
+ *                       example: 'New Short Description in English'
+ *                 longDescription:
+ *                   type: object
+ *                   properties:
+ *                     es:
+ *                       type: string
+ *                       description: Detailed product description in Spanish.
+ *                       example: 'Nueva descripción larga en español'
+ *                     en:
+ *                       type: string
+ *                       description: Detailed product description in English.
+ *                       example: 'New Long Description in English'
+ *                 freeShip:
+ *                   type: boolean
+ *                   description: Indicates if shipping is free for the product.
+ *                   example: false
+ *                 ageFrom:
+ *                   type: number
+ *                   description: Minimum age requirement for the product.
+ *                   example: 6
+ *                 ageTo:
+ *                   type: number
+ *                   description: Maximum age requirement for the product.
+ *                   example: 14
+ *                 ageSelect:
+ *                   type: string
+ *                   description: Age selection criteria for the product.
+ *                   example: 'Nuevo rango de edad'
+ *                 addedDate:
+ *                   type: string
+ *                   format: date-time
+ *                   description: Date when the product was added.
+ *                   example: '2023-09-20T12:00:00Z'
+ *                 status:
+ *                   type: boolean
+ *                   description: Product status (active/inactive).
+ *                   example: true
+ *                 lastSell:
+ *                   type: string
+ *                   format: date-time
+ *                   description: Date of the last sale of the product.
+ *                   example: '2023-09-21T14:30:00Z'
+ *                 lastModified:
+ *                   type: string
+ *                   format: date-time
+ *                   description: Date when the product was last modified.
+ *                   example: '2023-09-21T10:15:00Z'
+ *                 views:
+ *                   type: number
+ *                   description: Number of views for the product.
+ *                   example: 1000
+ *                 lastVisited:
+ *                   type: string
+ *                   format: date-time
+ *                   description: Date when the product was last visited.
+ *                   example: '2023-09-21T15:45:00Z'
+ *                 images:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *                   description: Array of updated product image URLs.
+ *                   example: ['new_url1.jpg', 'new_url2.jpg']
+ *                 colors:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *                   description: Array of available product colors.
+ *                   example: ['Red', 'Blue']
+ *                 urlName:
+ *                   type: string
+ *                   description: URL-friendly product name.
+ *                   example: 'nombre-actualizado-del-producto'
+ *       400:
+ *         description: Bad Request indicating an error while updating the product.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Error message.
+ *                   example: 'Error updating the product'
+ *       415:
+ *         description: Unsupported Media Type indicating an issue with the request format.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Error message.
+ *                   example: 'Unsupported media type'
+ *       500:
+ *         description: Internal Server Error indicating a server-side error while updating the product.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Error message.
+ *                   example: 'Error updating the product'
+ */
 routerProducts.put('/:id', upload.array('images', 10), handleMulterError, resizeImagesMiddleware, productsController.putProduct);
+
+
 routerProducts.delete('/:id', productsController.deleteProduct);
 
 export default routerProducts;
