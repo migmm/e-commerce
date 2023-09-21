@@ -131,7 +131,80 @@ const routerProducts = express.Router();
  */
 routerProducts.get('/:lang?', productsController.getProducts);
 
-
+/**
+ * @openapi
+ * /api/products/{id}/{lang}:
+ *   get:
+ *     summary: Get product by ID and language.
+ *     tags: [Products]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Unique product identifier.
+ *         example: '64e3d1095e958d300be4b5a2'
+ *       - in: path
+ *         name: lang
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Language code to fetch the product in.
+ *         example: 'es'
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved product by ID and language.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                   description: Unique product identifier.
+ *                   example: '64e3d1095e958d300be4b5a2'
+ *                 name:
+ *                   type: string
+ *                   description: Product name.
+ *                   example: 'Smartphone'
+ *                 price:
+ *                   type: number
+ *                   description: Product price.
+ *                   example: 299.99
+ *                 category:
+ *                   type: string
+ *                   description: Product category.
+ *                   example: 'electronics'
+ *                 images:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *                   description: Array of product image URLs.
+ *                   example: ['https://example.com/image1.jpg', 'https://example.com/image2.jpg']
+ *       400:
+ *         description: Bad Request indicating an invalid language or product ID.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Error message.
+ *                   example: 'Not a valid language or product ID'
+ *       500:
+ *         description: Internal Server Error indicating a server-side error while fetching the product.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Error message.
+ *                   example: 'Error obtaining product'
+ */
 routerProducts.get('/:id/:lang', productsController.getProduct);
 
 routerProducts.post('/', upload.array('images', 10), handleMulterError, resizeImagesMiddleware, productsController.postProduct);
