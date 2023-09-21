@@ -9,6 +9,7 @@ const options = {
     },
     apis: [
         "router/auth.js",
+        "router/products.js"
     ]
 };
 
