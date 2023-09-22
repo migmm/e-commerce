@@ -7,11 +7,11 @@ import { changeLanguage, getLanguageInfo } from '../controller/lang.js';
  * @openapi
  * /api/lang/availablelangs:
  *   get:
- *     summary: Obtener información sobre los idiomas disponibles.
+ *     summary: Get information about available languages.
  *     tags: [Localization]
  *     responses:
  *       200:
- *         description: Información sobre los idiomas disponibles recuperada con éxito.
+ *         description: Successfully retrieved information about available languages.
  *         content:
  *           application/json:
  *             schema:
@@ -19,15 +19,15 @@ import { changeLanguage, getLanguageInfo } from '../controller/lang.js';
  *               properties:
  *                 availableLangs:
  *                   type: array
- *                   description: Un array de códigos de idioma disponibles (por ejemplo, ["en", "es"]).
+ *                   description: An array of available language codes (e.g., ["en", "es"]).
  *                   items:
  *                     type: string
  *                 availableLangsWithName:
  *                   type: object
- *                   description: Un objeto que contiene los códigos de idioma como claves y sus nombres correspondientes como valores.
+ *                   description: An object containing language codes as keys and their corresponding names as values.
  *                   additionalProperties:
  *                     type: string
- *                     description: El nombre del idioma.
+ *                     description: The name of the language.
 */
 routerLang.get('/availablelangs', getLanguageInfo);
 
