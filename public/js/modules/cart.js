@@ -107,31 +107,30 @@ class ModuleCart {
 
     static async addItemToCart(id, qty = 1) {
         const currentLang = localStorage.getItem('langSelection') || 'en';
-        const products = await productController.getProducts(currentLang);
-        const product = products.find(product => product.id == id)
-        const productToRemoveId = this.cart.findIndex(product => product.id == id)
+        let query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=_id&value=${id}`;
+        const product = await productController.getProducts(currentLang, query);
 
-        if (productToRemoveId >= 0) {
-            this.cart[productToRemoveId].qty = this.cart[productToRemoveId].qty + qty;
-            if (document.getElementsByClassName('checkout__products')[0]) {
-                await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.checkout__products')
-            }
-            await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.cart-modal__products')
+        const existingProductInCart = this.cart.find(item => item.id === id); 
+        
+        if (!existingProductInCart && product) {
+            const { id, productName, images, urlName, stock, status, price, freeShip } = product.products[0];
+
+            const favProduct = {
+                id: id,
+                productName: productName,
+                image: images.portada,
+                urlName: urlName,
+                status: status,
+                price: price,
+                stock: stock,
+                freeShip: freeShip
+            };
+
+            this.cart.push(favProduct);
+
             localStorage.setItem('cart', JSON.stringify(this.cart));
-            toastComponent.toastNotification('toast-added-to-cart', 'success', '#0FB681', 'center');
             this.updateCart();
-            return;
         }
-
-        this.cart.push(product);
-        this.cart[this.cart.length - 1].qty = 1;
-        if (document.getElementsByClassName('checkout__products')[0]) {
-            await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.checkout__products')
-        }
-        await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.cart-modal__products')
-        localStorage.setItem('cart', JSON.stringify(this.cart));
-        toastComponent.toastNotification('toast-added-to-cart', 'success', '#0FB681', 'center');
-        this.updateCart();
     }
 
     static async removeItemFromCart(id, qty) {
