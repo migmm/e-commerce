@@ -105,32 +105,78 @@ class ModuleCart {
         });
     }
 
-    static async addItemToCart(id, qty = 1) {
+    static async addItemToCart(id) {
         const currentLang = localStorage.getItem('langSelection') || 'en';
+    
         let query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=_id&value=${id}`;
         const product = await productController.getProducts(currentLang, query);
-
-        const existingProductInCart = this.cart.find(item => item.id === id); 
+    
+        const existingCartItem = this.cart.find(item => item.id === id); 
         
-        if (!existingProductInCart && product) {
-            const { id, productName, images, urlName, stock, status, price, freeShip } = product.products[0];
+        if (existingCartItem) {
+            if (existingCartItem.qty < existingCartItem.stock) {
+                existingCartItem.qty++;
 
-            const favProduct = {
+                localStorage.setItem('cart', JSON.stringify(this.cart));
+            } else {
+                toastComponent.toastNotification('toast-error-stock-exceeded', 'error', '#FF0000', 'center');
+            }
+
+        } else if (product) {
+            const { id, productName, images, urlName, price, discountPercent } = product.products[0];
+    
+            const cartItem = {
                 id: id,
                 productName: productName,
-                image: images.portada,
+                image: images[0],
                 urlName: urlName,
-                status: status,
                 price: price,
-                stock: stock,
-                freeShip: freeShip
+                discountPercent: discountPercent,
+                qty: 1
             };
-
-            this.cart.push(favProduct);
-
+    
+            this.cart.push(cartItem);
+    
             localStorage.setItem('cart', JSON.stringify(this.cart));
-            this.updateCart();
+        } else {
+            toastComponent.toastNotification('toast-error-added-to-cart', 'error', '#FF0000', 'center');
         }
+    
+        const totalQuantity = this.totaCartItems(this.cart);
+        console.log("totalQuantity", totalQuantity);
+        this.updateCart();
+        await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.cart-modal__products')
+    }
+    
+    static totaCartItems(cart) {
+        let totalQuantity = 0;
+        console.log(cart)
+
+        for (const item of cart) {
+            console.log("item.qty",item.qty)
+            const qty = parseInt(item.qty, 10);
+            console.log("qty",qty)
+
+            if (!isNaN(qty)) {
+                totalQuantity += qty;
+            }
+        }
+        return totalQuantity;
+    }
+
+    static totalCartPrice(cart) {
+        let totalPrice = 0;
+    
+        for (const item of cart) {
+            const qty = parseInt(item.qty, 10);
+            const price = parseFloat(item.price);
+            console.log(qty, price)
+    
+            if (!isNaN(qty) && !isNaN(price)) {
+                totalPrice += qty * price;
+            }
+        }
+        return totalPrice;
     }
 
     static async removeItemFromCart(id, qty) {
@@ -162,46 +208,19 @@ class ModuleCart {
 
     static async updateCart() {
         let badgeQtyCounter = document.getElementsByClassName('main-header__wrapper__cart-button-container__qty-cart')[0];
-        let partialPrice = document.getElementsByClassName('card-cart-preview__price__price-subtotal');
-        let cartTotal = document.getElementsByClassName('cart-total');
+        let cartTotal = document.getElementsByClassName('cart-total')[0];
 
         badgeQtyCounter.innerHTML = 0;
-        cartTotal[0].innerHTML = 0;
+        cartTotal.innerHTML = 0;
 
-        for (let i = 0; i <= partialPrice.length - 1; ++i) {
-            cartTotal[0].innerHTML = parseInt(cartTotal[0].innerHTML) + parseInt(partialPrice[i].innerHTML);
-        }
-
-        // Check if I am in checkout screen
-        /* if (document.getElementsByClassName('checkout__total')) {
-            document.getElementsByClassName('checkout__total')[0].innerHTML = cartTotal[0].innerHTML;
-        } */
-
-        for (let i = 0; i <= this.cart.length - 1; ++i) {
-            badgeQtyCounter.innerHTML = parseInt(badgeQtyCounter.innerHTML) + parseInt(this.cart[i].qty);
-        }
+        cartTotal.innerHTML = this.totalCartPrice(this.cart)
+        badgeQtyCounter.innerHTML = this.totaCartItems(this.cart);
 
         if (badgeQtyCounter.innerHTML > '0') {
             badgeQtyCounter.classList.add("visible");
-
         } else {
             badgeQtyCounter.classList.remove("visible");
         }
-
-        const cartLoaded = await cartService.loadCart();
-
-        const loggedIn = true;
-        const user = 'arthemis';
-        let savedCart = {};
-
-        /*  if (loggedIn) {
-
-            var index = cartLoaded.findIndex(item => item.userID === user);
-            const userID = cartLoaded[index].id;
-            savedCart.userID = user;
-            savedCart.cartContent = this.cart;
-            await cartService.updateCart(savedCart, userID);
-        } */
     }
 
     static async init() {
