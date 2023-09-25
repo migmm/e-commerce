@@ -14,9 +14,9 @@
                 </div>
             </div>
             <div class="card-cart-preview__price">
-                <span class="card-cart-preview__price__price-currency">Precio: {{this.price.currency}} $<span class="card-cart-preview__price__price-value">{{discount this.price.value this.discountPercent}}</span>
+                <span class="card-cart-preview__price__price-currency"><span>Precio: </span> {{this.price.currency}} $<span class="card-cart-preview__price__price-value">{{discount this.price.value this.discountPercent}}</span>
                 </span>
-                <span class="card-cart-preview__price__sub-price-currency">Subtotal: {{this.price.currency}} $<span class="card-cart-preview__price__price-subtotal"
+                <span class="card-cart-preview__price__sub-price-currency"><span>Subtotal: </span>{{this.price.currency}} $<span class="card-cart-preview__price__price-subtotal"
                     >{{finalPrice this.price.value this.discountPercent this.qty}}</span>
                 </span>
             </div>
