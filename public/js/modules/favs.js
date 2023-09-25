@@ -65,7 +65,7 @@ class ModuleFavs {
             const favProduct = {
                 id: id,
                 productName: productName,
-                image: images.portada,
+                image: images[0],
                 urlName: urlName,
                 status: status,
                 price: price,
