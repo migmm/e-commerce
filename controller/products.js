@@ -41,16 +41,17 @@ const getProducts = async (req, res) => {
             return res.status(500).json({ error: 'Products data is not an array' });
         }
 
+        // Función para realizar la conversión de un precio a la moneda deseada
         const convertPrice = (price, originalCurrency, targetCurrency) => {
             if (originalCurrency === targetCurrency) {
                 return price;
             }
 
-            const tasasDeCambio = obtenerTasasDeCambio();
+            const tasasDeCambio = obtenerTasasDeCambio(); // Obtener las tasas de cambio
 
             if (tasasDeCambio[originalCurrency]?.[targetCurrency]) {
                 const tasaDeCambio = tasasDeCambio[originalCurrency][targetCurrency];
-                return (price * tasaDeCambio).toFixed(2);
+                return (price * tasaDeCambio).toFixed(2); // Redondear a 2 decimales
             }
 
             return price;
@@ -58,7 +59,7 @@ const getProducts = async (req, res) => {
 
         const products = await Promise.all(
             fullProducts.products.map(async (product) => {
-                const monedaOriginal = Object.keys(product.price)[0];
+                const monedaOriginal = Object.keys(product.price)[0]; // Suponemos que solo hay una moneda por producto
                 const precioConvertido = convertPrice(product.price[monedaOriginal], monedaOriginal, currency);
 
                 if (Array.isArray(product.images)) {
@@ -69,9 +70,23 @@ const getProducts = async (req, res) => {
                             return imageUrl;
                         })
                     );
-                    return { ...product, images: imageUrls, price: { [currency]: precioConvertido } };
+                    
+                    return {
+                        ...product,
+                        price: {
+                            currency: currency,
+                            value: parseFloat(precioConvertido), // Asegurarse de que el valor sea un número
+                        },
+                        images: imageUrls,
+                    };
                 } else {
-                    return { ...product, price: { [currency]: precioConvertido } };
+                    return {
+                        ...product,
+                        price: {
+                            currency: currency,
+                            value: parseFloat(precioConvertido), // Asegurarse de que el valor sea un número
+                        },
+                    };
                 }
             })
         );
@@ -83,7 +98,7 @@ const getProducts = async (req, res) => {
             totalPages: fullProducts.totalPages,
             products
         });
-    } catch (error) {
+    }catch (error) {
         res.status(500).json({ error: 'Error obtaining products' });
         console.log(error);
     }
