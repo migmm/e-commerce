@@ -40,14 +40,11 @@
                     <span class="product-full-view__age-number">{{this.ageTo}}</span>
                     <span>años</span>.</p>
                 <div class="product-full-view__price-and-discount-order">
-                    <span class="product-full-view__price-currency">$<span class="product-full-view__price-value">{{discount
-                                this.price
-                                this.discountPercent
-                            }}</span></span>
+                    <span class="product-full-view__price-currency">$<span class="product-full-view__price-value">{{discount this.price.value this.discountPercent}}</span></span>
                     <span class="product-full-view__discount"><span class="product-full-view__discount-percent">{{this.discountPercent}}</span>% DTO</span>
                 </div>
-                <span class="product-full-view__latest-price-currency">$<span class="product-full-view__latest-price">{{this.price}}</span></span>
-                <span class="product-full-view__stock">Stock
+                <span class="product-full-view__latest-price-currency">{{this.price.currency}} $<span class="product-full-view__latest-price">{{this.price.value}}</span></span>
+                <span class="product-full-view__stock"><span>Stock </span>
                     <span class="product-full-view__stock-value">{{this.stock}}</span>
                     unidades.</span>
             </div>
