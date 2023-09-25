@@ -8,9 +8,27 @@ const supportedLanguages = LANGUAGE_CONFIG.SUPPORTED_LANGUAGES;
 //                               GET Controllers                              //
 ////////////////////////////////////////////////////////////////////////////////
 
+const obtenerTasasDeCambio = () => {
+    return {
+        eur: {
+            usd: 1.2,
+            chf: 1.1,
+        },
+        usd: {
+            eur: 0.83,
+            chf: 0.91,
+        },
+        chf: {
+            eur: 0.91,
+            usd: 1.10,
+        },
+    };
+};
+
 const getProducts = async (req, res) => {
     const lang = req.params.lang;
     const queryParams = req.query;
+    const currency = queryParams.currency || 'eur';
 
     if (!lang || !supportedLanguages.includes(lang)) {
         return res.status(400).json({ error: 'Not a valid language' });
@@ -18,23 +36,42 @@ const getProducts = async (req, res) => {
 
     try {
         const fullProducts = await api.getProducts(lang, queryParams);
+
         if (!Array.isArray(fullProducts.products)) {
             return res.status(500).json({ error: 'Products data is not an array' });
         }
 
+        const convertPrice = (price, originalCurrency, targetCurrency) => {
+            if (originalCurrency === targetCurrency) {
+                return price;
+            }
+
+            const tasasDeCambio = obtenerTasasDeCambio();
+
+            if (tasasDeCambio[originalCurrency]?.[targetCurrency]) {
+                const tasaDeCambio = tasasDeCambio[originalCurrency][targetCurrency];
+                return (price * tasaDeCambio).toFixed(2);
+            }
+
+            return price;
+        };
+
         const products = await Promise.all(
             fullProducts.products.map(async (product) => {
+                const monedaOriginal = Object.keys(product.price)[0];
+                const precioConvertido = convertPrice(product.price[monedaOriginal], monedaOriginal, currency);
+
                 if (Array.isArray(product.images)) {
                     const imageUrls = await Promise.all(
                         product.images.map(async (imageName) => {
                             /* const imageUrl = await getSignedUrl(imageName); */
-                            const imageUrl = imageName; //this is for testing
+                            const imageUrl = imageName; // This is for testing
                             return imageUrl;
                         })
                     );
-                    return { ...product, images: imageUrls };
+                    return { ...product, images: imageUrls, price: { [currency]: precioConvertido } };
                 } else {
-                    return product;
+                    return { ...product, price: { [currency]: precioConvertido } };
                 }
             })
         );
@@ -42,7 +79,7 @@ const getProducts = async (req, res) => {
         res.json({
             page: fullProducts.page,
             perPage: fullProducts.perPage,
-            totalProducts:fullProducts.totalProducts,
+            totalProducts: fullProducts.totalProducts,
             totalPages: fullProducts.totalPages,
             products
         });
