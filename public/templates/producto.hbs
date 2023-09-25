@@ -27,13 +27,10 @@
                     <span class="product-full-page__age-number">{{this.ageTo}}</span>
                     <span>años</span>.</p>
                 <div class="product-full-page__price-and-discount-order">
-                    <span class="product-full-page__price-currency">$<span class="product-full-page__price-value">{{discount
-                                this.price
-                                this.discountPercent
-                            }}</span></span>
+                    <span class="product-full-page__price-currency">$<span class="product-full-page__price-value">{{discount this.price.value this.discountPercent}}</span></span>
                     <span class="product-full-page__discount"><span class="product-full-page__discount-percent">{{this.discountPercent}}</span data-lang="product-discount">% DTO</span>
                 </div>
-                <span class="product-full-page__latest-price-currency">$<span class="product-full-page__latest-price">{{this.price}}</span></span>
+                <span class="product-full-page__latest-price-currency">{{this.price.currency}} $<span class="product-full-page__latest-price">{{this.price.value}}</span></span>
                 <span class="product-full-page__stock">Stock
                     <span class="product-full-page__stock-value">{{this.stock}}</span>
                     unidades.</span>
