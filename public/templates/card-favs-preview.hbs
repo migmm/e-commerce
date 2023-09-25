@@ -9,7 +9,7 @@
                     <p class="card-favs-preview__product-name">{{this.productName}}</p>
                     <span class="card-favs-preview__price-container">
                         <p class="card-favs-preview__price-currency">$</p>
-                        <p class="card-favs-preview__price">{{this.price}}</p>
+                        <p class="card-favs-preview__price">{{this.price.currency}} ${{this.price.value}}</p>
                     </span>
                     {{#compare this.stock ">" 3}}
                         {{#if this.freeShip}}
