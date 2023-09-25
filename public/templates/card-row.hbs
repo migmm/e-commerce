@@ -21,17 +21,15 @@
 
                     <div class="card__content">
                         {{#compare this.discountPercent ">=" 1 }}
-                            <span class="card__price-currency">$<span class="card__price-value">{{discount this.price this.discountPercent}}</span></span>
-                            <span class="card__discount"><span class="card__discount__percent">{{this.discountPercent}}</span><span data-lang="product-card-discount">% DTO</span></span>
-                            <span class="card__latest-price-currency">$<span class="card__latest-price">{{this.price}}</span></span>
+                            <span class="card__price-currency">{{this.price.currency}} $<span class="card__price-value">{{discount this.price.value this.discountPercent}}</span></span>
+                            <span class="card__discount"><span class="card__discount__percent">{{this.discountPercent}} </span><span data-lang="product-card-discount">% DTO</span></span>
+                            <span class="card__latest-price-currency">{{this.price.currency}} $<span class="card__latest-price">{{this.price.value}}</span></span>
                         {{else}}
-                            <span class="card__price-currency">$<span class="card__price-value">{{this.price}}</span></span>
+                            <span class="card__price-currency">{{this.price.currency}} $<span class="card__price-value">{{this.price.value}}</span></span>
                             <span class="card__discount hide-elements"><span
                                     class="card__discount__percent hide-elements"
                                 >{{this.discountPercent}}</span data-lang="product-card-discount"><span data-lang="product-card-discount">% DTO</span></span>
-                            <span class="card__latest-price-currency hide-elements">$<span
-                                    class="card__latest-price hide-elements"
-                                >{{this.price}}</span></span>
+                            <span class="card__latest-price-currency hide-elements">{{this.price.currency}} $<span class="card__latest-price hide-elements">{{this.price.value}}</span></span>
                         {{/compare}}
                         <span class="card__product-brand">{{this.vendor}}</span>
                         <h2 class="card__heading">{{this.productName}}</h2>
