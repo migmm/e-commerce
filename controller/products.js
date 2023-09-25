@@ -41,17 +41,16 @@ const getProducts = async (req, res) => {
             return res.status(500).json({ error: 'Products data is not an array' });
         }
 
-        // Función para realizar la conversión de un precio a la moneda deseada
         const convertPrice = (price, originalCurrency, targetCurrency) => {
             if (originalCurrency === targetCurrency) {
                 return price;
             }
 
-            const tasasDeCambio = obtenerTasasDeCambio(); // Obtener las tasas de cambio
+            const tasasDeCambio = obtenerTasasDeCambio();
 
             if (tasasDeCambio[originalCurrency]?.[targetCurrency]) {
                 const tasaDeCambio = tasasDeCambio[originalCurrency][targetCurrency];
-                return (price * tasaDeCambio).toFixed(2); // Redondear a 2 decimales
+                return (price * tasaDeCambio).toFixed(2);
             }
 
             return price;
@@ -59,7 +58,7 @@ const getProducts = async (req, res) => {
 
         const products = await Promise.all(
             fullProducts.products.map(async (product) => {
-                const monedaOriginal = Object.keys(product.price)[0]; // Suponemos que solo hay una moneda por producto
+                const monedaOriginal = Object.keys(product.price)[0];
                 const precioConvertido = convertPrice(product.price[monedaOriginal], monedaOriginal, currency);
 
                 if (Array.isArray(product.images)) {
@@ -75,7 +74,7 @@ const getProducts = async (req, res) => {
                         ...product,
                         price: {
                             currency: currency,
-                            value: parseFloat(precioConvertido), // Asegurarse de que el valor sea un número
+                            value: parseFloat(precioConvertido),
                         },
                         images: imageUrls,
                     };
@@ -84,7 +83,7 @@ const getProducts = async (req, res) => {
                         ...product,
                         price: {
                             currency: currency,
-                            value: parseFloat(precioConvertido), // Asegurarse de que el valor sea un número
+                            value: parseFloat(precioConvertido),
                         },
                     };
                 }
