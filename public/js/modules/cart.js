@@ -123,7 +123,7 @@ class ModuleCart {
             }
 
         } else if (product) {
-            const { id, productName, images, urlName, price, discountPercent } = product.products[0];
+            const { id, productName, images, urlName, price, discountPercent, stock } = product.products[0];
     
             const cartItem = {
                 id: id,
@@ -132,6 +132,7 @@ class ModuleCart {
                 urlName: urlName,
                 price: price,
                 discountPercent: discountPercent,
+                stock: stock,
                 qty: 1
             };
     
@@ -144,7 +145,7 @@ class ModuleCart {
     
         const totalQuantity = this.totaCartItems(this.cart);
         console.log("totalQuantity", totalQuantity);
-        this.updateCart();
+/*         this.updateCart(); */
         await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.cart-modal__products')
     }
     
