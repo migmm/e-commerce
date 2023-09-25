@@ -1,6 +1,6 @@
 import cartController from '/js/modules/cart.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
-
+import fetchLanguageData from '../utils/langFunctions.js'
 
 class PageContacto {
 
@@ -84,6 +84,7 @@ class PageContacto {
         this.fields = this.form.querySelectorAll('textarea, input');
         this.addFormEvents();
         await cartController.init();
+        await fetchLanguageData.fetchLanguageData();
     }
 }
 
