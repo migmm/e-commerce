@@ -73,7 +73,7 @@ const getProducts = async (req, res) => {
                     return {
                         ...product,
                         price: {
-                            currency: currency,
+                            currency: currency.toUpperCase(),
                             value: parseFloat(precioConvertido),
                         },
                         images: imageUrls,
@@ -82,7 +82,7 @@ const getProducts = async (req, res) => {
                     return {
                         ...product,
                         price: {
-                            currency: currency,
+                            currency: currency.toUpperCase(),
                             value: parseFloat(precioConvertido),
                         },
                     };
