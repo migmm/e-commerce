@@ -10,7 +10,7 @@
                 <div class="search-results__product-info-content">
                     <span class="search-results__product-brand">{{this.vendor}}</span>
                     <span class="search-results__product-name"> {{this.productName}}</span>
-                    <span class="search-results__product-price"><span>$ </span><span>{{discount this.price this.discountPercent}}</span></span>
+                    <span class="search-results__product-price"><span>{{this.price.currency}} $</span><span>{{discount this.price.value this.discountPercent}}</span></span>
                 </div>
             </div>
         </a>
