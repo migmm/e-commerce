@@ -22,11 +22,27 @@
 
             order: 2;
             padding-right: 1em;
+            
             & .language-select {
                 background-color: color.$white;
                 border: none;
                 border-radius: 10px;
                 padding: .32em;
+                cursor: pointer;
+            }
+        }
+
+        &__currency-select{
+
+            order: 2;
+            padding-right: 1em;
+
+            & .currency-select {
+                background-color: color.$white;
+                border: none;
+                border-radius: 10px;
+                padding: .32em;
+                cursor: pointer;
             }
         }
         
@@ -37,7 +53,6 @@
             margin-top: 2px;
             padding: 8px 0;
             flex-grow: 3;
-            cursor: pointer;
 
             &__logo {
                 height: 2.5em;

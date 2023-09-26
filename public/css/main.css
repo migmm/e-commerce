@@ -424,6 +424,18 @@ body {
   border: none;
   border-radius: 10px;
   padding: 0.32em;
+  cursor: pointer;
+}
+.main-header__wrapper__currency-select {
+  order: 2;
+  padding-right: 1em;
+}
+.main-header__wrapper__currency-select .currency-select {
+  background-color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.32em;
+  cursor: pointer;
 }
 .main-header__wrapper__logo-container {
   flex-basis: 5em;
@@ -432,7 +444,6 @@ body {
   margin-top: 2px;
   padding: 8px 0;
   flex-grow: 3;
-  cursor: pointer;
 }
 .main-header__wrapper__logo-container__logo {
   height: 2.5em;
@@ -657,11 +668,11 @@ body {
     display: none;
   }
 }
-.main-nav__item:nth-child(7), .main-nav__item:nth-child(8), .main-nav__item:nth-child(9), .main-nav__item:nth-child(10), .main-nav__item:nth-child(11) {
+.main-nav__item:nth-child(7), .main-nav__item:nth-child(8), .main-nav__item:nth-child(9), .main-nav__item:nth-child(10), .main-nav__item:nth-child(11), .main-nav__item:nth-child(12), .main-nav__item:nth-child(13) {
   display: none;
 }
 @media (min-width: 900px) {
-  .main-nav__item:nth-child(7), .main-nav__item:nth-child(8), .main-nav__item:nth-child(9), .main-nav__item:nth-child(10), .main-nav__item:nth-child(11) {
+  .main-nav__item:nth-child(7), .main-nav__item:nth-child(8), .main-nav__item:nth-child(9), .main-nav__item:nth-child(10), .main-nav__item:nth-child(11), .main-nav__item:nth-child(12), .main-nav__item:nth-child(13) {
     display: none;
   }
 }

@@ -2,7 +2,8 @@ import ModuleCart from './modules/cart.js';
 import render from '/js/utils/render.js';
 import hbsHelpers from './utils/hb-templates.js';
 import find from './utils/find.js';
-import fetchLanguageData from './utils/langFunctions.js'
+import fetchLanguageData from './utils/langFunctions.js';
+import currencySet from './utils/currencies.js';
 import authController from './controllers/auth.js';
 import ModuleFavs from './modules/favs.js';
 
@@ -276,6 +277,7 @@ class Main {
 
         //Check this TypeError: Cannot read properties of undefined (reading 'es')
         ModuleFavs.init(); 
+        currencySet.currencySet();
     }
 }
 

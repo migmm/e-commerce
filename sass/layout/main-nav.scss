@@ -37,7 +37,9 @@
     &__item:nth-child(8),
     &__item:nth-child(9),
     &__item:nth-child(10),
-    &__item:nth-child(11) {
+    &__item:nth-child(11),
+    &__item:nth-child(12),
+    &__item:nth-child(13) {
         display: none;
 
         @media (min-width: 900px) {
