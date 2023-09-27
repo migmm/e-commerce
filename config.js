@@ -12,14 +12,14 @@ const PERSISTENCE_TYPES = {
 
 const config = {
     PORT: process.env.PORT,
-    PERSISTENCE_TYPE: PERSISTENCE_TYPES.TYPE_MONGODB, 
+    PERSISTENCE_TYPE: PERSISTENCE_TYPES.TYPE_MONGODB,
     MONGODB_CONNECTION_STR: process.env.MONGODB_URI,
-    MONGODB_TIMEOUT: 30000, 
+    MONGODB_TIMEOUT: 30000,
 }
 
 const LANGUAGE_CONFIG = {
-    DEFAULT_LANGUAGE : 'en',
-    SUPPORTED_LANGUAGES:['en', 'es']
+    DEFAULT_LANGUAGE: 'en',
+    SUPPORTED_LANGUAGES: ['en', 'es']
 }
 
 // S3 configuration
@@ -32,6 +32,26 @@ const s3Client = new S3({
     },
 });
 
+const CURRENCIES = {
+    defaultCurrency: 'usd',
+    getCurrencyChange: {
+
+        eur: {
+            usd: 1.2,
+            ars: 1.1,
+        },
+        usd: {
+            eur: 0.83,
+            ars: 0.91,
+        },
+        ars: {
+            eur: 0.91,
+            usd: 1.10,
+        },
+
+    }
+
+}
 // S3 Bucket name
 const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 
@@ -53,9 +73,9 @@ const FIELDS_WITH_LANG = [
 
 //Image resizing parameters
 const IMAGE_RESIZE_PARAMETERS = {
-    maxWidth : 1000,
-    maxHeight : 1000,
-    imageQuality : 50,
+    maxWidth: 1000,
+    maxHeight: 1000,
+    imageQuality: 50,
 }
 
-export {PERSISTENCE_TYPES, PRODUCT_IMG_UPLOAD_LOCATION, LANGUAGE_CONFIG, s3Client,AWS_BUCKET_NAME, SEARCH_FIELDS, FIELDS_WITH_LANG, IMAGE_RESIZE_PARAMETERS, config as default};
+export { PERSISTENCE_TYPES, PRODUCT_IMG_UPLOAD_LOCATION, LANGUAGE_CONFIG, s3Client, AWS_BUCKET_NAME, SEARCH_FIELDS, FIELDS_WITH_LANG, IMAGE_RESIZE_PARAMETERS, CURRENCIES, config as default };

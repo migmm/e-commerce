@@ -1,5 +1,5 @@
 import api from '../api/products.js';
-import { LANGUAGE_CONFIG } from '../config.js';
+import { LANGUAGE_CONFIG, CURRENCIES } from '../config.js';
 import { uploadImages, getSignedUrl, deleteImage } from '../helpers/awsFileManager.js';
 const supportedLanguages = LANGUAGE_CONFIG.SUPPORTED_LANGUAGES;
 
@@ -8,27 +8,10 @@ const supportedLanguages = LANGUAGE_CONFIG.SUPPORTED_LANGUAGES;
 //                               GET Controllers                              //
 ////////////////////////////////////////////////////////////////////////////////
 
-const obtenerTasasDeCambio = () => {
-    return {
-        eur: {
-            usd: 1.2,
-            chf: 1.1,
-        },
-        usd: {
-            eur: 0.83,
-            chf: 0.91,
-        },
-        chf: {
-            eur: 0.91,
-            usd: 1.10,
-        },
-    };
-};
-
 const getProducts = async (req, res) => {
     const lang = req.params.lang;
     const queryParams = req.query;
-    const currency = queryParams.currency || 'eur';
+    const currency = queryParams.currency || CURRENCIES.defaultCurrency;
 
     if (!lang || !supportedLanguages.includes(lang)) {
         return res.status(400).json({ error: 'Not a valid language' });
@@ -46,20 +29,26 @@ const getProducts = async (req, res) => {
                 return price;
             }
 
-            const tasasDeCambio = obtenerTasasDeCambio();
+            const currenciesChanges = CURRENCIES.getCurrencyChange;
 
-            if (tasasDeCambio[originalCurrency]?.[targetCurrency]) {
-                const tasaDeCambio = tasasDeCambio[originalCurrency][targetCurrency];
-                return (price * tasaDeCambio).toFixed(2);
+            if (currenciesChanges[originalCurrency]?.[targetCurrency]) {
+                const currencyChanges = currenciesChanges[originalCurrency][targetCurrency];
+                return {
+                    value: (price * currencyChanges).toFixed(2),
+                    currency: currency,
+                };
             }
 
-            return price;
+            return {
+                value: price,
+                currency: CURRENCIES.defaultCurrency,
+            };
         };
 
         const products = await Promise.all(
             fullProducts.products.map(async (product) => {
-                const monedaOriginal = Object.keys(product.price)[0];
-                const precioConvertido = convertPrice(product.price[monedaOriginal], monedaOriginal, currency);
+                const originalCurrency = Object.keys(product.price)[0];
+                const convertedPrice = convertPrice(product.price[originalCurrency], originalCurrency, currency);
 
                 if (Array.isArray(product.images)) {
                     const imageUrls = await Promise.all(
@@ -69,22 +58,16 @@ const getProducts = async (req, res) => {
                             return imageUrl;
                         })
                     );
-                    
+
                     return {
                         ...product,
-                        price: {
-                            currency: currency.toUpperCase(),
-                            value: parseFloat(precioConvertido),
-                        },
+                        price: convertedPrice,
                         images: imageUrls,
                     };
                 } else {
                     return {
                         ...product,
-                        price: {
-                            currency: currency.toUpperCase(),
-                            value: parseFloat(precioConvertido),
-                        },
+                        price: convertedPrice,
                     };
                 }
             })
@@ -97,7 +80,7 @@ const getProducts = async (req, res) => {
             totalPages: fullProducts.totalPages,
             products
         });
-    }catch (error) {
+    } catch (error) {
         res.status(500).json({ error: 'Error obtaining products' });
         console.log(error);
     }
@@ -149,7 +132,7 @@ const postProduct = async (req, res) => {
             images
         }
         console.log(product)
-        
+
         const newProduct = await api.createProduct(product);
         res.json(newProduct);
     }
@@ -157,7 +140,7 @@ const postProduct = async (req, res) => {
     catch (err) {
         console.log(err)
         res.status(415).json({ error: 'Error adding new product' });
-    } 
+    }
 }
 
 
