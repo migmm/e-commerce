@@ -6,6 +6,8 @@ import fetchLanguageData from './utils/langFunctions.js';
 import currencySet from './utils/currencies.js';
 import authController from './controllers/auth.js';
 import ModuleFavs from './modules/favs.js';
+import { indexQueries, fetchAndRenderProducts, queryFunction } from './utils/fetchAndRenderProducts.js';
+import productController from './controllers/product.js';
 
 
 class Main {
@@ -153,9 +155,14 @@ class Main {
 
         searchBar.addEventListener('input', async e => {
 
-            const productsFound = find.find(e.target.value, this.products)
-            await render.renderTemplateCards(productsFound, 'templates/search-results.hbs', '.search-results-list');
+            const currentLang = localStorage.getItem('langSelection') || 'en';
 
+            let query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=urlName&value=${e.target.value}`;
+            const products = await productController.getProducts(currentLang, query);
+
+            console.log(products)
+            await render.renderTemplateCards(products.products, 'templates/search-results.hbs', '.search-results-list');
+            
             if (e.target.value.length == 0) {
                 searchResults.classList.remove('visible');
                 return;
@@ -164,6 +171,21 @@ class Main {
             searchQuery.innerHTML = e.target.value;
             searchLink.href = `/#/productos/${e.target.value}`;
             searchResults.classList.add('visible');
+
+            /*  
+             await render.renderTemplateCards(product.products, 'templates/producto.hbs', '.full-product-page'); */
+
+            /*     const productsFound = find.find(e.target.value, this.products)
+                await render.renderTemplateCards(productsFound, 'templates/search-results.hbs', '.search-results-list'); */
+
+            /*      if (e.target.value.length == 0) {
+                     searchResults.classList.remove('visible');
+                     return;
+                 }
+      */
+            /*     searchQuery.innerHTML = e.target.value;
+                searchLink.href = `/#/productos/${e.target.value}`;
+                searchResults.classList.add('visible'); */
         });
 
         form.addEventListener('submit', e => {
@@ -257,7 +279,7 @@ class Main {
             window.location.href = '/#/login';
         }
     }
-    
+
     async start() {
 
         // register ALL helpers at start
@@ -276,7 +298,7 @@ class Main {
         ModuleFavs.favsFunctions();
 
         //Check this TypeError: Cannot read properties of undefined (reading 'es')
-        ModuleFavs.init(); 
+        ModuleFavs.init();
         currencySet.currencySet();
     }
 }
