@@ -37,11 +37,30 @@ class PageProductos {
         });
     }
 
+    static generatePageLinks(data) {
+        console.log(data)
+        const totalPages = parseInt(data.totalPages);
+        const pageContainer = document.querySelector('.pages-qty');
+        for (let i = 1; i <= totalPages; i++) {
+            const pageLink = document.createElement('a');
+            pageLink.textContent = i;
+            pageLink.href = `page=${i}&perPage=2&sortBy=addedDate&sortOrder=desc&field=all&value=`;
+            pageContainer.appendChild(pageLink);
+
+            if (i < totalPages) {
+                const separator = document.createTextNode(' ');
+                pageContainer.appendChild(separator);
+            }
+        }
+    }
+
     static async init() {
         goTopOnLoad.goToTopOnLoad();
 
         const query = await queryFunction()
-        await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
+        const products = await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
+        console.log(products)
+        this.generatePageLinks(products);
         
         this.optionsFunctions();
 
@@ -52,7 +71,7 @@ class PageProductos {
         }
 
         await cartController.init();
-        
+
         // Close search results
         const searchResults = document.getElementsByClassName('main-header__wrapper__search-results')[0]
         searchResults.classList.remove('visible');

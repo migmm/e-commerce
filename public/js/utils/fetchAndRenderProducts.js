@@ -24,7 +24,7 @@ const indexQueries = [
     }
 ];
 
-const queryFunction = async ( field='', value='', sortBy='addedDate', page=1, perPage=10, sortOrder='desc') => {
+const queryFunction = async ( field='', value='', sortBy='addedDate', page=1, perPage=2, sortOrder='desc') => {
     const query = `page=${page}&perPage=${perPage}&sortBy=${sortBy}&sortOrder=${sortOrder}&field=${field}&value=${value}`;
     return query;
 }
@@ -32,6 +32,7 @@ const queryFunction = async ( field='', value='', sortBy='addedDate', page=1, pe
 const fetchAndRenderProducts = async (query, targetSelector, template) => {
     const products = await productController.getProducts(currentLang, query);
     await render.renderTemplateCards(products.products, template, targetSelector);
+    return products;
 }
 
 export {
