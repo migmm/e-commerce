@@ -13,6 +13,8 @@ class PageProductos {
     static products = [];
 
     static async optionsFunctions() {
+        const pagesQty = document.querySelector('.pages-qty');
+
         document.addEventListener('click', async e => {
 
             if (e.target.tagName === 'SPAN') {
@@ -34,6 +36,13 @@ class PageProductos {
                 const query = await queryFunction('all', toSearch)
                 await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
             }
+            if ((e.target.tagName === 'A') && e.target.closest('.pages-qty')) {
+                e.preventDefault();
+                const query = await queryFunction();
+                const products = await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
+                console.log(products);
+                this.generatePageLinks(products);
+            }
         });
     }
 
@@ -41,6 +50,7 @@ class PageProductos {
         console.log(data)
         const totalPages = parseInt(data.totalPages);
         const pageContainer = document.querySelector('.pages-qty');
+        pageContainer.innerHTML = '';
         for (let i = 1; i <= totalPages; i++) {
             const pageLink = document.createElement('a');
             pageLink.textContent = i;
@@ -61,7 +71,7 @@ class PageProductos {
         const products = await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
         console.log(products)
         this.generatePageLinks(products);
-        
+
         this.optionsFunctions();
 
         const search = await getIdFromHash();
