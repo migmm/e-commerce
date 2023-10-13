@@ -2784,7 +2784,6 @@ input[type=number] {
 }
 .section-all-products .section-products .section-cards__header .section-qty form select {
   font-size: 0.9em;
-  visibility: hidden;
 }
 .section-all-products .section-products .section-cards__cards-container {
   padding: 1em;

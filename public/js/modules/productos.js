@@ -1,8 +1,5 @@
-import productController from '/js/controllers/product.js';
 import cartController from '/js/modules/cart.js';
-import render from '/js/utils/render.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
-import find from '../utils/find.js';
 import heartButton from '../utils/heartButton.js';
 import getIdFromHash from '../utils/getIdFromHash.js';
 import { fetchAndRenderProducts, queryFunction } from '../utils/fetchAndRenderProducts.js';
@@ -11,9 +8,9 @@ import { fetchAndRenderProducts, queryFunction } from '../utils/fetchAndRenderPr
 class PageProductos {
 
     static products = [];
+    static productsPerPage;
 
     static async optionsFunctions() {
-        const pagesQty = document.querySelector('.pages-qty');
 
         document.addEventListener('click', async e => {
 
