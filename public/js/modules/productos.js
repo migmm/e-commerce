@@ -11,6 +11,13 @@ class PageProductos {
     static productsPerPage;
 
     static async optionsFunctions() {
+        const quantityPerPage = document.getElementById('quantity-per-page');
+
+        quantityPerPage.addEventListener('change', () => {
+            this.productsPerPage = quantityPerPage.value;
+            localStorage.setItem('productsPerPage', this.productsPerPage);
+            console.log(this.productsPerPage)
+        });
 
         document.addEventListener('click', async e => {
 
