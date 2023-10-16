@@ -13,11 +13,36 @@ class PageProductos {
     static async optionsFunctions() {
         const quantityPerPage = document.getElementById('quantity-per-page');
 
-        quantityPerPage.addEventListener('change', () => {
+        quantityPerPage.addEventListener('change', async () => {
             this.productsPerPage = quantityPerPage.value;
             localStorage.setItem('productsPerPage', this.productsPerPage);
-            console.log(this.productsPerPage)
+            console.log("productsPerPage", this.productsPerPage)
+            const query = await queryFunction('', '', 'addedDate', 1, this.productsPerPage)
+            const products = await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
+            console.log("products", products)
+            this.generatePageLinks(products);
         });
+
+            document.querySelector('.pages-qty').addEventListener('click', async (e) => {
+                e.preventDefault(); 
+
+                if (e.target.tagName === 'A') {
+                    const pageUrl = e.target.href; 
+                    console.log(pageUrl); 
+
+                    const params = new URLSearchParams(pageUrl.split('?')[1]);
+                    const page = params.get('page');
+                    const perPage = params.get('perPage');
+                    const sortBy = params.get('sortBy');
+                    const sortOrder = params.get('sortOrder');
+                    const field = params.get('field');
+                    const value = params.get('value');
+
+                    const query = await queryFunction(field, value, sortBy, page, perPage, sortOrder);
+                    console.log(query)
+                    await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
+                }
+            });
 
         document.addEventListener('click', async e => {
 
@@ -40,25 +65,22 @@ class PageProductos {
                 const query = await queryFunction('all', toSearch)
                 await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
             }
-            if ((e.target.tagName === 'A') && e.target.closest('.pages-qty')) {
-                e.preventDefault();
-                const query = await queryFunction();
-                const products = await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
-                console.log(products);
-                this.generatePageLinks(products);
-            }
         });
     }
 
     static generatePageLinks(data) {
         console.log(data)
         const totalPages = parseInt(data.totalPages);
+        console.log("totalPages",totalPages)
         const pageContainer = document.querySelector('.pages-qty');
         pageContainer.innerHTML = '';
+        const perPage = localStorage.getItem('productsPerPage');
+        console.log(perPage)
+
         for (let i = 1; i <= totalPages; i++) {
             const pageLink = document.createElement('a');
             pageLink.textContent = i;
-            pageLink.href = `page=${i}&perPage=2&sortBy=addedDate&sortOrder=desc&field=all&value=`;
+            pageLink.href = `api/products/en?page=${i}&perPage=${perPage}&sortBy=addedDate&sortOrder=desc&field=&value=`;
             pageContainer.appendChild(pageLink);
 
             if (i < totalPages) {
@@ -73,7 +95,7 @@ class PageProductos {
 
         const query = await queryFunction()
         const products = await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
-        console.log(products)
+        console.log("products",products)
         this.generatePageLinks(products);
 
         this.optionsFunctions();
