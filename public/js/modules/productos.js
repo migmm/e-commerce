@@ -16,10 +16,8 @@ class PageProductos {
         quantityPerPage.addEventListener('change', async () => {
             this.productsPerPage = quantityPerPage.value;
             localStorage.setItem('productsPerPage', this.productsPerPage);
-            console.log("productsPerPage", this.productsPerPage)
             const query = await queryFunction('', '', 'addedDate', 1, this.productsPerPage)
             const products = await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
-            console.log("products", products)
             this.generatePageLinks(products);
         });
 
@@ -28,8 +26,6 @@ class PageProductos {
 
                 if (e.target.tagName === 'A') {
                     const pageUrl = e.target.href; 
-                    console.log(pageUrl); 
-
                     const params = new URLSearchParams(pageUrl.split('?')[1]);
                     const page = params.get('page');
                     const perPage = params.get('perPage');
@@ -39,7 +35,6 @@ class PageProductos {
                     const value = params.get('value');
 
                     const query = await queryFunction(field, value, sortBy, page, perPage, sortOrder);
-                    console.log(query)
                     await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
                 }
             });
@@ -69,13 +64,10 @@ class PageProductos {
     }
 
     static generatePageLinks(data) {
-        console.log(data)
         const totalPages = parseInt(data.totalPages);
-        console.log("totalPages",totalPages)
         const pageContainer = document.querySelector('.pages-qty');
         pageContainer.innerHTML = '';
         const perPage = localStorage.getItem('productsPerPage');
-        console.log(perPage)
 
         for (let i = 1; i <= totalPages; i++) {
             const pageLink = document.createElement('a');
@@ -95,7 +87,6 @@ class PageProductos {
 
         const query = await queryFunction()
         const products = await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
-        console.log("products",products)
         this.generatePageLinks(products);
 
         this.optionsFunctions();
