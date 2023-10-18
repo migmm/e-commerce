@@ -9,6 +9,7 @@ class PageProductos {
 
     static products = [];
     static productsPerPage;
+    static search;
 
     static async optionsFunctions() {
         const quantityPerPage = document.getElementById('quantity-per-page');
@@ -18,7 +19,7 @@ class PageProductos {
             localStorage.setItem('productsPerPage', this.productsPerPage);
             const query = await queryFunction('', '', 'addedDate', 1, this.productsPerPage)
             const products = await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
-            this.generatePageLinks(products);
+            this.generatePageLinks(products, this.search);
         });
 
             document.querySelector('.pages-qty').addEventListener('click', async (e) => {
@@ -63,7 +64,7 @@ class PageProductos {
         });
     }
 
-    static generatePageLinks(data) {
+    static generatePageLinks(data,value='') {
         const totalPages = parseInt(data.totalPages);
         const pageContainer = document.querySelector('.pages-qty');
         pageContainer.innerHTML = '';
@@ -72,7 +73,12 @@ class PageProductos {
         for (let i = 1; i <= totalPages; i++) {
             const pageLink = document.createElement('a');
             pageLink.textContent = i;
-            pageLink.href = `api/products/en?page=${i}&perPage=${perPage}&sortBy=addedDate&sortOrder=desc&field=&value=`;
+            if(value) {
+                pageLink.href = `api/products/en?page=${i}&perPage=${perPage}&sortBy=addedDate&sortOrder=desc&field=all&value=${value}`;
+            } else {
+                pageLink.href = `api/products/en?page=${i}&perPage=${perPage}&sortBy=addedDate&sortOrder=desc&field=&value=${value}`;
+            }
+            
             pageContainer.appendChild(pageLink);
 
             if (i < totalPages) {
@@ -88,13 +94,13 @@ class PageProductos {
         const query = await queryFunction()
         const products = await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
         this.generatePageLinks(products);
-
         this.optionsFunctions();
 
-        const search = await getIdFromHash();
-        if (search) {
-            const query = await queryFunction('all', search)
-            await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
+        this.search = await getIdFromHash();
+        if (this.search) {
+            const query = await queryFunction('all', this.search)
+            const products = await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
+            this.generatePageLinks(products, this.search);
         }
 
         await cartController.init();
