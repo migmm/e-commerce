@@ -37,7 +37,7 @@ class PageInicio {
         cardSliders.cardSlider();
 
         for (const q of indexQueries) {
-            const query = queryFunction(q.key, q.value, q.key)
+            const query = await queryFunction(q.key, q.value, q.key,)
             await fetchAndRenderProducts(query, q.label, q.template);
         }
 

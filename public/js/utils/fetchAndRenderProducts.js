@@ -25,7 +25,8 @@ const indexQueries = [
 ];
 
 const queryFunction = async ( field='', value='', sortBy='addedDate', page=1, perPage=15, sortOrder='desc') => {
-    const query = `page=${page}&perPage=${perPage}&sortBy=${sortBy}&sortOrder=${sortOrder}&field=${field}&value=${value}`;
+    const currency = localStorage.getItem('currency') || 'usd';
+    const query = `page=${page}&perPage=${perPage}&sortBy=${sortBy}&sortOrder=${sortOrder}&field=${field}&value=${value}&currency=${currency}`;
     return query;
 }
 
