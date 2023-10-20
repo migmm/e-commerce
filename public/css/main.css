@@ -430,7 +430,7 @@ body {
   transition: height 0.3s;
   margin-right: 1em;
 }
-@media (min-width: 1200px) {
+@media (min-width: 1300px) {
   .main-header__wrapper__logo-container {
     flex-basis: 10em;
     flex-grow: unset;
