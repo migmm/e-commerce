@@ -650,7 +650,6 @@ body {
 }
 .main-nav__item .currency-select {
   order: 2;
-  padding-right: 1em;
   background-color: #fff;
   border: none;
   border-radius: 10px;

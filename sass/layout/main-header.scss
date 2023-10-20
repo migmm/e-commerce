@@ -18,8 +18,6 @@
         transition: .5s;
         position: relative;
 
-       
-        
         &__logo-container {
             flex-basis: 5em;
             margin-left: 2em;
@@ -50,7 +48,7 @@
             position: absolute;
             top: 60px;
             background-color: color.$cyan;
-            transition:  0.4s;
+            transition: 0.4s;
 
             @media (min-width: 1300px) {
                 order: 2;
@@ -107,9 +105,9 @@
             display: none;
             order: 3;
 
-        @media (min-width: 1020px) {
-            display: block;
-        }
+            @media (min-width: 1020px) {
+                display: block;
+            }
 
             &__button {
                 width: 2em;
