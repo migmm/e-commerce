@@ -18,33 +18,7 @@
         transition: .5s;
         position: relative;
 
-        &__language-select{
-
-            order: 2;
-            padding-right: 1em;
-            
-            & .language-select {
-                background-color: color.$white;
-                border: none;
-                border-radius: 10px;
-                padding: .32em;
-                cursor: pointer;
-            }
-        }
-
-        &__currency-select{
-
-            order: 2;
-            padding-right: 1em;
-
-            & .currency-select {
-                background-color: color.$white;
-                border: none;
-                border-radius: 10px;
-                padding: .32em;
-                cursor: pointer;
-            }
-        }
+       
         
         &__logo-container {
             flex-basis: 5em;
@@ -78,7 +52,7 @@
             background-color: color.$cyan;
             transition:  0.4s;
 
-            @media (min-width: 1200px) {
+            @media (min-width: 1300px) {
                 order: 2;
                 flex-basis: 15em;
                 flex-grow: 5;
@@ -133,7 +107,7 @@
             display: none;
             order: 3;
 
-        @media (min-width: 900px) {
+        @media (min-width: 1020px) {
             display: block;
         }
 
@@ -249,7 +223,7 @@
             padding: 14px;
             order: 3;
 
-            @media (min-width: 900px) {
+            @media (min-width: 1020px) {
                 display: none;
             }
         }
@@ -257,7 +231,7 @@
         &__main-nav-container {
             display: none;
 
-            @media (min-width: 900px) {
+            @media (min-width: 1020px) {
                 order: 1;
                 display: block;
             }
