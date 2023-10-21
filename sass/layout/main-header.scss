@@ -7,6 +7,49 @@
     position: fixed;
     z-index: 100;
 
+    &__language-select {
+        order: 2;
+        display: none;
+
+        & .language-select {
+            padding-right: 1em;
+            background-color: color.$white;
+            border: none;
+            border-radius: 10px;
+            padding: .32em;
+            cursor: pointer;
+            width: 100px;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            margin-right: .5em;
+        }
+
+        @media (min-width: 1020px) {
+            display: block;
+        }
+    }
+
+    &__currency-select {
+        order: 2;
+        display: none;
+
+        & .currency-select {
+            background-color: color.$white;
+            border: none;
+            border-radius: 10px;
+            padding: .32em;
+            cursor: pointer;
+            width: 100px;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            margin-right: 1em;
+        }
+
+        @media (min-width: 1020px) {
+            display: block;
+        }
+    }
+
     &__wrapper {
 
         display: flex;
