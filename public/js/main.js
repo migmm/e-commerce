@@ -1,12 +1,10 @@
 import ModuleCart from './modules/cart.js';
 import render from '/js/utils/render.js';
 import hbsHelpers from './utils/hb-templates.js';
-import find from './utils/find.js';
 import fetchLanguageData from './utils/langFunctions.js';
 import currencySet from './utils/currencies.js';
 import authController from './controllers/auth.js';
 import ModuleFavs from './modules/favs.js';
-import { indexQueries, fetchAndRenderProducts, queryFunction } from './utils/fetchAndRenderProducts.js';
 import productController from './controllers/product.js';
 
 
@@ -171,21 +169,6 @@ class Main {
             searchQuery.innerHTML = e.target.value;
             searchLink.href = `/#/productos/${e.target.value}`;
             searchResults.classList.add('visible');
-
-            /*  
-             await render.renderTemplateCards(product.products, 'templates/producto.hbs', '.full-product-page'); */
-
-            /*     const productsFound = find.find(e.target.value, this.products)
-                await render.renderTemplateCards(productsFound, 'templates/search-results.hbs', '.search-results-list'); */
-
-            /*      if (e.target.value.length == 0) {
-                     searchResults.classList.remove('visible');
-                     return;
-                 }
-      */
-            /*     searchQuery.innerHTML = e.target.value;
-                searchLink.href = `/#/productos/${e.target.value}`;
-                searchResults.classList.add('visible'); */
         });
 
         form.addEventListener('submit', e => {
@@ -198,9 +181,6 @@ class Main {
             window.location.href = `#/productos/${searchBar.value}`;
             searchResults.classList.remove('visible');
         })
-
-        /* searchBar.addEventListener('focus',  e => {
-        }); */
     }
 
     static decodeJWT(token) {
