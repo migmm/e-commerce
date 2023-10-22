@@ -689,7 +689,7 @@ body {
   margin-bottom: 1em;
   margin-right: 0.5em;
 }
-@media (min-width: 1200px) {
+@media (min-width: 1020px) {
   .main-nav__item .language-select {
     display: none;
   }
@@ -706,7 +706,7 @@ body {
   margin-bottom: 1em;
   margin-right: 1em;
 }
-@media (min-width: 1200px) {
+@media (min-width: 1020px) {
   .main-nav__item .currency-select {
     display: none;
   }
@@ -717,7 +717,7 @@ body {
 .main-nav__item:nth-child(5), .main-nav__item:nth-child(6) {
   order: 1;
 }
-@media (min-width: 1200px) {
+@media (min-width: 1020px) {
   .main-nav__item:nth-child(5), .main-nav__item:nth-child(6) {
     display: none;
   }

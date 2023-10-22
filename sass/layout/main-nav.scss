@@ -32,7 +32,7 @@
             margin-bottom: 1em;
             margin-right: .5em;
             
-            @media (min-width: 1200px) {
+            @media (min-width: 1020px) {
                 display: none;
             }
         }
@@ -49,12 +49,10 @@
             margin-bottom: 1em;
             margin-right: 1em;
     
-            @media (min-width: 1200px) {
+            @media (min-width: 1020px) {
                 display:none
             }
         }
-
-
     }
 
     &__item:nth-child(5) {
@@ -65,7 +63,7 @@
     &__item:nth-child(6) {
         order: 1;
 
-        @media (min-width: 1200px) {
+        @media (min-width: 1020px) {
             display: none;
         }
     }
@@ -103,8 +101,4 @@
             color: color.$darkblue;
         }
     }
-
-
-    
-
 }
