@@ -1,3 +1,6 @@
+
+const languageSelect = document.querySelectorAll('.language-select');
+
 const updateElements = (elementData, parentKey = "") => {
     Object.entries(elementData).forEach(([key, value]) => {
         const elementKey = parentKey ? `${parentKey}-${key}` : key;
@@ -60,21 +63,24 @@ const fetchLanguageData = async () => {
         localStorage.setItem('langSelection', defaultLanguage);
     }
 
-    languageSelect.value = defaultLanguage;
+    languageSelect.forEach((select) => {
+        select.value = defaultLanguage;
+    });
 
     const response = await fetchFunction(`/api/lang/changelanguage/${defaultLanguage}`, 'POST')
     updateElements(response)
     return response;
 };
 
-const languageSelect = document.getElementsByClassName('language-select')[0];
-
-languageSelect.addEventListener('change', () => {
-    const selectedLanguage = languageSelect.value;
-    localStorage.setItem('langSelection', selectedLanguage);
-    fetchLanguageData();
-    location.reload();
+languageSelect.forEach((select) => {
+    select.addEventListener('change', () => {
+        const selectedLanguage = select.value;
+        localStorage.setItem('langSelection', selectedLanguage);
+        fetchLanguageData();
+        location.reload();
+    });
 });
+
 
 export default {
     fetchLanguageData
