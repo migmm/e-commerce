@@ -50,6 +50,7 @@ class PageProductos {
 
                 const query = await queryFunction('all', toSearch)
                 await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
+                await fetchLanguageData.fetchLanguageData();
             }
 
             if (e.target.closest('aside') && e.target.tagName === 'A') {
@@ -61,6 +62,7 @@ class PageProductos {
 
                 const query = await queryFunction('all', toSearch)
                 await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
+                await fetchLanguageData.fetchLanguageData();
             }
         });
     }
@@ -106,6 +108,7 @@ class PageProductos {
 
         await cartController.init();
         await fetchLanguageData.fetchLanguageData();
+
         // Close search results
         const searchResults = document.getElementsByClassName('main-header__wrapper__search-results')[0]
         searchResults.classList.remove('visible');
