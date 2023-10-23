@@ -238,5 +238,9 @@
         "option-select-qty": "Seleccione Cantidad",
         "option-all": "Todos",
         "pages": "Páginas"
+    },
+    "page404": {
+        "message": "404 - Página no encontrada",
+        "go-to-home": "Ir al inicio"
     }
 }

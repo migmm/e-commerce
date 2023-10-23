@@ -236,5 +236,9 @@
         "option-select-qty": "Select quantity",
         "option-all": "View all",
         "pages": "Pages"
+    },
+    "page404": {
+        "message": "404 - Page not found",
+        "go-to-home": "Go to homepage"
     }
 }
