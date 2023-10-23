@@ -2,6 +2,7 @@ import cartController from '/js/modules/cart.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
 import heartButton from '../utils/heartButton.js';
 import getIdFromHash from '../utils/getIdFromHash.js';
+import fetchLanguageData from '../utils/langFunctions.js';
 import { fetchAndRenderProducts, queryFunction } from '../utils/fetchAndRenderProducts.js';
 
 
@@ -104,7 +105,7 @@ class PageProductos {
         }
 
         await cartController.init();
-
+        await fetchLanguageData.fetchLanguageData();
         // Close search results
         const searchResults = document.getElementsByClassName('main-header__wrapper__search-results')[0]
         searchResults.classList.remove('visible');
