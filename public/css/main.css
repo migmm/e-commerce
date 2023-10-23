@@ -2838,6 +2838,12 @@ input[type=number] {
 }
 .section-all-products .section-products .section-cards__header .section-qty form select {
   font-size: 0.9em;
+  border-radius: 10px;
+  padding: 0.32em;
+  cursor: pointer;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-right: 0.5em;
 }
 .section-all-products .section-products .section-cards__cards-container {
   padding: 1em;
