@@ -224,7 +224,19 @@
         "not-account": "No tenes cuenta. ¿Deseas registrarte?"
     },
     "product": {
-        "discount":"% DTO",
-        "add-to-cart":"Agregar al carrito"
+        "discount": "% DTO",
+        "add-to-cart": "Agregar al carrito"
+    },
+    "products": {
+        "title-order": "ORDENAR",
+        "ascending": "Ascendente",
+        "descending": "Descendente",
+        "title-category": "CATEGORIA",
+        "title-vendor": "FABRICANTE",
+        "title-color": "COLOR",
+        "title": "PRODUCTOS",
+        "option-select-qty": "Seleccione Cantidad",
+        "option-all": "Todos",
+        "pages": "Pages"
     }
 }

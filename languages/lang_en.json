@@ -224,5 +224,17 @@
     "product": {
         "discount":"% DISC",
         "add-to-cart":"Add to cart"
+    },
+    "products": {
+        "title-order": "ORDER",
+        "ascending": "Ascending",
+        "descending": "Descending",
+        "title-category": "CATEGORY",
+        "title-vendor": "VENDOR",
+        "title-color": "COLOR",
+        "title": "PRODUCTS",
+        "option-select-qty": "Select quantity",
+        "option-all": "View all",
+        "pages": "Páginas"
     }
 }

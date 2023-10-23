@@ -2,15 +2,15 @@
     <section class="section-all-products">
         <aside class="section-options">
 
-            <h4>ORDENAR</h4>
+            <h4 data-lang="products-title-order">ORDENAR</h4>
             <form action="">
                 <select name="orden" id="orden">
-                    <option value="1">Ascendente</option>
-                    <option value="2">Descendente</option>
+                    <option value="1" data-lang="products-ascending">Ascendente</option>
+                    <option value="2" data-lang="products-descending">Descendente</option>
                 </select>
             </form>
 
-            <h4>CATEGORIA</h4>
+            <h4 data-lang="products-title-category">CATEGORIA</h4>
             <ul>
                 <li><a href="#">Superheroes</a></li>
                 <li><a href="#">Peliculas</a></li>
@@ -18,7 +18,7 @@
                 <li><a href="#">Bricks</a></li>
             </ul>
 
-            <H4>FABRICANTE</H4>
+            <H4 data-lang="products-title-vendor">FABRICANTE</H4>
             <ul>
                 <li><a href="#/productos/marvel">MARVEL</a></li>
                 <li><a href="#/productos/hasbro">HASBRO</a></li>
@@ -26,41 +26,22 @@
                 <li><a href="#/productos/lego">LEGO</a></li>
             </ul>
 
-            <H4>COLOR</H4>
+            <H4 data-lang="products-title-color">COLOR</H4>
             <ul>
                 <li><a href="#">Rojo</a></li>
                 <li><a href="#">Azul</a></li>
                 <li><a href="#">Amarillo</a></li>
                 <li><a href="#">Verde</a></li>
             </ul>
-
-            <H4>PRECIO</H4>
-            <ul>
-                <li><a href="#">Hasta $5000</a></li>
-                <li><a href="#">Hasta $10000</a></li>
-                <li><a href="#">Hasta $15000</a></li>
-                <li><a href="#">Mas de $15000</a></li>
-            </ul>
-
-            <H4>DESCUENTO</H4>
-            <ul>
-                <li><a href="#">Desde 50% OFF</a></li>
-                <li><a href="#">Desde 40% OFF</a></li>
-                <li><a href="#">Desde 30% OFF</a></li>
-                <li><a href="#">Desde 20% OFF</a></li>
-                <li><a href="#">Desde 10% OFF</a></li>
-            </ul>
-
         </aside>
 
         <div class="section-products">
             <section class="section-cards">
                 <header class="section-cards__header">
-                    <h1>PRODUCTOS</h1>
+                    <h1 data-lang="products-title">PRODUCTOS</h1>
                     <div class="section-tags">
                         <span>MARVEL</span>
                         <span>LEGO</span>
-                        <span>AZUL</span>
                         <span>BARBIE</span>
                         <span>SPIDERMAN</span>
                         <span>TRANSFORMERS</span>
@@ -69,11 +50,11 @@
                     <div class="section-qty">
                         <form action="">
                             <select name="quantity-per-page" id="quantity-per-page">
-                                <option hidden disabled selected>Seleccione Cantidad</option>
-                                <option value="2">2</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="all">Todos</option>
+                                <option hidden disabled selected data-lang="products-option-select-qty">Seleccione Cantidad</option>
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="all" data-lang="products-option-all">Todos</option>
                             </select>
                         </form>
                     </div>
@@ -87,7 +68,7 @@
     </section>
 <section>
     <div class="section-pages-container">
-        <span class="pages-text">Pages</span><span class="pages-qty"></span>
+        <span class="pages-text"  data-lang="products-pages">Pages</span><span class="pages-qty"></span>
     </div>
 </section>
 </div>
