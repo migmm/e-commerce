@@ -722,11 +722,11 @@ body {
     display: none;
   }
 }
-.main-nav__item:nth-child(7), .main-nav__item:nth-child(8), .main-nav__item:nth-child(9), .main-nav__item:nth-child(10), .main-nav__item:nth-child(11), .main-nav__item:nth-child(12), .main-nav__item:nth-child(13) {
+.main-nav__item:nth-child(7), .main-nav__item:nth-child(8), .main-nav__item:nth-child(9), .main-nav__item:nth-child(10), .main-nav__item:nth-child(11), .main-nav__item:nth-child(12), .main-nav__item:nth-child(13), .main-nav__item:nth-child(14), .main-nav__item:nth-child(15) {
   display: none;
 }
 @media (min-width: 1020px) {
-  .main-nav__item:nth-child(7), .main-nav__item:nth-child(8), .main-nav__item:nth-child(9), .main-nav__item:nth-child(10), .main-nav__item:nth-child(11), .main-nav__item:nth-child(12), .main-nav__item:nth-child(13) {
+  .main-nav__item:nth-child(7), .main-nav__item:nth-child(8), .main-nav__item:nth-child(9), .main-nav__item:nth-child(10), .main-nav__item:nth-child(11), .main-nav__item:nth-child(12), .main-nav__item:nth-child(13), .main-nav__item:nth-child(14), .main-nav__item:nth-child(15) {
     display: none;
   }
 }

@@ -74,7 +74,9 @@
     &__item:nth-child(10),
     &__item:nth-child(11),
     &__item:nth-child(12),
-    &__item:nth-child(13) {
+    &__item:nth-child(13),
+    &__item:nth-child(14),
+    &__item:nth-child(15) {
         display: none;
 
         @media (min-width: 1020px) {
