@@ -3250,6 +3250,27 @@ input[type=number] {
   margin: 1em;
 }
 
+.user-panel {
+  margin-top: 10em;
+  display: flex;
+}
+.user-panel__navbar__photo-container {
+  width: 100px;
+  height: 100px;
+}
+.user-panel__navbar__photo-container img {
+  width: 100%;
+  object-fit: contain;
+}
+.user-panel__navbar__title {
+  font-size: 1.5em;
+}
+.user-panel__navbar__links {
+  list-style: none;
+}
+.user-panel__navbar__links li {
+  text-decoration: none;
+}
 .hidden {
   display: none;
 }

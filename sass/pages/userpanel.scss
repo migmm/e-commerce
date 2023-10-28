@@ -1,0 +1,91 @@
+.user-panel {
+
+    margin-top: 10em;
+    display: flex;
+
+    @media (min-width: 900px) {}
+
+    &__navbar {
+
+
+        &__photo-container {
+            width: 100px;
+            height: 100px;
+
+            & img {
+                width: 100%;
+                object-fit: contain;
+            }
+        }
+
+
+        &__title {
+            font-size: 1.5em;
+        }
+
+        &__links {
+            list-style: none;
+
+            & li {
+                text-decoration: none;
+
+                & a {}
+            }
+        }
+    }
+
+    &__content {
+
+
+        &__greeting {
+
+        }
+
+        &__message {
+
+        }
+
+        &__divider {
+
+
+            &__title {
+
+            }
+
+            &__last-buys {
+
+            }
+
+            &__tracker {
+
+            }
+
+            &__favs {
+
+            }
+
+            &__messages {
+
+            }
+
+            &__divider-container {
+
+            }
+
+            &__returns {
+
+            }
+
+            &__profile {
+
+                &-container {
+
+                }
+            }
+        }
+    }
+
+    &__footer {
+
+    }
+}
