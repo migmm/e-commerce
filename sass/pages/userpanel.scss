@@ -3,10 +3,13 @@
     margin-top: 10em;
     display: flex;
 
-    @media (min-width: 900px) {}
-
     &__navbar {
 
+        display: none;
+
+        @media (min-width: 900px) {
+            display: block;
+        }
 
         &__photo-container {
             width: 100px;
@@ -36,56 +39,54 @@
 
     &__content {
 
+        width: 100%;
+        margin: 1em;
 
         &__greeting {
-
+            text-align: center;
         }
 
         &__message {
-
+            text-align: center;
         }
 
-        &__divider {
+
+        &__divider {}
+
+        &__title {}
+
+        &__last-buys,
+        &__tracker,
+        &__favs,
+        &__messages,
+        &__account,
+        &__returns,
+        &__profile {
+            border: 1px solid black;
+            margin: 1em;
+            padding: 1em;
+            border-radius: 10px;
+            background-color: white;
+        }
+
+        &__last-buys {}
+
+        &__tracker {}
+
+        &__favs {}
+
+        &__messages {}
+
+        &__account {}
+
+        &__returns {}
+
+        &__profile {
 
 
-            &__title {
-
-            }
-
-            &__last-buys {
-
-            }
-
-            &__tracker {
-
-            }
-
-            &__favs {
-
-            }
-
-            &__messages {
-
-            }
-
-            &__divider-container {
-
-            }
-
-            &__returns {
-
-            }
-
-            &__profile {
-
-                &-container {
-
-                }
-            }
+            &-container {}
         }
     }
 
-    &__footer {
-
-    }
+    &__footer {}
 }

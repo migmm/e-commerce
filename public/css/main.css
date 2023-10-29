@@ -3254,6 +3254,14 @@ input[type=number] {
   margin-top: 10em;
   display: flex;
 }
+.user-panel__navbar {
+  display: none;
+}
+@media (min-width: 900px) {
+  .user-panel__navbar {
+    display: block;
+  }
+}
 .user-panel__navbar__photo-container {
   width: 100px;
   height: 100px;
@@ -3270,6 +3278,23 @@ input[type=number] {
 }
 .user-panel__navbar__links li {
   text-decoration: none;
+}
+.user-panel__content {
+  width: 100%;
+  margin: 1em;
+}
+.user-panel__content__greeting {
+  text-align: center;
+}
+.user-panel__content__message {
+  text-align: center;
+}
+.user-panel__content__last-buys, .user-panel__content__tracker, .user-panel__content__favs, .user-panel__content__messages, .user-panel__content__account, .user-panel__content__returns, .user-panel__content__profile {
+  border: 1px solid black;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 10px;
+  background-color: white;
 }
 .hidden {
   display: none;
