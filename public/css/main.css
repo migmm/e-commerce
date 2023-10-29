@@ -3252,6 +3252,7 @@ input[type=number] {
 
 .user-panel {
   margin-top: 10em;
+  margin-bottom: 3em;
   display: flex;
 }
 .user-panel__navbar {
@@ -3259,7 +3260,11 @@ input[type=number] {
 }
 @media (min-width: 900px) {
   .user-panel__navbar {
-    display: block;
+    display: flex;
+    width: 20%;
+    margin: 1em;
+    flex-direction: column;
+    align-items: center;
   }
 }
 .user-panel__navbar__photo-container {
@@ -3283,11 +3288,17 @@ input[type=number] {
   width: 100%;
   margin: 1em;
 }
+@media (min-width: 900px) {
+  .user-panel__content {
+    width: 80%;
+  }
+}
 .user-panel__content__greeting {
   text-align: center;
 }
 .user-panel__content__message {
   text-align: center;
+  margin-bottom: 3em;
 }
 .user-panel__content__last-buys, .user-panel__content__tracker, .user-panel__content__favs, .user-panel__content__messages, .user-panel__content__account, .user-panel__content__returns, .user-panel__content__profile {
   border: 1px solid black;
