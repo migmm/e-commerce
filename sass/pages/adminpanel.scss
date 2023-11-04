@@ -1,0 +1,86 @@
+.admin-panel {
+
+    margin-top: 10em;
+    margin-bottom: 3em;
+    display: flex;
+
+    &__navbar {
+
+        display: none;
+
+        @media (min-width: 900px) {
+            display: flex;
+            width: 20%;
+            margin: 1em;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        &__links {
+            list-style: none;
+
+            & li {
+                text-decoration: none;
+
+                & a {}
+            }
+        }
+    }
+
+    &__content {
+
+        width: 100%;
+        margin: 1em;
+
+        @media (min-width: 900px) {
+            width: 80%;
+        }
+
+        &__greeting {
+            text-align: center;
+        }
+
+        &__message {
+            text-align: center;
+            margin-bottom: 3em;
+        }
+
+        &__divider {}
+
+        &__title {}
+
+        &__last-buys,
+        &__tracker,
+        &__favs,
+        &__messages,
+        &__account,
+        &__returns,
+        &__profile {
+            border: 1px solid black;
+            margin: 1em;
+            padding: 1em;
+            border-radius: 10px;
+            background-color: white;
+        }
+
+        &__last-buys {}
+
+        &__tracker {}
+
+        &__favs {}
+
+        &__messages {}
+
+        &__account {}
+
+        &__returns {}
+
+        &__profile {
+
+
+            &-container {}
+        }
+    }
+
+    &__footer {}
+}
