@@ -26,7 +26,10 @@ const getProducts = async (req, res) => {
 
         const convertPrice = (price, originalCurrency, targetCurrency) => {
             if (originalCurrency === targetCurrency) {
-                return price;
+                return {
+                    value: price,
+                    currency: originalCurrency,
+                };
             }
 
             const currenciesChanges = CURRENCIES.getCurrencyChange;
