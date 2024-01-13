@@ -58,6 +58,7 @@ Para el backend se utilizó:
     - Multi moneda
     - Autenticacion y roles
     - Texto con saltos de linea en la descripcion del producto
+    - Cálculo de precios basado en la cotizacion de una API externa
 
 ### Rutas API
 

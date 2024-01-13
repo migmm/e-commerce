@@ -58,6 +58,7 @@ In Backend I used:
     - Multi currency products
     - Authentication and roles
     - Text with break lines in product description
+    - Price calculation based on an external price API
 
 ### API ROUTES
 
