@@ -57,6 +57,7 @@ In Backend I used:
     - Multi language web and products
     - Multi currency products
     - Authentication and roles
+    - Text with break lines in product description
 
 ### API ROUTES
 

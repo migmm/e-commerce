@@ -57,6 +57,7 @@ Para el backend se utilizó:
     - Web y productos multilenguaje
     - Multi moneda
     - Autenticacion y roles
+    - Texto con saltos de linea en la descripcion del producto
 
 ### Rutas API
 
