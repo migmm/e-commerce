@@ -37,12 +37,12 @@ const CURRENCIES = {
     getCurrencyChange: {
 
         eur: {
-            usd: 1.2,
-            ars: 1.1,
+            usd: 1.1,
+            ars: 1.050,
         },
         usd: {
-            eur: 0.83,
-            ars: 0.91,
+            eur: 1.05,
+            ars: 1100,
         },
         ars: {
             eur: 0.91,
