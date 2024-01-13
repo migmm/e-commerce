@@ -32,28 +32,39 @@ const s3Client = new S3({
     },
 });
 
-const CURRENCIES = {
-    defaultCurrency: 'usd',
-    getCurrencyChange: {
-
-        eur: {
-            usd: 1.1,
-            ars: 1.050,
-        },
-        usd: {
-            eur: 1.05,
-            ars: 1100,
-        },
-        ars: {
-            eur: 0.91,
-            usd: 1.10,
-        },
-
-    }
-
-}
 // S3 Bucket name
 const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME;
+
+//Currencies configuration and api consumption
+const CURRENCIES = {
+    defaultCurrency: 'usd',
+    getCurrencyChange: async () => {
+        const data = await Promise.all([
+            fetch("https://dolarapi.com/v1/dolares/oficial").then(response => response.json()),
+            fetch("https://dolarapi.com/v1/cotizaciones/eur").then(response_1 => response_1.json())
+        ]);
+        const usdToArs = Number(data[0].venta);
+        const eurToArs = Number(data[1].venta);
+        // Calcular otras tasas de cambio y redondear a 2 decimales
+        const usdToEur = 1 / (eurToArs / usdToArs);
+        const eurToUsd = 1 / usdToEur;
+        return {
+            usd: {
+                ars: usdToArs.toFixed(2),
+                eur: usdToEur.toFixed(2),
+            },
+            eur: {
+                ars: eurToArs.toFixed(2),
+                usd: eurToUsd.toFixed(2),
+            },
+            ars: {
+                usd: (1 / usdToArs).toFixed(4),
+                eur: (1 / eurToArs).toFixed(4),
+            },
+        };
+    }
+}
+
 
 //Specify allowed fields to search in database when use query with params
 const SEARCH_FIELDS = [

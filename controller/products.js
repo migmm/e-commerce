@@ -24,15 +24,19 @@ const getProducts = async (req, res) => {
             return res.status(500).json({ error: 'Products data is not an array' });
         }
 
-        const convertPrice = (price, originalCurrency, targetCurrency) => {
+        const convertPrice = async (price, originalCurrency, targetCurrency) => {
+            console.log("price",price)
+            console.log("currencies", originalCurrency, targetCurrency)
             if (originalCurrency === targetCurrency) {
+                console.log("iguales")
                 return {
                     value: price,
                     currency: originalCurrency,
                 };
             }
 
-            const currenciesChanges = CURRENCIES.getCurrencyChange;
+            const currenciesChanges = await CURRENCIES.getCurrencyChange();
+            console.log(currenciesChanges);
 
             if (currenciesChanges[originalCurrency]?.[targetCurrency]) {
                 const currencyChanges = currenciesChanges[originalCurrency][targetCurrency];
@@ -51,7 +55,8 @@ const getProducts = async (req, res) => {
         const products = await Promise.all(
             fullProducts.products.map(async (product) => {
                 const originalCurrency = Object.keys(product.price)[0];
-                const convertedPrice = convertPrice(product.price[originalCurrency], originalCurrency, currency);
+                const convertedPrice = await convertPrice(product.price[originalCurrency], originalCurrency, currency);
+
 
                 if (Array.isArray(product.images)) {
                     const imageUrls = await Promise.all(
