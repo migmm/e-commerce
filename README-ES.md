@@ -1,13 +1,15 @@
 ![npm](https://img.shields.io/npm/v/npm?color=green)  ![npm](https://img.shields.io/npm/v/express?label=express&logo=Express)  ![GitHub package.json version](https://img.shields.io/github/package-json/v/migmm/e-commerce)  ![master](https://img.shields.io/github/last-commit/migmm/e-commerce)
 
-[ENGLISH VERSION](https://github.com/migmm/e-commerce/blob/main/README.md# Proyecto integrador
-## Bootcamp FullStack Engineer de __EducaciónIT__ 
+[ENGLISH VERSION](https://github.com/migmm/e-commerce/blob/main/README.md#) 
+
+Proyecto integrador
+
+## Bootcamp FullStack Engineer de __EducaciónIT__
+
 Proyecto integrador que consiste en la creación de un e-commerce.
 
-
  <img src="https://github.com/migmm/e-commerce/blob/main/public/img/logocolor.png" alt="Logo"/>
- 
- 
+
 Tema: juguetería.
 
 Nombre: Juguetería Cósmica.
@@ -46,6 +48,15 @@ Para el backend se utilizó:
 - MongoDB
 - Arquitectura en capas para una mejor escalabilidad y comprensión
 
+### CARACTERISTICAS
+
+    - Diseño responsivo
+    - Objectos almacenados en AWS
+    - Login limiter
+    - Generador de codigos OTP
+    - Web y productos multilenguaje
+    - Multi moneda
+    - Autenticacion y roles
 
 ### Rutas API
 

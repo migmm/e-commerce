@@ -48,6 +48,15 @@ In Backend I used:
 - MongoDB
 - Layer architecture to improve scalability and fast learning
 
+### FEATURES
+
+    - Responsive design
+    - Objects stored in a WAS bucket
+    - Login limiter
+    - OTP code generator
+    - Multi language web and products
+    - Multi currency products
+    - Authentication and roles
 
 ### API ROUTES
 
