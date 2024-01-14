@@ -52,7 +52,7 @@ class PageModificar {
         const deleteProduct = async (e) => {
             const deleteMessage = document.getElementById('product-delete-button');
             const confirmMessage = deleteMessage.innerHTML;
-    
+
             if (!confirm (confirmMessage)) {
                 return;
             }

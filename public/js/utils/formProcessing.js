@@ -346,7 +346,9 @@ function collectFormData() {
         productInfo[field] = {};
         Object.keys(languages).forEach(langCode => {
             const inputId = `${field}-${langCode}`;
-            const inputValue = document.getElementById(inputId).value;
+            let inputValue = document.getElementById(inputId).value;
+            inputValue = inputValue.replace(/\n/g, "<br>");
+            console.log("inputvalue",inputValue)
             productInfo[field][langCode] = inputValue;
         });
     });
