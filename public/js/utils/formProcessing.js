@@ -459,8 +459,15 @@ function resetForm() {
         input.checked = false;
     });
 
+    function cleanImageContainers() {
+        for (let i = 0; i < totalImages.length; i++) {
+            const imageDiv = document.getElementById(`image${i + 1}`);
+            imageDiv.style.backgroundImage = totalImages[i] ? `url(${totalImages[i]})` : '';
+        }
+    }
+
     totalImages = new Array(imageQuantity).fill(null);
-    updateImageContainers();
+    cleanImageContainers();
 
     const imagesInput = document.getElementById("images");
     imagesInput.value = '';
