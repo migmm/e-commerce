@@ -4,14 +4,13 @@ const fieldMappings = {
     productName: ['productName[en]', 'productName[es]'],
     shortDescription: ['shortDescription[en]', 'shortDescription[es]'],
     longDescription: ['longDescription[en]', 'longDescription[es]'],
-    // Agrega más campos principales y sus equivalentes de idioma aquí
 };
 
 class Validations {
 
     static validators = {
         id: /[A-Za-z0-9]?/,
-        productName: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,:;\"\'\s\/_-]{4,100}$/,
+        productName: /^[¡¿\w\W\d.,:;()"'\s–’″!?-]{5,100}$/,
         price: /^\d{1,20}(\.\d{1,2})?$/,
         tax: /^(1000(\.00?)?|\d{1,3}(,\d{3})*(\.\d{1,2})?)$/,
         vat: /^(1000(\.00?)?|\d{1,3}(,\d{3})*(\.\d{1,2})?)$/,
@@ -19,8 +18,8 @@ class Validations {
         vendor: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{4,40}$/,
         stock: /^-?[0-9]{1,30}$/,
         category: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,\"\'\s\/_-]{5,50}$/,
-        shortDescription: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,:;()\"\'\s\/_-]{5,200}$/,
-        longDescription: /^[A-Za-zÁáÉéÍíÓóÚúÑñ0-9.,:;()\"\'\s\/_-]{5,8000}$/,
+        shortDescription: /^[¡¿\w\W\d.,:;()"'\s–’″!?-]{5,200}$/,
+        longDescription: /^[¡¿\w\W\d.,:;()"'\s–’″!?-]{5,8000}$/,
         ageFrom: /^(?:[1-9]|[1-9][0-9])$/,
         ageTo: /^(?:[1-9]|[1-9][0-9])$/,
     };
