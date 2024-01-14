@@ -78,7 +78,7 @@ class PageProducto {
         const product = await productController.getProducts(currentLang, query);
         await render.renderTemplateCards(product.products, 'templates/producto.hbs', '.full-product-page');
 
-        query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=vendor&value=${product.products[0].vendor}`;
+        query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=category&value=${product.products[0].category}`;
         const relatedProducts = await productController.getProducts(currentLang, query);
         await render.renderTemplateCards(relatedProducts.products, '../../templates/card-row.hbs', '.more-of-this-product');
 
