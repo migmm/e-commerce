@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { GetObjectCommand, ListObjectsCommand, PutObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl as getPresignedUrl } from '@aws-sdk/s3-request-presigner';
 import { s3Client, AWS_BUCKET_NAME } from '../config.js';
-
+import mime from 'mime';
 
 // Function to get the signed URL
 const getSignedUrl = async fileName => {
@@ -79,7 +79,9 @@ const uploadImages = async (uploadedImages) => {
     try {
         const uploadedFileNames = await Promise.all(
             uploadedImages.map(async (image) => {
-                const fileKey = `${uuidv4()}_${image.originalname}`;
+                const ext = mime.getExtension(image.mimetype);
+                const fileNameWithoutExt = image.originalname.replace(/\.[^/.]+$/, '');
+                const fileKey = `${uuidv4()}_${fileNameWithoutExt.replace(/\s+/g, '_')}_${new Date().getTime()}.${ext}`;
 
                 const uploadParams = {
                     Bucket: AWS_BUCKET_NAME,
@@ -98,6 +100,7 @@ const uploadImages = async (uploadedImages) => {
         throw new Error('Error uploading the images');
     }
 };
+
 
 // Controller to delete an image
 const deleteImage = async id => {
