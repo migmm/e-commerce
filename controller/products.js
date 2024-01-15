@@ -142,7 +142,7 @@ const postProduct = async (req, res) => {
         console.log(product)
 
         const newProduct = await api.createProduct(product);
-        res.json(newProduct);
+        res.status(201).json(newProduct);
     }
 
     catch (err) {

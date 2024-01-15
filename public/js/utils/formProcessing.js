@@ -416,18 +416,20 @@ function appendFiles(productInfo) {
     return formData;
 }
 
-function sendFullForm(formData) {
-    fetch("http://localhost:8080/api/products/", {
-        method: "POST",
-        body: formData,
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log("Respuesta de la API:", data);
-        })
-        .catch(error => {
-            console.error("Error al enviar los datos:", error);
+async function sendFullForm(formData) {
+    try {
+        const response = await fetch("http://localhost:8080/api/products/", {
+            method: "POST",
+            body: formData,
         });
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.status;
+    } catch (error) {
+        console.error("Error sending form:", error);
+        return false;
+    }
 }
 
 function dataURItoBlob(dataURI) {
@@ -482,7 +484,6 @@ function resetForm() {
 
     const firstInputId = `${formFields[0]}-${config.showFormForLanguage}`;
     document.getElementById(firstInputId).focus();
-    
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -492,7 +493,8 @@ function resetForm() {
 function sendForm() {
     const productInfo = collectFormData();
     const formData = appendFiles(productInfo);
-    sendFullForm(formData);
+
+    return sendFullForm(formData);
 }
 
 export default { initForm, initImageDriver, sendForm, resetForm }

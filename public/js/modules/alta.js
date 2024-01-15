@@ -13,21 +13,27 @@ class PageAlta {
     static async addFormEvents() {
         const msgGlobalOK = document.getElementsByClassName('input-group__ok-form')[0];
         const btnSubmit = document.getElementById('btn-sendform');
-
+    
         btnSubmit.addEventListener('click', async (e) => {
             e.preventDefault();
-            
+    
             const productToSave = Validations.validateForm(this.fields);
-
+    
             if (productToSave) {
-                formUtils.sendForm();
-                formUtils.resetForm();
-                msgGlobalOK.classList.add( 'input-group__ok-form--show');
-            }
+                formUtils.sendForm().then(statusCode => {
+                    console.log("satus code", statusCode)
+                    if (statusCode === 201) {
+                        formUtils.resetForm();
+                        msgGlobalOK.classList.add('input-group__ok-form--show');
 
-            setTimeout(function () {
-                msgGlobalOK.classList.remove( 'input-group__ok-form--show');
-            }, 5000);
+                        setTimeout(function () {
+                            msgGlobalOK.classList.remove('input-group__ok-form--show');
+                        }, 5000);
+                    }
+                }).catch(error => {
+                    console.error("Error sending form:", error);
+                });
+            }
         });
     }
 
