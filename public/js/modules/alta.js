@@ -12,6 +12,7 @@ class PageAlta {
 
     static async addFormEvents() {
         const msgGlobalOK = document.getElementsByClassName('input-group__ok-form')[0];
+        const msgGlobalError = document.getElementsByClassName('input-group__error-form')[0];
         const btnSubmit = document.getElementById('btn-sendform');
     
         btnSubmit.addEventListener('click', async (e) => {
@@ -25,10 +26,13 @@ class PageAlta {
                     if (statusCode === 201) {
                         formUtils.resetForm();
                         msgGlobalOK.classList.add('input-group__ok-form--show');
+                        msgGlobalError.classList.remove('input-group__ok-form--show');
 
                         setTimeout(function () {
                             msgGlobalOK.classList.remove('input-group__ok-form--show');
                         }, 5000);
+                    } else {
+                        msgGlobalError.classList.add('input-group__ok-form--show');
                     }
                 }).catch(error => {
                     console.error("Error sending form:", error);
