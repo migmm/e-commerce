@@ -360,6 +360,10 @@ function collectFormData() {
         [currencyValue]: priceValue
     };
 
+    function cleanString(str) {
+        return str.replace(/[^A-Za-z0-9\s]/g, '');
+      } 
+
     productInfo.price = priceObject;
     productInfo.currency = document.getElementById("currency").value;
     productInfo.tax = parseFloat(document.getElementById("tax").value);
@@ -378,7 +382,8 @@ function collectFormData() {
     productInfo.lastSell = productInfo.lastSell = new Date("1900-01-01T00:00:00.000Z");
     productInfo.lastModified = productInfo.lastSell = new Date("1900-01-01T00:00:00.000Z");
 
-    const productName = productInfo.productName.en;
+    let productName = productInfo.productName.en;
+    productName = cleanString(productName);
     productInfo.urlName = productName + '-' + generateId.makeid(6);
     productInfo.urlName = productInfo.urlName.split(' ').join('-').toLowerCase();
     console.log("urlname", productInfo.urlName);
