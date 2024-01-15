@@ -29,6 +29,13 @@
         "price-with-sign": "Precio: $",
         "subtotal": "Subtotal: $"
     },
+    "favs": {
+        "view-all": "Ver todos",
+        "not-have-favs": "No tenés productos favoritos",
+        "freeship": "Envío gratis",
+        "product-unavailable": "Producto no disponible",
+        "last-units": "Ültimas unidades"
+    },
     "float-buttons": {
         "contact-us": "Escribinos",
         "go-top": "Ir arriba"

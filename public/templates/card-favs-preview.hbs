@@ -15,7 +15,7 @@
                         {{#if this.freeShip}}
                             <span class="card-favs-preview__product-freeship-container">
                                 <i class="fa fa-truck" aria-hidden="true"></i>
-                                <p class="card-favs-preview__product-freeship"> Envío gratis </p>
+                                <p class="card-favs-preview__product-freeship" data-lang="favs-freeship"> Envío gratis </p>
                             </span>
                         {{else}}
                             <span class="card-favs-preview__product-freeship-container">
@@ -26,12 +26,12 @@
                         {{#compare this.stock "<" 1}}
                             <span class="card-favs-preview__product-unavailable-container">
                                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                                <p class="card-favs-preview__product-unavailable"> Producto no disponible </p>
+                                <p class="card-favs-preview__product-unavailable" data-lang="favs-product-unavailable"> Producto no disponible </p>
                             </span>
                         {{else}}
                             <span class="card-favs-preview__product-last-units-container">
                                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                                <p class="card-favs-preview__product-last-units"> Últimas unidades </p>
+                                <p class="card-favs-preview__product-last-units" data-lang="favs-last-units"> Últimas unidades </p>
                             </span>
                         {{/compare}}
                     {{/compare}}
@@ -42,7 +42,7 @@
     {{/each}}
 {{else}}
     <div class="empty-cards-container">
-        <h2 data-lang="favs-preview-empty-favs">No tenés favoritos.</h2>
+        <h2 data-lang="favs-preview-empty-favs" data-lang="favs-not-have-favs">No tenés favoritos.</h2>
         <p>¯\_(ツ)_/¯</p>
     </div>
 {{/if}}
