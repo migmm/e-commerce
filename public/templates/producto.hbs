@@ -21,19 +21,19 @@
                 <h2 class="product-full-page__brand">{{this.vendor}}</h2>
                 <h1 class="product-full-page__heading">{{this.productName}}</h1>
                 <p class="product-full-page__description">{{this.shortDescription}}</p>
-                <p class="product-full-page__age">Edad recomendada: de
+                <p class="product-full-page__age"> <span data-lang="product-age">Edad recomendada: de</span>  
                     <span class="product-full-page__age-number">{{this.ageFrom}}</span>
                     <span> a </span>
                     <span class="product-full-page__age-number">{{this.ageTo}}</span>
-                    <span>años</span>.</p>
+                    <span data-lang="product-age-word">años</span>.</p>
                 <div class="product-full-page__price-and-discount-order">
                     <span class="product-full-page__price-currency">$<span class="product-full-page__price-value">{{discount this.price.value this.discountPercent}}</span></span>
                     <span class="product-full-page__discount"><span class="product-full-page__discount-percent">{{this.discountPercent}}</span data-lang="product-discount">% DTO</span>
                 </div>
                 <span class="product-full-page__latest-price-currency">{{this.price.currency}} $<span class="product-full-page__latest-price">{{this.price.value}}</span></span>
                 <span class="product-full-page__stock">Stock
-                    <span class="product-full-page__stock-value">{{this.stock}}</span>
-                    unidades.</span>
+                    <span class="product-full-page__stock-value">{{this.stock}}</span> <span data-lang="product-stock">unidades.</span>
+                    </span>
 
                 <div class="product-full-page__qty-and-buy-container">
                     <div class="product-full-page__qty-selector">
@@ -45,9 +45,9 @@
                 </div>
             </div>
         </div>
-        <h2 class="product-full-page__title-description">Descripción</h2>
+        <h2 class="product-full-page__title-description" data-lang="product-product-description" >Descripción</h2>
         <p class="product-full-page__long-description">{{{this.longDescription}}}</p>
     {{/each}}
 {{else}}
-    <h2>Error al visualizar el producto.</h2>
+    <h2 data-lang="product-error-in-product">Error al visualizar el producto.</h2>
 {{/if}}

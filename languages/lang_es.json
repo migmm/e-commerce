@@ -232,7 +232,13 @@
     },
     "product": {
         "discount": "% DTO",
-        "add-to-cart": "Agregar al carrito"
+        "add-to-cart": "Agregar al carrito",
+        "stock": "unidades.",
+        "age": "Edad recomendada de",
+        "age-word": "años",
+        "product-description": "DESCRIPCIÓN",
+        "related-products": "PRODUCTOS RELACIONADOS",
+        "error-in-product": "Error en el producto"
     },
     "products": {
         "title-order": "ORDENAR",

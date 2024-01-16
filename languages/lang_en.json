@@ -229,8 +229,14 @@
         "not-account": "Don't have an account. Want to sign up?"
     },
     "product": {
-        "discount":"% DISC",
-        "add-to-cart":"Add to cart"
+        "discount": "% DISC",
+        "add-to-cart": "Add to cart",
+        "stock": "units.",
+        "age": "Recommended age from",
+        "age-word": "years",
+        "product-description": "PRODUCT DESCRIPTION",
+        "related-products": "RELATED PRODUCTS",
+        "error-in-product": "Product error"
     },
     "products": {
         "title-order": "ORDER",
