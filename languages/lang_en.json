@@ -31,7 +31,7 @@
     },
     "favs": {
         "view-all": "View all",
-        "not-have-favs": "You don't have favourite products",
+        "preview-empty-favs": "You don't have favourite products",
         "freeship": "Free shipping",
         "product-unavailable": "Product unavailable",
         "last-units": "Last units"
