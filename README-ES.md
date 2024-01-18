@@ -59,6 +59,9 @@ Para el backend se utilizó:
     - Autenticacion y roles
     - Texto con saltos de linea en la descripcion del producto
     - Cálculo de precios basado en la cotizacion de una API externa
+    - Paginación de productos con opciones de vendor, date, product name entre otros
+    - También se puede seleccionar la cantidad de productos por página
+    - Password reset via link
 
 ### Rutas API
 

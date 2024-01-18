@@ -51,7 +51,7 @@ In Backend I used:
 ### FEATURES
 
     - Responsive design
-    - Objects stored in a WAS bucket
+    - Objects stored in a AWS bucket
     - Login limiter
     - OTP code generator
     - Multi language web and products
@@ -59,6 +59,9 @@ In Backend I used:
     - Authentication and roles
     - Text with break lines in product description
     - Price calculation based on an external price API
+    - Product list pagination and many options to get like vendor, date, product name and many others
+    - Also you can choose product quantity per page
+    - Password reset via link
 
 ### API ROUTES
 
