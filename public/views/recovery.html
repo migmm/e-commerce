@@ -3,22 +3,25 @@
         <div class="reset-form__heading">
             <h1 class="reset-form__heading__title" data-lang="recovery-title">Reestablecer contraseña</h1>
         </div>
-        <form action="/api/reset/token" autocomplete="off" method="post" id="form-reset">
-            <div class="reset-form__container">
-                <p data-lang="recovery-text">Ingrese su e-mail y, en caso de que exista en la base de datos, le
-                    enviaremos un email con las instrucciones para reestablecer su contraseña.</p>
-                <div class="input-group__form-group">
-                    <label for="email" class="input-group__label" data-lang="recovery-email-label">Email</label>
-                    <input type="text" id="email" name="email" class="input-group__input">
-                    <span class="input-group__error" data-lang="recovery-error-message">ERROR! Ingrese un email
-                        válido.</span>
+        <div class="form-container">
+            <form action="/api/reset/token" autocomplete="off" method="post" id="form-reset">
+                <div class="reset-form__container">
+                    <p data-lang="recovery-text">Ingrese su e-mail y, en caso de que exista en la base de datos, le
+                        enviaremos un email con las instrucciones para reestablecer su contraseña.</p>
+                    <div class="input-group__form-group">
+                        <label for="email" class="input-group__label" data-lang="recovery-email-label">Email</label>
+                        <input type="text" id="email" name="email" class="input-group__input">
+                        <span class="input-group__error" data-lang="recovery-error-message">ERROR! Ingrese un email
+                            válido.</span>
+                    </div>
                 </div>
-            </div>
-            <span class="input-group__error-form" data-lang="recovery-mail-does-not-exist">Error! Verifique los campos
-                marcados!</span>
-            <div class="input-group__buttons">
-                <button type="submit" data-lang="recovery-send">Enviar</button>
-            </div>
-        </form>
+                <span class="input-group__error-form" data-lang="recovery-mail-does-not-exist">Error! Verifique los
+                    campos
+                    marcados!</span>
+                <div class="input-group__buttons">
+                    <button type="submit" data-lang="recovery-send">Enviar</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
