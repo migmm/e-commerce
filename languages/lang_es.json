@@ -221,14 +221,13 @@
     },
     "reset-password": {
         "title": "Resetear contraseña",
+        "text": "Ingrese su nueva contraseña y haga click en el botón enviar. La contraseña debe tener como mínimo 8 caracteres y debe contener letras y numeros.",
         "new-password": "Nueva contraseña",
         "error-password": "ERROR! Ingrese una contraseña válida.",
         "re-password": "Repetir contraseña",
         "re-password-error": "ERROR! Ingrese una contraseña válida.",
-        "general-error": "Error! Verifique los campos marcados!",
-        "send": "Enviar",
-        "forgot-pass": "¿Olvidaste tu contraseña?",
-        "not-account": "No tenes cuenta. ¿Deseas registrarte?"
+        "invalid-token": "ERROR! Token inválido o expirado.",
+        "send": "Enviar"
     },
     "product": {
         "discount": "% DTO",

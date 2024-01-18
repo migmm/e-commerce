@@ -219,14 +219,13 @@
     },
     "reset-password": {
         "title": "Reset Password",
+        "text": "Insert your new password and click in send button. Password must be at least 8 character and must contain numbers and letters.",
         "new-password": "New Password",
         "error-password": "ERROR! Please enter a valid password.",
         "re-password": "Repeat Password",
         "re-password-error": "ERROR! Please enter a valid password.",
-        "general-error": "Error! Please check the marked fields!",
-        "send": "Send",
-        "forgot-pass": "Forgot your password?",
-        "not-account": "Don't have an account. Want to sign up?"
+        "invalid-token": "ERROR! Invalid or expired token.",
+        "send": "Send"
     },
     "product": {
         "discount": "% DISC",
