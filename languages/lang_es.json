@@ -227,7 +227,9 @@
         "re-password": "Repetir contraseña",
         "re-password-error": "ERROR! Ingrese una contraseña válida.",
         "invalid-token": "ERROR! Token inválido o expirado.",
-        "send": "Enviar"
+        "send": "Enviar",
+        "login": "Iniciar sesión",
+        "updated-message": "Se actualizó su contraseña. Inicie sesión para continuar."
     },
     "recovery": {
         "title": "Reestablecer contraseña",

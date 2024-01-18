@@ -225,7 +225,9 @@
         "re-password": "Repeat Password",
         "re-password-error": "ERROR! Please enter a valid password.",
         "invalid-token": "ERROR! Invalid or expired token.",
-        "send": "Send"
+        "send": "Send",
+        "login": "Login",
+        "updated-message": "Your password has been updated. Please log in to continue."
     },
     "recovery": {
         "title": "Password recovery",
