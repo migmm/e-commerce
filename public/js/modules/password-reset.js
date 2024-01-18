@@ -3,6 +3,7 @@ import goTopOnLoad from '../utils/goTopOnLoad.js';
 import getIdFromHash from '../utils/getIdFromHash.js';
 import fetchLanguageData from '../utils/langFunctions.js';
 import recoveryController from '../controllers/recovery.js';
+import render from '/js/utils/render.js';
 
 
 class PageForgotPass {
@@ -79,16 +80,15 @@ class PageForgotPass {
             if (this.validateForm()) {
 
                 const data = {
-                    password: PageForgotPass.fields.find(field => field.name === 'password').value
+                    newPassword: PageForgotPass.fields.find(field => field.name === 'password').value
                 };
 
                 const mode = 'json';
+
                 const login = await recoveryController.sendNewPassword(data, this.token, mode);
                 console.log(login)
                 if (login.status === 200) {
-                    localStorage.setItem('logged', 'true');
-                    window.location.href = '/#/inicio';
-                    location.reload();
+                    await render.renderTemplateCards('', 'templates/password-sended.hbs', '.form-container');
                     return;
                 }
 
@@ -99,7 +99,7 @@ class PageForgotPass {
         });
     }
 
-    static async init () {
+    static async init() {
         this.token = await getIdFromHash(2);
         console.log(this.token)
         goTopOnLoad.goToTopOnLoad();
