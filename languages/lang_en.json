@@ -227,6 +227,14 @@
         "invalid-token": "ERROR! Invalid or expired token.",
         "send": "Send"
     },
+    "recovery": {
+        "title": "Password recovery",
+        "text": "Please enter your email, and if it exists in the database, we will send you an email with instructions to reset your password.",
+        "email-label": "Email",
+        "error-message": "ERROR! Insert a valid email.",
+        "mail-does-not-exist": "ERROR! Email does not exist in the database.",
+        "send": "Send"
+    },
     "product": {
         "discount": "% DISC",
         "add-to-cart": "Add to cart",

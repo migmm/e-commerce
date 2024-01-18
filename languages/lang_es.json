@@ -229,6 +229,14 @@
         "invalid-token": "ERROR! Token inválido o expirado.",
         "send": "Enviar"
     },
+    "recovery": {
+        "title": "Reestablecer contraseña",
+        "text": "Ingrese su e-mail y, en caso de que exista en la base de datos, le enviaremos un email con las instrucciones para reestablecer su contraseña.",
+        "email-label": "Email",
+        "error-message": "ERROR! Ingrese un email válido.",
+        "mail-does-not-exist": "ERROR! Verifique los campos marcados!",
+        "send": "Enviar"
+    },
     "product": {
         "discount": "% DTO",
         "add-to-cart": "Agregar al carrito",
