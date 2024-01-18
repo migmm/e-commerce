@@ -10,9 +10,9 @@ class RecoveryService {
         return passwordRecovery;
     }
 
-    async newPassword(password, token, mode) {
-        const newPassword = await http.post(this.URL_SEND_PASSWORD + `/${token}`, password, mode);
-        return newPassword;
+    async sendNewPassword(newPassword, token, mode) {
+        const sendNewPassword = await http.post(this.URL_SEND_PASSWORD + `/${token}`, newPassword, mode);
+        return sendNewPassword;
     }
 }
 

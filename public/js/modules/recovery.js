@@ -1,7 +1,7 @@
 import cartController from '/js/modules/cart.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
 import fetchLanguageData from '../utils/langFunctions.js'
-import recoverycontroller from '../controllers/recovery.js';
+import recoveryController from '../controllers/recovery.js';
 
 
 class PageRecovery {
@@ -14,51 +14,59 @@ class PageRecovery {
     };
 
     static emptyForm() {
-        PageContacto.fields.forEach(field => field.value = '');
+        PageRecovery.fields.forEach(field => field.value = '');
     }
 
     static validate(value, validator) {
         return validator.test(value);
     }
 
-    static validateForm() {
-        let allValidated = true;
-        const formToSend = {};
-        console.log('\n\n');
-        const msgGlobalError = document.getElementsByClassName('input-group__error-form')[0];
+static validateForm() {
+    let allValidated = true;
+    const formToSend = {};
+    console.log('\n\n');
+    const msgGlobalError = document.getElementsByClassName('input-group__error-form')[0];
 
-        for (const field of this.fields) {
-            const validated = this.validate(field.value, this.validators[field.name]);
-            console.log(field.name, validated);
+    for (const field of this.fields) {
+        let validated = false;
 
-            let errorField = document.getElementsByName(field.name)[0];
-            let ancest = errorField.closest(".input-group__form-group");
-            let spanElement = ancest.querySelector('span:last-child');
-
-            if (!validated) {
-                errorField.classList.remove("input-group__input--ok");
-                errorField.classList.add("input-group__input--error");
-                spanElement.style.visibility = 'visible';
-
-                allValidated = false;
-                break;
-
-            } else {
-                formToSend[field.name] = field.value;
-
-                errorField.classList.remove("input-group__input--error");
-                errorField.classList.add("input-group__input--ok");
-                spanElement.style.visibility = 'hidden';
-            }
+        if (field.name === 'repassword') {
+            const passwordField = this.fields.find(f => f.name === 'password');
+            validated = field.value === passwordField.value;
+        } else {
+            validated = this.validate(field.value, this.validators[field.name]);
         }
 
-        console.log('allValidated:', allValidated);
-        if (!allValidated) {
-            msgGlobalError.classList.add("input-group__error--show");
-            return false;
+        console.log(field.name, validated);
+
+        let errorField = document.getElementsByName(field.name)[0];
+        let ancest = errorField.closest(".input-group__form-group");
+        let spanElement = ancest.querySelector('span:last-child');
+
+        if (!validated) {
+            errorField.classList.remove("input-group__input--ok");
+            errorField.classList.add("input-group__input--error");
+            spanElement.style.visibility = 'visible';
+
+            allValidated = false;
+        } else {
+            formToSend[field.name] = field.value;
+
+            errorField.classList.remove("input-group__input--error");
+            errorField.classList.add("input-group__input--ok");
+            spanElement.style.visibility = 'hidden';
         }
-        return formToSend;
     }
+
+    console.log('allValidated:', allValidated);
+    if (!allValidated) {
+        msgGlobalError.classList.add("input-group__error--show");
+        return false;
+    }
+    return formToSend;
+}
+
+    
 
     static async addFormEvents() {
 
@@ -73,12 +81,12 @@ class PageRecovery {
                 });
 
                 const mode = 'json';
-                const login = await recoverycontroller.passwordRecovery(data, mode);
+                const login = await recoveryController.passwordRecovery(data, mode);
 
                 if (login.status === 200) {
                     localStorage.setItem('logged', 'true');
-                    window.location.href = '/#/inicio';
-                    location.reload();
+                    //window.location.href = '/#/inicio';
+                    //location.reload();
                     return;
                 }
 
@@ -88,7 +96,6 @@ class PageRecovery {
             }
         });
     }
-
 
     static async init () {
         goTopOnLoad.goToTopOnLoad();

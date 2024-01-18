@@ -1,6 +1,6 @@
-import recoveryService from '../services/recoveryService.js';
+import recoveryService from '../services/recovery.js';
 
-class Recoverycontroller {
+class RecoveryController {
 
     async passwordRecovery(email, mode) {
         try {
@@ -13,9 +13,9 @@ class Recoverycontroller {
         }
     }
 
-    async newPassword(password, token, mode) {
+    async sendNewPassword(password, token, mode) {
         try {
-            const newPassword = await recoveryService.newPassword(password, token, mode);
+            const newPassword = await recoveryService.sendNewPassword(password, token, mode);
             return newPassword;
         } catch (error) {
             console.error('Error al realizar el postLogin:', error.message);
@@ -25,5 +25,5 @@ class Recoverycontroller {
     }
 }
 
-const recoverycontroller = new Recoverycontroller();
-export default recoverycontroller;
+const recoveryController = new RecoveryController();
+export default recoveryController;
