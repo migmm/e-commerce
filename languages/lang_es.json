@@ -237,7 +237,9 @@
         "email-label": "Email",
         "error-message": "ERROR! Ingrese un email válido.",
         "mail-does-not-exist": "ERROR! Verifique los campos marcados!",
-        "send": "Enviar"
+        "send": "Enviar",
+        "resend-message": "Se ha enviado al mail proporcionado las instrucciones para reestablecer su contraseña. este tiene validez de 1 hora. si desea enviar nuevamente las instrucciones presione en el botón reenviar.",
+        "resend-button": "Reenviar instrucciones"
     },
     "product": {
         "discount": "% DTO",

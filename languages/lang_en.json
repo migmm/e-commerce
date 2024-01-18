@@ -235,7 +235,9 @@
         "email-label": "Email",
         "error-message": "ERROR! Insert a valid email.",
         "mail-does-not-exist": "ERROR! Email does not exist in the database.",
-        "send": "Send"
+        "send": "Send",
+        "resend-message": "The instructions to reset your password have been sent to the provided email. This link is valid for 1 hour. If you wish to resend the instructions, press the resend button.",
+        "resend-button": "Resend instructions"
     },
     "product": {
         "discount": "% DISC",
