@@ -8,6 +8,7 @@ import ModuleFavs from './modules/favs.js';
 import productController from './controllers/product.js';
 
 import authManager from './utils/authManager.js';
+import navigationManager from './utils/navigationManager.js';
 
 
 class Main {
@@ -16,49 +17,6 @@ class Main {
 
     async ajax(url, method = 'get') {
         return await fetch(url, { method: method }).then(r => r.text());
-    }
-
-    getIdFromHash() {
-
-        // Remove #
-        let hashFromURL = location.hash.slice(1);
-        let id = 404;
-
-        // Check if / exist at beginning, if exist remove
-        if (!hashFromURL[0] === '/') {
-            return 404
-        }
-
-        hashFromURL = hashFromURL.slice(1);
-
-        // Check if / exist at the end of first value, if exist remove 
-        if (hashFromURL[hashFromURL.length - 1] === '/') {
-            hashFromURL = hashFromURL.slice(0, 6);
-        }
-
-        hashFromURL = hashFromURL.split('/');
-
-        if (hashFromURL.length > 2) {
-            return 404
-        }
-
-        hashFromURL = hashFromURL[0] || 'inicio';
-
-        for (let i = 0; i < this.links.length; ++i) {
-            if (this.links[i].getAttribute('href') === `#/${hashFromURL}`) {
-                id = hashFromURL;
-                break;
-            }
-        }
-        return id;
-    }
-
-    getViewUrlFromId(id) {
-        return `views/${id}.html`;
-    }
-
-    getModuleUrlFromId(id) {
-        return `./modules/${id}.js`;
     }
 
     setActiveLink(id) {
@@ -78,7 +36,7 @@ class Main {
     }
 
     async initJS(id) {
-        const moduleUrl = this.getModuleUrlFromId(id);
+        const moduleUrl = navigationManager.getModuleUrlFromId(id);
         try {
             const { default: module } = await import(moduleUrl);
             if (typeof module.init !== 'function') {
@@ -93,8 +51,8 @@ class Main {
 
     async loadTemplate() {
         this.links = document.querySelectorAll('.main-nav__link');
-        const id = this.getIdFromHash();
-        const viewUrl = this.getViewUrlFromId(id);
+        const id = navigationManager.getIdFromHash();
+        const viewUrl = navigationManager.getViewUrlFromId(id);
         const viewContent = await this.ajax(viewUrl);
         document.querySelector('main').innerHTML = viewContent;
 
@@ -185,7 +143,6 @@ class Main {
         })
     }
 
-    
     async start() {
 
         // register ALL helpers at start
