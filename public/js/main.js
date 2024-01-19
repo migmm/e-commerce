@@ -210,7 +210,7 @@ class Main {
                 return;
             }
 
-            if (login.status === 200) {
+            if (login.status === 201) {
 
                 if (decodedToken.role === "user") {
                     var menu = document.querySelector('.login-button-menu');
