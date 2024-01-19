@@ -8,7 +8,6 @@ import heartButton from '../utils/heartButton.js';
 import getIdFromHash from '../utils/getIdFromHash.js';
 import { indexQueries, fetchAndRenderProducts, queryFunction } from '../utils/fetchAndRenderProducts.js';
 
-
 class PageProducto {
 
     static async optionsFunctions() {
@@ -74,13 +73,13 @@ class PageProducto {
         await cartController.init();
         const productURL = await getIdFromHash(2);
 
-        let query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=urlName&value=${productURL}`;
-        const product = await productController.getProducts(currentLang, query);
-        await render.renderTemplateCards(product.products, 'templates/producto.hbs', '.full-product-page');
+        const queryProduct = await queryFunction('urlName', productURL)
+        const product = await fetchAndRenderProducts(queryProduct, '.full-product-page', 'templates/producto.hbs');
 
-        query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=category&value=${product.products[0].category}`;
-        const relatedProducts = await productController.getProducts(currentLang, query);
-        await render.renderTemplateCards(relatedProducts.products, '../../templates/card-row.hbs', '.more-of-this-product');
+        const queryRelatedProducts = await queryFunction('category', product.products[0].category)
+        const relatedProducts = await fetchAndRenderProducts(queryRelatedProducts, '.more-of-this-product', 'templates/card-row.hbs');
+        
+        //this.generatePageLinks(products);
 
         await fetchLanguageData.fetchLanguageData();
         cardSliders.cardSlider();
