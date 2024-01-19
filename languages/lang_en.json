@@ -8,8 +8,8 @@
         "hamburger-button-title": "View Menu"
     },
     "user-button": {
-        "signin": "Sign in",
-        "signup": "Sign Up"
+        "signin": "Log in",
+        "signup": "Register"
     },
     "navbar": {
         "home": "Home",
