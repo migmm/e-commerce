@@ -50,7 +50,7 @@ class PageLogin {
         const login = await authController.refreshToken();
 
         if (storedLogin === 'true' &&
-            login.status === 200)
+            login.status === 201)
             window.location.href = '/#/inicio';
     }
 

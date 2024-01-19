@@ -99,7 +99,7 @@ const refreshToken = (req, res) => {
 
                 await apiUsers.updateUser(id, userData);
 
-                res.status(201).json({ token: accessToken })
+                res.status(201).json({ refreshToken: accessToken })
             }
         )
 
