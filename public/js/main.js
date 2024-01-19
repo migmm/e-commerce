@@ -3,14 +3,16 @@ import render from '/js/utils/render.js';
 import hbsHelpers from './utils/hb-templates.js';
 import fetchLanguageData from './utils/langFunctions.js';
 import currencySet from './utils/currencies.js';
-import authController from './controllers/auth.js';
+
 import ModuleFavs from './modules/favs.js';
 import productController from './controllers/product.js';
+
+import authManager from './utils/authManager.js';
 
 
 class Main {
 
-    static links
+    static links;
 
     async ajax(url, method = 'get') {
         return await fetch(url, { method: method }).then(r => r.text());
@@ -183,79 +185,7 @@ class Main {
         })
     }
 
-    static decodeJWT(token) {
-        if(token) {
-            const base64Url = token.split('.')[1];
-            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-            const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
-                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-            }).join(''));
-            return JSON.parse(jsonPayload);
-        }
-    }
-
-    static async refreshAccessToken() {
-        //const refreshToken = getCookieValue('refreshToken');
-
-        try {
-            const login = await authController.refreshToken();
-            const decodedToken = Main.decodeJWT(login.responseData.refreshToken);
-
-            if (login.status === 401) {
-                window.location.href = '/#/login';
-                return;
-            }
-
-            if (login.status === 201) {
-
-                if (decodedToken.role === "user") {
-                    var menu = document.querySelector('.login-button-menu');
-                    menu.innerHTML = `
-                    <a href="#/profile" class="panel-button-menu__panel-button"
-                        data-lang="signin">USER</a>
-                        <a href="#/logout" class="logout-button-menu__logout-button"
-                        data-lang="logout">Salir
-                    </a>
-                    `;
-                }
-
-                if (decodedToken.role === "admin") {
-                    var menu = document.querySelector('.login-button-menu');
-                    menu.innerHTML = `
-                        <a href="#/profile" class="panel-button-menu__panel-button"
-                            data--lang="nav-bar-admin-button">ADMIN</a>
-                            <a href="#/logout" class="logout-button-menu__logout-button"
-                            data-lang="nav-bar-logout-button">Salir
-                        </a>
-                        `;
-                }
-            }
-
-        } catch (error) {
-            console.error('Error during refresh token:', error);
-        }
-    }
-
-    getLogoutButton() {
-        const logoutButton = document.getElementsByClassName('logout-button-menu__logout-button')[0];
-
-        if (logoutButton) {
-            logoutButton.addEventListener('click', e => {
-                e.preventDefault();
-                Main.logout();
-            });
-        }
-    }
-
-    static async logout() {
-
-        const logout = await authController.logout();
-
-        if (logout.status === 204) {
-            window.location.href = '/#/login';
-        }
-    }
-
+    
     async start() {
 
         // register ALL helpers at start
@@ -266,10 +196,10 @@ class Main {
         this.commonEvents();
         ModuleCart.cartFunctions();
 
-        await Main.refreshAccessToken();
+        await authManager.refreshAccessToken();
 
         //Check this [Object: null prototype] {}
-        this.getLogoutButton()
+        authManager.getLogoutButton()
 
         ModuleFavs.favsFunctions();
 
