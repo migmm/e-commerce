@@ -244,9 +244,7 @@ class Main {
         const logoutButton = document.getElementsByClassName('logout-button-menu__logout-button')[0];
 
         if (logoutButton) {
-            console.log("sdd")
             logoutButton.addEventListener('click', e => {
-                console.log("sdd")
                 e.preventDefault();
                 Main.logout();
             });
@@ -254,10 +252,10 @@ class Main {
     }
 
     static async logout() {
-        console.log("ing")
+
         const logout = await authController.logout();
-        console.log(logout)
-        if (logout.status === 200) {
+
+        if (logout.status === 204) {
             window.location.href = '/#/login';
         }
     }

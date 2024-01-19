@@ -21,28 +21,32 @@ class Http {
         try {
             const headers = mode === 'json' ? { 'content-type': 'application/json' } : undefined;
             const body = mode === 'json' ? JSON.stringify(data) : data;
-    
+
             const response = await fetch(url, {
                 method: 'post',
                 body: body,
                 headers: headers,
             });
-    
-            const responseData = await response.json();
-    
+
             if (!response.ok) {
                 const errorCode = response.status;
-                const errorMessage = responseData.message || response.statusText;
+                const errorMessage = response.statusText;
                 throw { status: errorCode, message: errorMessage, responseData: null };
             }
-    
+
+            // Check if the response has content
+            if (response.status === 204) {
+                return { status: response.status, responseData: null };
+            }
+
+            // If not a 204 response, parse as JSON
+            const responseData = await response.json();
             return { status: response.status, responseData: responseData };
         } catch (error) {
-            /*  console.error('ERROR POST', error); */
+            console.error('ERROR POST', error);
             throw error;
         }
     }
-    
 
     /* PUT */
     async put(url, id, data, mode) {
