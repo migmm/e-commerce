@@ -57,9 +57,7 @@ const login = async (req, res) => {
 
         await apiUsers.updateUser(id, userData);
 
-        return res.cookie('jwt', refreshToken, cookieOptions).status(201).json({ accessToken })
-            .status(200)
-            .json({ message: 'User sucessfully logged in' });
+        return res.cookie('jwt', refreshToken, cookieOptions).status(201).json({ accessToken });
 
     } catch (error) {
         console.log(error)
