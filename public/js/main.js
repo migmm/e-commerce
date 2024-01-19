@@ -199,11 +199,7 @@ class Main {
 
         try {
             const login = await authController.refreshToken();
-            console.log("Login token", login.responseData.refreshToken)
-
             const decodedToken = Main.decodeJWT(login.responseData.refreshToken);
-            console.log('Username:', decodedToken.username);
-            console.log('Role:', decodedToken.role);
 
             if (login.status === 401) {
                 window.location.href = '/#/login';
