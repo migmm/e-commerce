@@ -89,6 +89,7 @@ class PageForgotPass {
 
                 if (login.status === 200) {
                     await render.renderTemplateCards('', 'templates/password-sended.hbs', '.form-container');
+                    await fetchLanguageData.fetchLanguageData();
                     return;
                 }
 

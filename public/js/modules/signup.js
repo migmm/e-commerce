@@ -35,6 +35,7 @@ class PageSignup {
 
                 if (signup.status === 201) {
                     await render.renderTemplateCards('', 'templates/signup-message.hbs', '.signup-container');
+                    await fetchLanguageData.fetchLanguageData();
                     return;
                 }
 

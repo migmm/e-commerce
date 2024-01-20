@@ -84,6 +84,7 @@ class PageRecovery {
 
                 if (login.status === 200) {
                     await render.renderTemplateCards('', 'templates/recovery-sended.hbs', '.form-container');
+                    await fetchLanguageData.fetchLanguageData();
                     this.getResendButton()
                     return;
                 }
