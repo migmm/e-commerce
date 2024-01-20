@@ -86,7 +86,7 @@ class PageForgotPass {
                 const mode = 'json';
 
                 const login = await recoveryController.sendNewPassword(data, this.token, mode);
-                console.log(login)
+
                 if (login.status === 200) {
                     await render.renderTemplateCards('', 'templates/password-sended.hbs', '.form-container');
                     return;
@@ -101,7 +101,11 @@ class PageForgotPass {
 
     static async init() {
         this.token = await getIdFromHash(2);
-        console.log(this.token)
+
+        if (!this.token) {
+            window.location.href = '/#/login';
+        }
+
         goTopOnLoad.goToTopOnLoad();
         document.getElementById('password').focus();
         this.form = document.getElementById('form-reset');
