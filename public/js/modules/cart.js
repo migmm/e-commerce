@@ -107,8 +107,9 @@ class ModuleCart {
 
     static async addItemToCart(id) {
         const currentLang = localStorage.getItem('langSelection') || 'en';
+        const currency = localStorage.getItem('currency') || 'usd';
     
-        let query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=_id&value=${id}`;
+        let query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=_id&value=${id}&currency=${currency}`;
         const product = await productController.getProducts(currentLang, query);
     
         const existingCartItem = this.cart.find(item => item.id === id); 
@@ -170,8 +171,8 @@ class ModuleCart {
     
         for (const item of cart) {
             const qty = parseInt(item.qty, 10);
-            const price = parseFloat(item.price);
-            console.log(qty, price)
+            const price = parseFloat(item.price.value);
+            console.log("qty price", qty, price)
     
             if (!isNaN(qty) && !isNaN(price)) {
                 totalPrice += qty * price;

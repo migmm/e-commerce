@@ -14,10 +14,10 @@
                 </div>
             </div>
             <div class="card-checkout-preview__price">
-                <span class="card-checkout-preview__price__price-currency"><span>Precio: $</span ><span class="card-checkout-preview__price__price-value">{{discount this.price this.discountPercent}}</span>
+                <span class="card-checkout-preview__price__price-currency"><span>Precio: $</span ><span class="card-checkout-preview__price__price-value">{{discount this.price.value this.discountPercent}}</span>
                 </span>
                 <span class="card-checkout-preview__price__sub-price-currency"><span>Precio: $</span> <span class="card-checkout-preview__price__price-subtotal"
-                    >{{finalPrice this.price this.discountPercent this.qty}}</span>
+                    >{{finalPrice this.price.value this.discountPercent this.qty}}</span>
                 </span>
             </div>
             <i class="fa fa-trash-o" aria-hidden="true" data-id="{{this.id}}"></i>
