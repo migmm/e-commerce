@@ -119,6 +119,7 @@ class ModuleCart {
                 existingCartItem.qty++;
 
                 localStorage.setItem('cart', JSON.stringify(this.cart));
+                toastComponent.toastNotification('toast-added-to-cart', 'success', '#0FB681', 'center');
             } else {
                 toastComponent.toastNotification('toast-error-stock-exceeded', 'error', '#FF0000', 'center');
             }
@@ -140,6 +141,7 @@ class ModuleCart {
             this.cart.push(cartItem);
     
             localStorage.setItem('cart', JSON.stringify(this.cart));
+            toastComponent.toastNotification('toast-added-to-cart', 'success', '#0FB681', 'center');
         } else {
             toastComponent.toastNotification('toast-error-added-to-cart', 'error', '#FF0000', 'center');
         }

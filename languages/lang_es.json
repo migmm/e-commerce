@@ -58,7 +58,8 @@
     "toast": {
         "added-to-cart": "Producto agregado al carrito",
         "removed-from-cart": "Producto eliminado del carrito",
-        "cart-updated": "Carrito actualizado"
+        "error-stock-exceeded": "Error, maximo de productos disponibles agregados.",
+        "error-added-to-cart": "Error al agregar el producto."
     },
     "footer": {
         "header-logo-alt": "Toystore logo",
