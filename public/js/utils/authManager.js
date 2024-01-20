@@ -17,7 +17,7 @@ class AuthManager {
         try {
             const login = await authController.refreshToken();
             if (login.status === 401) {
-                window.location.href = '/#/login';
+                //window.location.href = '/#/login';
                 return;
             }
 
