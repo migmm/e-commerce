@@ -3,43 +3,53 @@
         <div class="create-account__heading">
             <h1 class="create-account__heading__title" data-lang="signup-title">Registrate</h1>
         </div>
-        <form action="/api/users" autocomplete="off" method="post" id="form-login">
-            <div class="login-form__container">
-                <div class="input-group__form-group">
-                    <label for="email" class="input-group__label" data-lang="signup-email">E-mail</label>
-                    <input type="text" id="email" name="email" class="input-group__input">
-                    <span class="input-group__error" data-lang="signup-email-error">ERROR! Ingrese un e-mail válido.</span>
-                </div>
-                <div class="input-group__form-group">
-                    <label for="reemail" class="input-group__label" data-lang="signup-re-email">Repetir E-mail</label>
-                    <input type="text" id="reemail" name="reemail" class="input-group__input">
-                    <span class="input-group__error" data-lang="signup-re-email-error">ERROR! Ingrese un e-mail válido.</span>
-                </div>
-                <div class="input-group__form-group">
-                    <label for="username" class="input-group__label" data-lang="signup-user">Usuario</label>
-                    <input type="text" id="username" name="username" class="input-group__input">
-                    <span class="input-group__error" data-lang="signup-user-error">ERROR! Ingrese un e-mail válido.</span>
-                </div>
-                <div class="input-group__form-group">
-                    <label for="password" class="input-group__label" data-lang="signup-password">Contraseña</label>
-                    <input type="text" id="password" name="password" class="input-group__input">
-                    <span class="input-group__error" data-lang="signup-password-error">ERROR! Ingrese una contraseña.</span>
-                </div>
-                <div class="input-group__form-group">
-                    <label for="repassword" class="input-group__label" data-lang="signup-re-password">Repetir contraseña</label>
-                    <input type="text" id="repassword" name="repassword" class="input-group__input">
-                    <span class="input-group__error" data-lang="signup-re-password-error">ERROR! Ingrese una contraseña.</span>
-                </div>
-            <div class="input-group__form-group account">
-                <span class="login-form__register"><span data-lang="signup-have-account">Tenes cuenta.</span> 
-                <a href="#/login" class="login-form__register__link" data-lang="signup-want-login">¿Deseas ingresar?</a>
-            </span>
+        <div class="signup-container">
+            <form action="/api/users" autocomplete="off" method="post" id="form-login">
+                <div class="login-form__container">
+                    <div class="input-group__form-group">
+                        <label for="email" class="input-group__label" data-lang="signup-email">E-mail</label>
+                        <input type="text" id="email" name="email" class="input-group__input">
+                        <span class="input-group__error" data-lang="signup-email-error">ERROR! Ingrese un e-mail
+                            válido.</span>
+                    </div>
+                    <div class="input-group__form-group">
+                        <label for="reemail" class="input-group__label" data-lang="signup-re-email">Repetir
+                            E-mail</label>
+                        <input type="text" id="reemail" name="reemail" class="input-group__input">
+                        <span class="input-group__error" data-lang="signup-re-email-error">ERROR! Ingrese un e-mail
+                            válido.</span>
+                    </div>
+                    <div class="input-group__form-group">
+                        <label for="username" class="input-group__label" data-lang="signup-user">Usuario</label>
+                        <input type="text" id="username" name="username" class="input-group__input">
+                        <span class="input-group__error" data-lang="signup-user-error">ERROR! Ingrese un e-mail
+                            válido.</span>
+                    </div>
+                    <div class="input-group__form-group">
+                        <label for="password" class="input-group__label" data-lang="signup-password">Contraseña</label>
+                        <input type="text" id="password" name="password" class="input-group__input">
+                        <span class="input-group__error" data-lang="signup-password-error">ERROR! Ingrese una
+                            contraseña.</span>
+                    </div>
+                    <div class="input-group__form-group">
+                        <label for="repassword" class="input-group__label" data-lang="signup-re-password">Repetir
+                            contraseña</label>
+                        <input type="text" id="repassword" name="repassword" class="input-group__input">
+                        <span class="input-group__error" data-lang="signup-re-password-error">ERROR! Ingrese una
+                            contraseña.</span>
+                    </div>
+                    <div class="input-group__form-group account">
+                        <span class="login-form__register"><span data-lang="signup-have-account">Tenes cuenta.</span>
+                            <a href="#/login" class="login-form__register__link" data-lang="signup-want-login">¿Deseas
+                                ingresar?</a>
+                        </span>
+                    </div>
+            </form>
+            <span class="input-group__error-form" data-lang="signup-general-error">Error! Verifique los campos
+                marcados!</span>
+            <div class="input-group__buttons">
+                <button type="submit" data-lang="signup-signup">Registrarte</button>
             </div>
-        </form>
-        <span class="input-group__error-form" data-lang="signup-general-error">Error! Verifique los campos marcados!</span>
-        <div class="input-group__buttons">
-            <button type="submit" data-lang="signup-signup">Registrarte</button> 
-
         </div>
     </div>
 </div>

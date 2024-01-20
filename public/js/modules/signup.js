@@ -3,6 +3,7 @@ import goTopOnLoad from '../utils/goTopOnLoad.js';
 import authController from '../controllers/auth.js';
 import userController from '../controllers/users.js';
 import fetchLanguageData from '../utils/langFunctions.js'
+import render from '/js/utils/render.js';
 
 class PageSignup {
 
@@ -33,8 +34,7 @@ class PageSignup {
                 const signup = await this.signup(data)
 
                 if (signup.status === 201) {
-                    window.location.href = '/#/inicio';
-                    location.reload();
+                    await render.renderTemplateCards('', 'templates/signup-message.hbs', '.signup-container');
                     return;
                 }
 
