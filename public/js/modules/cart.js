@@ -146,7 +146,7 @@ class ModuleCart {
     
         const totalQuantity = this.totaCartItems(this.cart);
         console.log("totalQuantity", totalQuantity);
-/*         this.updateCart(); */
+        this.updateCart();
         await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.cart-modal__products')
     }
     
