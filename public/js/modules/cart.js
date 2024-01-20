@@ -144,20 +144,15 @@ class ModuleCart {
             toastComponent.toastNotification('toast-error-added-to-cart', 'error', '#FF0000', 'center');
         }
     
-        const totalQuantity = this.totaCartItems(this.cart);
-        console.log("totalQuantity", totalQuantity);
         this.updateCart();
         await render.renderTemplateCards(this.cart, 'templates/card-cart-preview.hbs', '.cart-modal__products')
     }
     
     static totaCartItems(cart) {
         let totalQuantity = 0;
-        console.log(cart)
 
         for (const item of cart) {
-            console.log("item.qty",item.qty)
             const qty = parseInt(item.qty, 10);
-            console.log("qty",qty)
 
             if (!isNaN(qty)) {
                 totalQuantity += qty;
@@ -172,7 +167,6 @@ class ModuleCart {
         for (const item of cart) {
             const qty = parseInt(item.qty, 10);
             const price = parseFloat(item.price.value);
-            console.log("qty price", qty, price)
     
             if (!isNaN(qty) && !isNaN(price)) {
                 totalPrice += qty * price;
