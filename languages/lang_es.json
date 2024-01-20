@@ -203,6 +203,8 @@
         "have-account": "Tenes cuenta.",
         "want-login": "¿Deseas ingresar?",
         "general-error": "Error! Verifique los campos marcados!",
+        "message": "Su cuenta ha sido creada, por favor inicie sesión para continuar.",
+        "login-button": "Iniciar sesión",
         "signup": "Registrarte"
     },
     "chekout": {

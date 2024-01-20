@@ -201,6 +201,8 @@
         "have-account": "Already have an account.",
         "want-login": "Want to log in?",
         "general-error": "Error! Please check the marked fields!",
+        "message": "You user account has been created, please login to continue.",
+        "login-button": "Login",
         "signup": "Sign Up"
     },
     "checkout": {
