@@ -25,7 +25,7 @@ const LANGUAGE_CONFIG = {
 // S3 configuration
 const s3Client = new S3({
     endpoint: process.env.AWS_ENDPOINT,
-    region: process.env.AWS_REGION,
+    region: process.env.AWS_REGION_,
     credentials: {
         accessKeyId: process.env.AWS_KEY,
         secretAccessKey: process.env.AWS_SECRET,
