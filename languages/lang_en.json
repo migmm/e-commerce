@@ -59,7 +59,10 @@
         "added-to-cart": "Product added to cart",
         "removed-from-cart": "Product removed from cart",
         "error-stock-exceeded": "Error, ou added the maximum available products to the cart.",
-        "error-added-to-cart": "Error adding the product to the cart."
+        "error-added-to-cart": "Error adding the product to the cart.",
+        "add-new-fav": "Product added to favourites.",
+        "error-added-to-favs": "Error adding product to favourite.",
+        "removed-from-favs": "Product removed from favourites."
     },
     "footer": {
         "header-logo-alt": "Toystore logo",

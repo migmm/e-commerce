@@ -1,4 +1,3 @@
-//import favsService from '../services/favs.js';
 import productController from '/js/controllers/product.js';
 import toastComponent from '/js/utils/toast.js';
 import render from '/js/utils/render.js';
@@ -68,10 +67,10 @@ class ModuleFavs {
 
             localStorage.setItem('favs', JSON.stringify(this.favs));
             this.updateFavs();
+            await toastComponent.toastNotification('toast-add-new-fav', 'success', '#0FB681', 'center');
         } else {
-            toastComponent.toastNotification('toast-error-added-to-favs', 'success', '#0FB681', 'center');
+            await toastComponent.toastNotification('toast-error-added-to-favs', 'success', '#0FB681', 'center');
         }
-
         this.updateFavs();
     }
 
@@ -80,7 +79,7 @@ class ModuleFavs {
 
         this.favs.splice(productToRemoveId, 1);
         localStorage.setItem('favs', JSON.stringify(this.favs));
-        toastComponent.toastNotification('toast-removed-from-favs', 'success', '#0FB681', 'center');
+        await toastComponent.toastNotification('toast-removed-from-favs', 'success', '#0FB681', 'center');
         this.updateFavs();
     }
 
