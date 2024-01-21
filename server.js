@@ -1,7 +1,7 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
 
-import jsonErrorHandler from './middlewares/jsonErrorHandler.js';
+import errorHandler from './middlewares/errorHandler.js';
 
 import routerProducts from './router/products.js';
 import routerCart from './router/cart.js';
@@ -27,7 +27,7 @@ app.use(express.static('public', { extensions: ['html', 'htm'] }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(jsonErrorHandler)
+app.use('*', errorHandler)
 
 app.use('/api/products', routerProducts);
 app.use('/api/cart', routerCart);
