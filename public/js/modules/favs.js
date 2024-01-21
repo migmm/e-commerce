@@ -53,25 +53,16 @@ class ModuleFavs {
 
     static async addItemToFavs(id) {
         const currentLang = localStorage.getItem('langSelection') || 'en';
+        const currency = localStorage.getItem('currency') || 'usd';
 
-        let query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=_id&value=${id}`;
+        let query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=_id&value=${id}&currency=${currency}`;
         const product = await productController.getProducts(currentLang, query);
 
         const existingProductInFavs = this.favs.find(item => item.id === id); 
         
         if (!existingProductInFavs && product) {
-            const { id, productName, images, urlName, stock, status, price, freeShip } = product.products[0];
 
-            const favProduct = {
-                id: id,
-                productName: productName,
-                image: images[0],
-                urlName: urlName,
-                status: status,
-                price: price,
-                stock: stock,
-                freeShip: freeShip
-            };
+            const favProduct = product.products[0];
 
             this.favs.push(favProduct);
 
@@ -95,11 +86,13 @@ class ModuleFavs {
 
     static async updateFavs() {
         const currentLang = localStorage.getItem('langSelection') || 'en';
+        const currency = localStorage.getItem('currency') || 'usd';
 
         for (let i = 0; i < this.favs.length; i++) {
             const favProduct = this.favs[i];
             
-            const query = `page=1&perPage=1&sortBy=addedDate&sortOrder=desc&field=_id&value=${favProduct.id}`;
+            const query = `page=1&perPage=1&sortBy=addedDate&sortOrder=desc&field=_id&value=${favProduct.id}&currency=${currency}`;
+
             const productFromDatabase = await productController.getProducts(currentLang, query);
 
             if (productFromDatabase.length > 0) {

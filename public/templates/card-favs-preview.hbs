@@ -3,12 +3,12 @@
         <a href="/#/producto/{{this.urlName}}">
             <div class="card-favs-preview">
                 <div class="card-favs-preview__image-container">
-                    <img src="{{this.image}}" alt="Producto" class="card-favs-preview__image" />
+                    <img src="{{this.images.[0]}}" alt="Producto" class="card-favs-preview__image" />
                 </div>
                 <div class="card-favs-preview__content">
                     <p class="card-favs-preview__product-name">{{this.productName}}</p>
                     <span class="card-favs-preview__price-container">
-                        <p class="card-favs-preview__price-currency">$</p>
+                        <p class="card-favs-preview__price-currency"></p>
                         <p class="card-favs-preview__price">{{this.price.currency}} ${{this.price.value}}</p>
                     </span>
                     {{#compare this.stock ">" 3}}
