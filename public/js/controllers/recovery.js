@@ -7,9 +7,8 @@ class RecoveryController {
             const passwordRecovery = await recoveryService.passwordRecovery(email, mode);
             return passwordRecovery;
         } catch (error) {
-            console.error('Error al realizar el postLogin:', error.message);
+            console.error('Error doing postLogin:', error.message);
             return error;
-            //throw error;
         }
     }
 
@@ -18,9 +17,8 @@ class RecoveryController {
             const newPassword = await recoveryService.sendNewPassword(password, token, mode);
             return newPassword;
         } catch (error) {
-            console.error('Error al realizar el postLogin:', error.message);
+            console.error('Error doing postLogin:', error.message);
             return error;
-            //throw error;
         }
     }
 }

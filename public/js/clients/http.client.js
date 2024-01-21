@@ -79,7 +79,7 @@ class Http {
         }
     }
     async del() {
-        console.error('No llamar a del(), sino a delete()!');
+        console.error('Do not call from(), call to delete()!');
     }
 }
 

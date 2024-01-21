@@ -71,5 +71,4 @@ class AuthManager {
 }
 
 const authManager = new AuthManager();
-
 export default authManager;

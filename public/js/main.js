@@ -40,12 +40,12 @@ class Main {
         try {
             const { default: module } = await import(moduleUrl);
             if (typeof module.init !== 'function') {
-                console.error(`El módulo ${id} no posee un método init().`);
+                console.error(`Module ${id} does not have init() method.`);
                 return;
             }
             module.init();
         } catch (error) {
-            console.error(`No se pudo importar el módulo ${moduleUrl}.`);
+            console.error(`Can't import module ${moduleUrl}.`);
         }
     }
 

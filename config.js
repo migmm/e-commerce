@@ -45,7 +45,7 @@ const CURRENCIES = {
         ]);
         const usdToArs = Number(data[0].venta);
         const eurToArs = Number(data[1].venta);
-        // Calcular otras tasas de cambio y redondear a 2 decimales
+
         const usdToEur = 1 / (eurToArs / usdToArs);
         const eurToUsd = 1 / usdToEur;
         return {
@@ -64,7 +64,6 @@ const CURRENCIES = {
         };
     }
 }
-
 
 //Specify allowed fields to search in database when use query with params
 const SEARCH_FIELDS = [
