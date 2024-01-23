@@ -2,6 +2,7 @@ import express from 'express';
 import productsController from '../controller/products.js';
 import upload, { handleMulterError } from '../middlewares/multer.js';
 import resizeImagesMiddleware from '../middlewares/resizeImage.js';
+import authRole from '../middlewares/authRole.js';
 
 const routerProducts = express.Router();
 
@@ -444,7 +445,7 @@ routerProducts.get('/:id/:lang', productsController.getProduct);
  *                   description: Error message.
  *                   example: 'Error creating the product'
  */
-routerProducts.post('/', upload.array('images', 10), handleMulterError, resizeImagesMiddleware, productsController.postProduct);
+routerProducts.post('/', authRole(['admin']), upload.array('images', 10), handleMulterError, resizeImagesMiddleware, productsController.postProduct);
 
 /**
  * @openapi
@@ -682,7 +683,7 @@ routerProducts.post('/', upload.array('images', 10), handleMulterError, resizeIm
  *                   description: Error message.
  *                   example: 'Error updating the product'
  */
-routerProducts.put('/:id', upload.array('images', 10), handleMulterError, resizeImagesMiddleware, productsController.putProduct);
+routerProducts.put('/:id', authRole(['admin']), upload.array('images', 10), handleMulterError, resizeImagesMiddleware, productsController.putProduct);
 
 /**
  * @openapi
@@ -713,6 +714,6 @@ routerProducts.put('/:id', upload.array('images', 10), handleMulterError, resize
  *                   description: Error message.
  *                   example: 'Error deleting the product'
  */
-routerProducts.delete('/:id', productsController.deleteProduct);
+routerProducts.delete('/:id', authRole(['admin']), productsController.deleteProduct);
 
 export default routerProducts;
