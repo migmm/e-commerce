@@ -104,8 +104,9 @@ class ModuleFavs {
     }
 
     static async init() {
-        this.favs = JSON.parse(localStorage.getItem('favs'));
-        this.updateFavs();
+        this.favs = JSON.parse(localStorage.getItem('favs')) || [];
+        console.log('this.favs:', this.favs);
+        await this.updateFavs();
     }
 }
 
