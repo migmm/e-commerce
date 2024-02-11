@@ -37,16 +37,16 @@ class ModuleFavs {
                 this.removeItemFromFavs(id);
                 return;
             }
+        });
 
-            //Close with ESC key
-            document.addEventListener('keydown', e => {
-                if (e.key == 'Escape') {
-                    if (isFavsPreviewOpen) {
-                        toggleFavs();
-                        isFavsPreviewOpen = 0;
-                    }
+        //Close with ESC key
+        document.addEventListener('keydown', e => {
+            if (e.key == 'Escape') {
+                if (isFavsPreviewOpen) {
+                    toggleFavs();
+                    isFavsPreviewOpen = 0;
                 }
-            });
+            }
         });
     }
 
