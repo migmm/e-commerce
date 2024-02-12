@@ -36,6 +36,9 @@
         "product-unavailable": "Product unavailable",
         "last-units": "Last units"
     },
+    "view-all-favs": {
+        "title": "Favourites"
+    },
     "float-buttons": {
         "contact-us": "Contact Us",
         "go-top": "Go to top"
