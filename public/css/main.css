@@ -3353,6 +3353,14 @@ input[type=number] {
   border-radius: 10px;
   background-color: white;
 }
+.main-content__wrapper-favs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10em;
+}
+
 .hidden {
   display: none;
 }

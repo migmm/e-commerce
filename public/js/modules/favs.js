@@ -57,8 +57,8 @@ class ModuleFavs {
         let query = `page=1&perPage=10&sortBy=addedDate&sortOrder=desc&field=_id&value=${id}&currency=${currency}`;
         const product = await productController.getProducts(currentLang, query);
 
-        const existingProductInFavs = this.favs.find(item => item.id === id); 
-        
+        const existingProductInFavs = this.favs.find(item => item.id === id);
+
         if (!existingProductInFavs && product) {
 
             const favProduct = product.products[0];
@@ -89,7 +89,7 @@ class ModuleFavs {
 
         for (let i = 0; i < this.favs.length; i++) {
             const favProduct = this.favs[i];
-            
+
             const query = `page=1&perPage=1&sortBy=addedDate&sortOrder=desc&field=_id&value=${favProduct.id}&currency=${currency}`;
 
             const productFromDatabase = await productController.getProducts(currentLang, query);
@@ -101,6 +101,10 @@ class ModuleFavs {
 
         localStorage.setItem('favs', JSON.stringify(this.favs));
         await render.renderTemplateCards(this.favs, 'templates/card-favs-preview.hbs', '.favs-modal__products');
+        
+        if (document.querySelector('.favs-container')) {
+            await render.renderTemplateCards(this.favs, 'templates/card-favs-preview.hbs', '.favs-container');
+        }
     }
 
     static async init() {
