@@ -1,7 +1,6 @@
 import cartController from '/js/modules/cart.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
 import heartButton from '../utils/heartButton.js';
-import getIdFromHash from '../utils/getIdFromHash.js';
 import navigationManager from '../utils/navigationManager.js';
 import fetchLanguageData from '../utils/langFunctions.js';
 import { fetchAndRenderProducts, queryFunction } from '../utils/fetchAndRenderProducts.js';

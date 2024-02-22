@@ -1,12 +1,9 @@
-import productController from '/js/controllers/product.js';
 import cartController from '/js/modules/cart.js';
-import render from '/js/utils/render.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
 import fetchLanguageData from '../utils/langFunctions.js';
 import cardSliders from '../utils/cardSliders.js';
 import heartButton from '../utils/heartButton.js';
-import getIdFromHash from '../utils/getIdFromHash.js';
-import { indexQueries, fetchAndRenderProducts, queryFunction } from '../utils/fetchAndRenderProducts.js';
+import { fetchAndRenderProducts, queryFunction } from '../utils/fetchAndRenderProducts.js';
 import navigationManager from '../utils/navigationManager.js';
 
 class PageProducto {
