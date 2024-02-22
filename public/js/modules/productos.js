@@ -2,6 +2,7 @@ import cartController from '/js/modules/cart.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
 import heartButton from '../utils/heartButton.js';
 import getIdFromHash from '../utils/getIdFromHash.js';
+import navigationManager from '../utils/navigationManager.js';
 import fetchLanguageData from '../utils/langFunctions.js';
 import { fetchAndRenderProducts, queryFunction } from '../utils/fetchAndRenderProducts.js';
 
@@ -99,7 +100,8 @@ class PageProductos {
         this.generatePageLinks(products);
         this.optionsFunctions();
 
-        this.search = await getIdFromHash();
+        this.search = await navigationManager.getIdFromHash(2);
+
         if (this.search) {
             const query = await queryFunction('all', this.search)
             const products = await fetchAndRenderProducts(query, '.section-cards__cards-container', 'templates/card-all-products.hbs');
