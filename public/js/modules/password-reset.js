@@ -1,6 +1,6 @@
 import cartController from '/js/modules/cart.js';
 import goTopOnLoad from '../utils/goTopOnLoad.js';
-import getIdFromHash from '../utils/getIdFromHash.js';
+import navigationManager from '../utils/navigationManager.js';
 import fetchLanguageData from '../utils/langFunctions.js';
 import recoveryController from '../controllers/recovery.js';
 import render from '/js/utils/render.js';
@@ -101,7 +101,7 @@ class PageForgotPass {
     }
 
     static async init() {
-        this.token = await getIdFromHash(2);
+        this.token = await navigationManager.getIdFromHash(2);
 
         if (!this.token) {
             window.location.href = '/#/login';
