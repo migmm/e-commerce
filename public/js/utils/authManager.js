@@ -33,20 +33,19 @@ class AuthManager {
 
     updateUserMenu(role) {
         const menu = document.querySelector('.login-button-menu');
-        let menuContent = '';
-
+        let roleButtonContent = '';
+    
         if (role === 'user') {
-            menuContent = `
-                <a href="#/profile" class="panel-button-menu__panel-button" data-lang="signin">USER</a>
-                <a href="#/logout" class="logout-button-menu__logout-button" data-lang="logout">Salir</a>
-            `;
+            roleButtonContent = 'data-lang="signin">USER';
         } else if (role === 'admin') {
-            menuContent = `
-                <a href="#/profile" class="panel-button-menu__panel-button" data-lang="nav-bar-admin-button">ADMIN</a>
-                <a href="#/logout" class="logout-button-menu__logout-button" data-lang="nav-bar-logout-button">Salir</a>
-            `;
+            roleButtonContent = 'data-lang="nav-bar-admin-button">ADMIN';
         }
-
+    
+        const menuContent = `
+            <a href="#/profile" class="panel-button-menu__panel-button" ${roleButtonContent}</a>
+            <a href="#/logout" class="logout-button-menu__logout-button" data-lang="logout">Salir</a>
+        `;
+    
         menu.innerHTML = menuContent;
     }
 
