@@ -7,6 +7,7 @@ import cardSliders from '../utils/cardSliders.js';
 import heartButton from '../utils/heartButton.js';
 import getIdFromHash from '../utils/getIdFromHash.js';
 import { indexQueries, fetchAndRenderProducts, queryFunction } from '../utils/fetchAndRenderProducts.js';
+import navigationManager from '../utils/navigationManager.js';
 
 class PageProducto {
 
@@ -71,7 +72,7 @@ class PageProducto {
 
         this.optionsFunctions();
         await cartController.init();
-        const productURL = await getIdFromHash(2);
+        const productURL = navigationManager.getIdFromHash(2);
 
         const queryProduct = await queryFunction('urlName', productURL)
         const product = await fetchAndRenderProducts(queryProduct, '.full-product-page', 'templates/producto.hbs');

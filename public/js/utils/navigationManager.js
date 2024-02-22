@@ -2,7 +2,7 @@ class NavigationManager {
 
     static links;
 
-    getIdFromHash() {
+    getIdFromHash(code) {
 
         this.links = document.querySelectorAll('.main-nav__link');
 
@@ -23,6 +23,11 @@ class NavigationManager {
         }
 
         hashFromURL = hashFromURL.split('/');
+
+        if (code === 2) {
+            hashFromURL = hashFromURL[1];
+            return hashFromURL;
+        }
 
         if (hashFromURL.length > 2) {
             return 404
