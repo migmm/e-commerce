@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 import DBMongoDB from "../DBMongoDB.js";
-import unlink from "fs-extra";
-import path from "path";
 
 
 const productSchema = mongoose.Schema({
@@ -76,56 +74,19 @@ class ProductModelMongoDB {
                 totalProducts: 0,
             };
         }
-    
         try {
-            const skip = (page - 1) * perPage;
-            perPage = parseInt(perPage);
-    
-            const aggregationPipeline = [];
-    
-            if (Object.keys(filters).length > 0) {
-                if (filters._id) {
-                    aggregationPipeline.push({ $match: { _id: mongoose.Types.ObjectId(filters._id) } });
-                } else {
-                    aggregationPipeline.push({ $match: filters });
-                }
-            }
-
-            const sortingStage = { $sort: { [sortBy]: sortOrder === 'asc' ? 1 : -1 } };
-    
-            const paginationStage = { $skip: skip };
-            const limitStage = { $limit: perPage };
-            const projectionStage = { $project: { __v: 0 } };
-    
-            aggregationPipeline.push(sortingStage, paginationStage, limitStage, projectionStage);
-            const facetStage = {
-                $facet: {
-                    products: aggregationPipeline,
-                    totalCount: [{ $group: { _id: null, count: { $sum: 1 } } }],
-                },
-            };
-            const result = await ProductsModel.aggregate([facetStage]).allowDiskUse(true);
-            const productsWithId = result[0].products.map(product => DBMongoDB.getObjectWithId(product));
-    
-            return {
-                products: productsWithId,
-                totalPages: Math.ceil(result[0].totalCount[0].count / perPage),
-                totalProducts: result[0].totalCount[0].count,
-            };
+            const aggregationPipeline = this.buildAggregationPipeline(filters, sortBy, sortOrder, page, perPage);
+            const result = await this.executeAggregationPipeline(aggregationPipeline);
+            return this.formatAggregationResult(result, perPage);
         } catch (error) {
-            console.error(`Error al intentar obtener los productos: ${error.message}`);
+            console.error(`Error reading products: ${error.message}`);
             return {
                 products: [],
                 totalPages: 0,
-                totalProducts: 0,
+                totalProducts: 0
             };
         }
     }
-    
-    
-    
-    
-    
 
     async readProduct(id) {
         if (! await DBMongoDB.connectDB()) {
@@ -168,6 +129,40 @@ class ProductModelMongoDB {
             console.error(`Error al intentar eliminar el producto: ${error.message}`);
             return {};
         }
+    }
+
+    async executeAggregationPipeline(aggregationPipeline) {
+        return await ProductsModel.aggregate(aggregationPipeline).allowDiskUse(true);
+    }
+
+    formatAggregationResult(result, perPage) {
+        const productsWithId = result[0].products.map(product => DBMongoDB.getObjectWithId(product));
+    
+        return {
+            products: productsWithId,
+            totalPages: Math.ceil(result[0].totalCount[0].count / perPage),
+            totalProducts: result[0].totalCount[0].count
+        };
+    }
+
+    buildAggregationPipeline(filters, sortBy, sortOrder, page, perPage) {
+        const skip = (page - 1) * perPage;
+        const sortingStage = { $sort: { [sortBy]: sortOrder === 'asc' ? 1 : -1 } };
+        const paginationStage = { $skip: skip };
+        const limitStage = { $limit: parseInt(perPage) }; // Convertir perPage a entero
+        const projectionStage = { $project: { __v: 0 } };
+    
+        const aggregationPipeline = [];
+        if (Object.keys(filters).length > 0) {
+            if (filters._id) {
+                aggregationPipeline.push({ $match: { _id: mongoose.Types.ObjectId(filters._id) } });
+            } else {
+                aggregationPipeline.push({ $match: filters });
+            }
+        }
+        aggregationPipeline.push(sortingStage, paginationStage, limitStage, projectionStage);
+    
+        return [{ $facet: { products: aggregationPipeline, totalCount: [{ $group: { _id: null, count: { $sum: 1 } } }] } }];
     }
 }
 
