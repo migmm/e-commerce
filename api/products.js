@@ -35,26 +35,11 @@ const getProducts = async (lang, query) => {
 
     if (field && value) {
         if (field === "all") {
-            const searchFields = SEARCH_FIELDS;
-            filter = {
-                $or: searchFields.map(fieldName => ({
-                    [fieldName]: { $regex: value, $options: 'i' }
-                }))
-            };
+            filter = generateFilterForAllFields(value);
         } else if (field === "_id") {
             filter[field] = value;
-
-        }  else if (field === 'productName' || field === 'shortDescription' || field === 'longDescription')  {
-            const fieldsToSearch = FIELDS_WITH_LANG
-
-            filter = {
-                $expr: {
-                    $or: fieldsToSearch.map((field, index) => ({
-                        $regexMatch: { input: { $toLower: `$${field}.${AvailableLangs.availableLangs[index]}` }, regex: value, options: 'i' }
-                    }))
-                }
-            };
-
+        } else if (isMultilingualField(field)) {
+            filter = generateFilterForMultilingualField(field, value);
         } else {
             filter[field] = { $regex: value, $options: 'i' };
         }
@@ -67,9 +52,7 @@ const getProducts = async (lang, query) => {
         .filter(product => product !== null);
 
     const productCount = productsWithLang.length;
-    let pageCount = totalPages - 1;
-
-    if (!productCount) pageCount = 0;
+    const pageCount = productCount > 0 ? totalPages - 1 : 0;
 
     return {
         page,
@@ -79,6 +62,8 @@ const getProducts = async (lang, query) => {
         products: productsWithLang,
     };
 };
+
+
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -150,6 +135,31 @@ const deleteProduct = async id => {
     const removedProduct = await modelProducts.deleteProduct(id);
     return removedProduct;
 };
+
+const generateFilterForAllFields = (value) => {
+    const searchFields = SEARCH_FIELDS;
+    return {
+        $or: searchFields.map(fieldName => ({
+            [fieldName]: { $regex: value, $options: 'i' }
+        }))
+    };
+};
+
+const isMultilingualField = (field) => {
+    return ['productName', 'shortDescription', 'longDescription'].includes(field);
+};
+
+const generateFilterForMultilingualField = (field, value) => {
+    const fieldsToSearch = FIELDS_WITH_LANG;
+    return {
+        $expr: {
+            $or: fieldsToSearch.map((fieldName, index) => ({
+                $regexMatch: { input: { $toLower: `$${fieldName}.${AvailableLangs.availableLangs[index]}` }, regex: value, options: 'i' }
+            }))
+        }
+    };
+};
+
 
 export default {
     getProducts,
