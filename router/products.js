@@ -450,7 +450,7 @@ routerProducts.get('/:id/:lang', productsController.getProduct);
  *                   description: Error message.
  *                   example: 'Error creating the product'
  */
-routerProducts.post('/', authRole(['admin']), upload.array('images', 10), handleMulterError, resizeImagesMiddleware, productsController.postProduct);
+routerProducts.post('/', authRole(['admin']), validateProduct, upload.array('images', 10), handleMulterError, resizeImagesMiddleware, productsController.postProduct);
 
 /**
  * @openapi
@@ -688,7 +688,7 @@ routerProducts.post('/', authRole(['admin']), upload.array('images', 10), handle
  *                   description: Error message.
  *                   example: 'Error updating the product'
  */
-routerProducts.put('/:id', authRole(['admin']), upload.array('images', 10), handleMulterError, resizeImagesMiddleware, productsController.putProduct);
+routerProducts.put('/:id', authRole(['admin']), validateProduct, upload.array('images', 10), handleMulterError, resizeImagesMiddleware, productsController.putProduct);
 
 /**
  * @openapi
