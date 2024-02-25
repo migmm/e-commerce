@@ -1,6 +1,5 @@
 import config from '../config.js';
 import ProductModel from "../model/products/products.js";
-import ProductValidator from '../model/products/validators/ProductValidator.js';
 import { LANGUAGE_CONFIG, SEARCH_FIELDS, FIELDS_WITH_LANG } from '../config.js';
 const modelProducts = ProductModel.get(config.PERSISTENCE_TYPE);
 import { getLanguageInfo } from '../controller/lang.js';
@@ -64,8 +63,6 @@ const getProducts = async (lang, query) => {
 };
 
 
-
-
 ///////////////////////////////////////////////////////////////////////////////
 //                                API Get ONE                                //
 ///////////////////////////////////////////////////////////////////////////////
@@ -94,17 +91,8 @@ const getProductToUpdate = async (id, lang) => {
 ///////////////////////////////////////////////////////////////////////////////
 
 const createProduct = async product => {
-
-    /*  const validationError = ProductValidator.validate(product); */
-    /*     const validationError = true;
-        if (!validationError) { */
     const createdProduct = await modelProducts.createProduct(product);
     return createdProduct;
-    /*  } else {
-        console.log(validationError);
-        console.error(`Error de validación en createProduct: ${validationError.details[0].message}`);
-        return {};
-     } */
 };
 
 
@@ -113,17 +101,8 @@ const createProduct = async product => {
 ///////////////////////////////////////////////////////////////////////////////
 
 const updateProduct = async (id, product) => {
-    /* 
-        const validationError = ProductValidator.validate(product);
-    
-        if (!validationError) { */
     const updatedProduct = await modelProducts.updateProduct(id, product);
     return updatedProduct;
-    /*}  else {
-        console.log(validationError);
-        console.error(`Error de validación en updateProduct: ${validationError.details[0].message}`);
-        return {};
-    } */
 };
 
 
@@ -135,6 +114,11 @@ const deleteProduct = async id => {
     const removedProduct = await modelProducts.deleteProduct(id);
     return removedProduct;
 };
+
+
+///////////////////////////////////////////////////////////////////////////////
+//                                Functions                                  //
+///////////////////////////////////////////////////////////////////////////////
 
 const generateFilterForAllFields = (value) => {
     const searchFields = SEARCH_FIELDS;
