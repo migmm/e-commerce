@@ -82,6 +82,11 @@ api/products/:id ---> Modify one product from ID (using form-data)
 
 api/products/:id ---> Delete one product from ID
 
+### SWAGGER DOCUMENTATION
+
+There is available a Swagger documentation at http://localhost:8080/swagger-ui/index.html
+
+IF you are running outside a localhost Change http://localhost:8080 for your URL
 
 ### Installation
 
