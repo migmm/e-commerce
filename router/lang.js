@@ -3,6 +3,7 @@ const routerLang = express.Router();
 
 import { changeLanguage, getLanguageInfo } from '../controller/lang.js';
 
+
 /**
  * @openapi
  * /api/lang/availablelangs:

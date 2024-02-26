@@ -2,8 +2,8 @@ import express from 'express';
 import authController from '../controller/auth.js';
 import loginLimiter from '../helpers/loginLimiter.js';
 
-const routerAuth = express.Router();
 
+const routerAuth = express.Router();
 
 /**
  * @openapi

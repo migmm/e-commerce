@@ -6,8 +6,8 @@ import validationMiddleware from '../middlewares/validator.js';
 import ProductValidator from '../model/products/validators/ProductValidator.js';
 import authRole from '../middlewares/authRole.js';
 
-const validateProduct = validationMiddleware(ProductValidator);
 
+const validateProduct = validationMiddleware(ProductValidator);
 
 const routerProducts = express.Router();
 
