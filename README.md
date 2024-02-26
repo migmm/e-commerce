@@ -39,7 +39,6 @@ In frontend I used:
 
 ### Backend
 
-
 In Backend I used:
 
 - Node.JS
@@ -47,6 +46,7 @@ In Backend I used:
 - Mongoose
 - MongoDB
 - Layer architecture to improve scalability and fast learning
+
 
 ### FEATURES
 
@@ -62,6 +62,7 @@ In Backend I used:
     - Product list pagination and many options to get like vendor, date, product name and many others
     - Also you can choose product quantity per page
     - Password reset via link
+
 
 ### API ROUTES
 
@@ -82,11 +83,13 @@ api/products/:id ---> Modify one product from ID (using form-data)
 
 api/products/:id ---> Delete one product from ID
 
+
 ### SWAGGER DOCUMENTATION
 
-There is available a Swagger documentation at http://localhost:8080/swagger-ui/index.html
+There is available a Swagger documentation at http://localhost:8080/api/docs/
 
-IF you are running outside a localhost Change http://localhost:8080 for your URL
+If you are running outside a localhost Change http://localhost:8080 for your URL
+
 
 ### Installation
 
@@ -98,13 +101,8 @@ or Yarn
 ### `yarn install` 
 
 
-
  In the project directory, you can run:
 ### `npm start`
 
 To run the app:<br />
 Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
-
-
-
-

@@ -24,6 +24,7 @@ Segunda entrega: 26/09/2022.
 
 Tercera entrega: 14/11/2022.
 
+
 ### Frontend
 
 Para el frontend se utilizó:
@@ -48,6 +49,7 @@ Para el backend se utilizó:
 - MongoDB
 - Arquitectura en capas para una mejor escalabilidad y comprensión
 
+
 ### CARACTERISTICAS
 
     - Diseño responsivo
@@ -62,6 +64,7 @@ Para el backend se utilizó:
     - Paginación de productos con opciones de vendor, date, product name entre otros
     - También se puede seleccionar la cantidad de productos por página
     - Password reset via link
+
 
 ### Rutas API
 
@@ -83,7 +86,15 @@ api/products/:id ---> Mmodifica un producto a partir de su ID (usa form-data)
 api/products/:id ---> Borra un producto a partir de su ID
 
 
-### Instalación
+### DOCUMENTACIÓN SWAGGER
+
+Está disponible la documentacion en Swagger en http://localhost:8080/api/docs/
+
+Si estas ejecuntando el proyecto en otra url diferente a localhost, cambiar http://localhost:8080 por tu URL
+
+
+### INSTALACIÓN
+
 ```bash
 npm install
 ```
