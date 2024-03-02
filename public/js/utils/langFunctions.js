@@ -1,8 +1,14 @@
-const languageSelect = document.querySelectorAll('.language-select');
-
+/*
+ * This function updates DOM elements with provided translation data.
+ * It takes an object containing translation data and an optional parent key for recursion.
+ * @param {Object} elementData - The translation data object.
+ * @param {string} [parentKey=""] - The optional parent key for recursion.
+ * @returns {void}
+ */
 const updateElements = (elementData, parentKey = "") => {
     const elementsToUpdate = [];
 
+    // Recursive function to traverse translation data
     const traverseData = (data, parentKey = "") => {
         Object.entries(data).forEach(([key, value]) => {
             const elementKey = parentKey ? `${parentKey}-${key}` : key;
@@ -18,8 +24,10 @@ const updateElements = (elementData, parentKey = "") => {
         });
     };
 
+    // Start traversing translation data
     traverseData(elementData);
 
+    // Update DOM elements with translation data
     elementsToUpdate.forEach(({ element, value }) => {
         if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
             element.placeholder = value;
@@ -31,6 +39,14 @@ const updateElements = (elementData, parentKey = "") => {
     });
 };
 
+/*
+ * This function makes a data request to the server using fetch API.
+ * It takes the request route and the HTTP method to use.
+ * Returns a promise that resolves with the obtained data.
+ * @param {string} route - The route for the data request.
+ * @param {string} method - The HTTP method for the request.
+ * @returns {Promise<Object>} - A promise resolving to the obtained data.
+ */
 const fetchFunction = async (route, method) => {
     try {
         const response = await fetch(route, { method });
@@ -41,6 +57,12 @@ const fetchFunction = async (route, method) => {
     }
 };
 
+/*
+ * This function retrieves translation data from the server and updates the DOM with it.
+ * It also handles user language selection.
+ * Returns a promise that resolves with the obtained translation data.
+ * @returns {Promise<Object>} - A promise resolving to the obtained translation data.
+ */
 const fetchLanguageData = async () => {
     const availableLangs = await fetchFunction('/api/lang/availablelangs', 'GET');
     const supportedLanguages = availableLangs.availableLangs;
@@ -48,7 +70,6 @@ const fetchLanguageData = async () => {
     const browserLanguage = navigator.language || navigator.userLanguage;
     const languageParts = browserLanguage.split("-");
     const language = languageParts[0];
-
     let defaultLanguage = supportedLanguages.includes(language) ? language : 'en';
 
     if (localStorage.getItem('langSelection')) {
@@ -66,6 +87,7 @@ const fetchLanguageData = async () => {
     return response;
 };
 
+// Add event listener to language selectors to change selected language by user
 languageSelect.forEach((select) => {
     select.addEventListener('change', async () => {
         const selectedLanguage = select.value;
@@ -73,5 +95,6 @@ languageSelect.forEach((select) => {
         await fetchLanguageData();
     });
 });
+
 
 export default { fetchLanguageData };
