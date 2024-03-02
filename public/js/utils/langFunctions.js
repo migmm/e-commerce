@@ -1,43 +1,40 @@
-
 const languageSelect = document.querySelectorAll('.language-select');
 
 const updateElements = (elementData, parentKey = "") => {
-    Object.entries(elementData).forEach(([key, value]) => {
-        const elementKey = parentKey ? `${parentKey}-${key}` : key;
+    const elementsToUpdate = [];
 
-        if (typeof value === 'object') {
-            updateElements(value, elementKey);
+    const traverseData = (data, parentKey = "") => {
+        Object.entries(data).forEach(([key, value]) => {
+            const elementKey = parentKey ? `${parentKey}-${key}` : key;
+
+            if (typeof value === 'object') {
+                traverseData(value, elementKey);
+            } else {
+                const elements = document.querySelectorAll(`[data-lang="${elementKey}"]`);
+                elements.forEach((element) => {
+                    elementsToUpdate.push({ element, value });
+                });
+            }
+        });
+    };
+
+    traverseData(elementData);
+
+    elementsToUpdate.forEach(({ element, value }) => {
+        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+            element.placeholder = value;
         } else {
-            const elements = document.querySelectorAll(`[data-lang="${elementKey}"]`);
-            elements.forEach((element) => {
-                element.innerHTML = value;
-            });
-
-            const placeholders = document.querySelectorAll(`[data-placeholder="${elementKey}"]`);
-            placeholders.forEach((placeholder) => {
-                placeholder.placeholder = value;
-            });
-
-            const titles = document.querySelectorAll(`[data-title="${elementKey}"]`);
-            titles.forEach((title) => {
-                title.title = value;
-            });
-
-            const alts = document.querySelectorAll(`[data-alt="${elementKey}"]`);
-            alts.forEach((alt) => {
-                alt.alt = value;
-            });
+            element.innerHTML = value;
+            element.title = value;
+            element.alt = value;
         }
     });
 };
 
 const fetchFunction = async (route, method) => {
     try {
-        const response = await fetch(route, {
-            method: method
-        });
-        const data = await response.json();
-        return data;
+        const response = await fetch(route, { method });
+        return await response.json();
     } catch (error) {
         console.error('Error fetching data.', error);
         throw error;
@@ -45,10 +42,8 @@ const fetchFunction = async (route, method) => {
 };
 
 const fetchLanguageData = async () => {
-
-    const availableLangs = await fetchFunction('/api/lang/availablelangs', 'GET')
-
-    const supportedLanguages = availableLangs.availableLangs
+    const availableLangs = await fetchFunction('/api/lang/availablelangs', 'GET');
+    const supportedLanguages = availableLangs.availableLangs;
 
     const browserLanguage = navigator.language || navigator.userLanguage;
     const languageParts = browserLanguage.split("-");
@@ -57,7 +52,6 @@ const fetchLanguageData = async () => {
     let defaultLanguage = supportedLanguages.includes(language) ? language : 'en';
 
     if (localStorage.getItem('langSelection')) {
-        console.log(localStorage.getItem('langSelection'))
         defaultLanguage = localStorage.getItem('langSelection');
     } else {
         localStorage.setItem('langSelection', defaultLanguage);
@@ -67,21 +61,17 @@ const fetchLanguageData = async () => {
         select.value = defaultLanguage;
     });
 
-    const response = await fetchFunction(`/api/lang/changelanguage/${defaultLanguage}`, 'POST')
-    updateElements(response)
+    const response = await fetchFunction(`/api/lang/changelanguage/${defaultLanguage}`, 'POST');
+    updateElements(response);
     return response;
 };
 
 languageSelect.forEach((select) => {
-    select.addEventListener('change', () => {
+    select.addEventListener('change', async () => {
         const selectedLanguage = select.value;
         localStorage.setItem('langSelection', selectedLanguage);
-        fetchLanguageData();
-        location.reload();
+        await fetchLanguageData();
     });
 });
 
-
-export default {
-    fetchLanguageData
-}
+export default { fetchLanguageData };
