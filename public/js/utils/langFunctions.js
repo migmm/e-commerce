@@ -1,3 +1,5 @@
+const languageSelect = document.querySelectorAll('.language-select');
+
 /*
  * This function updates DOM elements with provided translation data.
  * It takes an object containing translation data and an optional parent key for recursion.
