@@ -35,7 +35,7 @@ const getProducts = async (req, res) => {
             }
 
             const currenciesChanges = await CURRENCIES.getCurrencyChange();
-            console.log(currenciesChanges);
+            //console.log(currenciesChanges);
 
             if (currenciesChanges[originalCurrency]?.[targetCurrency]) {
                 const currencyChanges = currenciesChanges[originalCurrency][targetCurrency];
