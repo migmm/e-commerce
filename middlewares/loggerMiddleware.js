@@ -2,9 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import util from 'util';
 import formatDateTime from '../helpers/dateUtils.js';
+import { LOGS_DIRECTORY } from '../config.js';
 
-
-const logsDirectory = 'logs';
+const logsDirectory = LOGS_DIRECTORY;
 
 if (!fs.existsSync(logsDirectory)) {
     fs.mkdirSync(logsDirectory);
