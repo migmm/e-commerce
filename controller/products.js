@@ -26,7 +26,7 @@ const getProducts = async (req, res) => {
 
         const convertPrice = async (price, originalCurrency, targetCurrency) => {
             //Console visualization of currencies convertion
-            console.log("Currencies conversion", originalCurrency, targetCurrency)
+            //console.log("Currencies conversion", originalCurrency, targetCurrency)
             if (originalCurrency === targetCurrency) {
                 return {
                     value: price,
