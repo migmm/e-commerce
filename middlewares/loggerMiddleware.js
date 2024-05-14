@@ -1,8 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import util from 'util';
+import { TIME_ZONE } from '../config.js';
 
-const logsDirectory = 'log';
+const logsDirectory = 'logs';
 
 if (!fs.existsSync(logsDirectory)) {
     fs.mkdirSync(logsDirectory);
@@ -12,7 +13,7 @@ const appendFileAsync = util.promisify(fs.appendFile);
 
 const loggerMiddleware = async (req, res, next) => {
 
-    const timeZoneOffsetHours = -3;
+    const timeZoneOffsetHours = TIME_ZONE;
     const currentDate = new Date();
 
     currentDate.setHours(currentDate.getHours() + timeZoneOffsetHours);
