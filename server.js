@@ -54,9 +54,9 @@ app.get("/*", function (req, res) {
 const PORT = config.PORT;
 
 const server = app.listen(PORT, () => 
-    console.log(`Servidor Express escuchando en el puerto ${PORT}.`)
+    console.log(`Express server listening to port ${PORT}.`)
 );
 
 server.on('error', error => 
-    console.log('Error al iniciar el servidor Express: ' + error.message)
+    console.log('Error starting Express server: ' + error.message)
 );

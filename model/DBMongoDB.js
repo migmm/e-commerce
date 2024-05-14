@@ -1,6 +1,5 @@
 import config from '../config.js';
 import mongoose from "mongoose";
-
 mongoose.pluralize(null);
 
 class DBMongoDB {
@@ -37,10 +36,10 @@ class DBMongoDB {
                 useUnifiedTopology: true,
                 serverSelectionTimeoutMS: config.MONGODB_TIMEOUT
             });
-            console.log('Conexión con MongoDB exitosa.');
+            console.log('Connected to MongoDB sucessfully.');
             return true;
         } catch (error) {
-            console.error(`Error al intentar establecer la conexión con MongoDB. Detalle: ${error.message}`);
+            console.error(`Error connecting MongoDB database: ${error.message}`);
             return false;
         }
     }
