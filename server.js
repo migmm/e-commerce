@@ -18,6 +18,8 @@ import swaggerSpec from "./helpers/swagger.js";
 
 import config from './config.js';
 
+import loggerMiddleware from './middlewares/loggerMiddleware.js';
+
 const app = express();
 
 app.use(cors());
@@ -26,6 +28,8 @@ app.use(cookieParser());
 app.use(express.static('public', { extensions: ['html', 'htm'] }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(loggerMiddleware);
 
 app.use('*', errorHandler)
 
