@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import util from 'util';
-import { TIME_ZONE } from '../config.js';
+import formatDateTime from '../helpers/dateUtils.js';
+
 
 const logsDirectory = 'logs';
 
@@ -13,12 +14,7 @@ const appendFileAsync = util.promisify(fs.appendFile);
 
 const loggerMiddleware = async (req, res, next) => {
 
-    const timeZoneOffsetHours = TIME_ZONE;
-    const currentDate = new Date();
-
-    currentDate.setHours(currentDate.getHours() + timeZoneOffsetHours);
-
-    const formattedDate = currentDate.toISOString().replace('T', ' ').slice(0, -5) + ` GMT${timeZoneOffsetHours >= 0 ? '+' : ''}${timeZoneOffsetHours}`;
+    const formattedDate = formatDateTime();
 
     let logMessage = `${formattedDate} - Request received: ${req.method} ${req.protocol}://${req.get('host')}${req.originalUrl}`;
 
@@ -34,7 +30,7 @@ const loggerMiddleware = async (req, res, next) => {
         console.log(logMessage);
         await appendFileAsync(path.join(logsDirectory, 'access.log'), logMessage + '\n');
     } catch (error) {
-        console.error('Error writting register file:', error);
+        console.error('Error writing register file:', error);
     }
 
     next();
