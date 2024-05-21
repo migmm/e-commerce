@@ -269,7 +269,15 @@
         "title-color": "COLOR",
         "title": "PRODUCTOS",
         "option-select-qty": "Seleccione Cantidad",
-        "pages": "Páginas"
+        "pages": "Páginas",
+        "tag-superheros": "Super Heroes",
+        "tag-movies": "Películas",
+        "tag-cars": "Autos",
+        "tag-bricks": "Bricks",
+        "color-red": "Rojo",
+        "color-blue": "Azul",
+        "color-Yellow": "Amarillo",
+        "color-green": "Verde"
     },
     "page404": {
         "message": "404 - Página no encontrada",

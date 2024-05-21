@@ -267,7 +267,15 @@
         "title-color": "COLOR",
         "title": "PRODUCTS",
         "option-select-qty": "Select quantity",
-        "pages": "Pages"
+        "pages": "Pages",
+        "tag-superheros": "Superheros",
+        "tag-movies": "Movies",
+        "tag-cars": "Cars",
+        "tag-bricks": "Bricks",
+        "color-red": "Red",
+        "color-blue": "Blue",
+        "color-Yellow": "Yellow",
+        "color-green": "Green"
     },
     "page404": {
         "message": "404 - Page not found",
