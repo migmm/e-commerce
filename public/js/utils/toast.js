@@ -1,10 +1,20 @@
 import fetchLanguageData from '../utils/langFunctions.js';
 
 class ToastComponent {
+    /*
+    * Generates a unique identifier.
+    * @returns {string} - The generated unique identifier.
+    */
     generateId() {
         return '_' + Math.random().toString(36).substr(2, 9);
     }
 
+    /*
+    * Generates the HTML content for the toast.
+    * @param {string} translationKey - The translation key for the toast text.
+    * @param {string} type - The type of toast (warning, error, success, info).
+    * @returns {string} - The HTML content for the toast.
+    */
     getToastHTML(translationKey, type) {
         return `
             <div class="toast-content">
