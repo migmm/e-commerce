@@ -1,67 +1,79 @@
-import fetchLanguageData from '../utils/langFunctions.js'
+import fetchLanguageData from '../utils/langFunctions.js';
+
 class ToastComponent {
     generateId() {
         return '_' + Math.random().toString(36).substr(2, 9);
     }
 
-    toastNotification(translationKey, type, color, location) {
-        const toastContainer = document.getElementById('toast-container');
-        const toastElement = document.createElement('div');
-        const toastId = this.generateId();
-        toastElement.className = 'toast ' + location;
-        toastElement.innerHTML = `
-    <div class="toast-content">
-        <div class="toast-icon">
-            <i class="fa fa-${this.getIconForType(type)} fa-lg"></i>
-        </div>
-        <div class="toast-text" data-lang="${translationKey}">${translationKey}</div>
-        <div class="toast-close">
-            <i class="fa fa-times fa-lg"></i>
-        </div>
-    </div>`;
+    getToastHTML(translationKey, type) {
+        return `
+            <div class="toast-content">
+                <div class="toast-icon">
+                    <i class="fa fa-${this.getIconForType(type)} fa-lg"></i>
+                </div>
+                <div class="toast-text" data-lang="${translationKey}">${translationKey}</div>
+                <div class="toast-close">
+                    <i class="fa fa-times fa-lg"></i>
+                </div>
+            </div>`;
+    }
 
+    createToastElement(translationKey, type, color, location) {
+        const toastId = this.generateId();
+        const toastElement = document.createElement('div');
+        toastElement.className = `toast ${location}`;
+        toastElement.innerHTML = this.getToastHTML(translationKey, type);
         toastElement.style.backgroundColor = color;
         toastElement.setAttribute('id', toastId);
+        return toastElement;
+    }
 
+    attachCloseEvent(toastElement, toastId, toastContainer) {
         const closeButton = toastElement.querySelector('.toast-close');
         closeButton.onclick = () => {
-            const toastToRemove = document.getElementById(toastId);
-            if (toastToRemove) {
-                toastToRemove.classList.remove('show');
-                setTimeout(() => {
-                    toastContainer.removeChild(toastToRemove);
-                }, 300);
-            }
+            this.removeToast(toastId, toastContainer);
         };
+    }
 
-        toastContainer.appendChild(toastElement);
-        fetchLanguageData.fetchLanguageData();
+    removeToast(toastId, toastContainer) {
+        const toastToRemove = document.getElementById(toastId);
+        if (toastToRemove) {
+            toastToRemove.classList.remove('show');
+            setTimeout(() => {
+                toastContainer.removeChild(toastToRemove);
+            }, 300);
+        }
+    }
+
+    showToast(toastElement) {
         setTimeout(() => {
             toastElement.classList.add('show');
         }, 100);
 
         setTimeout(() => {
-            const toastToRemove = document.getElementById(toastId);
-            if (toastToRemove) {
-                toastToRemove.classList.remove('show');
-                setTimeout(() => {
-                    toastContainer.removeChild(toastToRemove);
-                }, 300);
-            }
+            this.removeToast(toastElement.id, toastElement.parentElement);
         }, 3000);
     }
 
+    toastNotification(translationKey, type, color, location) {
+        const toastContainer = document.getElementById('toast-container');
+        const toastElement = this.createToastElement(translationKey, type, color, location);
+        const toastId = toastElement.id;
+
+        this.attachCloseEvent(toastElement, toastId, toastContainer);
+        toastContainer.appendChild(toastElement);
+        fetchLanguageData.fetchLanguageData();
+        this.showToast(toastElement);
+    }
+
     getIconForType(type) {
-        switch (type) {
-            case 'warning':
-                return 'exclamation-triangle';
-            case 'error':
-                return 'times-circle';
-            case 'success':
-                return 'check-circle';
-            default:
-                return 'info-circle';
-        }
+        const icons = {
+            'warning': 'exclamation-triangle',
+            'error': 'times-circle',
+            'success': 'check-circle',
+            'info': 'info-circle'
+        };
+        return icons[type] || icons['info'];
     }
 
     static async init() {
