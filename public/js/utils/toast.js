@@ -106,6 +106,11 @@ class ToastComponent {
         this.showToast(toastElement);
     }
 
+    /*
+    * Gets the corresponding icon for the toast type.
+    * @param {string} type - The type of toast (warning, error, success, info).
+    * @returns {string} - The FontAwesome icon name.
+    */
     getIconForType(type) {
         const icons = {
             'warning': 'exclamation-triangle',
@@ -116,6 +121,9 @@ class ToastComponent {
         return icons[type] || icons['info'];
     }
 
+    /*
+    * Initializes the Toast module.
+    */
     static async init() {
         console.log('Module Toast.init()');
     }
