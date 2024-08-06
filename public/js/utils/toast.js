@@ -28,6 +28,14 @@ class ToastComponent {
             </div>`;
     }
 
+    /*
+    * Creates a toast element.
+    * @param {string} translationKey - The translation key for the toast text.
+    * @param {string} type - The type of toast (warning, error, success, info).
+    * @param {string} color - The background color of the toast.
+    * @param {string} location - The location of the toast (e.g., top-right, bottom-left).
+    * @returns {HTMLElement} - The created toast element.
+    */
     createToastElement(translationKey, type, color, location) {
         const toastId = this.generateId();
         const toastElement = document.createElement('div');
@@ -38,6 +46,12 @@ class ToastComponent {
         return toastElement;
     }
 
+    /*
+    * Attaches a close event to the toast's close button.
+    * @param {HTMLElement} toastElement - The toast element.
+    * @param {string} toastId - The toast identifier.
+    * @param {HTMLElement} toastContainer - The toast container.
+    */
     attachCloseEvent(toastElement, toastId, toastContainer) {
         const closeButton = toastElement.querySelector('.toast-close');
         closeButton.onclick = () => {
