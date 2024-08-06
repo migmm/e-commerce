@@ -59,6 +59,11 @@ class ToastComponent {
         };
     }
 
+    /*
+    * Removes a toast from the DOM.
+    * @param {string} toastId - The toast identifier.
+    * @param {HTMLElement} toastContainer - The toast container.
+    */
     removeToast(toastId, toastContainer) {
         const toastToRemove = document.getElementById(toastId);
         if (toastToRemove) {
@@ -69,6 +74,10 @@ class ToastComponent {
         }
     }
 
+    /*
+    * Shows the toast in the DOM.
+    * @param {HTMLElement} toastElement - The toast element.
+    */
     showToast(toastElement) {
         setTimeout(() => {
             toastElement.classList.add('show');
@@ -79,6 +88,13 @@ class ToastComponent {
         }, 3000);
     }
 
+    /*
+    * Creates and displays a toast notification.
+    * @param {string} translationKey - The translation key for the toast text.
+    * @param {string} type - The type of toast (warning, error, success, info).
+    * @param {string} color - The background color of the toast.
+    * @param {string} location - The location of the toast (e.g., top-right, bottom-left).
+    */
     toastNotification(translationKey, type, color, location) {
         const toastContainer = document.getElementById('toast-container');
         const toastElement = this.createToastElement(translationKey, type, color, location);
