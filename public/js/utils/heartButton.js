@@ -1,5 +1,15 @@
 import ModuleFavs from '../modules/favs.js'
 
+/**
+ * Initializes the heart button functionality for all elements with the class 'heart-btn'.
+ * The function adds a click event listener to each button, which toggles the favorite status
+ * of the associated item by updating the button's data attribute and class, and by calling 
+ * the appropriate methods from the ModuleFavs module.
+ *
+ * @function
+ * @name heartButton
+ * @returns {void}
+ */
 const heartButton = () => {
     const heartBtns = document.querySelectorAll('.heart-btn');
 
