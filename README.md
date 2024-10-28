@@ -13,9 +13,7 @@ Topic: Toy store.
 
 Name: Juguetería Cósmica.
 
-Deploy: [www.jugueteriacosmica.com.ar](https://www.jugueteriacosmica.com.ar/)
-
-Deploy: [Glitch](https://massive-iridescent-iron.glitch.me/)
+Deploy: [Glitch](https://cosmica-jugueteria.glitch.me/)
 
 
 First delivery: 02/08/2022.
